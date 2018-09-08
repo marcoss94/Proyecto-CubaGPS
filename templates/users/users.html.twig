@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block center %}
+    <div class="col-center-block">
+        <div class="list-group">
+            <table class="table table-bordered">
+                <thead class="black white-text">
+                <tr>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Nombre Completo</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Rol</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th scope="col">Eliminar</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <form action="{{ path('delete_user') }}">
+                        <input type="hidden" name="userId" value="{{ user.id }}">
+                        <tr>
+                            <td>{{ user.username }}</td>
+                            <td>{{ user.fullName }}</td>
+                            <td>{% if user.roles[0]=='ROLE_ADMIN' %}
+                                   -
+                                {% else %}
+                                    {{ user.area }}
+                                {% endif %}
+                            </td>
+                            <td>{{ user.roles[0] }}</td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td>
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    </form>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-default" href="{{ path('create_user') }}">Añadir</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

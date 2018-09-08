@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block center %}
+    <div class="col-center-block">
+        <div class="list-group">
+            <table class="table table-bordered">
+                <thead class="black white-text">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <th scope="col">Eliminar</th>
+                    {% endif %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for area in areas %}
+                    <form action="{{ path('delete_user') }}">
+                        <input type="hidden" name="userId" value="{{ area.id }}">
+                        <tr>
+                            <td>{{ area.id }}</td>
+                            <td>{{ area.name }}</td>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <td>
+                                    <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    </form>
+                {% endfor %}
+                </tbody>
+            </table>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-default" href="{{ path('create_area') }}">Añadir</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

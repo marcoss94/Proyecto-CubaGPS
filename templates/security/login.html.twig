@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>{% block title %}Symfony Demo application{% endblock %}</title>
+    <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/font-awesome.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('build/css/bootstrap.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('build/css/mdb.min.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('build/css/resultado.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('build/css/media-query.css') }}"/>
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+<div class="bg">
+    <div class="col-center-login">
+        <div id="loginForm">
+            <form action="{{ path('security_login') }}" method="post">
+                <fieldset>
+                    <legend><i class="fa fa-lock" aria-hidden="true"></i> Iniciar Sesión</legend>
+                    <div class="form-group">
+                        <label for="username">Usuario</label>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}"
+                               class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" id="password" name="_password" class="form-control"/>
+                    </div>
+                    <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                    <div class="d-inline-block">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> Aceptar
+                        </button>
+                        <a class="hidden" id="registerLabel">Registrarse</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div id="registerForm" class="hidden">
+            <h3>La aplicación no ha sido registrada aún envíe el siguiente código a los Desarrolladores para obtener una
+                Licencia:</h3>
+            <textarea class="form-control" rows="3" style="color: black" id="codeLabel"></textarea>
+            <form action="{{ path('register_sistem') }}" method="post">
+                <fieldset>
+                    <div class="form-group">
+                        <label for="license">Licencia</label>
+                        <input type="text" id="license" name="license"
+                               class="form-control"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> Aceptar
+                    </button>
+                    <a class="hidden" id="registerLabel">Registrarse</a>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script src="{{ asset('build/js/jquery-3.1.1.min.js') }}"></script>
+<script src="{{ asset('build/js/bootstrap.js') }}"></script>
+<script type="text/javascript">
+    var code;
+    var registered;
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            url: ('ajax_check_registered'),
+            success: function (response) {
+                if (response.registered) {
+                    registered = true;
+                    if (response.first) {
+                        alert('La aplicación fue registrada recientemente, \n' +
+                            'para iniciar sesión utilice las siguientes credenciales\n\n' +
+                            'user: admin\ncontraseña: admin')
+                    }
+                } else {
+                    registered = false;
+                    code = response.code;
+                    $('#registerForm').removeClass('hidden');
+                    $('#loginForm').addClass('hidden');
+                    $('#codeLabel').val(code);
+                }
+            }
+        })
+        ;
+
+    })
+</script>
+</html>
