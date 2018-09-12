@@ -49,18 +49,31 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(int $page, string $_format, PostRepository $posts,SistemRepository $sistemRepository): Response
+    public function index(SistemRepository $sistemRepository)
     {
-        $latestPosts = $posts->findLatest($page);
-        $em=$this->getDoctrine()->getManager();
-        $sistem=$sistemRepository->findAll()[0];
+        if ($this->get('session')->get('language') != 'en') {
+            $this->get('session')->set('language', 'es');
+        }
+        $em = $this->getDoctrine()->getManager();
+        $sistem = $sistemRepository->findAll()[0];
         $sistem->setFirst(false);
         $em->persist($sistem);
         $em->flush();
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
-        return $this->render('blog/index.' . $_format . '.twig', ['posts' => $latestPosts]);
+        return $this->render('blog/index.html.twig');
+    }
+
+    /**
+     * @Route("/blog_languaje", name="change_language")
+     * @Method("GET")
+     */
+    public function changeLanguaje()
+    {
+        $language = ($this->get('session')->get('language') == 'es') ? 'en' : 'es';
+        $this->get('session')->set('language', $language);
+        return $this->render('blog/index.html.twig');
     }
 
     /**
