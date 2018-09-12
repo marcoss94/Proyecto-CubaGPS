@@ -1,6 +1,6 @@
 
-Armando: -Translate(Ok)Fijense en el texto el <a>Bienvenido</a> ese es el codigo lo que tenemos que traducir todos los demas textos.  
-         -Gestionar Casas
+Armando: -Translate(Ok)Fijense en el texto el <a>Bienvenido</a> ese es el codigo, lo que tenemos que traducir todos los demas textos.  
+         
 
 
 
@@ -14,4 +14,7 @@ Marcos:
 
 
 
-Fredy
+Fredy:
+
+
+

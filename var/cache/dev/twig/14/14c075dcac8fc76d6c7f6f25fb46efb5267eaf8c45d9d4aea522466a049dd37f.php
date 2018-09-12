@@ -137,18 +137,22 @@ class __TwigTemplate_de8842b3e65d73114abe5a8a546bda0e54ee1397b74dfe8554380fc47f8
         // line 83
         if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 83, $this->source); })()), "session", array()), "get", array(0 => "language"), "method") == "es")) {
             echo " class=\"disabled\" ";
+        } else {
+            echo " href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("change_language");
+            echo "\"";
         }
-        echo " href=\"";
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("change_language");
-        echo "\">Español</a></li>
+        echo ">Español</a></li>
                                     <li id=\"english\" ><a ";
         // line 84
         if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new Twig_Error_Runtime('Variable "app" does not exist.', 84, $this->source); })()), "session", array()), "get", array(0 => "language"), "method") == "en")) {
             echo " class=\"disabled\" ";
+        } else {
+            echo " href=\"";
+            echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("change_language");
+            echo "\"";
         }
-        echo " href=\"";
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("change_language");
-        echo "\">English</a></li>
+        echo ">English</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -971,7 +975,7 @@ border-color: #f9b501;\" href=\"#services\">Saber más</a>
 
     public function getDebugInfo()
     {
-        return array (  946 => 835,  940 => 832,  934 => 829,  928 => 826,  924 => 825,  918 => 822,  912 => 819,  908 => 818,  322 => 235,  305 => 221,  288 => 207,  271 => 193,  254 => 179,  237 => 165,  168 => 99,  146 => 84,  138 => 83,  129 => 76,  127 => 75,  125 => 74,  123 => 73,  121 => 72,  119 => 71,  117 => 70,  115 => 69,  113 => 68,  111 => 67,  109 => 66,  107 => 65,  104 => 63,  73 => 34,  61 => 25,  50 => 17,  44 => 14,  29 => 1,);
+        return array (  950 => 835,  944 => 832,  938 => 829,  932 => 826,  928 => 825,  922 => 822,  916 => 819,  912 => 818,  326 => 235,  309 => 221,  292 => 207,  275 => 193,  258 => 179,  241 => 165,  172 => 99,  148 => 84,  138 => 83,  129 => 76,  127 => 75,  125 => 74,  123 => 73,  121 => 72,  119 => 71,  117 => 70,  115 => 69,  113 => 68,  111 => 67,  109 => 66,  107 => 65,  104 => 63,  73 => 34,  61 => 25,  50 => 17,  44 => 14,  29 => 1,);
     }
 
     public function getSourceContext()
@@ -1058,8 +1062,8 @@ border-color: #f9b501;\" href=\"#services\">Saber más</a>
                                 <a href=\"#\" class=\"dropdown-toggle nav-link\" data-toggle=\"dropdown\"><i class=\"fa fa-globe\" aria-hidden=\"true\"></i><span
                                             class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\" role=\"menu\">
-                                    <li id=\"spanish\" ><a {% if app.session.get('language') == 'es'%} class=\"disabled\" {% endif %} href=\"{{ path('change_language') }}\">Español</a></li>
-                                    <li id=\"english\" ><a {% if app.session.get('language') == 'en'%} class=\"disabled\" {% endif %} href=\"{{ path('change_language') }}\">English</a></li>
+                                    <li id=\"spanish\" ><a {% if app.session.get('language') == 'es'%} class=\"disabled\" {% else %} href=\"{{ path('change_language') }}\"{% endif %}>Español</a></li>
+                                    <li id=\"english\" ><a {% if app.session.get('language') == 'en'%} class=\"disabled\" {% else %} href=\"{{ path('change_language') }}\"{% endif %}>English</a></li>
                                 </ul>
                             </li>
                         </ul>

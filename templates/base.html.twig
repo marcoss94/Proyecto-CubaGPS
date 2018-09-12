@@ -80,8 +80,8 @@
                                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-globe" aria-hidden="true"></i><span
                                             class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li id="spanish" ><a {% if app.session.get('language') == 'es'%} class="disabled" {% endif %} href="{{ path('change_language') }}">Español</a></li>
-                                    <li id="english" ><a {% if app.session.get('language') == 'en'%} class="disabled" {% endif %} href="{{ path('change_language') }}">English</a></li>
+                                    <li id="spanish" ><a {% if app.session.get('language') == 'es'%} class="disabled" {% else %} href="{{ path('change_language') }}"{% endif %}>Español</a></li>
+                                    <li id="english" ><a {% if app.session.get('language') == 'en'%} class="disabled" {% else %} href="{{ path('change_language') }}"{% endif %}>English</a></li>
                                 </ul>
                             </li>
                         </ul>
