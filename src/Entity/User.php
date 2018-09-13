@@ -66,29 +66,6 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
-    /**
-     * @return string
-     */
-    public function getArea(): Area
-    {
-        return $this->area;
-    }
-
-    /**
-     * @param string $area
-     */
-    public function setArea(Area $area)
-    {
-        $this->area = $area;
-    }
-
-    /**
-     * @var string
-     *
-     * @ORM\ManyToOne(targetEntity="Area")
-     * @ORM\JoinColumn(name="area_id", referencedColumnName="id",onDelete="CASCADE")
-     */
-    private $area;
 
     public function getId(): int
     {

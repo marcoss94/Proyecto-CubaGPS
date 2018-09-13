@@ -1,6 +1,7 @@
 /build/
 /node_modules/
 /var/*
+var/
 !/var/cache
 /var/cache/*
 !var/cache/.gitkeep
@@ -16,7 +17,7 @@
 
 ###> symfony/framework-bundle ###
 .env/
-/var/
+/var
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

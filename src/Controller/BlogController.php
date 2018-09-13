@@ -54,11 +54,6 @@ class BlogController extends AbstractController
         if ($this->get('session')->get('language') != 'en') {
             $this->get('session')->set('language', 'es');
         }
-        $em = $this->getDoctrine()->getManager();
-        $sistem = $sistemRepository->findAll()[0];
-        $sistem->setFirst(false);
-        $em->persist($sistem);
-        $em->flush();
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix

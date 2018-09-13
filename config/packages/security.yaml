@@ -3,15 +3,21 @@ security:
         # Our user class and the algorithm we'll use to encode passwords
         # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
         App\Entity\User: bcrypt
+        Symfony\Component\Security\Core\User\User: plaintext
 
     providers:
         # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
         # In this example, users are stored via Doctrine in the database
         # To see the users at src/App/DataFixtures/ORM/LoadFixtures.php
         # To load users from somewhere else: https://symfony.com/doc/current/security/custom_provider.html
-        database_users:
-           entity: { class: App\Entity\User, property: username }
-
+#        database_users:
+#           entity: { class: App\Entity\User, property: username }
+          in_memory:
+                     memory:
+                         users:
+                             admin:
+                                 password: cubaGPS*-
+                                 roles: 'ROLE_ADMIN'
     # https://symfony.com/doc/current/security.html#initial-security-yml-setup-authentication
     firewalls:
         dev:
@@ -45,7 +51,7 @@ security:
                 # The route name the user can go to in order to logout
                 path: security_logout
                 # The name of the route to redirect to after logging out
-                target: security_login
+                target: blog_index
 
     access_control:
         # this is a catch-all for the admin area

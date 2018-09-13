@@ -12,7 +12,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Repository\AreaRepository;
 use App\Repository\UserRepository;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,17 +43,16 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/create_user", name="create_user")
      */
-    public function createUser(AreaRepository $areaRepo)
+    public function createUser()
     {
-        return $this->render('users/create_user.html.twig', ['areas' => $areaRepo->findAll()]);
+        return $this->render('users/create_user.html.twig');
     }
 
     /**
      * @Route("/admin/process_user", name="process_user")
      */
-    public function process_user(Request $request, UserPasswordEncoderInterface $encoder, AreaRepository $areaRepository)
+    public function process_user(Request $request, UserPasswordEncoderInterface $encoder)
     {
-        $area = $areaRepository->find($request->get('area'));
         $fullName = $request->get('fullname');
         $userName = $request->get('username');
         $password = $request->get('password');
@@ -64,7 +62,6 @@ class UserController extends AbstractController
         $user->setFullName($fullName);
         $user->setUsername($userName);
         $user->setPassword($encoded);
-        $user->setArea($area);
         $user->setRoles(($request->get('isAdmin') == 'on') ? ['ROLE_ADMIN'] : ['ROLE_USER']);
         $em->persist($user);
         $em->flush();
