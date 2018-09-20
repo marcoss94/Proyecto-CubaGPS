@@ -7,7 +7,7 @@ Armando: -Translate(Ok)Fijense en el texto el <a>Bienvenido</a> ese es el codigo
 
 
 
-Marcos:
+Marcos: comentarios, busqueda, menu optimizado  
 
 
 
