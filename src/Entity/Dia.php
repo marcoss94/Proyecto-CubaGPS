@@ -36,6 +36,7 @@ class Dia
 
     /**
      * @ORM\OneToMany(targetEntity="Activity", mappedBy="dia")
+     * @ORM\OrderBy({"orden" = "ASC"})
      */
     private $activities;
 

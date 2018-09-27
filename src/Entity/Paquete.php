@@ -54,6 +54,7 @@ class Paquete
 
     /**
      * @ORM\OneToMany(targetEntity="Dia", mappedBy="paquete")
+     * @ORM\OrderBy({"orden" = "ASC"})
      */
     private $dias;
 
