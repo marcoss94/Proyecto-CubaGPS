@@ -1,0 +1,46 @@
+{% extends 'backendBase.html.twig' %}
+
+{% block content %}
+
+    <table style="margin-top: 100px">
+        <form id="form" action="{{ path('saveUploads') }}">
+            <input type="hidden" name="images" value="">
+            <input type="hidden" name="ownerId" value="{{ owner.id }}">
+            {% for i in 0..images|length-1 %}
+                <tr>
+                    {% for j in 0..images[i]|length-1 %}
+                        <td name="imageId" data-value="{{ images[i][j].id }}">
+                            <img style="max-width: 280px;" src="{{ asset(images[i][j].path) }}" class="img-thumbnail"
+                                 alt="Responsive image">
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </form>
+    </table>
+    <div style="margin-top: 100px;margin-left: 1150px" class="fixed-top">
+        <button onclick="submitForm()" class="btn btn-default">Guardar</button>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('table td').click(function () {
+                if (!$(this).attr('checked')) {
+                    $(this).addClass('bg-primary');
+                    $(this).attr('checked', true);
+                }
+                else {
+                    $(this).removeClass('bg-primary');
+                    $(this).attr('checked', false);
+                }
+            })
+        })
+        function submitForm() {
+            var values = new Array();
+            $('table td[checked="checked"]').each(function () {
+                values.push($(this).data('value'));
+            })
+            $('[name="images"]').val(values);
+            $('#form').submit();
+        }
+    </script>
+{% endblock %}

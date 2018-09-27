@@ -1,17 +1,113 @@
 {% extends 'backendBase.html.twig' %}
 
-{% block body %}
+{% block content %}
 
-    <a href="" data-toggle="modal" data-target="#insertCarModal">
-        Insertar Carro
-    </a>
+    <div class="col-center-block">
+        <table class="table table-sm table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nombre del Chofer</th>
+                <th scope="col">Teléfono fijo</th>
+                <th scope="col">Teléfono móvil</th>
+                <th scope="col">Chapa</th>
+                <th scope="col">Modelo y Año</th>
+                <th scope="col">Color</th>
+                <th scope="col">Tipo de Licencia</th>
+                <th scope="col">Provincia</th>
+                <th scope="col">Climatizado</th>
+                <th scope="col">Descapotable</th>
+                <th scope="col">Cantidad de Asientos</th>
+                <th scope="col">Activo</th>
+                <th scope="col">Album</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Eliminar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in carros %}
+                <tr {% if c.active == false %} class="table-danger" {% endif %}>
+                    <td>{{ c.nombre }}</td>
+                    <td>{{ c.tel }}</td>
+                    <td>{{ c.cel }}</td>
+                    <td>{{ c.chapa }}</td>
+                    <td>{{ c.modelo }}</td>
+                    <td>{{ c.color }}</td>
+                    <td>{{ c.licencia }}</td>
+                    <td>{{ c.provincia }}</td>
+                    <td>{{ c.climatizado ? 'si' : 'no' }}</td>
+                    <td>{{ c.descapotable ? 'si' : 'no' }}</td>
+                    <td>{{ c.cantidadAsientos }}</td>
+                    <td>{{ c.active ? 'si' : 'no' }}</td>
+                    <td><a title="Album de Imagenes" class="btn btn-default" href="{{ path('album',{'id':c.id}) }}"><i
+                                    class="fa fa-camera"
+                                    {% if c.images|length %}
+                                        style="color: green"
+                                    {% else %}
+                                        style="color: gray"
+                                    {% endif %}
+                                    aria-hidden="true"></i><span
+                                    class="caret"></span></a></td>
+                    <td><a title="Editar" class="btn btn-default" href="{{ path('edit_car',{'id':c.id}) }}"><i
+                                    class="fa fa-edit" aria-hidden="true"></i><span
+                                    class="caret"></span></a></td>
+                    <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_car',{'id':c.id}) }}"><i
+                                    class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
+                                    class="caret"></span></a></td>
+                </tr>
+            {% else %}
+                <th colspan="5">No se han insertado carros</th>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+            Agregar
+        </button>
 
-    <!-- Modal insert car-->
-    <div class="portfolio-modal modal fade" id="insertCarModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                asdsdsdsdsdsdsd
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
     </div>
+    <!-- Modal Create -->
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Carro</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(createForm) }}
+                    {{ form_widget(createForm) }}
+                    {{ form_end(createForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Edit -->
+    {% if status == 'edit' %}
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(editForm) }}
+                        {{ form_widget(editForm) }}
+                        {{ form_end(editForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <input type="hidden" value="{{ status }}">
+    <script>
+        {% if status == 'edit' %}
+        $('#editModal').modal('show')
+        {% endif %}
+    </script>
 {% endblock %}

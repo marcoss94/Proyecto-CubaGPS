@@ -1,0 +1,134 @@
+{% extends 'backendBase.html.twig' %}
+
+{% block content %}
+
+    <div class="col-center-block">
+        <table class="table table-sm table-bordered table-striped">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Manager</th>
+                <th scope="col">Direción</th>
+                <th scope="col">Municipio</th>
+                <th scope="col">Provincia</th>
+                <th scope="col" colspan="2">Teléfono \n fijo \t móvil</th>
+
+                <th scope="col">Email</th>
+                <th scope="col" colspan="2"> Habitaciones cant precio</th>
+                <th scope="col">Camas Dobles</th>
+                <th scope="col">Camas Simples</th>
+                <th scope="col">Cocina</th>
+                <th scope="col">Tipo de Establecimiento</th>
+                <th scope="col">Parqueo/Garaje</th>
+                <th scope="col">Desayuno</th>
+                <th scope="col">Almuerzo</th>
+                <th scope="col">Cena</th>
+                <th scope="col">Lavanderia</th>
+                <th scope="col">Masaje</th>
+                <th scope="col">Wi-Fi</th>
+                <th scope="col">Caja Fuerte</th>
+                <th scope="col">Guía</th>
+                <th scope="col">Terraza</th>
+                <th scope="col">Activo</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for c in casas %}
+                <tr {% if c.active == false %} class="table-danger" {% endif %}>
+                    <td>{{ c.manager }}</td>
+                    <td>{{ c.direccion }}</td>
+                    <td>{{ c.municipio }}</td>
+                    <td>{{ c.provincia }}</td>
+                    <td>{{ c.tel }}</td>
+                    <td>{{ c.cel }}</td>
+                    <td>{{ c.email }}</td>
+                    <td>{{ c.cantidadHabitaciones }}</td>
+                    <td>{{ c.precioHabitacion }}</td>
+                    <td>{{ c.cantidadCamaDoble }}</td>
+                    <td>{{ c.cantidadCamaSimple }}</td>
+                    <td>{{ c.cocina ? 'si' : 'no' }}</td>
+                    <td>{{ c.tipoEstablecimiento }}</td>
+                    <td>{{ c.parqueoGaraje ? 'si' : 'no' }}</td>
+                    <td>{{ c.desayuno ? 'si' : 'no' }}</td>
+                    <td>{{ c.almuerzo ? 'si' : 'no' }}</td>
+                    <td>{{ c.cena ? 'si' : 'no' }}</td>
+                    <td>{{ c.lavanderia ? 'si' : 'no' }}</td>
+                    <td>{{ c.masaje ? 'si' : 'no' }}</td>
+                    <td>{{ c.wifi ? 'si' : 'no' }}</td>
+                    <td>{{ c.cajaFuerte ? 'si' : 'no' }}</td>
+                    <td>{{ c.guia ? 'si' : 'no' }}</td>
+                    <td>{{ c.terraza ? 'si' : 'no' }}</td>
+                    <td>{{ c.active ? 'si' : 'no' }}</td>
+                <tr>
+                    <td><a title="Album de Imagenes" class="btn btn-default" href="{{ path('album',{'id':c.id}) }}"><i
+                                    class="fa fa-camera"
+                                    {% if c.images|length %}
+                                        style="color: green"
+                                    {% else %}
+                                        style="color: gray"
+                                    {% endif %}
+                                    aria-hidden="true"></i><span
+                                    class="caret"></span></a></td>
+                    <td><a title="Editar" class="btn btn-default" href="{{ path('edit_house',{'id':c.id}) }}"><i
+                                    class="fa fa-edit" aria-hidden="true"></i><span
+                                    class="caret"></span></a></td>
+                    <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_house',{'id':c.id}) }}"><i
+                                    class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
+                                    class="caret"></span></a></td>
+                </tr>
+            {% else %}
+                <th colspan="5">No se han insertado casas</th>
+            {% endfor %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+            Agregar
+        </button>
+
+    </div>
+    <!-- Modal Create -->
+    <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Nueva Casa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(createForm) }}
+                    {{ form_widget(createForm) }}
+                    {{ form_end(createForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Edit -->
+    {% if status == 'edit' %}
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(editForm) }}
+                        {{ form_widget(editForm) }}
+                        {{ form_end(editForm) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    <input type="hidden" value="{{ status }}">
+    <script>
+        {% if status == 'edit' %}
+        $('#editModal').modal('show')
+        {% endif %}
+    </script>
+{% endblock %}

@@ -12,8 +12,10 @@ return array(
     'ProxyManager\\' => array($vendorDir . '/ocramius/proxy-manager/src'),
     'Parsedown' => array($vendorDir . '/erusev/parsedown'),
     'Pagerfanta\\' => array($vendorDir . '/pagerfanta/pagerfanta/src'),
+    'Metadata\\' => array($vendorDir . '/jms/metadata/src'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
     'Doctrine\\DBAL\\' => array($vendorDir . '/doctrine/dbal/lib'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
     'Doctrine\\Common\\Collections\\' => array($vendorDir . '/doctrine/collections/lib'),
+    'Behat\\Transliterator' => array($vendorDir . '/behat/transliterator/src'),
 );

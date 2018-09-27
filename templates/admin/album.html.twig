@@ -1,0 +1,64 @@
+{% extends 'backendBase.html.twig' %}
+
+{% block content %}
+
+    <div class="album-block">
+        {% for image in owner.images %}
+            <div class="image-block">
+                <div class="row" style="max-width: 500px">
+                    <div class="col">
+                        <img src="{{ asset(image.path) }}"
+                                {% if image.main %}
+                                    class=" img-thumbnail border border-danger"
+                                {% else %}
+                                    class=" img-thumbnail"
+                                {% endif %}
+                             alt="Responsive image">
+                    </div>
+                    <div class="col" style="max-width:100px">
+                        <a title="Eliminar" class="btn btn-default"
+                           href="{{ path('delete_image',{'id':image.id,'ownerId':owner.id}) }}"><i
+                                    class="fa fa-trash" style="color: red" aria-hidden="true"></i>
+                            Eliminar
+                            <span
+                                    class="caret"></span></a>
+                        {% if image.main %}
+                        {% else %}
+                            <a title="Principal"  class="btn btn-default"
+                               href="{{ path('main_image',{'id':image.id ,'ownerId':owner.id}) }}"><i
+                                        class="fa fa-edit" style="color: blue" aria-hidden="true"></i>
+                                Establecer como Principal
+                                <span
+                                        class="caret"></span></a>
+                        {% endif %}
+                    </div>
+                </div>
+
+            </div>
+        {% else %}
+            <h2 >Esta entidad aún no tiene imágenes</h2>
+        {% endfor %}
+    </div>
+    <div class="album-label-block fixed-top">
+        <h3>{{ owner }}</h3>
+    </div>
+    <div class="image-form-block fixed-top">
+        {{ form_start(form) }}
+        <input type="hidden" name="id" value="{{ owner.id }}">
+        {{ form_row(form.path) }}
+        {{ form_end(form) }}
+    </div>
+    <div style="margin-left: 750px;margin-top: 480px" class="fixed-top">
+        <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Album de Imágenes
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a class="dropdown-item" href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'carro'}) }}">Carros</a>
+                <a class="dropdown-item" href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'casa'}) }}">Casas</a>
+                <a class="dropdown-item" href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'excursiones'}) }}">Excursiones</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        images:
+            uri_prefix: /build/uploads
+            upload_destination: '/public/build/uploads'
+            delete_on_remove: true

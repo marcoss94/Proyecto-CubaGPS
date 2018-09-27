@@ -12,6 +12,7 @@ final class Versions
 {
     const ROOT_PACKAGE_NAME = 'symfony/symfony-demo';
     const VERSIONS = array (
+  'behat/transliterator' => 'v1.2.0@826ce7e9c2a6664c0d1f381cbb38b1fb80a7ee2c',
   'composer/ca-bundle' => '1.1.0@943b2c4fcad1ef178d16a713c2468bf7e579c288',
   'doctrine/annotations' => 'v1.6.0@c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5',
   'doctrine/cache' => 'v1.7.1@b3217d58609e9c8e661cd41357a54d926c4a2a1a',
@@ -32,6 +33,7 @@ final class Versions
   'erusev/parsedown' => '1.7.1@92e9c27ba0e74b8b028b111d1b6f956a15c01fc1',
   'ezyang/htmlpurifier' => 'v4.10.0@d85d39da4576a6934b72480be6978fb10c860021',
   'jdorn/sql-formatter' => 'v1.2.17@64990d96e0959dff8e059dfcdc1af130728d92bc',
+  'jms/metadata' => '1.6.0@6a06970a10e0a532fb52d3959547123b84a3b3ab',
   'knplabs/knp-snappy' => 'v1.0.4@144c4ecd1ccaeda936bf832b93079efc490e6850',
   'knplabs/knp-snappy-bundle' => 'v1.5.2@f7c2541008525bb621a0bd492e1d83a6d2b48adf',
   'monolog/monolog' => '1.23.0@fd8c787753b3a2ad11bc60c063cff1358a32a3b4',
@@ -69,6 +71,7 @@ final class Versions
   'symfony/monolog-bundle' => 'v3.2.0@8781649349fe418d51d194f8c9d212c0b97c40dd',
   'symfony/options-resolver' => 'v4.0.6@371532a2cfe932f7a3766dd4c45364566def1dd0',
   'symfony/polyfill-apcu' => 'v1.7.0@e8ae2136ddb53dea314df56fcd88e318ab936c00',
+  'symfony/polyfill-ctype' => 'v1.9.0@e3d826245268269cd66f8326bd8bc066687b4a19',
   'symfony/polyfill-intl-icu' => 'v1.7.0@254919c03761d46c29291616576ed003f10e91c1',
   'symfony/polyfill-mbstring' => 'v1.7.0@78be803ce01e55d3491c1397cf1c64beb9c1b63b',
   'symfony/process' => 'v4.0.6@6ed08502a7c9559da8e60ea343bdbd19c3350b3e',
@@ -77,6 +80,7 @@ final class Versions
   'symfony/security' => 'v4.0.6@a0a161c5b28a4436d955dd6385c2ebbeca1852c3',
   'symfony/security-bundle' => 'v4.0.6@5cbcf5d33261aaa0b5895a253161c6ba32754efd',
   'symfony/swiftmailer-bundle' => 'v3.2.1@20e71c247a5a43ceb655db9712394d08c09b33ef',
+  'symfony/templating' => 'v4.1.4@411b8c324ee3e8b36e71d938e8d043d6e16582d2',
   'symfony/translation' => 'v4.0.6@e20a9b7f9f62cb33a11638b345c248e7d510c938',
   'symfony/twig-bridge' => 'v4.0.6@575004ae3bcfb7d909a34db20edb7c349defb092',
   'symfony/twig-bundle' => 'v4.0.6@fdaa069cd5cf3918b03d10a5e5819b064451ee4c',
@@ -84,6 +88,7 @@ final class Versions
   'symfony/yaml' => 'v4.0.6@de5f125ea39de846b90b313b2cfb031a0152d223',
   'twig/extensions' => 'v1.5.1@d188c76168b853481cc75879ea045bf93d718e9c',
   'twig/twig' => 'v2.4.6@d2117ec118c1ff3d28ccddca8212d82787a4809f',
+  'vich/uploader-bundle' => '1.8.3@37bc4b3264a0e22608a56406d5019b26864b9553',
   'white-october/pagerfanta-bundle' => 'v1.1.2@b783a86877eaa5e9844449db1c86d68ace804ae3',
   'zendframework/zend-code' => '3.3.0@6b1059db5b368db769e4392c6cb6cc139e56640d',
   'zendframework/zend-eventmanager' => '3.2.0@9d72db10ceb6e42fb92350c0cb54460da61bd79c',
