@@ -20,6 +20,10 @@ class Casa extends DisplayableComponent
      */
     private $direccion;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $valoracion=0;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -147,6 +151,22 @@ class Casa extends DisplayableComponent
     public function setActive($active)
     {
         $this->active = $active;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValoracion()
+    {
+        return $this->valoracion;
+    }
+
+    /**
+     * @param mixed $valoracion
+     */
+    public function setValoracion($valoracion)
+    {
+        $this->valoracion = $valoracion;
     }
 
 

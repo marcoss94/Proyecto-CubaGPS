@@ -77,6 +77,11 @@ class Carro extends DisplayableComponent
     private $active = true;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $valoracion=0;
+
+    /**
      * @return mixed
      */
     public function getActive()
@@ -98,6 +103,22 @@ class Carro extends DisplayableComponent
     public function getProvincia()
     {
         return $this->provincia;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValoracion()
+    {
+        return $this->valoracion;
+    }
+
+    /**
+     * @param mixed $valoracion
+     */
+    public function setValoracion($valoracion)
+    {
+        $this->valoracion = $valoracion;
     }
 
     /**

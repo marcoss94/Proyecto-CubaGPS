@@ -15,6 +15,8 @@ use App\Entity\Comment;
 use App\Entity\Post;
 use App\Events;
 use App\Form\CommentType;
+use App\Repository\CarroRepository;
+use App\Repository\CasaRepository;
 use App\Repository\PostRepository;
 use App\Repository\SistemRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -49,15 +51,19 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(SistemRepository $sistemRepository)
+    public function index(SistemRepository $sistemRepository,CarroRepository $carroRepository,CasaRepository $casaRepository)
     {
         if ($this->get('session')->get('language') != 'en') {
             $this->get('session')->set('language', 'es');
         }
+        $carros=$carroRepository->findBy(['active'=>true],['valoracion'=>'DESC'],3);
+        $casas=$casaRepository->findBy(['active'=>true],['valoracion'=>'DESC'],3);
+
+
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
-        return $this->render('blog/index.html.twig');
+        return $this->render('blog/index.html.twig',['carros'=>$carros,'casas'=>$casas]);
     }
 
     /**
