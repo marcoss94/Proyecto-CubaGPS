@@ -63,7 +63,7 @@ class BlogController extends AbstractController
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
-        return $this->render('blog/index.html.twig',['carros'=>$carros,'casas'=>$casas]);
+        return $this->render('blog/index.html.twig',['base'=>'true','carros'=>$carros,'casas'=>$casas]);
     }
 
     /**
