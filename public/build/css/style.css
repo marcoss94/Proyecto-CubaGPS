@@ -78,19 +78,19 @@
     text-align: left;
     color: #2b506b;
 }.infoOferta{
-    margin-bottom: 0px;
+     margin-bottom: 0px;
  }
- .masExcur{
-     color: white;
- }
- .botonMas{
-     background-image: url("../img/linea.png");
-     background-position: center;
-     background-repeat: no-repeat;
-     background-size: cover;
+.masExcur{
+    color: white;
+}
+.botonMas{
+    background-image: url("../img/linea.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
 
- }
+}
 .serviciosOfertas{
     display: inline-block !important;
 }
@@ -116,9 +116,14 @@
 
     width: 100% !important;
 
-    height: 335px !important;
+    height: 363px !important;
 
-    padding-top: 30px;
+    padding-top: 50px;
+}
+
+.imgOfertaGaleria{
+    width: 250px;
+    height: 200px;
 }
 
 .imgOferta {
@@ -236,4 +241,167 @@
 }
 
 
-/*Stilo de la galeria */
+/*Stilo de la carucel ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5em;
+}
+
+h2 {
+    text-align: center;
+    color: #555;
+    margin-bottom: 0;
+}
+
+.carousel {
+    padding: 20px;
+    -webkit-perspective: 500px;
+    perspective: 500px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.carousel > * {
+    flex: 0 0 auto;
+}
+.carousel figure {
+    margin: 0;
+    width: 40%;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+    transition: transform 0.5s, -webkit-transform 0.5s;
+}
+.carousel figure img {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 0px;
+}
+.carousel figure img:not(:first-of-type) {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.carousel nav {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0;
+}
+.carousel nav button {
+    flex: 0 0 auto;
+    margin: 0 5px;
+    cursor: pointer;
+    color: #333;
+    background: none;
+    border: 1px solid;
+    letter-spacing: 1px;
+    padding: 5px 10px;
+}
+/*Stilo de la carucel *''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+ */
+
+
+/*Pruebaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+/*Stilo de la carucel ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+
+.bodyCarucel {
+    background-image: url("../img/bannerFoto.jpg");
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding: 70px 0;
+    font: 15px/20px Arial, sans-serif;
+}
+
+.containerCarucel {
+    margin: 0 auto;
+    width: 250px;
+    height: 200px;
+    position: relative;
+    perspective: 1000px;
+}
+
+.carouselCarucel {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+.itemCarucel {
+    display: block;
+    position: absolute;
+    background: #000;
+    width: 250px;
+    height: 200px;
+    line-height: 200px;
+    font-size: 5em;
+    text-align: center;
+    color: #FFF;
+    opacity: 0.95;
+    border-radius: 10px;
+}
+
+.a {
+    transform: rotateY(0deg) translateZ(250px);
+    background: #f9b50100;
+
+}
+.b {
+    transform: rotateY(60deg) translateZ(250px);
+    background: #f9b50100;
+}
+.c {
+    transform: rotateY(120deg) translateZ(250px);
+    background: #f9b50100;
+}
+.d {
+    transform: rotateY(180deg) translateZ(250px);
+    background: #f9b50100;
+}
+.e {
+    transform: rotateY(240deg) translateZ(250px);
+    background: #f9b50100;
+}
+.f {
+    transform: rotateY(300deg) translateZ(250px);
+    background: #f9b50100;
+}
+
+.nextCarucel, .prevCarucel {
+    color: white;
+    position: absolute;
+    top: 100px;
+    padding: 1em 2em;
+    cursor: pointer;
+    /*background: #CCC;*/
+    border-radius: 5px;
+    /*border-top: 1px solid #FFF;*/
+    /*box-shadow: 0 5px 0 #999;*/
+    transition: box-shadow 0.1s, top 0.1s;
+}
+.nextCarucel:hover, .prevCarucel:hover { color: #f9b501; }
+.nextCarucel:active, .prevCarucel:active {
+    top: 104px;
+    /*box-shadow: 0 1px 0 #999;*/
+}
+.nextCarucel { right: 1em; }
+.prevCarucel { left: 1em; }
+
+/*Stilo de la carucel ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''*/
+/*Pruebaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
