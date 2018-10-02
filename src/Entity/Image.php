@@ -9,6 +9,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
  * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks
  */
 class Image
 {
@@ -22,7 +23,7 @@ class Image
     /**
      * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="DisplayableComponent", inversedBy="images")
-     * @ORM\JoinColumn(name="component_id", referencedColumnName="id",onDelete="cascade")
+     * @ORM\JoinColumn(name="component_id", referencedColumnName="id")
      */
     private $displayableComponent;
 
@@ -66,28 +67,88 @@ class Image
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    public $path;
+    public $full;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $min;
 
     /**
      * @return mixed
      */
-    public function getPath()
+    public function getMin()
     {
-        return $this->path;
+        return $this->min;
     }
 
     /**
-     * @param mixed $path
+     * @param mixed $min
      */
-    public function setPath($path)
+    public function setMin($min)
     {
-        $this->path = $path;
+        $this->min = $min;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHalf()
+    {
+        return $this->half;
+    }
+
+    /**
+     * @param mixed $half
+     */
+    public function setHalf($half)
+    {
+        $this->half = $half;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    public $half;
+
+    /**
+     * @return mixed
+     */
+    public function getFull()
+    {
+        return $this->full;
+    }
+
+    /**
+     * @param mixed $full
+     */
+    public function setFull($full)
+    {
+        $this->full = $full;
     }
 
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        $file = $this->full;
+        if ($file) {
+            unlink($file);
+        }
+        $file = $this->half;
+        if ($file) {
+            unlink($file);
+        }
+        $file = $this->min;
+        if ($file) {
+            unlink($file);
+        }
     }
 }

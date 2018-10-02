@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Activity;
-use App\Entity\Album;
 use App\Entity\Carro;
 use App\Entity\Casa;
 use App\Entity\Dia;
@@ -19,8 +18,9 @@ use App\Repository\DiaRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\ImageRepository;
 use App\Repository\PaqueteRepository;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -187,20 +187,119 @@ class AdminController extends Controller
         $owner = $displayableComponentRepository->find($request->get('id'));
         $image = new Image();
         $form = $this->createFormBuilder($image)
-            ->add('path', FileType::class)
+            ->add('full', FileType::class, array('label' => 'Imagen'))
             ->add('save', SubmitType::class, array('label' => 'Guardar'))
             ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $image->getPath();
+            $file = $image->getFull();
             $fileName = $fileUploader->upload($file);
-            $image->setPath('uploads/images/' . $fileName);
+            $image->setFull('uploads/images/' . $fileName);
             $image->setDisplayableComponent($owner);
+            $this->createThumb($image->getFull(), $fileName);
+            $imageThumb = $this->resize_image($image->getFull(), 100, 100, false);
+            $imageLow = $this->resize_image($image->getFull(), 350, 350, false);
+            $image->setMin('uploads/thumb/' . $fileName);
+            $image->setHalf('uploads/low/' . $fileName);
+            $exploding = explode(".", $image->getFull());
+            $ext = end($exploding);
+            switch ($ext) {
+                case "png":
+                    imagepng($imageThumb, 'uploads/thumb/' . $fileName);
+                    imagepng($imageLow, 'uploads/low/' . $fileName);
+                    break;
+                case "jpeg":
+                    imagejpeg($imageThumb, 'uploads/thumb/' . $fileName);
+                    imagejpeg($imageLow, 'uploads/low/' . $fileName);
+                    break;
+                case "jpg":
+                    imagejpg($imageThumb, 'uploads/thumb/' . $fileName);
+                    imagejpg($imageLow, 'uploads/low/' . $fileName);
+                    break;
+                default:
+                    imagejpeg($imageThumb, 'uploads/thumb/' . $fileName);
+                    imagejpeg($imageLow, 'uploads/low/' . $fileName);
+                    break;
+            }
             $em->persist($image);
             $em->flush();
             return $this->render('admin/album.html.twig', ['owner' => $owner, 'form' => $form->createView()]);
         }
         return $this->render('admin/album.html.twig', ['owner' => $owner, 'form' => $form->createView()]);
+    }
+
+    function createThumb($filePath, $fileName)
+    {
+        $imageThumb = $this->resize_image($filePath, 50, 50, false);
+        $imageLow = $this->resize_image($filePath, 300, 300, false);
+        $exploding = explode(".", $filePath);
+        $ext = end($exploding);
+        switch ($ext) {
+            case "png":
+                imagepng($imageThumb, 'uploads/thumb/' . $fileName);
+                imagepng($imageLow, 'uploads/low/' . $fileName);
+                break;
+            case "jpeg":
+                imagejpeg($imageThumb, 'uploads/thumb/' . $fileName);
+                imagejpeg($imageLow, 'uploads/low/' . $fileName);
+                break;
+            case "jpg":
+                imagejpg($imageThumb, 'uploads/thumb/' . $fileName);
+                imagejpg($imageLow, 'uploads/low/' . $fileName);
+                break;
+            default:
+                imagejpeg($imageThumb, 'uploads/thumb/' . $fileName);
+                imagejpeg($imageLow, 'uploads/low/' . $fileName);
+                break;
+        }
+    }
+
+    function resize_image($file, $w, $h, $crop = false)
+    {
+        list($width, $height) = getimagesize($file);
+        $r = $width / $height;
+        if ($crop) {
+            if ($width > $height) {
+                $width = ceil($width - ($width * abs($r - $w / $h)));
+            } else {
+                $height = ceil($height - ($height * abs($r - $w / $h)));
+            }
+            $newwidth = $w;
+            $newheight = $h;
+        } else {
+            if ($w / $h > $r) {
+                $newwidth = $h * $r;
+                $newheight = $h;
+            } else {
+                $newheight = $w / $r;
+                $newwidth = $w;
+            }
+        }
+
+        //Get file extension
+        $exploding = explode(".", $file);
+        $ext = end($exploding);
+
+        switch ($ext) {
+            case "png":
+                $src = imagecreatefrompng($file);
+                break;
+            case "jpeg":
+            case "jpg":
+                $src = imagecreatefromjpeg($file);
+                break;
+            case "gif":
+                $src = imagecreatefromgif($file);
+                break;
+            default:
+                $src = imagecreatefromjpeg($file);
+                break;
+        }
+
+        $dst = imagecreatetruecolor($newwidth, $newheight);
+        imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+
+        return $dst;
     }
 
     /**
@@ -309,26 +408,65 @@ class AdminController extends Controller
      */
     public function activities(Request $request, CarroRepository $carroRepository, PaqueteRepository $paqueteRepository)
     {
-        $carros = $carroRepository->findAll();
+        $day = new Dia();
         $paquete = $paqueteRepository->find($request->get('id'));
-        return $this->render('admin/activities.html.twig', ['paquete' => $paquete, 'excursiones' => $carros]);
+        $form = $this->createFormBuilder($day)
+            ->add('orden', null, array('label' => 'Orden'))
+            ->add('nombre', TextType::class, array('label' => 'Nombre'))
+            ->add('save', SubmitType::class, array('label' => 'Guardar'))
+            ->getForm();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $day = $form->getData();
+            $day->setPaquete($paquete);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($day);
+            $em->flush();
+            return $this->redirectToRoute('activities', ['id' => $request->get('id')]);
+        }
+        $carros = $carroRepository->findAll();
+        return $this->render('admin/activities.html.twig', ['dayForm' => $form->createView(), 'paquete' => $paquete, 'excursiones' => $carros, 'status'=>'create']);
     }
 
     /**
-     * @Route("/admin/new_day", name="new_day")
+     * @Route("/admin/edit_day", name="edit_day")
      */
-    public function new_day(Request $request, PaqueteRepository $paqueteRepository)
+    public function edit_day(Request $request, DiaRepository $diaRepository, CarroRepository $carroRepository)
     {
-        $em = $this->getDoctrine()->getManager();
-        $paquete = $paqueteRepository->find($request->get('paqueteId'));
-        $dia = new Dia();
-        $dia->setPaquete($paquete);
-        $dia->setNombre($request->get('nombre'));
-        $dia->setOrden($request->get('order'));
-        $em->persist($dia);
-        $em->flush();
-        return $this->redirectToRoute('activities', ['id' => $paquete->getId()]);
+        $dia = $diaRepository->find($request->get('diaId'));
+        $paquete=$dia->getPaquete();
+        $editDayform = $this->createFormBuilder($dia)
+            ->add('orden', null, array('label' => 'Orden'))
+            ->add('nombre', TextType::class, array('label' => 'Nombre'))
+            ->add('save', SubmitType::class, array('label' => 'Guardar'))
+            ->getForm();
+        $editDayform->handleRequest($request);
+        if ($editDayform->isSubmitted() && $editDayform->isValid()) {
+            $dia = $editDayform->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($dia);
+            $em->flush();
+            return $this->redirectToRoute('activities', ['id' => $paquete->getId()]);
+        }
+        $newDay = new Dia();
+        $form = $this->createFormBuilder($newDay)
+            ->add('orden', null, array('label' => 'Orden'))
+            ->add('nombre', TextType::class, array('label' => 'Nombre'))
+            ->add('save', SubmitType::class, array('label' => 'Guardar'))
+            ->getForm();
+        $form->handleRequest($request);
+        if ($editDayform->isSubmitted() && $editDayform->isValid()) {
+            $newDay = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($newDay);
+            $em->flush();
+            return $this->redirectToRoute('activities', ['id' => $paquete->getId()]);
+        }
+        $carros = $carroRepository->findAll();
+        return $this->render('admin/activities.html.twig',
+            ['dayForm' => $form->createView(),'editDayForm'=>$editDayform->createView(), 'paquete' => $paquete, 'excursiones' => $carros,'status'=>'edit']);
     }
+
 
     /**
      * @Route("/admin/delete_day", name="delete_day")
@@ -341,6 +479,7 @@ class AdminController extends Controller
         $em->flush();
         return $this->redirectToRoute('activities', ['id' => $request->get('paqueteId')]);
     }
+
 
     /**
      * @Route("/admin/new_activity", name="new_activity")
@@ -362,7 +501,7 @@ class AdminController extends Controller
                 $newImage = new Image();
                 $newImage->setDisplayableComponent($activity);
                 $newImage->setMain($originalImage->getMain());
-                $newImage->setPath($originalImage->getPath());
+                $newImage->setFull($originalImage->getPath());
                 $em->persist($newImage);
             }
             $activity->setImages($excursion->getImages());
@@ -391,48 +530,45 @@ class AdminController extends Controller
     /**
      * @Route("/admin/uploadedImages", name="uploadedImages")
      */
-    public function uploadedImages(Request $request,CarroRepository $carroRepository,CasaRepository $casaRepository,DisplayableComponentRepository $displayableComponentRepository)
+    public function uploadedImages(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, DisplayableComponentRepository $displayableComponentRepository)
     {
-        $images=[];
-        $owner=$displayableComponentRepository->find($request->get('ownerId'));
-        if($request->get('type')=='carro'){
-            $objects=$carroRepository->findAll();
+        $images = [];
+        $owner = $displayableComponentRepository->find($request->get('ownerId'));
+        if ($request->get('type') == 'carro') {
+            $objects = $carroRepository->findAll();
 
-        }else{
-            $objects=$casaRepository->findAll();
+        } else {
+            $objects = $casaRepository->findAll();
         }
-        $i=0;
-        $j=0;
-        foreach($objects as $object){
-            foreach ($object->getImages() as $image){
-                $images[$i][$j%4]=$image;
-                $i=($j++==3)?++$i:$i;
+        $i = 0;
+        $j = 0;
+        foreach ($objects as $object) {
+            foreach ($object->getImages() as $image) {
+                $images[$i][$j % 4] = $image;
+                $i = ($j++ == 3) ? ++$i : $i;
             }
         }
-       return $this->render('admin/uploadedAlbum.html.twig',['images'=>$images,'owner'=>$owner]);
+        return $this->render('admin/uploadedAlbum.html.twig', ['images' => $images, 'owner' => $owner]);
     }
 
     /**
      * @Route("/admin/saveUploads", name="saveUploads")
      */
-    public function saveUploads(Request $request,ImageRepository $imageRepository, DisplayableComponentRepository $displayableComponentRepository)
+    public function saveUploads(Request $request, ImageRepository $imageRepository, DisplayableComponentRepository $displayableComponentRepository)
     {
         $em = $this->getDoctrine()->getManager();
-        $images=explode(',',$request->get('images'));
-        $owner=$displayableComponentRepository->find($request->get('ownerId'));
-        foreach ($images as $image){
-            $originalImage=$imageRepository->find($image);
-            $newImage=new Image();
+        $images = explode(',', $request->get('images'));
+        $owner = $displayableComponentRepository->find($request->get('ownerId'));
+        foreach ($images as $image) {
+            $originalImage = $imageRepository->find($image);
+            $newImage = new Image();
             $newImage->setDisplayableComponent($owner);
-            $newImage->setPath($originalImage->getPath());
+            $newImage->setFull($originalImage->getFull());
             $em->persist($newImage);
         }
         $em->flush();
         return $this->redirectToRoute('album', ['id' => $owner->getId()]);
     }
-
-
-
 
 
 }

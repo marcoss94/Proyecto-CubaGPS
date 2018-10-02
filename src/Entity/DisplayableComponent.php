@@ -26,7 +26,8 @@ abstract class DisplayableComponent
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="displayableComponent")
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="displayableComponent",cascade={"remove"})
+     * @ORM\OrderBy({"main" = "DESC"})
      */
     private $images;
 

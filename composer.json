@@ -13,6 +13,7 @@
         "erusev/parsedown": "^1.6",
         "ezyang/htmlpurifier": "^4.9",
         "knplabs/knp-snappy-bundle": "^1.5",
+        "liip/imagine-bundle": "dev-master",
         "sensio/framework-extra-bundle": "^5.0",
         "sensiolabs/security-checker": "^4.1",
         "symfony/asset": "^4.0",

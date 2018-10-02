@@ -106,6 +106,10 @@ class ComposerStaticInit09cd62611e02b104aa7d96ec25147f60
         array (
             'Monolog\\' => 8,
         ),
+        'L' => 
+        array (
+            'Liip\\ImagineBundle\\' => 19,
+        ),
         'K' => 
         array (
             'Knp\\Snappy\\' => 11,
@@ -400,6 +404,10 @@ class ComposerStaticInit09cd62611e02b104aa7d96ec25147f60
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Liip\\ImagineBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/liip/imagine-bundle',
+        ),
         'Knp\\Snappy\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-snappy/src/Knp/Snappy',
@@ -521,6 +529,13 @@ class ComposerStaticInit09cd62611e02b104aa7d96ec25147f60
             'Metadata\\' => 
             array (
                 0 => __DIR__ . '/..' . '/jms/metadata/src',
+            ),
+        ),
+        'I' => 
+        array (
+            'Imagine' => 
+            array (
+                0 => __DIR__ . '/..' . '/imagine/imagine/lib',
             ),
         ),
         'H' => 
