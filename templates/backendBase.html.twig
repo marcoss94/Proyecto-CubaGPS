@@ -214,10 +214,27 @@
 
     {% endblock %}
 
-    {% block body %}
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            {% block body %}
 
 
-    {% endblock %}
+            {% endblock %}
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright © Cuba GPS 2018</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
 
     <!-- /.content-wrapper -->
 
@@ -254,7 +271,9 @@
 
 {% block script %}
 <!-- Bootstrap core JavaScript-->
-<script src="{{ asset('build/backend/sb-admin/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('build/vendor/jquery/jquery.min.js') }}"></script>
+
+{#<script src="{{ asset('build/backend/sb-admin/vendor/jquery/jquery.min.js')}}"></script>#}
 <script src="{{ asset('build/backend/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Core plugin JavaScript-->
@@ -271,6 +290,10 @@
 <!-- Demo scripts for this page-->
 <script src="{{ asset('build/backend/sb-admin/js/demo/datatables-demo.js')}}"></script>
 <script src="{{ asset('build/backend/sb-admin/js/demo/chart-area-demo.js')}}"></script>
+
+
+
+
 
 {% endblock %}
 </body>

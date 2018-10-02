@@ -1,60 +1,153 @@
 {% extends 'backendBase.html.twig' %}
 
-{% block content %}
 
-    <div class="col-center-block">
-        <table class="table table-sm table-bordered">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Dias</th>
-                <th scope="col">Noches</th>
-                <th scope="col" colspan="3">Precio \n 1 persona 2 personas 3 o más</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">No incluye</th>
-                <th scope="col">Activo</th>
-                <th scope="col">Actividades</th>
-                <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for c in paquetes %}
-                <tr {% if c.active == false %} class="table-danger" {% endif %}>
-                    <td>{{ c.diasDuracion }}</td>
-                    <td>{{ c.nochesDuracion }}</td>
-                    <td>{{ c.precio1 }}</td>
-                    <td>{{ c.precio2 }}</td>
-                    <td>{{ c.precio3 }}</td>
-                    <td>{{ c.descripcion }}</td>
-                    <td>{{ c.noIncluye }}</td>
-                    <td>{{ c.active ? 'si' : 'no' }}</td>
-                    <td><a title="Actividades" class="btn btn-default" href="{{ path('activities',{'id':c.id}) }}"><i
-                                    class="fa fa-calendar" aria-hidden="true"></i><span
-                                    class="caret"></span></a></td>
-                    <td><a title="Editar" class="btn btn-default" href="{{ path('edit_paquete',{'id':c.id}) }}"><i
-                                    class="fa fa-edit" aria-hidden="true"></i><span
-                                    class="caret"></span></a></td>
-                    <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_paquete',{'id':c.id}) }}"><i
-                                    class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
-                                    class="caret"></span></a></td>
-                </tr>
-            {% else %}
-                <th colspan="5">No se han insertado paquetes</th>
-            {% endfor %}
-            </tbody>
-        </table>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
-            Agregar
-        </button>
+{% block title %}Administración | Paquetes{% endblock %}
 
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item active">Paquetes</li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fab fa-grav"></i>
+                    Paquetes
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">
+                        Agregar
+                    </button>
+                </div>
+            </div>
+
+            {#<i class="fas fa-car"></i>#}
+            {#Carros#}
+
+
+            {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+            {#Agregar#}
+            {#</button>#}
+        </div>
+
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th scope="col">Dias</th>
+                        <th scope="col">Noches</th>
+                        <th scope="col" colspan="3">Precio \n 1 persona 2 personas 3 o más</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">No incluye</th>
+                        <th scope="col">Activo</th>
+                        <th scope="col">Actividades</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th scope="col">Dias</th>
+                        <th scope="col">Noches</th>
+                        <th scope="col" colspan="3">Precio \n 1 persona 2 personas 3 o más</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">No incluye</th>
+                        <th scope="col">Activo</th>
+                        <th scope="col">Actividades</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    {% for c in paquetes %}
+                        <tr {% if c.active == false %} class="table-danger" {% endif %}>
+                            <td>{{ c.diasDuracion }}</td>
+                            <td>{{ c.nochesDuracion }}</td>
+                            <td>{{ c.precio1 }}</td>
+                            <td>{{ c.precio2 }}</td>
+                            <td>{{ c.precio3 }}</td>
+                            <td>{{ c.descripcion }}</td>
+                            <td>{{ c.noIncluye }}</td>
+                            <td>{{ c.active ? 'si' : 'no' }}</td>
+                            <td><a title="Actividades" class="btn btn-default"
+                                   href="{{ path('activities',{'id':c.id}) }}"><i
+                                            class="fa fa-calendar" aria-hidden="true"></i><span
+                                            class="caret"></span></a></td>
+                            <td><a title="Editar" class="btn btn-default" href="{{ path('edit_paquete',{'id':c.id}) }}"><i
+                                            class="fa fa-edit" aria-hidden="true"></i><span
+                                            class="caret"></span></a></td>
+                            <td><a title="Eliminar" class="btn btn-default"
+                                   href="{{ path('delete_paquete',{'id':c.id}) }}"><i
+                                            class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
+                                            class="caret"></span></a></td>
+                        </tr>
+                    {% else %}
+                        <th colspan="5">No se han insertado paquetes</th>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+
+            </div>
+
+        </div>
+
+        <div class="card-footer">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fab fa-grav"></i>
+                    Paquetes
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">
+                        Agregar
+                    </button>
+                </div>
+            </div>
+
+            {#<i class="fas fa-car"></i>#}
+            {#Carros#}
+
+
+            {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+            {#Agregar#}
+            {#</button>#}
+        </div>
     </div>
+
+
     <!-- Modal Create -->
     <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Carro</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Paquete</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -74,7 +167,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Carro</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Editar Paquete</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -89,9 +182,16 @@
         </div>
     {% endif %}
     <input type="hidden" value="{{ status }}">
-    <script>
-        {% if status == 'edit' %}
-        $('#editModal').modal('show')
-        {% endif %}
-    </script>
+
 {% endblock %}
+
+        {% block script %}
+
+            {{ parent() }}
+
+            <script>
+                {% if status == 'edit' %}
+                $('#editModal').modal('show')
+                {% endif %}
+            </script>
+        {% endblock %}
