@@ -10,7 +10,7 @@
                 <tr>
                     {% for j in 0..images[i]|length-1 %}
                         <td name="imageId" data-value="{{ images[i][j].id }}">
-                            <img style="max-width: 280px;" src="{{ asset(images[i][j].path) }}" class="img-thumbnail"
+                            <img style="max-width: 280px;" src="{{ asset(images[i][j].half) }}" class="img-thumbnail"
                                  alt="Responsive image">
                         </td>
                     {% endfor %}

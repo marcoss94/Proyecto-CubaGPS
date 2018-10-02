@@ -28,6 +28,7 @@
                 <th scope="col">Caja Fuerte</th>
                 <th scope="col">Guía</th>
                 <th scope="col">Terraza</th>
+                <th scope="col">Valoracion</th>
                 <th scope="col">Activo</th>
             </tr>
             </thead>
@@ -57,6 +58,7 @@
                     <td>{{ c.cajaFuerte ? 'si' : 'no' }}</td>
                     <td>{{ c.guia ? 'si' : 'no' }}</td>
                     <td>{{ c.terraza ? 'si' : 'no' }}</td>
+                    <td>{{ c.valoracion }}</td>
                     <td>{{ c.active ? 'si' : 'no' }}</td>
                 <tr>
                     <td><a title="Album de Imagenes" class="btn btn-default" href="{{ path('album',{'id':c.id}) }}"><i

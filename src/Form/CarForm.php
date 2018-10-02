@@ -63,6 +63,19 @@ class CarForm extends AbstractType
                 'Si' => true,
                 'No' => false,
             ),])
+            ->add('valoracion', ChoiceType::class, ['label' => 'Valoración','choices' => array(
+                '0' => 0,
+                '1' => 1,
+                '2' => 2,
+                '3' => 3,
+                '4' => 4,
+                '5' => 5,
+                '6' => 6,
+                '7' => 7,
+                '8' => 8,
+                '9' => 9,
+                '10' => 10,
+            ),])
             ->add('Guardar', SubmitType::class);
     }
 }

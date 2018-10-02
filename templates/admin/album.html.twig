@@ -7,7 +7,7 @@
             <div class="image-block">
                 <div class="row" style="max-width: 500px">
                     <div class="col">
-                        <img src="{{ asset(image.path) }}"
+                        <img src="{{ asset(image.half) }}"
                                 {% if image.main %}
                                     class=" img-thumbnail border border-danger"
                                 {% else %}
@@ -45,7 +45,7 @@
     <div class="image-form-block fixed-top">
         {{ form_start(form) }}
         <input type="hidden" name="id" value="{{ owner.id }}">
-        {{ form_row(form.path) }}
+        {{ form_row(form.full) }}
         {{ form_end(form) }}
     </div>
     <div style="margin-left: 750px;margin-top: 480px" class="fixed-top">
