@@ -57,13 +57,13 @@ border-color: #f9b501;" href="{{ path('oferta') }}">Saber más</a>
                         class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</h2>
 
                 </div>
-                {% for casa in casas %}
+                {% for i in casas %}
                     <div class="col-md-4 col-sm-6 portfolio-item">
                         <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
                             <div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide" data-ride="carousel "
                                  data-interval="false">
                                 <div class="carousel-inner">
-                                    {% for image in casa.images %}
+                                    {% for image in i.images %}
                                         <div {% if loop.index==1 %}class="carousel-item active"
                                              {% else %}class="carousel-item"{% endif %}>
                                             <img class="img-fluid fotosOferta"
@@ -85,27 +85,29 @@ border-color: #f9b501;" href="{{ path('oferta') }}">Saber más</a>
 
                         </a>
                         <div class=" infoOferta text-left">
-                            <a class="nav-item nombreO" href=""><h4>{{ casa.municipio~', '~casa.provincia }}</h4></a>
-                            {% if casa.valoracion%2==0 %}
-                                {% for i in 1..casa.valoracion/2 %}
+                            <a class="nav-item nombreO" href=""><h4>{{ i.municipio~', '~i.provincia }}</h4></a>
+                            {% if i.valoracion%2==0 %}
+                                {% for i in 1..i.valoracion/2 %}
                                     <i class="fas fa-star star"></i>
                                 {% endfor %}
-                                {% for i in 1..(10-casa.valoracion)/2 %}
+                                {% for i in 1..(10-i.valoracion)/2 %}
                                     <i class="far fa-star star"></i>
                                 {% endfor %}
                             {% else %}
-                                {% if casa.valoracion > 2 %}
-                                    {% for i in 1..(casa.valoracion-1)/2 %}
+                                {% if i.valoracion > 2 %}
+                                    {% for i in 1..(i.valoracion-1)/2 %}
                                         <i class="fas fa-star star"></i>
                                     {% endfor %}
                                 {% endif %}
                                 <i class="fas fa-star-half-alt star"></i>
-                                {% for i in 1..(9-casa.valoracion)/2 %}
-                                    <i class="far fa-star star"></i>
-                                {% endfor %}
+                                {% if i.valoracion < 9 %}
+                                    {% for i in 1..(9-i.valoracion)/2 %}
+                                        <i class="far fa-star star"></i>
+                                    {% endfor %}
+                                {% endif %}
                             {% endif %}
                             <div class="timeline-body">
-                                <p class="text-muted">{{ casa.municipio~', '~casa.provincia }}</p>
+                                <p class="text-muted">{{ i.municipio~', '~i.provincia }}</p>
                                 <h6 class="text-muted">56$ por noche</h6>
                             </div>
                         </div>
@@ -436,13 +438,13 @@ border-color: #f9b501;"
                         class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</h2>
 
                 </div>
-                {% for carro in carros %}
+                {% for i in carros %}
                     <div class="col-md-4 col-sm-6 portfolio-item">
                         <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
                             <div id="{{ 'carouselcarro'~loop.index }}" class="carousel slide" data-ride="carousel "
                                  data-interval="false">
                                 <div class="carousel-inner">
-                                    {% for image in carro.images %}
+                                    {% for image in i.images %}
                                         <div {% if loop.index==1 %}class="carousel-item active"
                                              {% else %}class="carousel-item"{% endif %}>
                                             <img class="img-fluid fotosOferta"
@@ -464,27 +466,29 @@ border-color: #f9b501;"
 
                         </a>
                         <div class=" infoOferta text-left">
-                            <a class="nav-item nombreO" href=""><h4>{{ carro.modelo }}</h4></a>
-                            {% if carro.valoracion%2==0 %}
-                                {% for i in 1..carro.valoracion/2 %}
+                            <a class="nav-item nombreO" href=""><h4>{{ i.modelo }}</h4></a>
+                            {% if i.valoracion%2==0 %}
+                                {% for i in 1..i.valoracion/2 %}
                                     <i class="fas fa-star star"></i>
                                 {% endfor %}
-                                {% for i in 1..(10-carro.valoracion)/2 %}
+                                {% for i in 1..(10-i.valoracion)/2 %}
                                     <i class="far fa-star star"></i>
                                 {% endfor %}
                             {% else %}
-                                {% if carro.valoracion > 2 %}
-                                    {% for i in 1..(carro.valoracion-1)/2 %}
+                                {% if i.valoracion > 2 %}
+                                    {% for i in 1..(i.valoracion-1)/2 %}
                                         <i class="fas fa-star star"></i>
                                     {% endfor %}
                                 {% endif %}
                                 <i class="fas fa-star-half-alt star"></i>
-                                {% for i in 1..(9-carro.valoracion)/2 %}
-                                    <i class="far fa-star star"></i>
-                                {% endfor %}
+                                {% if i.valoracion < 9 %}
+                                    {% for i in 1..(9-i.valoracion)/2 %}
+                                        <i class="far fa-star star"></i>
+                                    {% endfor %}
+                                {% endif %}
                             {% endif %}
                             <div class="timeline-body">
-                                <p class="text-muted">{{ carro.modelo }}</p>
+                                <p class="text-muted">{{ i.modelo }}</p>
                                 <h6 class="text-muted">56$ por noche</h6>
                             </div>
                         </div>

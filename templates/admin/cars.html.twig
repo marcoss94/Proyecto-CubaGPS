@@ -217,6 +217,10 @@
         </div>
     {% endif %}
     <input type="hidden" value="{{ status }}">
+
+{% endblock %}
+{% block script %}
+    {{ parent() }}
     <script>
         {% if status == 'edit' %}
         $('#editModal').modal('show')

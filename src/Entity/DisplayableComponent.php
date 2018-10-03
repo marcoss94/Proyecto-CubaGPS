@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity(repositoryClass="App\Repository\DisplayableComponentRepository")
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="discr", type="string")
- * @DiscriminatorMap({"Carro" = "Carro", "Casa" = "Casa","Activity"="Activity"})
+ * @DiscriminatorMap({"Carro" = "Carro", "Casa" = "Casa","Activity"="Activity","Excursion"="Excursion"})
  */
 abstract class DisplayableComponent
 {

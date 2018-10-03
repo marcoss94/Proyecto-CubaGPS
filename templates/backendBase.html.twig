@@ -170,7 +170,7 @@
             </a>
         </li>
         <li class="nav-item ">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ path('excursiones',{'status':'create'}) }}">
                 <i class="fas fa-fw fa-map-marked-alt"></i>
                 <span>Excursiones</span>
             </a>
@@ -253,8 +253,9 @@
 {% endblock %}
 
 {% block script %}
+    <script src="{{ asset('build/vendor/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap core JavaScript-->
-<script src="{{ asset('build/backend/sb-admin/vendor/jquery/jquery.min.js')}}"></script>
+{#<script src="{{ asset('build/backend/sb-admin/vendor/jquery/jquery.min.js')}}"></script>#}
 <script src="{{ asset('build/backend/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 <!-- Core plugin JavaScript-->

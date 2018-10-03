@@ -6,9 +6,11 @@ use App\Entity\Activity;
 use App\Entity\Carro;
 use App\Entity\Casa;
 use App\Entity\Dia;
+use App\Entity\Excursion;
 use App\Entity\Image;
 use App\Entity\Paquete;
 use App\Form\CarForm;
+use App\Form\ExcursionForm;
 use App\Form\HouseForm;
 use App\Form\PaqueteForm;
 use App\Repository\ActivityRepository;
@@ -16,6 +18,7 @@ use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
 use App\Repository\DiaRepository;
 use App\Repository\DisplayableComponentRepository;
+use App\Repository\ExcursionRepository;
 use App\Repository\ImageRepository;
 use App\Repository\PaqueteRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -570,5 +573,25 @@ class AdminController extends Controller
         return $this->redirectToRoute('album', ['id' => $owner->getId()]);
     }
 
-
+    /**
+     * @Route("/admin/excursiones", name="excursiones")
+     */
+    public function excursiones(Request $request,ExcursionRepository $excursionRepository)
+    {
+        $excursiones=$excursionRepository->findAll();
+        $status=$request->get('status');
+        $exc=$status=='create' ? new Excursion() : $excursionRepository->find($request->get('id'));
+        $form = $this->createForm(ExcursionForm::class, $exc);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+            $exc = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($exc);
+            $em->flush();
+            return $this->redirectToRoute('excursiones',['status'=>'create']);
+        }
+        return $this->render('admin/excursiones.html.twig',['form'=>$form->createView(),'excursiones'=>$excursiones,'status'=>$status]);
+    }
 }
