@@ -1,185 +1,275 @@
 {% extends 'backendBase.html.twig' %}
 
-{% block content %}
-    <div class="col-center-block">
-        <table class="table table-bordered">
 
-            <thead class="thead-dark">
-            <th scope="col" colspan="4">Actividades por Días</th>
-            <th>
-                <button type="button" title="Adicionar día" class="btn btn-success" data-toggle="modal"
-                        data-target="#createDayModal"><i
-                            class="fa fa-plus" aria-hidden="true"></i><span
-                            class="caret">Día</span></button>
+{% block title %}Administración | Actividades{% endblock %}
 
 
-            </th>
-            </thead>
-            <tbody>
-            {% for d in paquete.dias %}
-                <tr class="table-active">
-                    <td scope="col">{{ 'Día '~d.orden }}</td>
-                    <td scope="col" colspan="3">{{ d.nombre }}</td>
-                    <td scope="col">
-                        <a title="Editar" class="btn btn-default" href="{{ path('edit_day',{'diaId':d.id,}) }}"><i
-                                    class="fa fa-edit" aria-hidden="true"></i><span
-                                    class="caret"></span></a>
-                        <a title="Eliminar Día" style="color: red" class="btn btn-default"
-                           href="{{ path('delete_day',{'diaId':d.id,'paqueteId':paquete.id}) }}"><i
-                                    class="fa fa-trash" aria-hidden="true"></i><span
-                                    class="caret"></span></a>
-                        <button type="button" title="Adicionar Actividad" class="btn btn-warning" data-toggle="modal"
-                                data-target="#createActivityModal" data-id="{{ d.id }}"><i
-                                    class="fa fa-plus" aria-hidden="true"></i><span
-                                    class="caret">Actividad</span></button>
+{% block stylesheets %}
+    {{ parent() }}
 
-                    </td>
-                </tr>
-                {% for a in d.activities %}
-                    <tr>
-                        <td>{{ a.nombre }}</td>
-                        <td>{{ a.horario }}</td>
-                        <td colspan="2">{{ a.descripcion }}</td>
-                        <td>
-                            <a title="Editar" class="btn btn-default" href="{{ path('edit_activity') }}"><i
-                                        class="fa fa-edit" aria-hidden="true"></i><span
-                                        class="caret"></span></a>
-                            <a title="Eliminar Actividad" style="color: red" class="btn btn-default"
-                               href="{{ path('delete_activity',{'activityId':a.id,'paqueteId':paquete.id}) }}"><i
-                                        class="fa fa-trash" aria-hidden="true"></i><span
-                                        class="caret"></span></a>
-                            <a title="Album de Imagenes" class="btn btn-default" href="{{ path('album',{'id':a.id}) }}"><i
-                                        class="fa fa-camera"
-                                        {% if a.images|length %}
-                                            style="color: green"
-                                        {% else %}
-                                            style="color: gray"
-                                        {% endif %}
-                                        aria-hidden="true"></i><span
-                                        class="caret"></span></a>
-                        </td>
-                    </tr>
-                {% else %}
-                    <th colspan="5">No se han insertado actividades a este día</th>
-                {% endfor %}
-                <!-- Modal Create -->
-            {% else %}
-                <th colspan="5">No se han insertado dias a este paquete</th>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <!-- Modal Create Day -->
-    <div class="modal fade" id="createDayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Día</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item active">Actividades</li>
+    </ol>
+
+    <div class="card mb-3">
+
+        <div class="card-header">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+
+                    <i class="fas fa-calendar-check"></i>
+                    Actividades por Días
                 </div>
-                <div class="modal-body">
-                    {{ form_start(dayForm) }}
-                    {{ form_widget(dayForm) }}
-                    {{ form_end(dayForm) }}
+                <div class="col-auto">
+                    <button type="button" title="Adicionar día" class="btn btn-success" data-toggle="modal"
+                            data-target="#createDayModal"><i
+                                class="fa fa-plus" aria-hidden="true" style="margin-right: 3px"></i><span
+                                class="caret">Día</span></button>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Modal Create Activity -->
-    <div class="modal fade" id="createActivityModal" tabindex="-1" role="dialog"
-         aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nueva Actividad</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        </div>
+        <div class="card-body">
+
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    {#<div class="col-center-block">#}
+                    {#<table class="table table-bordered">#}
+
+                    {#<thead class="thead-dark">#}
+                    {#<tr>#}
+                    {#<th scope="col" colspan="4">Actividades por Días</th>#}
+                    {#<th>#}
+                        {#<button type="button" title="Adicionar día" class="btn btn-success" data-toggle="modal"#}
+                                {#data-target="#createDayModal"><i#}
+                                    {#class="fa fa-plus" aria-hidden="true"></i><span#}
+                                    {#class="caret">Día</span></button>#}
+
+
+                    {#</th>#}
+                    {#</tr>#}
+
+
+                    </thead>
+
+                    <tbody>
+                    {% for d in paquete.dias %}
+                        <tr class="table-active">
+                            <td scope="col">{{ 'Día '~d.orden }}</td>
+                            <td scope="col" colspan="3">{{ d.nombre }}</td>
+                            <td scope="col">
+                                <a title="Editar" class="btn btn-default" href="{{ path('edit_day',{'diaId':d.id,}) }}"><i
+                                            class="fa fa-edit" aria-hidden="true"></i><span
+                                            class="caret"></span></a>
+                                <a title="Eliminar Día" style="color: red" class="btn btn-default"
+                                   href="{{ path('delete_day',{'diaId':d.id,'paqueteId':paquete.id}) }}"><i
+                                            class="fa fa-trash" aria-hidden="true"></i><span
+                                            class="caret"></span></a>
+                                <button type="button" title="Adicionar Actividad" class="btn btn-warning"
+                                        data-toggle="modal"
+                                        data-target="#createActivityModal" data-id="{{ d.id }}"><i
+                                            class="fa fa-plus" aria-hidden="true" style="margin-right: 3px"></i><span
+                                            class="caret">Actividad</span></button>
+
+                            </td>
+                        </tr>
+                        {% for a in d.activities %}
+                            <tr>
+                                <td>{{ a.nombre }}</td>
+                                <td>{{ a.horario }}</td>
+                                <td colspan="2">{{ a.descripcion }}</td>
+                                <td>
+                                    {#<a title="Editar" class="btn btn-default" href="{{ path('edit_activity') }}"><i#}
+                                                {#class="fa fa-edit" aria-hidden="true"></i><span#}
+                                                {#class="caret"></span></a>#}
+                                    <a title="Eliminar Actividad" style="color: red" class="btn btn-default"
+                                       href="{{ path('delete_activity',{'activityId':a.id,'paqueteId':paquete.id}) }}"><i
+                                                class="fa fa-trash" aria-hidden="true"></i><span
+                                                class="caret"></span></a>
+                                    <a title="Album de Imagenes" class="btn btn-default"
+                                       href="{{ path('album',{'id':a.id}) }}"><i
+                                                class="fa fa-camera"
+                                                {% if a.images|length %}
+                                                    style="color: green"
+                                                {% else %}
+                                                    style="color: gray"
+                                                {% endif %}
+                                                aria-hidden="true"></i><span
+                                                class="caret"></span></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <th colspan="5">No se han insertado actividades a este día</th>
+                        {% endfor %}
+                        <!-- Modal Create -->
+                    {% else %}
+                        <th colspan="5">No se han insertado dias a este paquete</th>
+                    {% endfor %}
+                    </tbody>
+
+                </table>
+            </div>
+
+
+            <!-- Modal Create Day -->
+            <div class="modal fade" id="createDayModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Nuevo Día</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {{ form_start(dayForm) }}
+                            {{ form_widget(dayForm) }}
+                            {{ form_end(dayForm) }}
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form method="post" action="{{ path('new_activity') }}">
-                        <button class="btn btn-success" type="button" data-toggle="collapse"
-                                data-target="#collapseExample"
-                                aria-expanded="false" aria-controls="collapseExample">
-                            Asignar Excursión
-                        </button>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body">
-                                <select class="form-control" name="excursion" id="exampleFormControlSelect1">
-                                    <option value="" selected>Seleccione la Excursión</option>
-                                    {% for e in excursiones %}
-                                        <option value="{{ e.id }}">{{ e.modelo }}</option>
-                                    {% endfor %}
-                                </select>
+            </div>
+
+            <!-- Modal Create Activity -->
+            <div class="modal fade" id="createActivityModal" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Nueva Actividad</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{ path('new_activity') }}">
+                                <button class="btn btn-success" type="button" data-toggle="collapse"
+                                        data-target="#collapseExample"
+                                        aria-expanded="false" aria-controls="collapseExample">
+                                    Asignar Excursión
+                                </button>
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        <select class="form-control" name="excursion" id="exampleFormControlSelect1">
+                                            <option value="" selected>Seleccione la Excursión</option>
+                                            {% for e in excursiones %}
+                                                <option value="{{ e.id }}">{{ e.modelo }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <input id="id" type="hidden" name="diaId">
+                                <div class="form-group">
+                                    <label for="order">Orden</label>
+                                    <input type="number" class="form-control" id="order" name="order"
+                                           placeholder="Enter order">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre"
+                                           placeholder="Enter name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="horario">Horario</label>
+                                    <input type="text" class="form-control" id="horario" name="horario"
+                                           placeholder="Enter Time">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Descripción</label>
+                                    <textarea class="form-control" id="description" name="description"
+                                              placeholder="Enter Description"></textarea>
+                                </div>
+                                <button type="submit" name="btn" value="guardar" class="btn btn-primary">Guardar
+                                </button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!------------------------Modal Editar Dia--------------------------------------------------->
+            {% if status == 'edit' %}
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                {{ form_start(editDayForm) }}
+                                {{ form_widget(editDayForm) }}
+                                {{ form_end(editDayForm) }}
                             </div>
                         </div>
-                        <input id="id" type="hidden" name="diaId">
-                        <div class="form-group">
-                            <label for="order">Orden</label>
-                            <input type="number" class="form-control" id="order" name="order"
-                                   placeholder="Enter order">
-                        </div>
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre"
-                                   placeholder="Enter name">
-                        </div>
-                        <div class="form-group">
-                            <label for="horario">Horario</label>
-                            <input type="text" class="form-control" id="horario" name="horario"
-                                   placeholder="Enter Time">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">Descripción</label>
-                            <textarea class="form-control" id="description" name="description"
-                                      placeholder="Enter Description"></textarea>
-                        </div>
-                        <button type="submit" name="btn" value="guardar" class="btn btn-primary">Guardar</button>
-                    </form>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!------------------------Modal Editar Dia--------------------------------------------------->
-    {% if status == 'edit' %}
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Editar</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        {{ form_start(editDayForm) }}
-                        {{ form_widget(editDayForm) }}
-                        {{ form_end(editDayForm) }}
                     </div>
                 </div>
-            </div>
+            {% endif %}
+
         </div>
-    {% endif %}
+
+        <div class="card-footer">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-calendar-check"></i>
+                    Actividades por Días
+                </div>
+                <div class="col-auto">
+                    <button type="button" title="Adicionar día" class="btn btn-success" data-toggle="modal"
+                            data-target="#createDayModal"><i
+                                class="fa fa-plus" aria-hidden="true" style="margin-right: 3px"></i>
+                        <span class="caret">  Día</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
 
     </div>
-    <script type="text/javascript">
-        $('#createActivityModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget); // Button that triggered the modal
-            var id = button.data('id'); // Extract info from data-* attributes
-            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-            var modal = $(this);
-            modal.find('#id').val(id)
-        });
-        {% if status == 'edit' %}
-        $('#editModal').modal('show')
-        {% endif %}
-    </script>
+
+
 {% endblock %}
+
+        {% block script %}
+
+            {{ parent() }}
+
+            <script type="text/javascript">
+                $('#createActivityModal').on('show.bs.modal', function (event) {
+                    var button = $(event.relatedTarget); // Button that triggered the modal
+                    var id = button.data('id'); // Extract info from data-* attributes
+                    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                    var modal = $(this);
+                    modal.find('#id').val(id)
+                });
+                {% if status == 'edit' %}
+                $('#editModal').modal('show')
+                {% endif %}
+            </script>
+        {% endblock %}
