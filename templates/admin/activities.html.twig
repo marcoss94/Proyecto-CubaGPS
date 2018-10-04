@@ -38,7 +38,7 @@
                     Actividades por Días
                 </div>
                 <div class="col-auto">
-                    <button type="button" title="Adicionar día" class="btn btn-success" data-toggle="modal"
+                    <button type="button" title="Adicionar día" class="btn btn-dark" data-toggle="modal"
                             data-target="#createDayModal"><i
                                 class="fa fa-plus" aria-hidden="true" style="margin-right: 3px"></i><span
                                 class="caret">Día</span></button>
@@ -59,10 +59,10 @@
                     {#<tr>#}
                     {#<th scope="col" colspan="4">Actividades por Días</th>#}
                     {#<th>#}
-                        {#<button type="button" title="Adicionar día" class="btn btn-success" data-toggle="modal"#}
-                                {#data-target="#createDayModal"><i#}
-                                    {#class="fa fa-plus" aria-hidden="true"></i><span#}
-                                    {#class="caret">Día</span></button>#}
+                    {#<button type="button" title="Adicionar día" class="btn btn-success" data-toggle="modal"#}
+                    {#data-target="#createDayModal"><i#}
+                    {#class="fa fa-plus" aria-hidden="true"></i><span#}
+                    {#class="caret">Día</span></button>#}
 
 
                     {#</th>#}
@@ -84,7 +84,7 @@
                                    href="{{ path('delete_day',{'diaId':d.id,'paqueteId':paquete.id}) }}"><i
                                             class="fa fa-trash" aria-hidden="true"></i><span
                                             class="caret"></span></a>
-                                <button type="button" title="Adicionar Actividad" class="btn btn-warning"
+                                <button type="button" title="Adicionar Actividad" class="btn btn-outline-dark"
                                         data-toggle="modal"
                                         data-target="#createActivityModal" data-id="{{ d.id }}"><i
                                             class="fa fa-plus" aria-hidden="true" style="margin-right: 3px"></i><span
@@ -94,28 +94,39 @@
                         </tr>
                         {% for a in d.activities %}
                             <tr>
-                                <td>{{ a.nombre }}</td>
-                                <td>{{ a.horario }}</td>
-                                <td colspan="2">{{ a.descripcion }}</td>
-                                <td>
-                                    {#<a title="Editar" class="btn btn-default" href="{{ path('edit_activity') }}"><i#}
-                                                {#class="fa fa-edit" aria-hidden="true"></i><span#}
-                                                {#class="caret"></span></a>#}
-                                    <a title="Eliminar Actividad" style="color: red" class="btn btn-default"
-                                       href="{{ path('delete_activity',{'activityId':a.id,'paqueteId':paquete.id}) }}"><i
-                                                class="fa fa-trash" aria-hidden="true"></i><span
-                                                class="caret"></span></a>
-                                    <a title="Album de Imagenes" class="btn btn-default"
-                                       href="{{ path('album',{'id':a.id}) }}"><i
-                                                class="fa fa-camera"
-                                                {% if a.images|length %}
-                                                    style="color: green"
-                                                {% else %}
-                                                    style="color: gray"
-                                                {% endif %}
-                                                aria-hidden="true"></i><span
-                                                class="caret"></span></a>
-                                </td>
+                                <form action="edit_activity">
+                                    <input type="hidden" name="id" value="{{ a.id }}">
+                                    <td><input type="text" class="form-control" name="nombre" value=" {{ a.nombre }} ">
+                                    </td>
+                                    <td><input type="text" class="form-control" name="horario" value=" {{ a.horario }} ">
+                                    </td>
+                                    <td colspan="2"><input type="text" class="form-control" name="descripcion"
+                                                           value=" {{ a.descripcion }} "></td>
+
+                                    <td>
+                                        {#<a title="Editar" class="btn btn-default" href="{{ path('edit_activity') }}"><i#}
+                                        {#class="fa fa-edit" aria-hidden="true"></i><span#}
+                                        {#class="caret"></span></a>#}
+                                        <a title="Album de Imagenes" class="btn btn-default"
+                                           href="{{ path('album',{'id':a.id}) }}"><i
+                                                    class="fa fa-camera"
+                                                    {% if a.images|length %}
+                                                        style="color: green"
+                                                    {% else %}
+                                                        style="color: gray"
+                                                    {% endif %}
+                                                    aria-hidden="true"></i><span
+                                                    class="caret"></span></a>
+                                        <a title="Eliminar Actividad" style="color: red" class="btn btn-default"
+                                           href="{{ path('delete_activity',{'activityId':a.id,'paqueteId':paquete.id}) }}"><i
+                                                    class="fa fa-trash" aria-hidden="true"></i><span
+                                                    class="caret"></span></a>
+                                        <button type="submit" class="btn btn-default"><i
+                                                    class="fa fa-save" aria-hidden="true" style="margin-right: 3px"></i><span
+                                                    class="caret">Guardar</span></button>
+
+                                    </td>
+                                </form>
                             </tr>
                         {% else %}
                             <th colspan="5">No se han insertado actividades a este día</th>
@@ -174,7 +185,7 @@
                                         <select class="form-control" name="excursion" id="exampleFormControlSelect1">
                                             <option value="" selected>Seleccione la Excursión</option>
                                             {% for e in excursiones %}
-                                                <option value="{{ e.id }}">{{ e.modelo }}</option>
+                                                <option value="{{ e.id }}">{{ e.nombre }}</option>
                                             {% endfor %}
                                         </select>
                                     </div>
@@ -182,18 +193,18 @@
                                 <input id="id" type="hidden" name="diaId">
                                 <div class="form-group">
                                     <label for="order">Orden</label>
-                                    <input type="number" class="form-control" id="order" name="order"
+                                    <input required type="number" class="form-control" id="order" name="order"
                                            placeholder="Enter order">
+                                </div>
+                                <div class="form-group">
+                                    <label for="horario">Horario</label>
+                                    <input required type="text" class="form-control" id="horario" name="horario"
+                                           placeholder="Enter Time">
                                 </div>
                                 <div class="form-group">
                                     <label for="nombre">Nombre</label>
                                     <input type="text" class="form-control" id="nombre" name="nombre"
                                            placeholder="Enter name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="horario">Horario</label>
-                                    <input type="text" class="form-control" id="horario" name="horario"
-                                           placeholder="Enter Time">
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Descripción</label>

@@ -17,7 +17,7 @@ class Excursion extends DisplayableComponent
     /**
      * @ORM\Column(type="array")
      */
-    private $dias;
+    private $dias=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
 
     /**
      * @ORM\Column(type="string", length=100)
