@@ -69,7 +69,7 @@ class Carro extends DisplayableComponent
     /**
      * @ORM\Column(type="array")
      */
-    private $idiomas;
+    private $idiomas=['Español'];
 
     /**
      * @ORM\Column(type="boolean")

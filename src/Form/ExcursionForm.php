@@ -21,11 +21,20 @@ class ExcursionForm extends AbstractType
     {
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
+            ->add('descripcion', TextType::class, ['label' => 'Descripción'])
             ->add('provincia', TextType::class, ['label' => 'Provincia'])
-            ->add('dias', null, ['label' => 'Días disponibles'])
+            ->add('dias', ChoiceType::class, ['label' => 'Días disponibles','choices'=>array(
+                'Lunes'=>'Lunes',
+                'Martes'=>'Martes',
+                'Miércoles'=>'Miércoles',
+                'Jueves'=>'Jueves',
+                'Viernes'=>'Viernes',
+                'Sábado'=>'Sábado',
+                'Domingo'=>'Domingo',
+            ),'expanded'=>true,'multiple'=>true])
             ->add('horaInicio', TextType::class, ['label' => 'Hora de inicio'])
-            ->add('duracion', TextType::class, ['label' => 'Duracion'])
-            ->add('guia', ChoiceType::class, ['label' => 'Guia', 'choices' => array(
+            ->add('duracion', TextType::class, ['label' => 'Duración'])
+            ->add('guia', ChoiceType::class, ['label' => 'Guía', 'choices' => array(
                 'Si' => true,
                 'No' => false,
             )])

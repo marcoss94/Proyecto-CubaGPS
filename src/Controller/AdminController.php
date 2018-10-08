@@ -409,7 +409,7 @@ class AdminController extends Controller
     /**
      * @Route("/admin/activities", name="activities")
      */
-    public function activities(Request $request, CarroRepository $carroRepository, PaqueteRepository $paqueteRepository)
+    public function activities(Request $request, ExcursionRepository $excursionRepository, PaqueteRepository $paqueteRepository)
     {
         $day = new Dia();
         $paquete = $paqueteRepository->find($request->get('id'));
@@ -427,8 +427,8 @@ class AdminController extends Controller
             $em->flush();
             return $this->redirectToRoute('activities', ['id' => $request->get('id')]);
         }
-        $carros = $carroRepository->findAll();
-        return $this->render('admin/activities.html.twig', ['dayForm' => $form->createView(), 'paquete' => $paquete, 'excursiones' => $carros, 'status'=>'create']);
+        $excursions = $excursionRepository->findAll();
+        return $this->render('admin/activities.html.twig', ['dayForm' => $form->createView(), 'paquete' => $paquete, 'excursiones' => $excursions, 'status'=>'create']);
     }
 
     /**
@@ -487,7 +487,7 @@ class AdminController extends Controller
     /**
      * @Route("/admin/new_activity", name="new_activity")
      */
-    public function new_activity(Request $request, CarroRepository $carroRepository, DiaRepository $diaRepository)
+    public function new_activity(Request $request, ExcursionRepository $excursionRepository, DiaRepository $diaRepository)
     {
         $excursionId = $request->get('excursion');
         $em = $this->getDoctrine()->getManager();
@@ -496,15 +496,17 @@ class AdminController extends Controller
         $activity->setOrden($request->get('order'));
         $activity->setHorario($request->get('horario'));
         if ($excursionId) {
-            $excursion = $carroRepository->find($excursionId);
+            $excursion = $excursionRepository->find($excursionId);
             $activity->setNombre($excursion->getNombre());
-            $activity->setDescripcion($excursion->getModelo());
+            $activity->setDescripcion($excursion->getDescripcion());
             $originalImages = $excursion->getImages();
             foreach ($originalImages as $originalImage) {
                 $newImage = new Image();
                 $newImage->setDisplayableComponent($activity);
                 $newImage->setMain($originalImage->getMain());
-                $newImage->setFull($originalImage->getPath());
+                $newImage->setFull($originalImage->getFull());
+                $newImage->setHalf($originalImage->getHalf());
+                $newImage->setMin($originalImage->getMin());
                 $em->persist($newImage);
             }
             $activity->setImages($excursion->getImages());
@@ -517,6 +519,24 @@ class AdminController extends Controller
         $em->flush();
         return $this->redirectToRoute('activities', ['id' => $dia->getPaquete()->getId()]);
     }
+
+    /**
+     * @Route("/admin/edit_activity", name="edit_activity")
+     */
+    public function edit_activity(Request $request, ActivityRepository $activityRepository)
+    {
+        $activity=$activityRepository->find($request->get('id'));
+        $activity->setNombre($request->get('nombre'));
+        $activity->setDescripcion($request->get('descripcion'));
+        $activity->setHorario($request->get('horario'));
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($activity);
+        $em->flush();
+        return $this->redirectToRoute('activities', ['id' => $activity->getDia()->getPaquete()->getId()]);
+    }
+
+
+
 
     /**
      * @Route("/admin/delete_activity", name="delete_activity")

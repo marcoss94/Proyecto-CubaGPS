@@ -30,9 +30,11 @@
                     <thead>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Provincia</th>
+                        <th scope="col">Dias</th>
                         <th scope="col">Hora de inicio</th>
-                        <th scope="col">Duraciono</th>
+                        <th scope="col">Duración</th>
                         <th scope="col">Guia</th>
                         <th scope="col">Incluye Transporte</th>
                         <th scope="col">Tipo de Transporte</th>
@@ -53,9 +55,11 @@
                     <tfoot>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Provincia</th>
+                        <th scope="col">Dias</th>
                         <th scope="col">Hora de inicio</th>
-                        <th scope="col">Duraciono</th>
+                        <th scope="col">Duración</th>
                         <th scope="col">Guia</th>
                         <th scope="col">Incluye Transporte</th>
                         <th scope="col">Tipo de Transporte</th>
@@ -71,13 +75,33 @@
                         <th scope="col">Activo</th>
                         <th scope="col">Valoración</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </tfoot>
                     <tbody>
                     {% for c in excursiones %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.nombre }}</td>
+                            <td>{{ c.descripcion }}</td>
                             <td>{{ c.provincia }}</td>
+                            <td>{% if c.dias|length == 7 %}Todos{% else %}
+                                    <div>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button"
+                                                    class="btn btn-outline-secondary dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Dias
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                {% for dia in c.dias %}
+                                                    <a class="dropdown-item">{{ dia }}</a>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </td>
                             <td>{{ c.horaInicio }}</td>
                             <td>{{ c.duracion }}</td>
                             <td>{{ c.guia? 'si':'no' }}</td>
@@ -94,7 +118,8 @@
                             <td>{{ c.costoAdicional }}</td>
                             <td>{{ c.active? 'si':'no' }}</td>
                             <td>{{ c.valoracion }}</td>
-                            <td><a title="Album de Imagenes" class="btn btn-default" href="{{ path('album',{'id':c.id}) }}"><i
+                            <td><a title="Album de Imagenes" class="btn btn-default"
+                                   href="{{ path('album',{'id':c.id}) }}"><i
                                             class="fa fa-camera"
                                             {% if c.images|length %}
                                                 style="color: green"
@@ -103,14 +128,13 @@
                                             {% endif %}
                                             aria-hidden="true"></i><span
                                             class="caret"></span></a>
-                                <a title="Editar" class="btn btn-default"
+                            <td><a title="Editar" class="btn btn-default"
                                    href="{{ path('excursiones',{'id':c.id,'status':'edit'}) }}"><i
                                             class="fa fa-edit" aria-hidden="true"></i><span
-                                            class="caret"></span></a>
-                                <a title="Eliminar" class="btn btn-default" href="{{ path('delete_car',{'id':c.id}) }}"><i
+                                            class="caret"></span></a></td>
+                            <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_car',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
-                                            class="caret"></span></a>
-
+                                            class="caret"></span></a></td>
                             </td>
 
                         </tr>

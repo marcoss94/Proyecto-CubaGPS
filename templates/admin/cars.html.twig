@@ -70,6 +70,7 @@
                         <th scope="col">Climatizado</th>
                         <th scope="col">Descapotable</th>
                         <th scope="col">Cantidad de Asientos</th>
+                        <th scope="col">Idiomas</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
@@ -89,6 +90,7 @@
                         <th scope="col">Climatizado</th>
                         <th scope="col">Descapotable</th>
                         <th scope="col">Cantidad de Asientos</th>
+                        <th scope="col">Idiomas</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
@@ -109,6 +111,19 @@
                             <td>{{ c.climatizado ? 'si' : 'no' }}</td>
                             <td>{{ c.descapotable ? 'si' : 'no' }}</td>
                             <td>{{ c.cantidadAsientos }}</td>
+                            <td><div>
+                                    <div class="btn-group" role="group">
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Idiomas
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            {% for idioma in c.idiomas %}
+                                            <a class="dropdown-item">{{ idioma }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div></td>
                             <td>{{ c.active ? 'si' : 'no' }}</td>
                             <td><a title="Album de Imagenes" class="btn btn-default" href="{{ path('album',{'id':c.id}) }}"><i
                                             class="fa fa-camera"
