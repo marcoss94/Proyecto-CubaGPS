@@ -353,7 +353,7 @@ h2 {
     font-size: 5em;
     text-align: center;
     color: #FFF;
-    opacity: 0.95;
+    /*opacity: 0.95;*/
     border-radius: 10px;
 }
 
