@@ -10,6 +10,7 @@ namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -21,7 +22,7 @@ class ExcursionForm extends AbstractType
     {
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
-            ->add('descripcion', TextType::class, ['label' => 'Descripción'])
+            ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
             ->add('provincia', TextType::class, ['label' => 'Provincia'])
             ->add('dias', ChoiceType::class, ['label' => 'Días disponibles','choices'=>array(
                 'Lunes'=>'Lunes',

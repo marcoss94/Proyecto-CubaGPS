@@ -14,6 +14,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 
 class CarForm extends AbstractType
@@ -22,6 +23,7 @@ class CarForm extends AbstractType
     {
         $builder
             ->add('nombre',TextType::class,['label' => 'Nombre del Chofer'])
+            ->add('descripcion',TextareaType::class,['label' => 'Descripción'])
             ->add('tel', TelType::class, ['label' => 'Teléfono fijo'])
             ->add('cel', TelType::class, ['label' => 'Teléfono móvil'])
             ->add('chapa', TextType::class, ['label' => 'Chapa'])

@@ -67,7 +67,7 @@ border-color: #f9b501;" href="{{ path('oferta') }}">Saber más</a>
                                         <div {% if loop.index==1 %}class="carousel-item active"
                                              {% else %}class="carousel-item"{% endif %}>
                                             <img class="img-fluid fotosOferta"
-                                                 src="{{ asset(image.half) }}">
+                                                 src="{{ asset(image.half) }}" alt="{{ image.altName }}">
                                         </div>
                                     {% endfor %}
                                 </div>
@@ -86,7 +86,7 @@ border-color: #f9b501;" href="{{ path('oferta') }}">Saber más</a>
                         </a>
                         <div class=" infoOferta text-left">
                             <a class="nav-item nombreO" href=""><h4>{{ i.municipio~', '~i.provincia }}</h4></a>
-                            {% if i.valoracion%2==0 %}
+                            {% if i.valoracion%2==0 and i.valoracion != 0 %}
                                 {% for i in 1..i.valoracion/2 %}
                                     <i class="fas fa-star star"></i>
                                 {% endfor %}
@@ -99,7 +99,11 @@ border-color: #f9b501;" href="{{ path('oferta') }}">Saber más</a>
                                         <i class="fas fa-star star"></i>
                                     {% endfor %}
                                 {% endif %}
-                                <i class="fas fa-star-half-alt star"></i>
+                                {% if i.valoracion == 0 %}
+                                    <i class="far fa-star star"></i>
+                                {% else %}
+                                    <i class="fas fa-star-half-alt star"></i>
+                                {% endif %}
                                 {% if i.valoracion < 9 %}
                                     {% for i in 1..(9-i.valoracion)/2 %}
                                         <i class="far fa-star star"></i>
@@ -467,7 +471,7 @@ border-color: #f9b501;"
                         </a>
                         <div class=" infoOferta text-left">
                             <a class="nav-item nombreO" href=""><h4>{{ i.modelo }}</h4></a>
-                            {% if i.valoracion%2==0 %}
+                            {% if i.valoracion%2==0 and i.valoracion != 0 %}
                                 {% for i in 1..i.valoracion/2 %}
                                     <i class="fas fa-star star"></i>
                                 {% endfor %}
@@ -480,7 +484,11 @@ border-color: #f9b501;"
                                         <i class="fas fa-star star"></i>
                                     {% endfor %}
                                 {% endif %}
-                                <i class="fas fa-star-half-alt star"></i>
+                                {% if i.valoracion == 0 %}
+                                    <i class="far fa-star star"></i>
+                                {% else %}
+                                    <i class="fas fa-star-half-alt star"></i>
+                                {% endif %}
                                 {% if i.valoracion < 9 %}
                                     {% for i in 1..(9-i.valoracion)/2 %}
                                         <i class="far fa-star star"></i>

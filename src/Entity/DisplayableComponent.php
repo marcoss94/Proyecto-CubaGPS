@@ -14,6 +14,7 @@ use Doctrine\Common\Collections\Collection;
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="discr", type="string")
  * @DiscriminatorMap({"Carro" = "Carro", "Casa" = "Casa","Activity"="Activity","Excursion"="Excursion"})
+ * @ORM\HasLifecycleCallbacks()
  */
 abstract class DisplayableComponent
 {
@@ -32,6 +33,55 @@ abstract class DisplayableComponent
     private $images;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $descripcion;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+
+    /**
      * DisplayableComponent constructor.
      * @param $images
      */
@@ -46,6 +96,22 @@ abstract class DisplayableComponent
     public function getImages(): Collection
     {
         return $this->images;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * @param mixed $descripcion
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
     }
 
     /**

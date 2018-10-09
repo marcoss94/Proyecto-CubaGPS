@@ -62,23 +62,15 @@
                         <th scope="col">Municipio</th>
                         <th scope="col">Provincia</th>
                         <th scope="col" colspan="2">Teléfono \n fijo \t móvil</th>
-
                         <th scope="col">Email</th>
                         <th scope="col" colspan="2"> Habitaciones cant precio</th>
                         <th scope="col">Camas Dobles</th>
                         <th scope="col">Camas Simples</th>
-                        <th scope="col">Cocina</th>
                         <th scope="col">Tipo de Establecimiento</th>
-                        <th scope="col">Parqueo/Garaje</th>
                         <th scope="col">Desayuno</th>
                         <th scope="col">Almuerzo</th>
                         <th scope="col">Cena</th>
-                        <th scope="col">Lavanderia</th>
-                        <th scope="col">Masaje</th>
-                        <th scope="col">Wi-Fi</th>
-                        <th scope="col">Caja Fuerte</th>
-                        <th scope="col">Guía</th>
-                        <th scope="col">Terraza</th>
+                        <th scope="col">Servicios</th>
                         <th scope="col">Valoracion</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Album</th>
@@ -93,23 +85,15 @@
                         <th scope="col">Municipio</th>
                         <th scope="col">Provincia</th>
                         <th scope="col" colspan="2">Teléfono \n fijo \t móvil</th>
-
                         <th scope="col">Email</th>
                         <th scope="col" colspan="2"> Habitaciones cant precio</th>
                         <th scope="col">Camas Dobles</th>
                         <th scope="col">Camas Simples</th>
-                        <th scope="col">Cocina</th>
                         <th scope="col">Tipo de Establecimiento</th>
-                        <th scope="col">Parqueo/Garaje</th>
                         <th scope="col">Desayuno</th>
                         <th scope="col">Almuerzo</th>
                         <th scope="col">Cena</th>
-                        <th scope="col">Lavanderia</th>
-                        <th scope="col">Masaje</th>
-                        <th scope="col">Wi-Fi</th>
-                        <th scope="col">Caja Fuerte</th>
-                        <th scope="col">Guía</th>
-                        <th scope="col">Terraza</th>
+                        <th scope="col">Servicios</th>
                         <th scope="col">Valoracion</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Album</th>
@@ -131,18 +115,23 @@
                             <td>{{ c.precioHabitacion }}</td>
                             <td>{{ c.cantidadCamaDoble }}</td>
                             <td>{{ c.cantidadCamaSimple }}</td>
-                            <td>{{ c.cocina ? 'si' : 'no' }}</td>
                             <td>{{ c.tipoEstablecimiento }}</td>
-                            <td>{{ c.parqueoGaraje ? 'si' : 'no' }}</td>
                             <td>{{ c.desayuno ? 'si' : 'no' }}</td>
                             <td>{{ c.almuerzo ? 'si' : 'no' }}</td>
                             <td>{{ c.cena ? 'si' : 'no' }}</td>
-                            <td>{{ c.lavanderia ? 'si' : 'no' }}</td>
-                            <td>{{ c.masaje ? 'si' : 'no' }}</td>
-                            <td>{{ c.wifi ? 'si' : 'no' }}</td>
-                            <td>{{ c.cajaFuerte ? 'si' : 'no' }}</td>
-                            <td>{{ c.guia ? 'si' : 'no' }}</td>
-                            <td>{{ c.terraza ? 'si' : 'no' }}</td>
+                            <td><div>
+                                    <div class="btn-group" role="group">
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Servicios
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            {% for servicio in c.servicios %}
+                                                <a class="dropdown-item">{{ servicio }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div></td>
                             <td>{{ c.valoracion }}</td>
                             <td>{{ c.active ? 'si' : 'no' }}</td>
 
