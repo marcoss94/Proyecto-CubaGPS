@@ -28,6 +28,11 @@ class Image
     private $displayableComponent;
 
     /**
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    private $altName;
+
+    /**
      * @ORM\Column(type="boolean")
      */
     private $main = false;
@@ -132,6 +137,29 @@ class Image
     {
         return $this->id;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAltName()
+    {
+        return $this->altName;
+    }
+
+    /**
+     * @param mixed $altName
+     */
+    public function setAltName(DisplayableComponent $owner)
+    {
+        if($owner instanceof Carro){
+            $this->altName='autos clásicos';
+        }elseif ($owner instanceof Casa){
+            $this->altName='renta Cuba';
+        }else{
+            $this->altName='cubaGPS';
+        }
+    }
+
 
     /**
      * @ORM\PostRemove()

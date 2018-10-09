@@ -27,12 +27,6 @@ class Activity extends DisplayableComponent
      */
     private $nombre;
 
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $descripcion;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -45,6 +39,7 @@ class Activity extends DisplayableComponent
     {
         return $this->horario;
     }
+
 
     /**
      * @param mixed $horario
@@ -84,22 +79,6 @@ class Activity extends DisplayableComponent
     public function setNombre($nombre)
     {
         $this->nombre = $nombre;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
-
-    /**
-     * @param mixed $descripcion
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
     }
 
     /**

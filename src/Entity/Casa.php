@@ -23,7 +23,7 @@ class Casa extends DisplayableComponent
     /**
      * @ORM\Column(type="integer")
      */
-    private $valoracion=0;
+    private $valoracion = 0;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -71,20 +71,12 @@ class Casa extends DisplayableComponent
      */
     private $cantidadCamaSimple;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $cocina;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $tipoEstablecimiento;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $parqueoGaraje;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -101,41 +93,32 @@ class Casa extends DisplayableComponent
      */
     private $cena;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $lavanderia;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $masaje;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $wifi;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $cajaFuerte;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $guia;
-
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $terraza;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $active = true;
+
+    /**
+     * @return mixed
+     */
+    public function getServicios()
+    {
+        return $this->servicios;
+    }
+
+    /**
+     * @param mixed $servicios
+     */
+    public function setServicios($servicios)
+    {
+        $this->servicios = $servicios;
+    }
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $servicios;
 
     /**
      * @return mixed
@@ -311,17 +294,6 @@ class Casa extends DisplayableComponent
         return $this;
     }
 
-    public function getCocina(): ?bool
-    {
-        return $this->cocina;
-    }
-
-    public function setCocina(?bool $cocina): self
-    {
-        $this->cocina = $cocina;
-
-        return $this;
-    }
 
     public function getTipoEstablecimiento(): ?string
     {
@@ -335,17 +307,6 @@ class Casa extends DisplayableComponent
         return $this;
     }
 
-    public function getParqueoGaraje(): ?bool
-    {
-        return $this->parqueoGaraje;
-    }
-
-    public function setParqueoGaraje(?bool $parqueoGaraje): self
-    {
-        $this->parqueoGaraje = $parqueoGaraje;
-
-        return $this;
-    }
 
     public function getDesayuno(): ?bool
     {
@@ -383,77 +344,6 @@ class Casa extends DisplayableComponent
         return $this;
     }
 
-    public function getLavanderia(): ?bool
-    {
-        return $this->lavanderia;
-    }
-
-    public function setLavanderia(?bool $lavanderia): self
-    {
-        $this->lavanderia = $lavanderia;
-
-        return $this;
-    }
-
-    public function getMasaje(): ?bool
-    {
-        return $this->masaje;
-    }
-
-    public function setMasaje(?bool $masaje): self
-    {
-        $this->masaje = $masaje;
-
-        return $this;
-    }
-
-    public function getWifi(): ?bool
-    {
-        return $this->wifi;
-    }
-
-    public function setWifi(?bool $wifi): self
-    {
-        $this->wifi = $wifi;
-
-        return $this;
-    }
-
-    public function getCajaFuerte(): ?bool
-    {
-        return $this->cajaFuerte;
-    }
-
-    public function setCajaFuerte(?bool $cajaFuerte): self
-    {
-        $this->cajaFuerte = $cajaFuerte;
-
-        return $this;
-    }
-
-    public function getGuia(): ?bool
-    {
-        return $this->guia;
-    }
-
-    public function setGuia(?bool $guia): self
-    {
-        $this->guia = $guia;
-
-        return $this;
-    }
-
-    public function getTerraza(): ?bool
-    {
-        return $this->terraza;
-    }
-
-    public function setTerraza(?bool $terraza): self
-    {
-        $this->terraza = $terraza;
-
-        return $this;
-    }
 
     public function __toString()
     {

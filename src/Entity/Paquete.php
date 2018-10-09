@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PaqueteRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Paquete
 {
@@ -62,6 +63,51 @@ class Paquete
      * @ORM\Column(type="boolean")
      */
     private $active = true;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt= ;
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = $this->createdAt;
+
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
 
     /**
      * @return mixed
@@ -205,6 +251,18 @@ class Paquete
     public function setDias($dias)
     {
         $this->dias = $dias;
+    }
+
+    public function getImages()
+    {
+        $result = [];
+        foreach ($this->dias as $dia){
+            foreach ($dia->getActivities() as $activity)
+            {
+                $result[]=$activity->getMainImage();
+            }
+        }
+        return $result;
     }
 
 

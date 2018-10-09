@@ -104,10 +104,6 @@ class Excursion extends DisplayableComponent
      */
     private $costoAdicional;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $descripcion;
 
     /**
      * @return mixed
@@ -329,18 +325,6 @@ class Excursion extends DisplayableComponent
     public function setCostoAdicional(?float $costoAdicional): self
     {
         $this->costoAdicional = $costoAdicional;
-
-        return $this;
-    }
-
-    public function getDescripcion(): ?string
-    {
-        return $this->descripcion;
-    }
-
-    public function setDescripcion(?string $descripcion): self
-    {
-        $this->descripcion = $descripcion;
 
         return $this;
     }

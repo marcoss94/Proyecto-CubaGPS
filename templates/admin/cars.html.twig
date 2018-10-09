@@ -60,6 +60,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Nombre del Chofer</th>
+                        <th scope="col">Descripción</th>
                         <th scope="col">Teléfono fijo</th>
                         <th scope="col">Teléfono móvil</th>
                         <th scope="col">Chapa</th>
@@ -80,6 +81,7 @@
                     <tfoot>
                     <tr>
                         <th scope="col">Nombre del Chofer</th>
+                        <th scope="col">Descripción</th>
                         <th scope="col">Teléfono fijo</th>
                         <th scope="col">Teléfono móvil</th>
                         <th scope="col">Chapa</th>
@@ -101,6 +103,7 @@
                     {% for c in carros %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.nombre }}</td>
+                            <td>{{ c.descripcion }}</td>
                             <td>{{ c.tel }}</td>
                             <td>{{ c.cel }}</td>
                             <td>{{ c.chapa }}</td>

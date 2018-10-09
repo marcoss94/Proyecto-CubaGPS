@@ -188,6 +188,21 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $owner = $displayableComponentRepository->find($request->get('id'));
+        $paquete = '';
+        if ($owner instanceof Carro) {
+            $type = 'admin_cars';
+            $label = 'Carros';
+        } elseif ($owner instanceof Casa) {
+            $type = 'admin_houses';
+            $label = 'Casas';
+        } elseif ($owner instanceof Excursion) {
+            $type = 'excursiones';
+            $label = 'Excursiones';
+        } else {
+            $type = 'actividad';
+            $paquete = $owner->getDia()->getPaquete();
+            $label = '';
+        }
         $image = new Image();
         $form = $this->createFormBuilder($image)
             ->add('full', FileType::class, array('label' => 'Imagen'))
@@ -204,6 +219,7 @@ class AdminController extends Controller
             $imageLow = $this->resize_image($image->getFull(), 350, 350, false);
             $image->setMin('uploads/thumb/' . $fileName);
             $image->setHalf('uploads/low/' . $fileName);
+            $image->setAltName($owner);
             $exploding = explode(".", $image->getFull());
             $ext = end($exploding);
             switch ($ext) {
@@ -226,9 +242,13 @@ class AdminController extends Controller
             }
             $em->persist($image);
             $em->flush();
-            return $this->render('admin/album.html.twig', ['owner' => $owner, 'form' => $form->createView()]);
+
+            return $this->render('admin/album.html.twig',
+                ['owner' => $owner, 'form' => $form->createView(), 'paquete' => $paquete, 'type' => $type, 'label' => $label]);
         }
-        return $this->render('admin/album.html.twig', ['owner' => $owner, 'form' => $form->createView()]);
+
+        return $this->render('admin/album.html.twig',
+            ['owner' => $owner, 'form' => $form->createView(), 'paquete' => $paquete, 'type' => $type, 'label' => $label]);
     }
 
     function createThumb($filePath, $fileName)
@@ -428,7 +448,7 @@ class AdminController extends Controller
             return $this->redirectToRoute('activities', ['id' => $request->get('id')]);
         }
         $excursions = $excursionRepository->findAll();
-        return $this->render('admin/activities.html.twig', ['dayForm' => $form->createView(), 'paquete' => $paquete, 'excursiones' => $excursions, 'status'=>'create']);
+        return $this->render('admin/activities.html.twig', ['dayForm' => $form->createView(), 'paquete' => $paquete, 'excursiones' => $excursions, 'status' => 'create']);
     }
 
     /**
@@ -437,7 +457,7 @@ class AdminController extends Controller
     public function edit_day(Request $request, DiaRepository $diaRepository, CarroRepository $carroRepository)
     {
         $dia = $diaRepository->find($request->get('diaId'));
-        $paquete=$dia->getPaquete();
+        $paquete = $dia->getPaquete();
         $editDayform = $this->createFormBuilder($dia)
             ->add('orden', null, array('label' => 'Orden'))
             ->add('nombre', TextType::class, array('label' => 'Nombre'))
@@ -467,7 +487,7 @@ class AdminController extends Controller
         }
         $carros = $carroRepository->findAll();
         return $this->render('admin/activities.html.twig',
-            ['dayForm' => $form->createView(),'editDayForm'=>$editDayform->createView(), 'paquete' => $paquete, 'excursiones' => $carros,'status'=>'edit']);
+            ['dayForm' => $form->createView(), 'editDayForm' => $editDayform->createView(), 'paquete' => $paquete, 'excursiones' => $carros, 'status' => 'edit']);
     }
 
 
@@ -525,17 +545,15 @@ class AdminController extends Controller
      */
     public function edit_activity(Request $request, ActivityRepository $activityRepository)
     {
-        $activity=$activityRepository->find($request->get('id'));
+        $activity = $activityRepository->find($request->get('id'));
         $activity->setNombre($request->get('nombre'));
         $activity->setDescripcion($request->get('descripcion'));
         $activity->setHorario($request->get('horario'));
-        $em=$this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $em->persist($activity);
         $em->flush();
         return $this->redirectToRoute('activities', ['id' => $activity->getDia()->getPaquete()->getId()]);
     }
-
-
 
 
     /**
@@ -587,6 +605,9 @@ class AdminController extends Controller
             $newImage = new Image();
             $newImage->setDisplayableComponent($owner);
             $newImage->setFull($originalImage->getFull());
+            $newImage->setHalf($originalImage->getHalf());
+            $newImage->setMin($originalImage->getMin());
+            $newImage->setAltName($owner);
             $em->persist($newImage);
         }
         $em->flush();
@@ -596,11 +617,11 @@ class AdminController extends Controller
     /**
      * @Route("/admin/excursiones", name="excursiones")
      */
-    public function excursiones(Request $request,ExcursionRepository $excursionRepository)
+    public function excursiones(Request $request, ExcursionRepository $excursionRepository)
     {
-        $excursiones=$excursionRepository->findAll();
-        $status=$request->get('status');
-        $exc=$status=='create' ? new Excursion() : $excursionRepository->find($request->get('id'));
+        $excursiones = $excursionRepository->findAll();
+        $status = $request->get('status');
+        $exc = $status == 'create' ? new Excursion() : $excursionRepository->find($request->get('id'));
         $form = $this->createForm(ExcursionForm::class, $exc);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -610,8 +631,8 @@ class AdminController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($exc);
             $em->flush();
-            return $this->redirectToRoute('excursiones',['status'=>'create']);
+            return $this->redirectToRoute('excursiones', ['status' => 'create']);
         }
-        return $this->render('admin/excursiones.html.twig',['form'=>$form->createView(),'excursiones'=>$excursiones,'status'=>$status]);
+        return $this->render('admin/excursiones.html.twig', ['form' => $form->createView(), 'excursiones' => $excursiones, 'status' => $status]);
     }
 }

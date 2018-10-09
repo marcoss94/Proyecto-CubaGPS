@@ -15,6 +15,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class HouseForm extends AbstractType
 {
@@ -22,6 +23,7 @@ class HouseForm extends AbstractType
     {
         $builder
             ->add('manager', TextType::class, ['label' => 'Manager'])
+            ->add('descripcion', TextareaType::class, ['label' => 'Descripcion'])
             ->add('direccion', TextType::class, ['label' => 'Direción'])
             ->add('municipio', TextType::class, ['label' => 'Municipio'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
@@ -49,18 +51,10 @@ class HouseForm extends AbstractType
             ->add('precioHabitacion', null, ['label' => 'Precio por habitación'])
             ->add('cantidadCamaDoble', null, ['label' => 'Camas Dobles'])
             ->add('cantidadCamaSimple', null, ['label' => 'Camas Simples'])
-            ->add('cocina', ChoiceType::class, ['label' => 'Cocina', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
             ->add('tipoEstablecimiento', ChoiceType::class, ['label' => 'Tipo de Establecimiento', 'choices' => array(
                 'casa' => 'casa',
                 'habitación' => 'habitación',
                 'apartamento' => 'apartamento',
-            ),])
-            ->add('parqueoGaraje',  ChoiceType::class, ['label' => 'Parqueo o Garaje', 'choices' => array(
-                'si' => true,
-                'no' => false,
             ),])
             ->add('desayuno', ChoiceType::class, ['label' => 'Desayuno', 'choices' => array(
                 'si' => true,
@@ -74,30 +68,16 @@ class HouseForm extends AbstractType
                 'si' => true,
                 'no' => false,
             ),])
-            ->add('lavanderia',  ChoiceType::class, ['label' => 'Lavandería', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
-            ->add('masaje',  ChoiceType::class, ['label' => 'Masaje', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
-            ->add('wifi',  ChoiceType::class, ['label' => 'Wi-Fi', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
-            ->add('cajaFuerte',  ChoiceType::class, ['label' => 'Caja Fuerte', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
-            ->add('guia', ChoiceType::class, ['label' => 'Guía', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
-            ->add('terraza',  ChoiceType::class, ['label' => 'Terraza', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
+            ->add('servicios', ChoiceType::class, ['label' => 'Servicios','choices'=>array(
+                'Cocina'=>'Cocina',
+                'Terraza'=>'Terraza',
+                'Yacuzzi'=>'Yacuzzi',
+                'Wi-Fi'=>'Wi-Fi',
+                'Caja Fuerte'=>'Caja Fuerte',
+                'Lavandería'=>'Lavandería',
+                'Masaje'=>'Masaje',
+                'Guía'=>'Guía',
+            ),'expanded'=>true,'multiple'=>true])
             ->add('active',  ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'si' => true,
                 'no' => false,
