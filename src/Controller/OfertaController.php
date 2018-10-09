@@ -13,7 +13,7 @@ class OfertaController extends Controller
     public function index()
     {
         return $this->render('oferta/index.html.twig', [
-            'controller_name' => 'OfertaController','base'=>'false','oferta'=>'casa'
+            'controller_name' => 'OfertaController','base'=>'false','oferta'=>'paquete'
         ]);
     }
 }

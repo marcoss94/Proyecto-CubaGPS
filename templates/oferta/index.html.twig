@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cuba GPS | {{ controller_name }}!{% endblock %}
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta':'Offer' }}{% endblock %}
 
  {% block stylesheets %}
 
@@ -16,6 +16,14 @@
 
 
  {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
 
 
 {% block body %}
@@ -98,8 +106,10 @@
 
                     <div class=" infoOferta text-left">
 
+                        {#Nombre#}
                         <h2 class="nombreO">Casa Yuli Varadero</h2>
 
+                        {#provincia#}
                         <h4 class="section-subheading" >Provincia</h4>
 
 
@@ -174,7 +184,7 @@
                                     <div class="iconogeneral">
 
                                         <div class="iconoServ">
-                                            <h6>   {{ app.session.get('language') == 'es'? 'CHAPA: ':'Car plate: ' }}
+                                            <h6>   {{ app.session.get('language') == 'es'? 'CHAPA ':'Registration' }}:
                                                 P 158 630</h6>
                                         </div>
                                     </div>
@@ -183,7 +193,7 @@
                                     <div class="iconogeneral">
 
                                         <div class="iconoServ">
-                                            <h6>  {{ app.session.get('language') == 'es'? 'Modelo: ':'Model: ' }}
+                                            <h6>  {{ app.session.get('language') == 'es'? 'Modelo ':'Model' }}:
                                                 Chevrolet 52</h6>
                                         </div>
                                     </div>
@@ -192,13 +202,102 @@
                                     <div class="iconogeneral">
 
                                         <div class="iconoServ">
-                                            <h6>  {{ app.session.get('language') == 'es'? 'Color: ':'Color: ' }}
-                                                {{ app.session.get('language') == 'es'? 'color del carro ':'car color ' }}</h6>
+                                            <h6>  {{ app.session.get('language') == 'es'? 'Color ':'Color' }}:
+                                                color del carro</h6>
                                         </div>
                                     </div>
                                 </div>
 
                             </div>
+
+.
+                        {% elseif oferta == 'escursiones' %}
+
+                            <div>
+
+                                <div class="serviciosOfertas" style="margin-right: 10px">
+                                    <div class="iconogeneral">
+
+                                        <div class="iconoServ">
+                                            <h6>
+                                                <span><i class="far fa-clock"></i></span>
+                                                {#DUracion#}
+                                                3h
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="serviciosOfertas" style="margin-right: 10px">
+                                    <div class="iconogeneral">
+
+                                        <div class="iconoServ">
+                                            <h6>
+                                                <span><i class="fas fa-bus-alt"></i></span>
+                                                {#Transportacion#}
+                                                Normal o clasico
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="serviciosOfertas" style="margin-right: 10px">
+                                    <div class="iconogeneral">
+
+                                        <div class="iconoServ">
+                                            <h6>
+                                                <span><i class="fas fa-user-tie"></i></span>
+                                                {#Transportacion#}
+                                                Guia
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        {% elseif oferta == 'paquete' %}
+
+                            <div>
+
+                                <div class="serviciosOfertas" style="margin-right: 10px">
+                                    <div class="iconogeneral">
+
+                                        <div class="iconoServ">
+                                            <h6>
+                                                <span><i class="far fa-sun"></i></span>
+                                                {#Cantidad de dias#}
+                                                3 {{ app.session.get('language') == 'es'? 'Días ':'Days' }}
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="serviciosOfertas" style="margin-right: 10px">
+                                    <div class="iconogeneral">
+
+                                        <div class="iconoServ">
+                                            <h6>
+                                                <span><i class="far fa-moon"></i></span>
+                                                {#Cantidad de noches#}
+                                                2 {{ app.session.get('language') == 'es'? 'Noches ':'Nights' }}
+                                            </h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                {#<div class="serviciosOfertas" style="margin-right: 10px">#}
+                                    {#<div class="iconogeneral">#}
+
+                                        {#<div class="iconoServ">#}
+                                            {#<h6>#}
+                                                {#<span><i class="fas fa-user-tie"></i></span>#}
+                                                {#Transportacion#}
+                                                {#Guia#}
+                                            {#</h6>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+
+                            </div>
+
 
 
                         {% else %}
@@ -209,6 +308,7 @@
 
 <div class="separador"></div>
 
+                        {#descripcion#}
                         <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia almenos 3
                             renglones. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
 
@@ -417,6 +517,105 @@
                             </div>
                         </div>
 
+
+                        {% elseif oferta == 'escursiones' %}
+
+                            <div class="row">
+                                <div class="col-6 col-md-4">
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="far fa-calendar-alt"></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="iconoServ">
+                                                <span>De Lunes a Viernes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-utensils"></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="iconoServ">
+                                                <span>Desayuno</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-utensils"></i></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="iconoServ">
+                                                <span>Almuerzo</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-utensils"></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="iconoServ">
+                                                <span>Comida</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-stopwatch"></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="iconoServ">
+                                                <span>Inicia: 9:00AM</span>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    {#<div class="" style="margin-right: 10px">#}
+                                        {#<div class="iconogeneral">#}
+                                            {#<div class="iconoServ">#}
+                                                {#<div style="margin-right: 8px">#}
+                                                    {#<span><i class="fas fa-user-tie"></i></span>#}
+                                                {#</div>#}
+                                            {#</div>#}
+
+                                            {#<div class="iconoServ">#}
+                                                {#<span>{{ app.session.get('language') == 'es'? 'Guia ':'Guide' }}</span>#}
+                                            {#</div>#}
+                                        {#</div>#}
+
+
+                                    {#</div>#}
+                                </div>
+                            </div>
+
                         {% else %}
 
                         {% endif %}
@@ -450,6 +649,119 @@
                                 </div>
                             </div>
                             <div class="separador"></div>
+
+                        {% elseif oferta == 'escursiones' %}
+                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Reglamentos':'Regulations' }}</h4>
+
+                            <ul class="text-muted">
+                                <li>Reglamento 1</li>
+                                <li>Reglamento 2</li>
+                                <li>Reglamento 3</li>
+                                <li>Reglamento 4</li>
+                                <li>Reglamento 5</li>
+                                <li>Reglamento 6</li>
+                            </ul>
+
+                            <div class="separador"></div>
+
+                        {% elseif oferta == 'paquete' %}
+                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Actividades':'Activities' }}</h4>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <ul class="timelineGPS">
+                                        <li>
+                                            <div class="timeline-imageGPS">
+                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                     src="{{ asset('build/img/excurciones/excurciones1.jpg') }}" alt="">
+                                            </div>
+                                            <div class="timeline-panelGPS">
+                                                <div class="timeline-headingGPS">
+                                                    <h4>2009-2011</h4>
+                                                    <h4 class="subheadingGPS">Our Humble Beginnings</h4>
+                                                </div>
+                                                <div class="timeline-bodyGPS">
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                        Sunt
+                                                        ut
+                                                        voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam,
+                                                        recusandae
+                                                        sit
+                                                        vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-invertedGPS">
+                                            <div class="timeline-imageGPS">
+                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                     src="{{ asset('build/img/excurciones/excurciones2.jpg') }}" alt="">
+                                            </div>
+                                            <div class="timeline-panelGPS">
+                                                <div class="timeline-headingGPS">
+                                                    <h4>March 2011</h4>
+                                                    <h4 class="subheadingGPS">An Agency is Born</h4>
+                                                </div>
+                                                <div class="timeline-bodyGPS">
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                        Sunt
+                                                        ut
+                                                        voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam,
+                                                        recusandae
+                                                        sit
+                                                        vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-imageGPS">
+                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                     src="{{ asset('build/img/excurciones/excurciones3.jpg') }}" alt="">
+                                            </div>
+                                            <div class="timeline-panelGPS">
+                                                <div class="timeline-headingGPS">
+                                                    <h4>December 2012</h4>
+                                                    <h4 class="subheadingGPS">Transition to Full Service</h4>
+                                                </div>
+                                                <div class="timeline-bodyGPS">
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                        Sunt
+                                                        ut
+                                                        voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam,
+                                                        recusandae
+                                                        sit
+                                                        vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-invertedGPS">
+                                            <div class="timeline-imageGPS">
+                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                     src="{{ asset('build/img/excurciones/excurciones4.jpg') }}" alt="">
+                                            </div>
+                                            <div class="timeline-panelGPS">
+                                                <div class="timeline-headingGPS">
+                                                    <h4>July 2014</h4>
+                                                    <h4 class="subheadingGPS">Phase Two Expansion</h4>
+                                                </div>
+                                                <div class="timeline-bodyGPS">
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                        Sunt
+                                                        ut
+                                                        voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam,
+                                                        recusandae
+                                                        sit
+                                                        vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+                                                </div>
+                                            </div>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <div class="separador"></div>
                         {% else %}
 
 
@@ -458,9 +770,99 @@
 {#Map --------------------------------------------------------------------------------------#}
 
 
-{#Probando --------------------------------------------------------------------------------------#}
+{#Comentarios --------------------------------------------------------------------------------------#}
 
-{#Probando --------------------------------------------------------------------------------------#}
+
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Comentarios':'Comments' }}</h4>
+
+
+                        {#///////////////////////////comentarios./////////////////////////////////////////////#}
+                        <ul class="list-unstyled ">
+                            <li class="media">
+                                <a class="pr-3 " href="#">
+                                    <img class="mr-3 rounded-circle fotocomment"
+                                         src="{{ asset('build/img/default.jpg') }}"
+                                         alt="Generic placeholder image">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                    <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia
+                                        almenos 3
+                                        renglones. Lorem ipsum</p>
+
+
+                                </div>
+                            </li>
+                            <li class="media my-4">
+                                <a class="pr-3 " href="#">
+                                    <img class="mr-3 fotocomment rounded-circle"
+                                         src="{{ asset('build/img/default.jpg') }}"
+                                         alt="Generic placeholder image" alt="...">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">Probando</h5>
+                                    <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia
+                                        almenos 3
+                                       </p>
+
+
+                                    <div class="media mt-3">
+                                        <a class="pr-3 " href="#">
+                                            <img class="mr-3 fotocomment rounded-circle"
+                                                 src="{{ asset('build/img/default.jpg') }}"
+                                                 alt="Generic placeholder image">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Media heading</h5>
+                                            <p class="text-muted">Espacio para la descripcion de la oferta un poco
+                                                amplia almenos 3
+                                                renglones. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                Sunt ut voluptatum eius </p>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a class="pr-3 " href="#">
+                                    <img class="mr-3 fotocomment rounded-circle"
+                                         src="{{ asset('build/img/default.jpg') }}"
+                                         alt="Generic placeholder image">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                    <p class="text-muted">Espacio para la descripcion de la oferta </p>
+
+
+                                </div>
+                            </li>
+                        </ul>
+
+
+                        <div class="form-group">
+                                <textarea class="form-control" id="message" placeholder="{{ app.session.get('language') == 'es'? 'Tu mensaje ':'Your Message ' }}*"
+                                          required="required"
+                                          data-validation-required-message="Please enter a message."></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                    <div class="clearfix"></div>
+                    <div class="col-lg-12 text-center">
+                        <div id="success"></div>
+                        <button id="sendMessageButton" class="btn btn-primary text-uppercase" type="submit">
+                            {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
+                        </button>
+                    </div>
+
+
+                        <div class="separador"></div>
+                                {#///////////////////////////comentarios./////////////////////////////////////////////#}
+
+
+
+
+{#Comentarios --------------------------------------------------------------------------------------#}
 
 
 

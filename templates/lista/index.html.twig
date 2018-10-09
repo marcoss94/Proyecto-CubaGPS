@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Lista':'List' }}!{% endblock %}
+
+ {% block stylesheets %}
+
+     {{ parent() }}
+
+
+ {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+
+<section class="bg-light" id="portfolio">
+    <div class="container">
+
+
+        {#<div class="row">#}
+            {#<div class="col-lg-12 text-center">#}
+                {#<h2 class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Ofertas':'Offers' }}</h2>#}
+                {#<h3 class="section-subheading text-muted">{{ app.session.get('language') == 'es'? 'Cuba al alcance de tu mano':'Cuba at your fingertips' }}</h3>#}
+            {#</div>#}
+        {#</div>#}
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 id="casas"
+                    class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</h2>
+
+            </div>
+            {% for i in casas %}
+                <div class="col-md-4 col-sm-6 portfolio-item">
+                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                        <div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide" data-ride="carousel "
+                             data-interval="false">
+                            <div class="carousel-inner">
+                                {% for image in i.images %}
+                                    <div {% if loop.index==1 %}class="carousel-item active"
+                                         {% else %}class="carousel-item"{% endif %}>
+                                        <img class="img-fluid fotosOferta"
+                                             src="{{ asset(image.half) }}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="{{ '#carouselcasa'~loop.index }}" role="button"
+                               data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="{{ '#carouselcasa'~loop.index }}" role="button"
+                               data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+
+                    </a>
+                    <div class=" infoOferta text-left">
+                        <a class="nav-item nombreO" href=""><h4>{{ i.municipio~', '~i.provincia }}</h4></a>
+                        {% if i.valoracion%2==0 %}
+                            {% for i in 1..i.valoracion/2 %}
+                                <i class="fas fa-star star"></i>
+                            {% endfor %}
+                            {% for i in 1..(10-i.valoracion)/2 %}
+                                <i class="far fa-star star"></i>
+                            {% endfor %}
+                        {% else %}
+                            {% if i.valoracion > 2 %}
+                                {% for i in 1..(i.valoracion-1)/2 %}
+                                    <i class="fas fa-star star"></i>
+                                {% endfor %}
+                            {% endif %}
+                            <i class="fas fa-star-half-alt star"></i>
+                            {% if i.valoracion < 9 %}
+                                {% for i in 1..(9-i.valoracion)/2 %}
+                                    <i class="far fa-star star"></i>
+                                {% endfor %}
+                            {% endif %}
+                        {% endif %}
+                        <div class="timeline-body">
+                            <p class="text-muted">{{ i.municipio~', '~i.provincia }}</p>
+                            <h6 class="text-muted">56$ por noche</h6>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {#boton de ver mas#}
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+    {{ parent() }}
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+
+{% endblock %}
+
