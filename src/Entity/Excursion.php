@@ -100,6 +100,11 @@ class Excursion extends DisplayableComponent
     private $valoracion;
 
     /**
+     * @ORM\Column(type="array")
+     */
+    private $valoracionArray=[0=>0,1=>0,2=>5];
+
+    /**
      * @ORM\Column(type="float", nullable=true)
      */
     private $costoAdicional;
@@ -114,11 +119,30 @@ class Excursion extends DisplayableComponent
     }
 
     /**
+     * @return mixed
+     */
+    public function getValoracionArray()
+    {
+        return $this->valoracionArray;
+    }
+
+    /**
+     * @param mixed $valoracionArray
+     */
+    public function setValoracionArray($valoracionArray)
+    {
+        $this->valoracionArray = $valoracionArray;
+    }
+
+    /**
      * @param mixed $valoracion
      */
     public function setValoracion($valoracion)
     {
         $this->valoracion = $valoracion;
+        $this->valoracionArray[0]=(integer)($valoracion/2);
+        $this->valoracionArray[1]=$valoracion%2;
+        $this->valoracionArray[2]=5-$this->valoracionArray[0]-$this->valoracionArray[1];
     }
 
     public function getProvincia(): ?string

@@ -86,29 +86,18 @@ border-color: #f9b501;" href="{{ path('oferta') }}">Saber más</a>
                         </a>
                         <div class=" infoOferta text-left">
                             <a class="nav-item nombreO" href=""><h4>{{ i.municipio~', '~i.provincia }}</h4></a>
-                            {% if i.valoracion%2==0 and i.valoracion != 0 %}
-                                {% for i in 1..i.valoracion/2 %}
+                            {% if i.valoracionArray[0]!=0 %}
+                                {% for j in 1..i.valoracionArray[0] %}
                                     <i class="fas fa-star star"></i>
                                 {% endfor %}
-                                {% for i in 1..(10-i.valoracion)/2 %}
+                            {% endif %}
+                            {% if i.valoracionArray[1] %}
+                                <i class="fas fa-star-half-alt star"></i>
+                            {% endif %}
+                            {% if i.valoracionArray[2]!=0 %}
+                                {% for j in 1..i.valoracionArray[2] %}
                                     <i class="far fa-star star"></i>
                                 {% endfor %}
-                            {% else %}
-                                {% if i.valoracion > 2 %}
-                                    {% for i in 1..(i.valoracion-1)/2 %}
-                                        <i class="fas fa-star star"></i>
-                                    {% endfor %}
-                                {% endif %}
-                                {% if i.valoracion == 0 %}
-                                    <i class="far fa-star star"></i>
-                                {% else %}
-                                    <i class="fas fa-star-half-alt star"></i>
-                                {% endif %}
-                                {% if i.valoracion < 9 %}
-                                    {% for i in 1..(9-i.valoracion)/2 %}
-                                        <i class="far fa-star star"></i>
-                                    {% endfor %}
-                                {% endif %}
                             {% endif %}
                             <div class="timeline-body">
                                 <p class="text-muted">{{ i.municipio~', '~i.provincia }}</p>
@@ -471,29 +460,18 @@ border-color: #f9b501;"
                         </a>
                         <div class=" infoOferta text-left">
                             <a class="nav-item nombreO" href=""><h4>{{ i.modelo }}</h4></a>
-                            {% if i.valoracion%2==0 and i.valoracion != 0 %}
-                                {% for i in 1..i.valoracion/2 %}
+                            {% if i.valoracionArray[0]!=0 %}
+                                {% for j in 1..i.valoracionArray[0] %}
                                     <i class="fas fa-star star"></i>
                                 {% endfor %}
-                                {% for i in 1..(10-i.valoracion)/2 %}
+                            {% endif %}
+                            {% if i.valoracionArray[1] %}
+                                <i class="fas fa-star-half-alt star"></i>
+                            {% endif %}
+                            {% if i.valoracionArray[2]!=0 %}
+                                {% for j in 1..i.valoracionArray[2] %}
                                     <i class="far fa-star star"></i>
                                 {% endfor %}
-                            {% else %}
-                                {% if i.valoracion > 2 %}
-                                    {% for i in 1..(i.valoracion-1)/2 %}
-                                        <i class="fas fa-star star"></i>
-                                    {% endfor %}
-                                {% endif %}
-                                {% if i.valoracion == 0 %}
-                                    <i class="far fa-star star"></i>
-                                {% else %}
-                                    <i class="fas fa-star-half-alt star"></i>
-                                {% endif %}
-                                {% if i.valoracion < 9 %}
-                                    {% for i in 1..(9-i.valoracion)/2 %}
-                                        <i class="far fa-star star"></i>
-                                    {% endfor %}
-                                {% endif %}
                             {% endif %}
                             <div class="timeline-body">
                                 <p class="text-muted">{{ i.modelo }}</p>

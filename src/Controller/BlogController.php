@@ -17,6 +17,7 @@ use App\Events;
 use App\Form\CommentType;
 use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
+use App\Repository\ExcursionRepository;
 use App\Repository\PostRepository;
 use App\Repository\SistemRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -51,19 +52,18 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(SistemRepository $sistemRepository,CarroRepository $carroRepository,CasaRepository $casaRepository)
+    public function index(CarroRepository $carroRepository,CasaRepository $casaRepository,ExcursionRepository $excursionRepository)
     {
         if ($this->get('session')->get('language') != 'en') {
             $this->get('session')->set('language', 'es');
         }
-        $carros=$carroRepository->findBy(['active'=>true],['valoracion'=>'DESC'],3);
-        $casas=$casaRepository->findBy(['active'=>true],['valoracion'=>'DESC'],3);
-
-
+        $carros=$carroRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
+        $casas=$casaRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
+        $excursiones=$excursionRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
-        return $this->render('blog/index.html.twig',['base'=>'true','carros'=>$carros,'casas'=>$casas]);
+        return $this->render('blog/index.html.twig',['base'=>'true','carros'=>$carros,'casas'=>$casas,'excursiones'=>$excursiones]);
     }
 
     /**

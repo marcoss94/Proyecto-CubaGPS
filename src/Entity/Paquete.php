@@ -72,7 +72,7 @@ class Paquete
     /**
      * @ORM\Column(type="datetime")
      */
-    private $updatedAt= ;
+    private $updatedAt;
 
     /**
      * @return mixed

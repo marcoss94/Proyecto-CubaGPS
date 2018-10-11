@@ -48,7 +48,7 @@ class AdminController extends Controller
      */
     public function cars(Request $request, CarroRepository $carroRepository)
     {
-        $carros = $carroRepository->findAll();
+        $carros = $carroRepository->findBy([],['updatedAt'=>'DESC'],null);
         $carro = new Carro();
         $form = $this->createForm(CarForm::class, $carro);
         $form->handleRequest($request);
@@ -118,7 +118,7 @@ class AdminController extends Controller
      */
     public function houses(Request $request, CasaRepository $casaRepository)
     {
-        $casas = $casaRepository->findAll();
+        $casas = $casaRepository->findBy([],['updatedAt'=>'DESC'],null);
         $casa = new Casa();
         $form = $this->createForm(HouseForm::class, $casa);
         $form->handleRequest($request);
@@ -571,15 +571,17 @@ class AdminController extends Controller
     /**
      * @Route("/admin/uploadedImages", name="uploadedImages")
      */
-    public function uploadedImages(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, DisplayableComponentRepository $displayableComponentRepository)
+    public function uploadedImages(Request $request, CarroRepository $carroRepository,ExcursionRepository $excursionRepository, CasaRepository $casaRepository, DisplayableComponentRepository $displayableComponentRepository)
     {
         $images = [];
         $owner = $displayableComponentRepository->find($request->get('ownerId'));
         if ($request->get('type') == 'carro') {
             $objects = $carroRepository->findAll();
 
-        } else {
+        } else if($request->get('type') == 'excursiones') {
             $objects = $casaRepository->findAll();
+        } else {
+            $objects = $excursionRepository->findAll();
         }
         $i = 0;
         $j = 0;
@@ -619,7 +621,7 @@ class AdminController extends Controller
      */
     public function excursiones(Request $request, ExcursionRepository $excursionRepository)
     {
-        $excursiones = $excursionRepository->findAll();
+        $excursiones = $excursionRepository->findBy([],['updatedAt'=>'DESC'],null);
         $status = $request->get('status');
         $exc = $status == 'create' ? new Excursion() : $excursionRepository->find($request->get('id'));
         $form = $this->createForm(ExcursionForm::class, $exc);
