@@ -37,12 +37,12 @@
 </head>
 
 <body id="page-top">
-{% block menu %}
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="{% if base == 'false' %} padding-top: 0px;padding-bottom: 0px;background-color: #212529;{% else %}  {% endif %}">
+{% block menubase %}
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
 
-    <div class="container">
+    <div class="container" id="page-top">
 
-        <a class="navbar-brand js-scroll-trigger" href="{% if base == 'false' %} {{ path('blog_index') }}   {% else %}#page-top {% endif %}"><img src="{{ asset('build/img/logo.png') }}"
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{ asset('build/img/logo.png') }}"
                                                                         width="140" height="50"
                                                                         class="d-inline-block align-top" alt="">
         </a>
@@ -99,7 +99,7 @@
 
 
 
-                            {% if  base == true %}
+
                                 <a class="nav-link js-scroll-trigger "
                                    href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
                                 <a class="nav-link js-scroll-trigger "
@@ -111,19 +111,18 @@
                                 <a class="nav-link js-scroll-trigger "
                                    href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
 
-                            {% else %}
-                                <a class="nav-link js-scroll-trigger "
-                                   href="">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                   href="">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                   href="">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                   href="">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                   href="">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
-                            {% endif %}
 
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                   {#href="">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                   {#href="">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                   {#href="">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                   {#href="">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                   {#href="">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>#}
+                           {##}
                         </div>
                     </div>
                 </li>
@@ -199,6 +198,171 @@
     </div>
 </nav>
 {% endblock %}
+
+{% block menu %}
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="padding-top: 0px;padding-bottom: 0px;background-color: #212529;">
+
+        <div class="container">
+
+            <a class="navbar-brand js-scroll-trigger" href="{{ path('blog_index') }}"><img src="{{ asset('build/img/logo.png') }}"
+                                                                                                                                                      width="140" height="50"
+                                                                                                                                                      class="d-inline-block align-top" alt="">
+            </a>
+
+
+            <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
+                    style="background-color: #f9b501" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto" style="line-height: 2.5;">
+
+                    <li class="nav-item">
+                        <form class="form-inline nav-link ">
+
+                            <div class="col-auto">
+
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" aria-label="Search"
+                                           placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
+                                    <div class="input-group-prepend" style="display: inline">
+                                        <div class="input-group-text" style="border: 0;background-color: inherit">
+                                            <a class=" js-scroll-trigger" href="" data-toggle="modal"
+                                               data-target="#searchModal" style="color: white;">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary " type="submit"
+                                            style="background-color: #f9b501; border-color: #f9b501;">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ app.session.get('language') == 'es'? 'Servicios':'Service' }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                 style="background-color: #212529;">
+
+                                {#aki va si estas en el base se bone base true y si no base false#}
+
+
+
+
+                                    {#<a class="nav-link js-scroll-trigger "#}
+                                       {#href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>#}
+                                    {#<a class="nav-link js-scroll-trigger "#}
+                                       {#href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
+                                    {#<a class="nav-link js-scroll-trigger "#}
+                                       {#href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>#}
+                                    {#<a class="nav-link js-scroll-trigger "#}
+                                       {#href="#carros">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>#}
+                                    {#<a class="nav-link js-scroll-trigger "#}
+                                       {#href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>#}
+
+
+                                    <a class="nav-link js-scroll-trigger "
+                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
+                                    <a class="nav-link js-scroll-trigger "
+                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
+                                    <a class="nav-link js-scroll-trigger "
+                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
+                                    <a class="nav-link js-scroll-trigger "
+                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
+                                    <a class="nav-link js-scroll-trigger "
+                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
+
+
+                            </div>
+                        </div>
+                    </li>
+                    {#<li class="nav-item">#}
+                    {#<a class="nav-link js-scroll-trigger" href="#services">Sobre Nosotros</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                    {#<a class="nav-link js-scroll-trigger"#}
+                    {#href="#portfolio">{{ app.session.get('language') == 'es'? 'Políticas':'Politics' }}</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                    {#<a class="nav-link js-scroll-trigger" href="#about">Excurciones</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                    {#<a class="nav-link js-scroll-trigger" href="#team">Carros</a>#}
+                    {#</li>#}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin') }}">
+                                {{ app.session.get('language') == 'es'? 'Administración':'Management' }}
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ path('security_logout') }}">{{ app.session.get('language') == 'es'? 'Cerrar Sesión':'Logout' }}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="" data-toggle="modal" data-target="#loginModal">
+                                {{ app.session.get('language') == 'es'? 'Iniciar Sesión':'Login' }}
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        {#<div class="collapse navbar-collapse" id="languageCollapse">#}
+                        {#<ul class="nav navbar-nav">#}
+                        {#<li class="dropdown">#}
+                        {#<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i#}
+                        {#class="fa fa-globe" aria-hidden="true"></i><span#}
+                        {#class="caret"></span></a>#}
+                        {#<ul class="dropdown-menu" role="menu">#}
+                        {#<li id="spanish">#}
+                        {#<a {% if app.session.get('language') == 'es' %} class="disabled" {% else %} href="{{ path('change_language') }}"{% endif %}>Español</a>#}
+                        {#</li>#}
+                        {#<li id="english">#}
+                        {#<a {% if app.session.get('language') == 'en' %} class="disabled" {% else %} href="{{ path('change_language') }}"{% endif %}>English</a>#}
+                        {#</li>#}
+                        {#</ul>#}
+                        {#</li>#}
+                        {#</ul>#}
+                        {#</div>#}
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                 style="background-color: #212529;">
+
+                                <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
+                                <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
+
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+
 <!-- Header -->
 {% block body %}
 
@@ -297,6 +461,48 @@
             </div>
         </div>
     </div>
+
+
+        <div class="portfolio-modal-sm modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"
+                            style="float: left">{{ app.session.get('language') == 'es'? 'Iniciar Sesión':'Login' }}</h4>
+                        <button type="button" class="close" style="float: right" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <form action="{{ path('security_login') }}" method="post">
+                        <div class="modal-body">
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="username">{{ app.session.get('language') == 'es'? 'Usuario':'User' }}</label>
+                                    <input type="text" id="username" name="_username" required
+                                           class="form-control"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">{{ app.session.get('language') == 'es'? 'Contraseña':'Password' }}</label>
+                                    <input type="password" id="password" name="_password" required
+                                           class="form-control"/>
+                                </div>
+                                <input type="hidden" name="_target_path"
+                                       value="{{ app.request.get('redirect_to') }}"/>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+                            </fieldset>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit"
+                                    class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Aceptar':'Send' }}</button>
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">{{ app.session.get('language') == 'es'? 'Cerrar':'Close' }}</button>
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
+
 </footer>
 {% endblock %}
 
