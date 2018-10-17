@@ -19,6 +19,11 @@ class Paquete
     private $id;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $nombre;
+
+    /**
      * @ORM\Column(type="integer", length=20)
      */
     private $diasDuracion;
@@ -89,7 +94,6 @@ class Paquete
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = $this->createdAt;
-
     }
 
     /**
@@ -147,6 +151,22 @@ class Paquete
     public function getPrecio2()
     {
         return $this->precio2;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
     }
 
     /**

@@ -75,6 +75,7 @@
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col" colspan="2">Fecha Creación....Modificación</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -94,9 +95,11 @@
                         <th scope="col">Cantidad de Asientos</th>
                         <th scope="col">Idiomas</th>
                         <th scope="col">Activo</th>
+
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col" colspan="2">Fecha Creación....Modificación</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -105,20 +108,7 @@
                             <td>{{ c.nombre }}</td>
                             <td>{{ c.descripcion }}</td>
                             <td>
-                                <div class="form-check form-check-inline">
-                                    {% if c.valoracionArray[0]!=0 %}
-                                        {% for j in 1..c.valoracionArray[0] %}
-                                            <i class="fas fa-star star"></i>
-                                        {% endfor %}
-                                    {% endif %}
-                                    {% if c.valoracionArray[1] %}
-                                        <i class="fas fa-star-half-alt star"></i>
-                                    {% endif %}
-                                    {% if c.valoracionArray[2]!=0 %}
-                                        {% for j in 1..c.valoracionArray[2] %}
-                                            <i class="far fa-star star"></i>
-                                        {% endfor %}
-                                    {% endif %}</div>
+                                {{ c.valoracion }}
                             </td>
                             <td>{{ c.tel }}</td>
                             <td>{{ c.cel }}</td>
@@ -163,6 +153,8 @@
                             <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_car',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
+                            <td>{{ c.createdAt|date }}</td>
+                            <td>{{ c.updatedAt|date }}</td>
                         </tr>
                     {% else %}
                         <th colspan="5">No se han insertado carros</th>

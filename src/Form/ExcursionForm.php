@@ -9,6 +9,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,7 +24,24 @@ class ExcursionForm extends AbstractType
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
-            ->add('provincia', TextType::class, ['label' => 'Provincia'])
+            ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
+                'Pinar del Rio' => 'Pinar del Rio',
+                'Artemisa' => 'Artemisa',
+                'La Habana' => 'La Habana',
+                'Mayabeque' => 'Mayabeque',
+                'Matanzas' => 'Matanzas',
+                'Villa Clara' => 'Villa Clara',
+                'Cienfuegos' => 'Cienfuegos',
+                'Sancti Spiritus' => 'Sancti Spiritus',
+                'Ciego de Ávila' => 'Ciego de Ávila',
+                'Camaguey' => 'Camaguey',
+                'Las Tunas' => 'Las Tunas',
+                'Holguín' => 'Holguín',
+                'Granma' => 'Granma',
+                'Santiago de Cuba' => 'Santiago de Cuba',
+                'Guantánamo' => 'Guantánamo',
+                'Isla de la Juventud' => 'Isla de la Juventud',
+            ),])
             ->add('dias', ChoiceType::class, ['label' => 'Días disponibles','choices'=>array(
                 'Lunes'=>'Lunes',
                 'Martes'=>'Martes',
@@ -43,16 +61,30 @@ class ExcursionForm extends AbstractType
                 'Si' => true,
                 'No' => false,
             )])
-            ->add('tipoTransporte', TextType::class, ['label' => 'Tipo de Transporte'])
-            ->add('desayuno', null, ['label' => 'Desayuno'])
-            ->add('almuerzo', null, ['label' => 'Almuerzo'])
-            ->add('comida', null, ['label' => 'Comida'])
+            ->add('tipoTransporte', ChoiceType::class, ['label' => 'Tipo de Transporte', 'choices' => array(
+                'Clásico' => 'Clásico',
+                'Moderno' => 'Moderno',
+                'Agenciado' => 'Agenciado',
+                'Minivan' => 'Minivan',
+                'Bus' => 'Bus',
+            )])
+            ->add('desayuno', ChoiceType::class, ['label' => 'Desayuno','choices'=>array(
+                'Si'=>true,
+                'No'=>false,
+            ),'expanded'=>false,'multiple'=>false])
+            ->add('almuerzo', ChoiceType::class, ['label' => 'Almuerzo','choices'=>array(
+                'Si'=>true,
+                'No'=>false,
+            ),'expanded'=>false,'multiple'=>false])
+            ->add('comida', ChoiceType::class, ['label' => 'Comida','choices'=>array(
+                'Si'=>true,
+                'No'=>false,
+            ),'expanded'=>false,'multiple'=>false])
             ->add('reglamento', TextType::class, ['label' => 'Reglamento'])
             ->add('precio1', MoneyType::class, ['label' => 'Precio para una persona'])
             ->add('precio2', MoneyType::class, ['label' => 'Precio para dos personas'])
             ->add('precio3', MoneyType::class, ['label' => 'Precio para tres personas'])
             ->add('precio4', MoneyType::class, ['label' => 'Precio para cuatro o más personas'])
-            ->add('costoAdicional', MoneyType::class, ['label' => 'Costo adicional por persona'])
             ->add('active', ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'Si' => true,
                 'No' => false,

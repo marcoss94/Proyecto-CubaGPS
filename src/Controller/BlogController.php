@@ -30,6 +30,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Facebook;
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -60,10 +61,33 @@ class BlogController extends AbstractController
         $carros=$carroRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
         $casas=$casaRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
         $excursiones=$excursionRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
+
+
+        //Codigo para crear la ruta al login de facebook.
+        if (!session_id()) {
+            session_start();
+        }
+        $fb = new Facebook\Facebook([
+            'app_id' => '1972869056090204',
+            'app_secret' => '89f6ec558cd8454da65d64d7f7a3622e',
+            'default_graph_version' => 'v2.10',
+        ]);
+        $helper = $fb->getRedirectLoginHelper();
+        if (isset($_GET['state'])) {
+            $helper->getPersistentDataHandler()->set('state', $_GET['state']);
+        }
+        $permissions = ['email']; // Optional permissions
+        $fbLoginUrl = $helper->getLoginUrl(('http://localhost/zxccxz/public/fb_callback'), $permissions);
+        $this->get('session')->set('fbLoginUrl',$fbLoginUrl);
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
-        return $this->render('blog/index.html.twig',['base'=>'true','carros'=>$carros,'casas'=>$casas,'excursiones'=>$excursiones]);
+        return $this->render('blog/index.html.twig',[
+            'base'=>'true',
+            'carros'=>$carros,
+            'casas'=>$casas,
+            'excursiones'=>$excursiones,
+        ]);
     }
 
     /**

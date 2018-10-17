@@ -42,56 +42,10 @@
                 </fieldset>
             </form>
         </div>
-        <div id="registerForm" class="hidden">
-            <h3>La aplicación no ha sido registrada aún envíe el siguiente código a los Desarrolladores para obtener una
-                Licencia:</h3>
-            <textarea class="form-control" rows="3" style="color: black" id="codeLabel"></textarea>
-            <form action="{{ path('register_sistem') }}" method="post">
-                <fieldset>
-                    <div class="form-group">
-                        <label for="license">Licencia</label>
-                        <input type="text" id="license" name="license"
-                               class="form-control"/>
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-sign-in" aria-hidden="true"></i> Aceptar
-                    </button>
-                    <a class="hidden" id="registerLabel">Registrarse</a>
 
-                </fieldset>
-            </form>
         </div>
     </div>
 </div>
 </body>
-<script src="{{ asset('build/js/jquery-3.1.1.min.js') }}"></script>
-<script src="{{ asset('build/js/bootstrap.js') }}"></script>
-<script type="text/javascript">
-    var code;
-    var registered;
-    $(document).ready(function () {
-        $.ajax({
-            type: "POST",
-            url: ('ajax_check_registered'),
-            success: function (response) {
-                if (response.registered) {
-                    registered = true;
-                    if (response.first) {
-                        alert('La aplicación fue registrada recientemente, \n' +
-                            'para iniciar sesión utilice las siguientes credenciales\n\n' +
-                            'user: admin\ncontraseña: admin')
-                    }
-                } else {
-                    registered = false;
-                    code = response.code;
-                    $('#registerForm').removeClass('hidden');
-                    $('#loginForm').addClass('hidden');
-                    $('#codeLabel').val(code);
-                }
-            }
-        })
-        ;
 
-    })
-</script>
 </html>

@@ -22,6 +22,7 @@ class HouseForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('manager', TextType::class, ['label' => 'Manager'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripcion'])
             ->add('direccion', TextType::class, ['label' => 'Direción'])
@@ -47,10 +48,6 @@ class HouseForm extends AbstractType
             ->add('tel', TelType::class, ['label' => 'Teléfono fijo'])
             ->add('email', EmailType::class, ['label' => 'Email'])
             ->add('cel', TelType::class, ['label' => 'Teléfono móvil'])
-            ->add('cantidadHabitaciones', null, ['label' => 'Cantidad de Habitaciones'])
-            ->add('precioHabitacion', null, ['label' => 'Precio por habitación'])
-            ->add('cantidadCamaDoble', null, ['label' => 'Camas Dobles'])
-            ->add('cantidadCamaSimple', null, ['label' => 'Camas Simples'])
             ->add('tipoEstablecimiento', ChoiceType::class, ['label' => 'Tipo de Establecimiento', 'choices' => array(
                 'casa' => 'casa',
                 'habitación' => 'habitación',
@@ -71,12 +68,21 @@ class HouseForm extends AbstractType
             ->add('servicios', ChoiceType::class, ['label' => 'Servicios','choices'=>array(
                 'Cocina'=>'Cocina',
                 'Terraza'=>'Terraza',
-                'Yacuzzi'=>'Yacuzzi',
+                'Patio'=>'Terraza',
+                'Jacuzzi'=>'Jacuzzi',
                 'Wi-Fi'=>'Wi-Fi',
                 'Caja Fuerte'=>'Caja Fuerte',
                 'Lavandería'=>'Lavandería',
                 'Masaje'=>'Masaje',
-                'Guía'=>'Guía',
+                'Amaca'=>'Amaca',
+                'Escritorio de Trabajo'=>'Escritorio de Trabajo',
+                'Ducha de Playa'=>'Ducha de Playa',
+                'Piscina'=>'Piscina',
+                'Cámaras de seguridad'=>'Cámaras de seguridad',
+                'Cunas para bebes'=>'Cunas para bebes',
+                'Bar/Restaurant'=>'Bar/Restaurant',
+                'Equipos de música'=>'Equipos de música',
+                'Parqueo'=>'Parqueo',
             ),'expanded'=>true,'multiple'=>true])
             ->add('active',  ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'si' => true,

@@ -1,26 +1,102 @@
 {% extends 'backendBase.html.twig' %}
 
-{% block content %}
 
-    <table style="margin-top: 100px">
-        <form id="form" action="{{ path('saveUploads') }}">
-            <input type="hidden" name="images" value="">
-            <input type="hidden" name="ownerId" value="{{ owner.id }}">
-            {% for i in 0..images|length-1 %}
-                <tr>
-                    {% for j in 0..images[i]|length-1 %}
-                        <td name="imageId" data-value="{{ images[i][j].id }}">
-                            <img style="max-width: 280px;" src="{{ asset(images[i][j].half) }}" class="img-thumbnail"
-                                 alt="Responsive image">
-                        </td>
-                    {% endfor %}
-                </tr>
-            {% endfor %}
-        </form>
-    </table>
-    <div style="margin-top: 100px;margin-left: 1150px" class="fixed-top">
-        <button onclick="submitForm()" class="btn btn-default">Guardar</button>
+{% block title %}Administración | Casas{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('album',{'id':owner.id}) }}">Album</a>
+        </li>
+        <li class="breadcrumb-item active">Album de Imagenes</li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-images"></i>
+                     {{ 'Album de: '~type }}
+                </div>
+                {% if main == 'true' %}
+                <a href="{{ path('uploadedImages',{'ownerId':owner.id,'type':type,'main':'false'}) }}" class="btn btn-default">Mostrar Todas</a>
+                {% else %}
+                    <a href="{{ path('uploadedImages',{'ownerId':owner.id,'type':type,'main':'true'}) }}" class="btn btn-default">Solo las Principales</a>
+                {% endif %}
+                <div class="col-auto">
+                    <button onclick="submitForm()" class="btn btn-default">Guardar</button>
+                </div>
+            </div>
+
+            {#<i class="fas fa-car"></i>#}
+            {#Carros#}
+
+
+            {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+            {#Agregar#}
+            {#</button>#}
+        </div>
+
+        <table>
+            <form id="form" action="{{ path('saveUploads') }}">
+                <input type="hidden" name="images" value="">
+                <input type="hidden" name="ownerId" value="{{ owner.id }}">
+                {% for i in 0..images|length-1 %}
+                    <tr>
+                        {% for j in 0..images[i]|length-1 %}
+                            <td name="imageId" data-value="{{ images[i][j].id }}">
+                                <img style="max-width: 270px;" src="{{ asset(images[i][j].half) }}" class="img-thumbnail"
+                                     alt="Responsive image">
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </form>
+        </table>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-images"></i>
+                    {{ 'Album de: '~type }}
+                </div>
+                <div class="col-auto">
+                    <button onclick="submitForm()" class="btn btn-default">Guardar</button>
+                </div>
+            </div>
+
+            {#<i class="fas fa-car"></i>#}
+            {#Carros#}
+
+
+            {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+            {#Agregar#}
+            {#</button>#}
+        </div>
     </div>
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
     <script type="text/javascript">
         $(document).ready(function () {
             $('table td').click(function () {
@@ -44,3 +120,7 @@
         }
     </script>
 {% endblock %}
+
+
+
+

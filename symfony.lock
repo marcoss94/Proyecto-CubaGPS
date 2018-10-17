@@ -83,6 +83,9 @@
     "ezyang/htmlpurifier": {
         "version": "v4.9.3"
     },
+    "facebook/graph-sdk": {
+        "version": "5.6.3"
+    },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
         "recipe": {

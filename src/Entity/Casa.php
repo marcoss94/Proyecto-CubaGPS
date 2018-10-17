@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Casa extends DisplayableComponent
 {
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $nombre;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -28,7 +35,7 @@ class Casa extends DisplayableComponent
     /**
      * @ORM\Column(type="array")
      */
-    private $valoracionArray=[0=>0,1=>0,2=>5];
+    private $valoracionArray = [0 => 0, 1 => 0, 2 => 5];
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -55,33 +62,10 @@ class Casa extends DisplayableComponent
      */
     private $email;
 
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $cantidadHabitaciones;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $precioHabitacion;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $cantidadCamaDoble;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $cantidadCamaSimple;
-
-
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $tipoEstablecimiento;
-
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -105,6 +89,16 @@ class Casa extends DisplayableComponent
     private $active = true;
 
     /**
+     * @ORM\Column(type="array")
+     */
+    private $servicios;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Habitacion", mappedBy="casa", orphanRemoval=true)
+     */
+    private $habitaciones;
+
+    /**
      * @return mixed
      */
     public function getServicios()
@@ -122,16 +116,34 @@ class Casa extends DisplayableComponent
     }
 
     /**
-     * @ORM\Column(type="array")
+     * @return mixed
      */
-    private $servicios;
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->habitaciones = new ArrayCollection();
+    }
 
     /**
      * @return mixed
      */
     public function getActive()
     {
-        return $this->active;
+        return ($this->active && count($this->habitaciones));
     }
 
     /**
@@ -172,9 +184,9 @@ class Casa extends DisplayableComponent
     public function setValoracion($valoracion)
     {
         $this->valoracion = $valoracion;
-        $this->valoracionArray[0]=(integer)($valoracion/2);
-        $this->valoracionArray[1]=$valoracion%2;
-        $this->valoracionArray[2]=5-$this->valoracionArray[0]-$this->valoracionArray[1];
+        $this->valoracionArray[0] = (integer)($valoracion / 2);
+        $this->valoracionArray[1] = $valoracion % 2;
+        $this->valoracionArray[2] = 5 - $this->valoracionArray[0] - $this->valoracionArray[1];
     }
 
 
@@ -271,55 +283,6 @@ class Casa extends DisplayableComponent
         return $this;
     }
 
-    public function getCantidadHabitaciones(): ?int
-    {
-        return $this->cantidadHabitaciones;
-    }
-
-    public function setCantidadHabitaciones(int $cantidadHabitaciones): self
-    {
-        $this->cantidadHabitaciones = $cantidadHabitaciones;
-
-        return $this;
-    }
-
-    public function getPrecioHabitacion(): ?int
-    {
-        return $this->precioHabitacion;
-    }
-
-    public function setPrecioHabitacion(?int $precioHabitacion): self
-    {
-        $this->precioHabitacion = $precioHabitacion;
-
-        return $this;
-    }
-
-    public function getCantidadCamaDoble(): ?int
-    {
-        return $this->cantidadCamaDoble;
-    }
-
-    public function setCantidadCamaDoble(?int $cantidadCamaDoble): self
-    {
-        $this->cantidadCamaDoble = $cantidadCamaDoble;
-
-        return $this;
-    }
-
-    public function getCantidadCamaSimple(): ?int
-    {
-        return $this->cantidadCamaSimple;
-    }
-
-    public function setCantidadCamaSimple(?int $cantidadCamaSimple): self
-    {
-        $this->cantidadCamaSimple = $cantidadCamaSimple;
-
-        return $this;
-    }
-
-
     public function getTipoEstablecimiento(): ?string
     {
         return $this->tipoEstablecimiento;
@@ -373,5 +336,36 @@ class Casa extends DisplayableComponent
     public function __toString()
     {
         return $this->getDireccion() . ' ' . $this->getMunicipio();
+    }
+
+    /**
+     * @return Collection|Habitacion[]
+     */
+    public function getHabitaciones(): Collection
+    {
+        return $this->habitaciones;
+    }
+
+    public function addHabitacione(Habitacion $habitacione): self
+    {
+        if (!$this->habitaciones->contains($habitacione)) {
+            $this->habitaciones[] = $habitacione;
+            $habitacione->setCasa($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHabitacione(Habitacion $habitacione): self
+    {
+        if ($this->habitaciones->contains($habitacione)) {
+            $this->habitaciones->removeElement($habitacione);
+            // set the owning side to null (unless already changed)
+            if ($habitacione->getCasa() === $this) {
+                $habitacione->setCasa(null);
+            }
+        }
+
+        return $this;
     }
 }

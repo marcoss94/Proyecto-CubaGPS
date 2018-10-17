@@ -11,24 +11,26 @@
     <title>{% block title %}Cuba GPS | Oficial{% endblock %}</title>
 
     {% block stylesheets %}
-    <!-- Bootstrap core CSS -->
-    <link href="{{ asset('build/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Bootstrap core CSS -->
+        <link href="{{ asset('build/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <!-- Custom fonts for this template -->
-    <link href="{{ asset('build/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
-          type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+        <!-- Custom fonts for this template -->
+        <link href="{{ asset('build/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'
+              type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet'
+              type='text/css'>
 
-    <!-- Custom styles for this template -->
-    <link href="{{ asset('build/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('build/css/agency.min.css') }}" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="{{ asset('build/css/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('build/css/agency.min.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('build/fontawesome-free-5.3.1-web/css/all.css') }}"
-          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="{{ asset('build/img/favicon.png') }}">
+        <link rel="stylesheet" href="{{ asset('build/fontawesome-free-5.3.1-web/css/all.css') }}"
+              integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+              crossorigin="anonymous">
+        <link rel="icon" type="image/png" href="{{ asset('build/img/favicon.png') }}">
 
 
 
@@ -38,175 +40,13 @@
 
 <body id="page-top">
 {% block menubase %}
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
 
-    <div class="container" id="page-top">
+        <div class="container" id="page-top">
 
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{ asset('build/img/logo.png') }}"
-                                                                        width="140" height="50"
-                                                                        class="d-inline-block align-top" alt="">
-        </a>
-
-
-        <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
-                style="background-color: #f9b501" data-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
-            Menu
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav text-uppercase ml-auto" style="line-height: 2.5;">
-
-                <li class="nav-item">
-                    <form class="form-inline nav-link ">
-
-                        <div class="col-auto">
-
-                            <div class="input-group ">
-                                <input type="text" class="form-control" id="inlineFormInputGroup" aria-label="Search"
-                                       placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
-                                <div class="input-group-prepend" style="display: inline">
-                                    <div class="input-group-text" style="border: 0;background-color: inherit">
-                                        <a class=" js-scroll-trigger" href="" data-toggle="modal"
-                                           data-target="#searchModal" style="color: white;">
-                                            <i class="fa fa-plus" aria-hidden="true"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <button class="btn btn-primary " type="submit"
-                                        style="background-color: #f9b501; border-color: #f9b501;">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-
-
-                    </form>
-
-                </li>
-
-                <li class="nav-item">
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ app.session.get('language') == 'es'? 'Servicios':'Service' }}
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                             style="background-color: #212529;">
-
-                            {#aki va si estas en el base se bone base true y si no base false#}
-
-
-
-
-                                <a class="nav-link js-scroll-trigger "
-                                   href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                   href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                   href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                   href="#carros">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                   href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
-
-
-                                {#<a class="nav-link js-scroll-trigger "#}
-                                   {#href="">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>#}
-                                {#<a class="nav-link js-scroll-trigger "#}
-                                   {#href="">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
-                                {#<a class="nav-link js-scroll-trigger "#}
-                                   {#href="">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>#}
-                                {#<a class="nav-link js-scroll-trigger "#}
-                                   {#href="">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>#}
-                                {#<a class="nav-link js-scroll-trigger "#}
-                                   {#href="">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>#}
-                           {##}
-                        </div>
-                    </div>
-                </li>
-                {#<li class="nav-item">#}
-                {#<a class="nav-link js-scroll-trigger" href="#services">Sobre Nosotros</a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                {#<a class="nav-link js-scroll-trigger"#}
-                {#href="#portfolio">{{ app.session.get('language') == 'es'? 'Políticas':'Politics' }}</a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                {#<a class="nav-link js-scroll-trigger" href="#about">Excurciones</a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                {#<a class="nav-link js-scroll-trigger" href="#team">Carros</a>#}
-                {#</li>#}
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin') }}">
-                            {{ app.session.get('language') == 'es'? 'Administración':'Management' }}
-                        </a>
-                    </li>
-                {% endif %}
-                {% if app.user %}
-                    <li class="nav-item">
-                        <a class="nav-link"
-                           href="{{ path('security_logout') }}">{{ app.session.get('language') == 'es'? 'Cerrar Sesión':'Logout' }}</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link js-scroll-trigger" href="" data-toggle="modal" data-target="#loginModal">
-                            {{ app.session.get('language') == 'es'? 'Iniciar Sesión':'Login' }}
-                        </a>
-                    </li>
-                {% endif %}
-                <li class="nav-item">
-                    {#<div class="collapse navbar-collapse" id="languageCollapse">#}
-                    {#<ul class="nav navbar-nav">#}
-                    {#<li class="dropdown">#}
-                    {#<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i#}
-                    {#class="fa fa-globe" aria-hidden="true"></i><span#}
-                    {#class="caret"></span></a>#}
-                    {#<ul class="dropdown-menu" role="menu">#}
-                    {#<li id="spanish">#}
-                    {#<a {% if app.session.get('language') == 'es' %} class="disabled" {% else %} href="{{ path('change_language') }}"{% endif %}>Español</a>#}
-                    {#</li>#}
-                    {#<li id="english">#}
-                    {#<a {% if app.session.get('language') == 'en' %} class="disabled" {% else %} href="{{ path('change_language') }}"{% endif %}>English</a>#}
-                    {#</li>#}
-                    {#</ul>#}
-                    {#</li>#}
-                    {#</ul>#}
-                    {#</div>#}
-                    <div class="dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                            <span class="caret"></span>
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                             style="background-color: #212529;">
-
-                            <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
-                            <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
-
-                        </div>
-                    </div>
-
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-{% endblock %}
-
-{% block menu %}
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="padding-top: 0px;padding-bottom: 0px;background-color: #212529;">
-
-        <div class="container">
-
-            <a class="navbar-brand js-scroll-trigger" href="{{ path('blog_index') }}"><img src="{{ asset('build/img/logo.png') }}"
-                                                                                                                                                      width="140" height="50"
-                                                                                                                                                      class="d-inline-block align-top" alt="">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{ asset('build/img/logo.png') }}"
+                                                                            width="140" height="50"
+                                                                            class="d-inline-block align-top" alt="">
             </a>
 
 
@@ -225,7 +65,171 @@
                             <div class="col-auto">
 
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" id="inlineFormInputGroup" aria-label="Search"
+                                    <input type="text" class="form-control" id="inlineFormInputGroup"
+                                           aria-label="Search"
+                                           placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
+                                    <div class="input-group-prepend" style="display: inline">
+                                        <div class="input-group-text" style="border: 0;background-color: inherit">
+                                            <a class=" js-scroll-trigger" href="" data-toggle="modal"
+                                               data-target="#searchModal" style="color: white;">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary " type="submit"
+                                            style="background-color: #f9b501; border-color: #f9b501;">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+
+                        </form>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ app.session.get('language') == 'es'? 'Servicios':'Service' }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                 style="background-color: #212529;">
+
+                                {#aki va si estas en el base se bone base true y si no base false#}
+
+
+                                <a class="nav-link js-scroll-trigger "
+                                   href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="#carros">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
+
+
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>#}
+                                {##}
+                            </div>
+                        </div>
+                    </li>
+                    {#<li class="nav-item">#}
+                    {#<a class="nav-link js-scroll-trigger" href="#services">Sobre Nosotros</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                    {#<a class="nav-link js-scroll-trigger"#}
+                    {#href="#portfolio">{{ app.session.get('language') == 'es'? 'Políticas':'Politics' }}</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                    {#<a class="nav-link js-scroll-trigger" href="#about">Excurciones</a>#}
+                    {#</li>#}
+                    {#<li class="nav-item">#}
+                    {#<a class="nav-link js-scroll-trigger" href="#team">Carros</a>#}
+                    {#</li>#}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('admin') }}">
+                                {{ app.session.get('language') == 'es'? 'Administración':'Management' }}
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if app.user %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{{ path('security_logout') }}">{{ app.session.get('language') == 'es'? 'Cerrar Sesión':'Logout' }}</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" href="" data-toggle="modal" data-target="#loginModal">
+                                {{ app.session.get('language') == 'es'? 'Iniciar Sesión':'Login' }}
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        {#<div class="collapse navbar-collapse" id="languageCollapse">#}
+                        {#<ul class="nav navbar-nav">#}
+                        {#<li class="dropdown">#}
+                        {#<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i#}
+                        {#class="fa fa-globe" aria-hidden="true"></i><span#}
+                        {#class="caret"></span></a>#}
+                        {#<ul class="dropdown-menu" role="menu">#}
+                        {#<li id="spanish">#}
+                        {#<a {% if app.session.get('language') == 'es' %} class="disabled" {% else %} href="{{ path('change_language') }}"{% endif %}>Español</a>#}
+                        {#</li>#}
+                        {#<li id="english">#}
+                        {#<a {% if app.session.get('language') == 'en' %} class="disabled" {% else %} href="{{ path('change_language') }}"{% endif %}>English</a>#}
+                        {#</li>#}
+                        {#</ul>#}
+                        {#</li>#}
+                        {#</ul>#}
+                        {#</div>#}
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                 style="background-color: #212529;">
+
+                                <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
+                                <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
+
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block menu %}
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
+         style="padding-top: 0px;padding-bottom: 0px;background-color: #212529;">
+
+        <div class="container">
+
+            <a class="navbar-brand js-scroll-trigger" href="{{ path('blog_index') }}"><img
+                        src="{{ asset('build/img/logo.png') }}"
+                        width="140" height="50"
+                        class="d-inline-block align-top" alt="">
+            </a>
+
+
+            <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
+                    style="background-color: #f9b501" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav text-uppercase ml-auto" style="line-height: 2.5;">
+
+                    <li class="nav-item">
+                        <form class="form-inline nav-link ">
+
+                            <div class="col-auto">
+
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" id="inlineFormInputGroup"
+                                           aria-label="Search"
                                            placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
                                     <div class="input-group-prepend" style="display: inline">
                                         <div class="input-group-text" style="border: 0;background-color: inherit">
@@ -262,28 +266,28 @@
 
 
 
-                                    {#<a class="nav-link js-scroll-trigger "#}
-                                       {#href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>#}
-                                    {#<a class="nav-link js-scroll-trigger "#}
-                                       {#href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
-                                    {#<a class="nav-link js-scroll-trigger "#}
-                                       {#href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>#}
-                                    {#<a class="nav-link js-scroll-trigger "#}
-                                       {#href="#carros">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>#}
-                                    {#<a class="nav-link js-scroll-trigger "#}
-                                       {#href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#carros">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>#}
 
 
-                                    <a class="nav-link js-scroll-trigger "
-                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
-                                    <a class="nav-link js-scroll-trigger "
-                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
-                                    <a class="nav-link js-scroll-trigger "
-                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
-                                    <a class="nav-link js-scroll-trigger "
-                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
-                                    <a class="nav-link js-scroll-trigger "
-                                       href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
+                                <a class="nav-link js-scroll-trigger "
+                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
 
 
                             </div>
@@ -386,7 +390,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <input class="form-control" id="name" type="text" placeholder="Your Name *"
-                                           required="required" data-validation-required-message="Please enter your name.">
+                                           required="required"
+                                           data-validation-required-message="Please enter your name.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
@@ -413,7 +418,8 @@
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">
+                                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase"
+                                        type="submit">
                                     Send Message
                                 </button>
                             </div>
@@ -425,42 +431,42 @@
     </section>
 
     <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <span class="copyright">Copyright &copy; CubaGPS 2018</span>
-            </div>
-            <div class="col-md-4">
-                <ul class="list-inline social-buttons">
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <ul class="list-inline quicklinks">
-                    <li class="list-inline-item">
-                        <a href="#">Privacy Policy</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#">Terms of Use</a>
-                    </li>
-                </ul>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; CubaGPS 2018</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li class="list-inline-item">
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
 
         <div class="portfolio-modal-sm modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -496,6 +502,7 @@
                                     class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Aceptar':'Send' }}</button>
                             <button type="button" class="btn btn-default"
                                     data-dismiss="modal">{{ app.session.get('language') == 'es'? 'Cerrar':'Close' }}</button>
+                            <a href="{{ app.session.get('fbLoginUrl') }}">Log in with Facebook!</a>
                         </div>
                     </form>
                 </div><!-- /.modal-content -->
@@ -503,40 +510,40 @@
         </div>
 
 
-</footer>
+    </footer>
 {% endblock %}
 
 
 {% block javascripts %}
 
-<!-- Bootstrap core JavaScript -->
-<script src="{{ asset('build/vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('build/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ asset('build/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('build/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-<!-- Plugin JavaScript -->
-<script src="{{ asset('build/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <!-- Plugin JavaScript -->
+    <script src="{{ asset('build/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-<!-- Contact form JavaScript -->
-<script src="{{ asset('build/js/jqBootstrapValidation.js') }}"></script>
-<script src="{{ asset('js/contact_me.js') }}"></script>
+    <!-- Contact form JavaScript -->
+    <script src="{{ asset('build/js/jqBootstrapValidation.js') }}"></script>
+    <script src="{{ asset('js/contact_me.js') }}"></script>
 
-<!-- Custom scripts for this template -->
-<script src="{{ asset('build/js/agency.min.js') }}"></script>
+    <!-- Custom scripts for this template -->
+    <script src="{{ asset('build/js/agency.min.js') }}"></script>
 
-<script type="text/javascript">
-    $('#spanish').click(function () {
-        {% set languaje = 'es' %};
-    })
-    $('#english').click(function () {
-        {% set languaje = 'en' %};
-    })
-</script>
-<script>
-    $("#carouselExampleControls .carousel-indicators li").hover(function () {
-        var goto = Number($(this).attr('data-slide-to'));
-        $("#carouselExampleControls").carousel(goto);
-    });
-</script>
+    <script type="text/javascript">
+        $('#spanish').click(function () {
+            {% set languaje = 'es' %};
+        })
+        $('#english').click(function () {
+            {% set languaje = 'en' %};
+        })
+    </script>
+    <script>
+        $("#carouselExampleControls .carousel-indicators li").hover(function () {
+            var goto = Number($(this).attr('data-slide-to'));
+            $("#carouselExampleControls").carousel(goto);
+        });
+    </script>
 
 
 {% endblock %}

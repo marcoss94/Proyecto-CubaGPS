@@ -37,7 +37,6 @@
                     <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripcion</th>
-                        <th scope="col">Valoración</th>
                         <th scope="col">Provincia</th>
                         <th scope="col">Dias</th>
                         <th scope="col">Hora de inicio</th>
@@ -53,19 +52,18 @@
                         <th scope="col">Precio para dos personas</th>
                         <th scope="col">Precio para tres personas</th>
                         <th scope="col">Precio para cuatro o más personas</th>
-                        <th scope="col">Costo adicional por persona</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Valoración</th>
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col" colspan="2">Fecha Creación....Modificación</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Descripción</th>
-                        <th scope="col">Valoración</th>
                         <th scope="col">Provincia</th>
                         <th scope="col">Dias</th>
                         <th scope="col">Hora de inicio</th>
@@ -81,12 +79,12 @@
                         <th scope="col">Precio para dos personas</th>
                         <th scope="col">Precio para tres personas</th>
                         <th scope="col">Precio para cuatro o más personas</th>
-                        <th scope="col">Costo adicional por persona</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Valoración</th>
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col" colspan="2">Fecha Creación....Modificación</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -94,56 +92,38 @@
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.nombre }}</td>
                             <td>{{ c.descripcion }}</td>
-                            <td>
-                                <div class="form-check form-check-inline">
-                                    {% if c.valoracionArray[0]!=0 %}
-                                        {% for j in 1..c.valoracionArray[0] %}
-                                            <i class="fas fa-star star"></i>
-                                        {% endfor %}
-                                    {% endif %}
-                                    {% if c.valoracionArray[1] %}
-                                        <i class="fas fa-star-half-alt star"></i>
-                                    {% endif %}
-                                    {% if c.valoracionArray[2]!=0 %}
-                                        {% for j in 1..c.valoracionArray[2] %}
-                                            <i class="far fa-star star"></i>
-                                        {% endfor %}
-                                    {% endif %}</div>
-                            </td>
                             <td>{{ c.provincia }}</td>
-                            <td>{% if c.dias|length == 7 %}Todos{% else %}
-                                    <div>
-                                        <div class="btn-group" role="group">
-                                            <button id="btnGroupDrop1" type="button"
-                                                    class="btn btn-outline-secondary dropdown-toggle"
-                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                Dias
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                {% for dia in c.dias %}
-                                                    <a class="dropdown-item">{{ dia }}</a>
-                                                {% endfor %}
-                                            </div>
-                                        </div>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button"
+                                            class="btn btn-outline-secondary dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Días
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        {% for dia in c.dias %}
+                                            <a class="dropdown-item">{{ dia }}</a>
+                                        {% endfor %}
                                     </div>
-                                {% endif %}
+                                </div>
                             </td>
                             <td>{{ c.horaInicio }}</td>
                             <td>{{ c.duracion }}</td>
                             <td>{{ c.guia? 'si':'no' }}</td>
                             <td>{{ c.incluyeTransporte? 'si':'no' }}</td>
                             <td>{{ c.tipoTransporte }}</td>
-                            <td>{{ c.desayuno }}</td>
-                            <td>{{ c.almuerzo }}</td>
-                            <td>{{ c.comida }}</td>
+                            <td>{{ c.desayuno?'si':'no' }}</td>
+                            <td>{{ c.almuerzo?'si':'no' }}</td>
+                            <td>{{ c.comida?'si':'no' }}</td>
                             <td>{{ c.reglamento }}</td>
                             <td>{{ c.precio1 }}</td>
                             <td>{{ c.precio2 }}</td>
                             <td>{{ c.precio3 }}</td>
                             <td>{{ c.precio4 }}</td>
-                            <td>{{ c.costoAdicional }}</td>
                             <td>{{ c.active? 'si':'no' }}</td>
                             <td>{{ c.valoracion }}</td>
+                            <td>{{ c.createdAt|date }}</td>
+                            <td>{{ c.updatedAt|date }}</td>
                             <td><a title="Album de Imagenes" class="btn btn-default"
                                    href="{{ path('album',{'id':c.id}) }}"><i
                                             class="fa fa-camera"
@@ -158,11 +138,12 @@
                                    href="{{ path('excursiones',{'id':c.id,'status':'edit'}) }}"><i
                                             class="fa fa-edit" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
-                            <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_car',{'id':c.id}) }}"><i
+                            <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_excursion',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
                             </td>
-
+                            <td>{{ c.createdAt|date }}</td>
+                            <td>{{ c.updatedAt|date }}</td>
                         </tr>
                     {% else %}
                         <th colspan="5">No se han insertado excursiones</th>

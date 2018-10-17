@@ -55,19 +55,19 @@ class Excursion extends DisplayableComponent
     private $tipoTransporte;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $desayuno;
+    private $desayuno=false;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $almuerzo;
+    private $almuerzo=false;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $comida;
+    private $comida=false;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -104,10 +104,7 @@ class Excursion extends DisplayableComponent
      */
     private $valoracionArray=[0=>0,1=>0,2=>5];
 
-    /**
-     * @ORM\Column(type="float", nullable=true)
-     */
-    private $costoAdicional;
+
 
 
     /**
@@ -337,18 +334,6 @@ class Excursion extends DisplayableComponent
     public function setPrecio3(float $precio3): self
     {
         $this->precio3 = $precio3;
-
-        return $this;
-    }
-
-    public function getCostoAdicional(): ?float
-    {
-        return $this->costoAdicional;
-    }
-
-    public function setCostoAdicional(?float $costoAdicional): self
-    {
-        $this->costoAdicional = $costoAdicional;
 
         return $this;
     }

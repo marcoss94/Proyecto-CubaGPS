@@ -17,6 +17,7 @@ class ComposerStaticInit09cd62611e02b104aa7d96ec25147f60
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+        'c65d09b6820da036953a371c8c73a9b1' => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook/polyfills.php',
         '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
     );
 
@@ -114,6 +115,10 @@ class ComposerStaticInit09cd62611e02b104aa7d96ec25147f60
         array (
             'Knp\\Snappy\\' => 11,
             'Knp\\Bundle\\SnappyBundle\\' => 24,
+        ),
+        'F' => 
+        array (
+            'Facebook\\' => 9,
         ),
         'E' => 
         array (
@@ -415,6 +420,10 @@ class ComposerStaticInit09cd62611e02b104aa7d96ec25147f60
         'Knp\\Bundle\\SnappyBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-snappy-bundle',
+        ),
+        'Facebook\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
