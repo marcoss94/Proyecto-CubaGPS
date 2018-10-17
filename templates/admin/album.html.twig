@@ -29,7 +29,14 @@
                 <a href="{{ path('paquetes') }}">Paquetes</a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{ path('activities',{'id':paquete.id}) }}">Actividades</a>
+                <a href="{{ path('activities',{'id':parent.id}) }}">Actividades</a>
+            </li>
+        {% elseif type == 'habitaciones' %}
+            <li class="breadcrumb-item">
+                <a href="{{ path('admin_houses') }}">Casas</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="{{ path('habitaciones',{'id':parent.id,'status':'create'}) }}">Habitaciones</a>
             </li>
         {% else %}
             <li class="breadcrumb-item">
@@ -206,11 +213,11 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                     <a class="dropdown-item"
-                                       href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'carro'}) }}">Carros</a>
+                                       href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'Carros','main':'true'}) }}">Carros</a>
                                     <a class="dropdown-item"
-                                       href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'casa'}) }}">Casas</a>
+                                       href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'Casas','main':'true'}) }}">Casas</a>
                                     <a class="dropdown-item"
-                                       href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'excursiones'}) }}">Excursiones</a>
+                                       href="{{ path('uploadedImages',{'ownerId':owner.id,'type':'Excursiones','main':'true'}) }}">Excursiones</a>
                                 </div>
                             </div>
                         </div>

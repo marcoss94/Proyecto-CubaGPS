@@ -16,5 +16,6 @@ return array(
     '5255c38a0faeba867671b61dfda6d864' => $vendorDir . '/paragonie/random_compat/lib/random.php',
     '023d27dca8066ef29e6739335ea73bad' => $vendorDir . '/symfony/polyfill-php70/bootstrap.php',
     '2cffec82183ee1cea088009cef9a6fc3' => $vendorDir . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
+    'c65d09b6820da036953a371c8c73a9b1' => $vendorDir . '/facebook/graph-sdk/src/Facebook/polyfills.php',
     '32dcc8afd4335739640db7d200c1971d' => $vendorDir . '/symfony/polyfill-apcu/bootstrap.php',
 );

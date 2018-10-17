@@ -57,6 +57,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Dias</th>
                         <th scope="col">Noches</th>
                         <th scope="col" colspan="3">Precio \n 1 persona 2 personas 3 o más</th>
@@ -70,6 +71,7 @@
                     </thead>
                     <tfoot>
                     <tr>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Dias</th>
                         <th scope="col">Noches</th>
                         <th scope="col" colspan="3">Precio \n 1 persona 2 personas 3 o más</th>
@@ -85,6 +87,7 @@
 
                     {% for c in paquetes %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
+                            <td>{{ c.nombre }}</td>
                             <td>{{ c.diasDuracion }}</td>
                             <td>{{ c.nochesDuracion }}</td>
                             <td>{{ c.precio1 }}</td>

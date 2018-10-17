@@ -497,6 +497,7 @@ border-color: #f9b501" type="submit">
                                     class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Aceptar':'Send' }}</button>
                             <button type="button" class="btn btn-default"
                                     data-dismiss="modal">{{ app.session.get('language') == 'es'? 'Cerrar':'Close' }}</button>
+                            <a href="{{ app.session.get('fbLoginUrl') }}">Log in with Facebook!</a>
                         </div>
                     </form>
                 </div><!-- /.modal-content -->

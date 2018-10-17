@@ -2,7 +2,7 @@ security:
     encoders:
         # Our user class and the algorithm we'll use to encode passwords
         # https://symfony.com/doc/current/security.html#c-encoding-the-user-s-password
-        App\Entity\User: bcrypt
+#        App\Entity\User: bcrypt
         Symfony\Component\Security\Core\User\User: plaintext
 
     providers:
@@ -10,24 +10,26 @@ security:
         # In this example, users are stored via Doctrine in the database
         # To see the users at src/App/DataFixtures/ORM/LoadFixtures.php
         # To load users from somewhere else: https://symfony.com/doc/current/security/custom_provider.html
-#        database_users:
-#           entity: { class: App\Entity\User, property: username }
-          in_memory:
-                     memory:
-                         users:
-                             admin:
-                                 password: cubaGPS*-
-                                 roles: 'ROLE_ADMIN'
+#        chain_provider:
+#                    chain:
+#                        providers: [facebook, in_memory]
+##        database_users:
+##           entity: { class: App\Entity\User, property: username }
+        facebook:
+              id: App\Security\User\FacebookUserProvider
+        in_memory:
+              memory:
+                  users:
+                      admin:
+                            password: cubaGPS*-
+                            roles: 'ROLE_ADMIN'
+
     # https://symfony.com/doc/current/security.html#initial-security-yml-setup-authentication
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
         main:
             # this firewall applies to all URLs
             pattern: ^/
-
+            provider: in_memory
             # but the firewall does not require login on every page
             # denying access is done in access_control or in your controllers
             anonymous: ~
@@ -47,6 +49,18 @@ security:
                 # session (for example when the users access directly to the login page).
                 default_target_path: blog_index
 
+            logout:
+                # The route name the user can go to in order to logout
+                path: security_logout
+                # The name of the route to redirect to after logging out
+                target: blog_index
+        api_area:
+            pattern: ^/fb_auth
+            provider: facebook
+            anonymous: ~
+            guard:
+                authenticators:
+                     - App\Security\TokenAuthenticator
             logout:
                 # The route name the user can go to in order to logout
                 path: security_logout

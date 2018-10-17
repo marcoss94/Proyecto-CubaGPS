@@ -32,6 +32,7 @@ final class Versions
   'egulias/email-validator' => '2.1.3@1bec00a10039b823cc94eef4eddd47dcd3b2ca04',
   'erusev/parsedown' => '1.7.1@92e9c27ba0e74b8b028b111d1b6f956a15c01fc1',
   'ezyang/htmlpurifier' => 'v4.10.0@d85d39da4576a6934b72480be6978fb10c860021',
+  'facebook/graph-sdk' => '5.6.3@90e92bd1816fe718e55184ab85910dfcf488432c',
   'imagine/imagine' => 'v0.7.1@a9a702a946073cbca166718f1b02a1e72d742daa',
   'jdorn/sql-formatter' => 'v1.2.17@64990d96e0959dff8e059dfcdc1af130728d92bc',
   'jms/metadata' => '1.6.0@6a06970a10e0a532fb52d3959547123b84a3b3ab',

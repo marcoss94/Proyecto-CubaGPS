@@ -55,19 +55,19 @@ class Excursion extends DisplayableComponent
     private $tipoTransporte;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $desayuno;
+    private $desayuno=false;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $almuerzo;
+    private $almuerzo=false;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="boolean")
      */
-    private $comida;
+    private $comida=false;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -100,9 +100,11 @@ class Excursion extends DisplayableComponent
     private $valoracion;
 
     /**
-     * @ORM\Column(type="float", nullable=true)
+     * @ORM\Column(type="array")
      */
-    private $costoAdicional;
+    private $valoracionArray=[0=>0,1=>0,2=>5];
+
+
 
 
     /**
@@ -114,11 +116,30 @@ class Excursion extends DisplayableComponent
     }
 
     /**
+     * @return mixed
+     */
+    public function getValoracionArray()
+    {
+        return $this->valoracionArray;
+    }
+
+    /**
+     * @param mixed $valoracionArray
+     */
+    public function setValoracionArray($valoracionArray)
+    {
+        $this->valoracionArray = $valoracionArray;
+    }
+
+    /**
      * @param mixed $valoracion
      */
     public function setValoracion($valoracion)
     {
         $this->valoracion = $valoracion;
+        $this->valoracionArray[0]=(integer)($valoracion/2);
+        $this->valoracionArray[1]=$valoracion%2;
+        $this->valoracionArray[2]=5-$this->valoracionArray[0]-$this->valoracionArray[1];
     }
 
     public function getProvincia(): ?string
@@ -313,18 +334,6 @@ class Excursion extends DisplayableComponent
     public function setPrecio3(float $precio3): self
     {
         $this->precio3 = $precio3;
-
-        return $this;
-    }
-
-    public function getCostoAdicional(): ?float
-    {
-        return $this->costoAdicional;
-    }
-
-    public function setCostoAdicional(?float $costoAdicional): self
-    {
-        $this->costoAdicional = $costoAdicional;
 
         return $this;
     }

@@ -11,16 +11,20 @@
 
 namespace App\Controller;
 
+use App\Entity\FacebookUser;
 use App\Entity\Sistem;
 use App\Entity\User;
 use App\Repository\SistemRepository;
+use App\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Facebook;
 
 /**
  * Controller used to manage the application security.
@@ -58,81 +62,139 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/ajax_check_registered", name="ajax_check_registered")
+     * @Route("/register_with_facebook", name="register_with_facebook")
      */
-    public function checkRegistered(SistemRepository $sistemRepository, UserPasswordEncoderInterface $encoder)
+    public function loginWithFacebook()
     {
-        $response = new JsonResponse();
-        if (count($sistemRepository->findAll())) {
-            $response->setData(['registered' => true, 'first' => $sistemRepository->findAll()[0]->isFirst()]);
-            return $response;
+        if (!session_id()) {
+            session_start();
         }
-        $response->setData(['registered' => false, 'first' => false]);
-        $mac = exec('getmac');
-        $mac = explode(' ', $mac);
-        $mac = (string)$mac[0];
-        $code = $this->encrypt($mac);
-        $response->setData(['code' => $code]);
-        return $response;
+        $fb = new Facebook\Facebook([
+            'app_id' => '1972869056090204',
+            'app_secret' => '89f6ec558cd8454da65d64d7f7a3622e',
+            'default_graph_version' => 'v2.10',
+        ]);
+        $helper = $fb->getRedirectLoginHelper();
+        if (isset($_GET['state'])) {
+            $helper->getPersistentDataHandler()->set('state', $_GET['state']);
+        }
+        $permissions = []; // Optional permissions
+        $loginUrl = $helper->getLoginUrl(('http://localhost/zxccxz/public/fb_callback'), $permissions);
+        return $this->render('admin/loginWithFaceBook.html.twig', ['loginUrl' => $loginUrl]);
+
     }
 
     /**
-     * @Route("/register_sistem", name="register_sistem")
+     * @Route("/fb_callback", name="fb_callback")
      */
-    public function registerSistem(Request $request, UserPasswordEncoderInterface $encoder)
+    public function fbCallBack(Request $request, FileUploader $fileUploader)
     {
-        $em = $this->getDoctrine()->getManager();
-        $mac = exec('getmac');
-        $mac = explode(' ', $mac);
-        $mac = (string)$mac[0];
-        $codedMac = $this->encrypt($mac);
-        $license = (string)$this->decrypt($codedMac);
-        $input = (string)$request->get('license');
-        $input = trim($input);
-        if ($license == $input) {
-            $sistem = new Sistem();
-            $sistem->setCode($license);
-            $sistem->setRegistered('1');
-            $em->persist($sistem);
-            $user = new User();
-            $encoded = $encoder->encodePassword($user, 'admin');
-            $user->setFullName('Administador');
-            $user->setUsername('admin');
-            $user->setPassword($encoded);
-            $user->setRoles(['ROLE_ADMIN']);
-            $em->persist($user);
+        if (!session_id()) {
+            session_start();
+        }
+        $fb = new Facebook\Facebook([
+            'app_id' => '1972869056090204',
+            'app_secret' => '89f6ec558cd8454da65d64d7f7a3622e',
+            'default_graph_version' => 'v2.10',
+        ]);
+
+        $helper = $fb->getRedirectLoginHelper();
+        if (isset($_GET['state'])) {
+            $helper->getPersistentDataHandler()->set('state', $_GET['state']);
+        }
+        try {
+            $accessToken = $helper->getAccessToken();
+        } catch (Facebook\Exceptions\FacebookResponseException $e) {
+            // When Graph returns an error
+            echo 'Graph returned an error: ' . $e->getMessage();
+            exit;
+        } catch (Facebook\Exceptions\FacebookSDKException $e) {
+            // When validation fails or other local issuesecho 'Facebook SDK returned an error: ' . $e->getMessage();
+            exit;
+        }
+        if (!isset($accessToken)) {
+            if ($helper->getError()) {
+                header('HTTP/1.0 401 Unauthorized');
+                echo "Error: " . $helper->getError() . "\n";
+                echo "Error Code: " . $helper->getErrorCode() . "\n";
+                echo "Error Reason: " . $helper->getErrorReason() . "\n";
+                echo "Error Description: " . $helper->getErrorDescription() . "\n";
+            } else {
+                header('HTTP/1.0 400 Bad Request');
+                echo 'Bad request';
+            }
+            exit;
+        }
+
+// Logged in
+        echo '<h3>Access Token</h3>';
+        var_dump($accessToken->getValue());
+
+// The OAuth 2.0 client handler helps us manage access tokens
+        $oAuth2Client = $fb->getOAuth2Client();
+
+// Get the access token metadata from /debug_token
+        $tokenMetadata = $oAuth2Client->debugToken($accessToken);
+        echo '<h3>Metadata</h3>';
+        var_dump($tokenMetadata);
+
+// Validation (these will throw FacebookSDKException's when they fail)
+        $tokenMetadata->validateAppId('1972869056090204');
+// If you know the user ID this access token belongs to, you can validate it here
+//$tokenMetadata->validateUserId('123');
+        $tokenMetadata->validateExpiration();
+
+        if (!$accessToken->isLongLived()) {
+            // Exchanges a short-lived access token for a long-lived one
+            try {
+                $accessToken = $oAuth2Client->getLongLivedAccessToken($accessToken);
+            } catch (Facebook\Exceptions\FacebookSDKException $e) {
+                echo "<p>Error getting long-lived access token: " . $e->getMessage() . "</p>\n\n";
+                exit;
+            }
+            echo '<h3>Long-lived</h3>';
+            var_dump($accessToken->getValue());
+        }
+
+        $res = $fb->get('/me?fields=id,email,picture,first_name,last_name', $accessToken);
+        // make a call to your webservice here
+        $user = $res->getGraphUser();
+        // pretend it returns an array on success, false if there is no user
+        if ($user) {
+            $picture = $user->getPicture()->getUrl();
+            $firstname=$user->getFirstName();
+            $lastname=$user->getLastName();
+            $id=$user->getId();
+            $fbUser=new FacebookUser($id,$firstname,$lastname,$picture);
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($fbUser);
             $em->flush();
+            return $this->get('security.authentication.guard_handler')
+                ->authenticateUserAndHandleSuccess(
+                    $fbUser,
+                    $request,
+                    $this->get('app.security.token_authenticator'),
+                    'api_area'
+                );
         }
-        return $this->redirect($this->generateUrl('security_login'));
+        $_SESSION['fb_access_token'] = (string)$accessToken;
+        return $this->redirectToRoute('fb_auth',['token'=>$accessToken]);
     }
 
-    private function encrypt($string): string
+    /**
+     * @Route("/fb_auth", name="fb_auth")
+     */
+    public function fb_auth(){
+        return $this->redirectToRoute('blog');
+    }
+
+    /**
+     * @Route("/fb/prueba", name="prueba")
+     */
+    public function prueba()
     {
-        $str = str_repeat($string, 2);
-        $result = '';
-        $str = str_replace('-', '-$', $str);
-        $array = explode('-', $str);
-        for ($i = count($array) - 1; $i >= 0; $i--) {
-            $result = $result . $array[$i];
-        }
-        return $result;
-
+       $session=$this->get('session');
+        return $this->redirectToRoute('security_login', ['token' => 'reciveToken']);
     }
-
-
-    private function decrypt($string): string
-    {
-        $str = $string;
-        $str = str_replace('$', '-@', $str);
-        $array = explode('@', $str);
-        $result = '';
-        for ($i = count($array) - 1; $i >= count($array) / 2; $i--) {
-            $result = $result . $array[$i];
-        }
-        $result = str_replace('@', '.3', $result);
-        $result = 'sy-lic:@2@3' . $result;
-        return $result;
-    }
-
 
 }

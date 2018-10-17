@@ -41,7 +41,6 @@ class SecurityBundle extends Bundle
     public function build(ContainerBuilder $container)
     {
         parent::build($container);
-
         $extension = $container->getExtension('security');
         $extension->addSecurityListenerFactory(new FormLoginFactory());
         $extension->addSecurityListenerFactory(new FormLoginLdapFactory());
@@ -54,7 +53,6 @@ class SecurityBundle extends Bundle
         $extension->addSecurityListenerFactory(new SimplePreAuthenticationFactory());
         $extension->addSecurityListenerFactory(new SimpleFormFactory());
         $extension->addSecurityListenerFactory(new GuardAuthenticationFactory());
-
         $extension->addUserProviderFactory(new InMemoryFactory());
         $extension->addUserProviderFactory(new LdapFactory());
         $container->addCompilerPass(new AddSecurityVotersPass());

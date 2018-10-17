@@ -28,6 +28,7 @@ class PaqueteForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('diasDuracion', IntegerType::class, ['label' => 'Dias de duración'])
             ->add('nochesDuracion', IntegerType::class, ['label' => 'Noches de duración'])
             ->add('precio1', MoneyType::class, ['label' => 'Precio para una persona'])

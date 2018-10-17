@@ -7,18 +7,21 @@ use App\Entity\Carro;
 use App\Entity\Casa;
 use App\Entity\Dia;
 use App\Entity\Excursion;
+use App\Entity\Habitacion;
 use App\Entity\Image;
 use App\Entity\Paquete;
 use App\Form\CarForm;
 use App\Form\ExcursionForm;
 use App\Form\HouseForm;
 use App\Form\PaqueteForm;
+use App\Form\RoomForm;
 use App\Repository\ActivityRepository;
 use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
 use App\Repository\DiaRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\ExcursionRepository;
+use App\Repository\HabitacionRepository;
 use App\Repository\ImageRepository;
 use App\Repository\PaqueteRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -48,7 +51,7 @@ class AdminController extends Controller
      */
     public function cars(Request $request, CarroRepository $carroRepository)
     {
-        $carros = $carroRepository->findAll();
+        $carros = $carroRepository->findBy([], ['updatedAt' => 'DESC'], null);
         $carro = new Carro();
         $form = $this->createForm(CarForm::class, $carro);
         $form->handleRequest($request);
@@ -118,7 +121,7 @@ class AdminController extends Controller
      */
     public function houses(Request $request, CasaRepository $casaRepository)
     {
-        $casas = $casaRepository->findAll();
+        $casas = $casaRepository->findBy([], ['updatedAt' => 'DESC'], null);
         $casa = new Casa();
         $form = $this->createForm(HouseForm::class, $casa);
         $form->handleRequest($request);
@@ -188,7 +191,7 @@ class AdminController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $owner = $displayableComponentRepository->find($request->get('id'));
-        $paquete = '';
+        $parent = '';
         if ($owner instanceof Carro) {
             $type = 'admin_cars';
             $label = 'Carros';
@@ -198,9 +201,13 @@ class AdminController extends Controller
         } elseif ($owner instanceof Excursion) {
             $type = 'excursiones';
             $label = 'Excursiones';
+        } elseif ($owner instanceof Habitacion) {
+            $type = 'habitaciones';
+            $parent = $owner->getCasa();
+            $label = '';
         } else {
             $type = 'actividad';
-            $paquete = $owner->getDia()->getPaquete();
+            $parent = $owner->getDia()->getPaquete();
             $label = '';
         }
         $image = new Image();
@@ -244,11 +251,11 @@ class AdminController extends Controller
             $em->flush();
 
             return $this->render('admin/album.html.twig',
-                ['owner' => $owner, 'form' => $form->createView(), 'paquete' => $paquete, 'type' => $type, 'label' => $label]);
+                ['owner' => $owner, 'form' => $form->createView(), 'parent' => $parent, 'type' => $type, 'label' => $label]);
         }
 
         return $this->render('admin/album.html.twig',
-            ['owner' => $owner, 'form' => $form->createView(), 'paquete' => $paquete, 'type' => $type, 'label' => $label]);
+            ['owner' => $owner, 'form' => $form->createView(), 'parent' => $parent, 'type' => $type, 'label' => $label]);
     }
 
     function createThumb($filePath, $fileName)
@@ -571,25 +578,39 @@ class AdminController extends Controller
     /**
      * @Route("/admin/uploadedImages", name="uploadedImages")
      */
-    public function uploadedImages(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, DisplayableComponentRepository $displayableComponentRepository)
+    public function uploadedImages(Request $request, CarroRepository $carroRepository, ExcursionRepository $excursionRepository, CasaRepository $casaRepository, DisplayableComponentRepository $displayableComponentRepository)
     {
         $images = [];
         $owner = $displayableComponentRepository->find($request->get('ownerId'));
-        if ($request->get('type') == 'carro') {
+        if ($request->get('type') == 'Carros') {
             $objects = $carroRepository->findAll();
-
-        } else {
+        } else if ($request->get('type') == 'Casas') {
             $objects = $casaRepository->findAll();
+        } else {
+            $objects = $excursionRepository->findAll();
+        }
+        $plainImages = [];
+        foreach ($objects as $object) {
+            if ($request->get('main') == 'true') {
+                $plainImages[] = $object->getMainImage();
+            } else {
+                foreach ($object->getImages() as $objectImage) {
+                    $plainImages[] = $objectImage;
+                }
+            }
         }
         $i = 0;
         $j = 0;
-        foreach ($objects as $object) {
-            foreach ($object->getImages() as $image) {
-                $images[$i][$j % 4] = $image;
-                $i = ($j++ == 3) ? ++$i : $i;
-            }
+        foreach ($plainImages as $image) {
+            $images[$i][$j % 4] = $image;
+            $i = ($j++ == 3) ? ++$i : $i;
         }
-        return $this->render('admin/uploadedAlbum.html.twig', ['images' => $images, 'owner' => $owner]);
+        return $this->render('admin/uploadedAlbum.html.twig', [
+            'images' => $images,
+            'owner' => $owner,
+            'type' => $request->get('type'),
+            'main' => $request->get('main'),
+        ]);
     }
 
     /**
@@ -619,7 +640,7 @@ class AdminController extends Controller
      */
     public function excursiones(Request $request, ExcursionRepository $excursionRepository)
     {
-        $excursiones = $excursionRepository->findAll();
+        $excursiones = $excursionRepository->findBy([], ['updatedAt' => 'DESC'], null);
         $status = $request->get('status');
         $exc = $status == 'create' ? new Excursion() : $excursionRepository->find($request->get('id'));
         $form = $this->createForm(ExcursionForm::class, $exc);
@@ -634,5 +655,37 @@ class AdminController extends Controller
             return $this->redirectToRoute('excursiones', ['status' => 'create']);
         }
         return $this->render('admin/excursiones.html.twig', ['form' => $form->createView(), 'excursiones' => $excursiones, 'status' => $status]);
+    }
+
+    /**
+     * @Route("/admin/delete_excursion", name="delete_excursion")
+     */
+    public function deleteExcursion(Request $request,ExcursionRepository $excursionRepository){
+        $excursion=$excursionRepository->find($request->get('id'));
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($excursion);
+        $em->flush();
+        return $this->redirectToRoute('excursiones',['status'=>'create']);
+    }
+
+    /**
+     * @Route("/admin/habitaciones", name="habitaciones")
+     */
+    public function habitaciones(Request $request, CasaRepository $casaRepository, HabitacionRepository $habitacionRepository)
+    {
+        $casa = $casaRepository->find($request->get('id'));
+        $status = $request->get('status');
+        $hab = ($status == 'create') ? new Habitacion() : $habitacionRepository->find($request->get('roomId'));
+        $form = $this->createForm(RoomForm::class, $hab);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $hab = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $hab->setCasa($casa);
+            $em->persist($hab);
+            $em->flush();
+            return $this->redirectToRoute('habitaciones', ['id' => $casa->getId(), 'status' => 'create']);
+        }
+        return $this->render('admin/rooms.html.twig', ['casa' => $casa, 'form' => $form->createView(), 'status' => $status]);
     }
 }
