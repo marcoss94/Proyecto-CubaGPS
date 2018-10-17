@@ -15,6 +15,11 @@
     height: 50px;
     box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
     border-radius: 999px;
+    background-color: #f9b501;
+
+}
+.leftRs i {
+    color: white;
 }
 
 .rightRs {
@@ -28,6 +33,11 @@
     height: 50px;
     box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
     border-radius: 999px;
+    background-color: #f9b501;
+}
+
+.rightRs i {
+    color: white;
 }
 
 .resCarousel {

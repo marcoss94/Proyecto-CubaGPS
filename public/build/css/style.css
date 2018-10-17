@@ -261,7 +261,7 @@ h2 {
 }
 
 .carousel {
-    padding: 20px;
+    /*padding: 20px;*/
     -webkit-perspective: 500px;
     perspective: 500px;
     overflow: hidden;
@@ -589,3 +589,9 @@ h2 {
 .timelineGPS .timeline-bodyGPS > p {
     margin-bottom: 0;
 }
+
+.rooms{
+    margin-bottom: 20px;
+}
+
+
