@@ -152,11 +152,11 @@ class Image
     public function setAltName(DisplayableComponent $owner)
     {
         if($owner instanceof Carro){
-            $this->altName='autos clásicos';
+            $this->altName=$owner->getModelo().' '.'autos clásicos Cuba GPS';
         }elseif ($owner instanceof Casa){
-            $this->altName='renta Cuba';
+            $this->altName='renta en '.$owner->getMunicipio().'. '.$owner->getProvincia().' Cuba GPS';
         }else{
-            $this->altName='cubaGPS';
+            $this->altName='descubiendo Cuba con cubaGPS';
         }
     }
 

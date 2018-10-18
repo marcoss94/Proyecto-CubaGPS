@@ -14,6 +14,8 @@
         "ezyang/htmlpurifier": "^4.9",
         "facebook/graph-sdk": "^5.6",
         "knplabs/knp-snappy-bundle": "^1.5",
+        "knpuniversity/oauth2-client-bundle": "^1.22",
+        "league/oauth2-facebook": "^2.0",
         "liip/imagine-bundle": "dev-master",
         "sensio/framework-extra-bundle": "^5.0",
         "sensiolabs/security-checker": "^4.1",

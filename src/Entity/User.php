@@ -38,17 +38,27 @@ class User implements UserInterface, \Serializable
      */
     private $id;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string",length=50,nullable=true)
+     */
+    private $facebookId;
+
+
+
     /**
      * @var string
      *
      * @ORM\Column(type="string")
      */
-    private $fullName;
+    private $picture;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", unique=true)
+     * @ORM\Column(type="string")
      */
     private $username;
 
@@ -57,7 +67,28 @@ class User implements UserInterface, \Serializable
      *
      * @ORM\Column(type="string")
      */
-    private $password;
+    private $firstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $lastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string",nullable=true)
+     */
+    private $password='';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string",nullable=true)
+     */
+    private $email='';
 
     /**
      * @var array
@@ -66,35 +97,52 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $registeredAt;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string",nullable=true)
+     */
+    private $userOf;
+
 
     public function getId(): int
     {
         return $this->id;
     }
 
-    public function setFullName(string $fullName): void
-    {
-        $this->fullName = $fullName;
-    }
-
-    public function getFullName(): string
-    {
-        return $this->fullName;
-    }
-
-    public function getUsername(): string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username): void
+    /**
+     * @param string $username
+     */
+    public function setUsername($username)
     {
         $this->username = $username;
     }
 
+
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUserOf()
+    {
+        return $this->userOf;
+    }
+
+    /**
+     * @param string $userOf
+     */
+    public function setUserOf($userOf)
+    {
+        $this->userOf = $userOf;
     }
 
     public function setEmail(string $email): void
@@ -102,14 +150,99 @@ class User implements UserInterface, \Serializable
         $this->email = $email;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getRegisteredAt()
+    {
+        return $this->registeredAt;
+    }
+
+    /**
+     * @param mixed $registeredAt
+     */
+    public function setRegisteredAt()
+    {
+        $this->registeredAt = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
+     * @param string $picture
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+    }
+
     public function getPassword(): string
     {
         return $this->password;
     }
 
+    public function getUsername()
+    {
+        return $this->getId();
+    }
+
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFacebookId()
+    {
+        return $this->facebookId;
+    }
+
+    /**
+     * @param int $facebookId
+     */
+    public function setFacebookId($facebookId)
+    {
+        $this->facebookId = $facebookId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param string $firstname
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
     }
 
     /**
@@ -163,7 +296,7 @@ class User implements UserInterface, \Serializable
     public function serialize(): string
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        return serialize([$this->id, $this->username, $this->password]);
+        return serialize([$this->id, $this->firstname.' '.$this->lastname, $this->password]);
     }
 
     /**
@@ -177,7 +310,6 @@ class User implements UserInterface, \Serializable
 
     public function __toString()
     {
-        return $this->username;
-        // TODO: Implement __toString() method.
+        return $this->firstname.' '.$this->lastname;
     }
 }
