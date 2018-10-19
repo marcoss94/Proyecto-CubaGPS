@@ -53,40 +53,25 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(CarroRepository $carroRepository,CasaRepository $casaRepository,ExcursionRepository $excursionRepository)
+    public function index(Request $request,CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository)
     {
         if ($this->get('session')->get('language') != 'en') {
             $this->get('session')->set('language', 'es');
         }
-        $carros=$carroRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
-        $casas=$casaRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
-        $excursiones=$excursionRepository->findBy(['active'=>true],['valoracion'=>'DESC'],9);
-
-
-        //Codigo para crear la ruta al login de facebook.
-        if (!session_id()) {
-            session_start();
+        $carros = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
+        $casas = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
+        $excursiones = $excursionRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
+        if($request->get('redirect_id')){
+            die(dump($request->get('redirect_id')));
         }
-        $fb = new Facebook\Facebook([
-            'app_id' => '1972869056090204',
-            'app_secret' => '89f6ec558cd8454da65d64d7f7a3622e',
-            'default_graph_version' => 'v2.10',
-        ]);
-        $helper = $fb->getRedirectLoginHelper();
-        if (isset($_GET['state'])) {
-            $helper->getPersistentDataHandler()->set('state', $_GET['state']);
-        }
-        $permissions = ['email']; // Optional permissions
-        $fbLoginUrl = $helper->getLoginUrl(('http://localhost/zxccxz/public/fb_callback'), $permissions);
-        $this->get('session')->set('fbLoginUrl',$fbLoginUrl);
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
-        return $this->render('blog/index.html.twig',[
-            'base'=>'true',
-            'carros'=>$carros,
-            'casas'=>$casas,
-            'excursiones'=>$excursiones,
+        return $this->render('blog/index.html.twig', [
+            'base' => 'true',
+            'carros' => $carros,
+            'casas' => $casas,
+            'excursiones' => $excursiones,
         ]);
     }
 
@@ -98,7 +83,7 @@ class BlogController extends AbstractController
     {
         $language = ($this->get('session')->get('language') == 'es') ? 'en' : 'es';
         $this->get('session')->set('language', $language);
-        return $this->render('blog/index.html.twig');
+        return $this->redirectToRoute('blog_index');
     }
 
     /**

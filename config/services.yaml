@@ -41,6 +41,4 @@ services:
             arguments:
                 $targetDirectory: '%image_directory%'
 
-    app.security.token_authenticator:
-            class: App\Security\TokenAuthenticator
-            autowire: true
+
