@@ -63,8 +63,11 @@
                         <th scope="col">Dirección</th>
                         <th scope="col">Municipio</th>
                         <th scope="col">Provincia</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Description</th>
                         <th scope="col" colspan="2">Teléfono \n fijo \t móvil</th>
                         <th scope="col">Email</th>
+                        <th scope="col">#Licencia</th>
                         <th scope="col">Tipo de Establecimiento</th>
                         <th scope="col">Desayuno</th>
                         <th scope="col">Almuerzo</th>
@@ -87,8 +90,11 @@
                         <th scope="col">Dirección</th>
                         <th scope="col">Municipio</th>
                         <th scope="col">Provincia</th>
+                        <th scope="col">Descripción</th>
+                        <th scope="col">Description</th>
                         <th scope="col" colspan="2">Teléfono \n fijo \t móvil</th>
                         <th scope="col">Email</th>
+                        <th scope="col">#Licencia</th>
                         <th scope="col">Tipo de Establecimiento</th>
                         <th scope="col">Desayuno</th>
                         <th scope="col">Almuerzo</th>
@@ -112,9 +118,12 @@
                         <td>{{ c.direccion }}</td>
                         <td>{{ c.municipio }}</td>
                         <td>{{ c.provincia }}</td>
+                        <td>{{ c.descripcion }}</td>
+                        <td>{{ c.description }}</td>
                         <td>{{ c.tel }}</td>
                         <td>{{ c.cel }}</td>
                         <td>{{ c.email }}</td>
+                        <td>{{ c.licencia }}</td>
                         <td>{{ c.tipoEstablecimiento }}</td>
                         <td>{{ c.desayuno ? 'si' : 'no' }}</td>
                         <td>{{ c.almuerzo ? 'si' : 'no' }}</td>
@@ -169,7 +178,7 @@
                                         class="caret"></span></a></td>
                         <td>{{ c.updatedAt|date }}</td>
                         {% else %}
-                            <th colspan="5">No se han insertado habitaciones para esta casa</th>
+                            <th colspan="5">No se han insertado casas</th>
                         {% endfor %}
 
                     </tr>

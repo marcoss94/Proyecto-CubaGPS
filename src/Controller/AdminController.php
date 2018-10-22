@@ -592,21 +592,16 @@ class AdminController extends Controller
         $plainImages = [];
         foreach ($objects as $object) {
             if ($request->get('main') == 'true') {
-                $plainImages[] = $object->getMainImage();
+                if ($object->getMainImage())
+                    $plainImages[] = $object->getMainImage();
             } else {
                 foreach ($object->getImages() as $objectImage) {
                     $plainImages[] = $objectImage;
                 }
             }
         }
-        $i = 0;
-        $j = 0;
-        foreach ($plainImages as $image) {
-            $images[$i][$j % 4] = $image;
-            $i = ($j++ == 3) ? ++$i : $i;
-        }
         return $this->render('admin/uploadedAlbum.html.twig', [
-            'images' => $images,
+            'images' => $plainImages,
             'owner' => $owner,
             'type' => $request->get('type'),
             'main' => $request->get('main'),
@@ -660,12 +655,13 @@ class AdminController extends Controller
     /**
      * @Route("/admin/delete_excursion", name="delete_excursion")
      */
-    public function deleteExcursion(Request $request,ExcursionRepository $excursionRepository){
-        $excursion=$excursionRepository->find($request->get('id'));
-        $em=$this->getDoctrine()->getManager();
+    public function deleteExcursion(Request $request, ExcursionRepository $excursionRepository)
+    {
+        $excursion = $excursionRepository->find($request->get('id'));
+        $em = $this->getDoctrine()->getManager();
         $em->remove($excursion);
         $em->flush();
-        return $this->redirectToRoute('excursiones',['status'=>'create']);
+        return $this->redirectToRoute('excursiones', ['status' => 'create']);
     }
 
     /**

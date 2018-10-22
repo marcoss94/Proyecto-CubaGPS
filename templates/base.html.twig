@@ -139,10 +139,10 @@
                 {#<li class="nav-item">#}
                 {#<a class="nav-link js-scroll-trigger" href="#team">Carros</a>#}
                 {#</li>#}
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if is_granted('ROLE_PUBLISHER') %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('admin') }}">
-                            {{ app.session.get('language') == 'es'? 'Administración':'Management' }}
+                        <a class="nav-link js-scroll-trigger" href="" data-toggle="modal" data-target="#linkModal">
+                            {{ app.session.get('language') == 'es'? 'Enlace Único':'Unic Link' }}
                         </a>
                     </li>
                 {% endif %}
@@ -302,10 +302,10 @@
                     {#<li class="nav-item">#}
                     {#<a class="nav-link js-scroll-trigger" href="#team">Carros</a>#}
                     {#</li>#}
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_PUBLISHER') %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ path('admin') }}">
-                                {{ app.session.get('language') == 'es'? 'Administración':'Management' }}
+                            <a class="nav-link js-scroll-trigger" href="" data-toggle="modal" data-target="#linkModal">
+                                {{ app.session.get('language') == 'es'? 'Enlace Único':'Unic Link' }}
                             </a>
                         </li>
                     {% endif %}
@@ -476,6 +476,9 @@ border-color: #f9b501" type="submit">
                     <div class="modal-body">
                         <a href="{{ path('connect_facebook_start') }}">{{ app.session.get('language') == 'es'? 'Inicia Sesión con Facebook':'Log in with Facebook' }}</a>
                     </div>
+                    <div class="modal-body">
+                        <a href="{{ path('connect_google') }}">{{ app.session.get('language') == 'es'? 'Inicia Sesión con Google':'Log in with Google' }}</a>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default"
                                 data-dismiss="modal">{{ app.session.get('language') == 'es'? 'Cerrar':'Close' }}</button>
@@ -484,6 +487,32 @@ border-color: #f9b501" type="submit">
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div>
+        {% if is_granted('ROLE_PUBLISHER') %}
+        <div class="portfolio-modal-sm modal fade" id="linkModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"
+                            style="float: left">{{ app.session.get('language') == 'es'? 'Enlace Único':'Unic Link' }}</h4>
+                        <button type="button" class="close" style="float: right" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ app.session.get('language') == 'es'?
+                            'Comparte este link único para que otros usuarios entren a travéz de tí'
+                            :
+                            'Share this unic link for other users login through you' }}</p>
+                        <h4>localhost/zxccxz/public/blog?redirectId={{ app.user.id }}</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">{{ app.session.get('language') == 'es'? 'Cerrar':'Close' }}</button>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        {% endif %}
 
 
 </footer>

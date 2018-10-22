@@ -28,6 +28,11 @@ class Casa extends DisplayableComponent
     private $direccion;
 
     /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $licencia;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $valoracion = 0;
@@ -94,7 +99,7 @@ class Casa extends DisplayableComponent
     private $servicios;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Habitacion", mappedBy="casa", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Habitacion", mappedBy="casa", orphanRemoval=true, cascade={"remove"})
      */
     private $habitaciones;
 
@@ -144,6 +149,22 @@ class Casa extends DisplayableComponent
     public function getActive()
     {
         return ($this->active && count($this->habitaciones));
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLicencia()
+    {
+        return $this->licencia;
+    }
+
+    /**
+     * @param mixed $licencia
+     */
+    public function setLicencia($licencia)
+    {
+        $this->licencia = $licencia;
     }
 
     /**

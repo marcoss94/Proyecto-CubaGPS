@@ -51,9 +51,19 @@ class Habitacion extends DisplayableComponent
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Casa", inversedBy="habitaciones")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false,onDelete="cascade")
      */
     private $casa;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $bathroom;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $escaleras;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -92,6 +102,38 @@ class Habitacion extends DisplayableComponent
     public function getPrivada()
     {
         return $this->privada;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEscaleras()
+    {
+        return $this->escaleras;
+    }
+
+    /**
+     * @param mixed $escaleras
+     */
+    public function setEscaleras($escaleras)
+    {
+        $this->escaleras = $escaleras;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBathroom()
+    {
+        return $this->bathroom;
+    }
+
+    /**
+     * @param mixed $bathroom
+     */
+    public function setBathroom($bathroom)
+    {
+        $this->bathroom = $bathroom;
     }
 
     /**

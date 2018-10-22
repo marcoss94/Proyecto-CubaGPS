@@ -54,6 +54,11 @@ class Paquete
     private $descripcion;
 
     /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     */
+    private $description;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $noIncluye;
@@ -283,6 +288,22 @@ class Paquete
             }
         }
         return $result;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
 

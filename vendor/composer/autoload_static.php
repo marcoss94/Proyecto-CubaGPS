@@ -433,6 +433,7 @@ class ComposerStaticInit09cd62611e02b104aa7d96ec25147f60
         array (
             0 => __DIR__ . '/..' . '/league/oauth2-client/src',
             1 => __DIR__ . '/..' . '/league/oauth2-facebook/src',
+            2 => __DIR__ . '/..' . '/league/oauth2-google/src',
         ),
         'Knp\\Snappy\\' => 
         array (

@@ -44,6 +44,7 @@ final class Versions
   'knpuniversity/oauth2-client-bundle' => 'v1.22.0@a7faba0303b55ec2a3b7387d434704e866162aa7',
   'league/oauth2-client' => '2.3.0@aa2e3df188f0bfd87f7880cc880e906e99923580',
   'league/oauth2-facebook' => '2.0.1@bcbcd540fb66ae16b4f82671c8ae7752b6a89556',
+  'league/oauth2-google' => '2.2.0@c0faed29ec6d665ce3234e01f62029516cee4c02',
   'liip/imagine-bundle' => 'dev-master@1acae6ac066e431c3c55c4d39971827a02cbe4d5',
   'monolog/monolog' => '1.23.0@fd8c787753b3a2ad11bc60c063cff1358a32a3b4',
   'nikic/php-parser' => 'v4.0.3@bd088dc940a418f09cda079a9b5c7c478890fb8d',

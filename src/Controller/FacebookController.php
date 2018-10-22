@@ -3,13 +3,11 @@
 namespace App\Controller;
 
 
-use App\Entity\User;
-use App\Repository\FacebookUserRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
-use League\OAuth2\Client\Provider\Exception\IdentityProviderException;;
-use Symfony\Component\HttpFoundation\Request;
+
 
 
 class FacebookController extends Controller

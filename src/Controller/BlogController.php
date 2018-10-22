@@ -61,8 +61,8 @@ class BlogController extends AbstractController
         $carros = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
         $casas = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
         $excursiones = $excursionRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
-        if($request->get('redirect_id')){
-            die(dump($request->get('redirect_id')));
+        if($request->get('redirectId')){
+            $this->get('session')->set('redirectedBy',$request->get('redirectId'));
         }
         // Every template name also has two extensions that specify the format and
         // engine for that template.

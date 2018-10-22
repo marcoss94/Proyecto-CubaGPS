@@ -11,6 +11,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -47,7 +49,6 @@ class User implements UserInterface, \Serializable
     private $facebookId;
 
 
-
     /**
      * @var string
      *
@@ -81,14 +82,14 @@ class User implements UserInterface, \Serializable
      *
      * @ORM\Column(type="string",nullable=true)
      */
-    private $password='';
+    private $password = '';
 
     /**
      * @var string
      *
      * @ORM\Column(type="string",nullable=true)
      */
-    private $email='';
+    private $email = '';
 
     /**
      * @var array
@@ -109,6 +110,22 @@ class User implements UserInterface, \Serializable
      */
     private $userOf;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     */
+    private $redirectedBy;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="redirectedBy")
+     */
+    private $usersRedirected;
+
+
+
+    public function __construct()
+    {
+        $this->usersRedirected = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -296,7 +313,7 @@ class User implements UserInterface, \Serializable
     public function serialize(): string
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        return serialize([$this->id, $this->firstname.' '.$this->lastname, $this->password]);
+        return serialize([$this->id, $this->firstname . ' ' . $this->lastname, $this->password]);
     }
 
     /**
@@ -310,6 +327,50 @@ class User implements UserInterface, \Serializable
 
     public function __toString()
     {
-        return $this->firstname.' '.$this->lastname;
+        return $this->firstname . ' ' . $this->lastname;
     }
+
+    public function getRedirectedBy(): ?self
+    {
+        return $this->redirectedBy;
+    }
+
+    public function setRedirectedBy(?self $redirectedBy): self
+    {
+        $this->redirectedBy = $redirectedBy;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsersRedirected(): Collection
+    {
+        return $this->usersRedirected;
+    }
+
+    public function addUsersRedirected(User $usersRedirected): self
+    {
+        if (!$this->usersRedirected->contains($usersRedirected)) {
+            $this->usersRedirected[] = $usersRedirected;
+            $usersRedirected->setRedirectedBy($this);
+        }
+        return $this;
+    }
+
+    public function removeUsersRedirected(User $usersRedirected): self
+    {
+        if ($this->usersRedirected->contains($usersRedirected)) {
+            $this->usersRedirected->removeElement($usersRedirected);
+            // set the owning side to null (unless already changed)
+            if ($usersRedirected->getRedirectedBy() === $this) {
+                $usersRedirected->setRedirectedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

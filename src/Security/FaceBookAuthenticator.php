@@ -68,7 +68,6 @@ class FaceBookAuthenticator extends SocialAuthenticator
         // 3) Maybe you just want to "register" them by creating
         // a User object
         $user->setFacebookId($facebookUser->getId());
-
         $user->setFirstname($facebookUser->getFirstName());
         $user->setLastname($facebookUser->getLastName());
         $user->setUsername($facebookUser->getFirstName());
@@ -76,6 +75,11 @@ class FaceBookAuthenticator extends SocialAuthenticator
         $user->setRegisteredAt();
         $user->setUserOf('facebook');
         $user->setRoles(['ROLE_USER']);
+        if(isset($_SESSION['redirectedBy'])){
+            $publisher= $this->em->getRepository(User::class)
+                ->find($_SESSION['redirectedBy']);
+            $user->setRedirectedBy($publisher);
+        }
         $this->em->persist($user);
         $this->em->flush();
         return $user;

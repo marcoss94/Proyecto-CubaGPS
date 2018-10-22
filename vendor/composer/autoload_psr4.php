@@ -72,7 +72,7 @@ return array(
     'PackageVersions\\' => array($vendorDir . '/ocramius/package-versions/src/PackageVersions'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Liip\\ImagineBundle\\' => array($vendorDir . '/liip/imagine-bundle'),
-    'League\\OAuth2\\Client\\' => array($vendorDir . '/league/oauth2-client/src', $vendorDir . '/league/oauth2-facebook/src'),
+    'League\\OAuth2\\Client\\' => array($vendorDir . '/league/oauth2-client/src', $vendorDir . '/league/oauth2-facebook/src', $vendorDir . '/league/oauth2-google/src'),
     'Knp\\Snappy\\' => array($vendorDir . '/knplabs/knp-snappy/src/Knp/Snappy'),
     'Knp\\Bundle\\SnappyBundle\\' => array($vendorDir . '/knplabs/knp-snappy-bundle'),
     'KnpU\\OAuth2ClientBundle\\' => array($vendorDir . '/knpuniversity/oauth2-client-bundle/src'),

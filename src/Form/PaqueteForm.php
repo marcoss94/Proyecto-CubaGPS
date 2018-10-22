@@ -35,6 +35,7 @@ class PaqueteForm extends AbstractType
             ->add('precio2', MoneyType::class, ['label' => 'Precio para dos personas'])
             ->add('precio3', MoneyType::class, ['label' => 'Precio para tres o más personas'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
+            ->add('description',TextareaType::class,['label' => 'Description'])
             ->add('noIncluye', TextareaType::class, ['label' => 'No incluye'])
             ->add('active', ChoiceType::class, ['label' => 'Activo','choices'  => array(
                 'Si' => true,

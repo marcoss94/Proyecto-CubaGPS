@@ -29,23 +29,29 @@ class RoomForm extends AbstractType
     {
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
-            ->add('descripcion', TextType::class, ['label' => 'Descripcion'])
             ->add('camasDobles', IntegerType::class, ['label' => 'Camas Dobles'])
             ->add('camasSimples', IntegerType::class, ['label' => 'Camas Simples'])
             ->add('literas', IntegerType::class, ['label' => 'Literas'])
             ->add('piso', IntegerType::class, ['label' => 'Piso'])
             ->add('vista', TextType::class, ['label' => 'Vistas a:'])
             ->add('precio', MoneyType::class, ['label' => 'Precio'])
+            ->add('bathroom', ChoiceType::class, ['label' => 'Baño', 'choices' => array(
+                'si' => true,
+                'no' => false,
+            ),])
+            ->add('escaleras', ChoiceType::class, ['label' => 'Escaleras', 'choices' => array(
+                'si' => true,
+                'no' => false,
+            ),])
             ->add('privada', ChoiceType::class, ['label' => 'Privada', 'choices' => array(
                 'si' => true,
                 'no' => false,
             ),])
-            ->add('independiente', ChoiceType::class, ['label' => 'Privada', 'choices' => array(
+            ->add('independiente', ChoiceType::class, ['label' => 'Independiente', 'choices' => array(
                 'si' => true,
                 'no' => false,
             ),])
             ->add('servicios', ChoiceType::class, ['label' => 'Servicios', 'choices' => array(
-                'Baño indepentiente' => 'Baño indepentiente',
                 'Ducha' => 'Ducha',
                 'Jacuzzi' => 'Jacuzzi',
                 'Secadora' => 'Secadora',
