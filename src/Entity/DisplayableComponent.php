@@ -38,6 +38,11 @@ abstract class DisplayableComponent
     private $descripcion;
 
     /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     */
+    private $description;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -78,6 +83,22 @@ abstract class DisplayableComponent
     public function setUpdatedAt()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
     }
 
 

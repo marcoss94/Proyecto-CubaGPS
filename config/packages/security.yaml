@@ -40,6 +40,8 @@ security:
             guard:
                 authenticators:
                      - App\Security\FaceBookAuthenticator
+                     - App\Security\GoogleAuthenticator
+                entry_point: App\Security\FaceBookAuthenticator
             # This allows the user to login by submitting a username and password
             # Reference: https://symfony.com/doc/current/security/form_login_setup.html
 #            form_login:

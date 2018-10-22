@@ -31,7 +31,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-auto mr-auto">
-                    <i class="fas fa-car"></i>
+                    <i class="fas fa-user-circle"></i>
                     Usuarios
                 </div>
             </div>
@@ -51,42 +51,50 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th scope="col">Registrado</th>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Username</th>
-                        <th scope="col">Primer nombre</th>
-                        <th scope="col">Segundo nombre</th>
+                        <th scope="col">Rol</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Redireccionado por:</th>
                         <th scope="col">Usuario de:</th>
-                        <th scope="col">Roles</th>
-                        <th scope="col">Asignar Rol</th>
+                        <th scope="col">Registrado</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th scope="col">Registrado</th>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Username</th>
-                        <th scope="col">Primer nombre</th>
-                        <th scope="col">Segundo nombre</th>
+                        <th scope="col">Rol</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Redireccionado por:</th>
                         <th scope="col">Usuario de:</th>
-                        <th scope="col">Roles</th>
-                        <th scope="col">Asignar Rol</th>
+                        <th scope="col">Registrado</th>
                     </tr>
                     </tfoot>
                     <tbody>
                     {% for c in users %}
                         <tr>
-                            <td>{{ c.registeredAt|date }}</td>
+                            <td><img src="{{ asset(c.picture) }}"
+                                     class="img-fluid rounded-circle avat"
+                                     style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
+                                {{ c.firstname~' '~c.lastname }}</td>
                             <td>{{ c.username }}</td>
-                            <td>{{ c.firstname }}</td>
-                            <td>{{ c.lastname }}</td>
+                            {% if c.roles|last=='ROLE_PUBLISHER' %}
+                                <td><a type="button" class="btn btn-dark"
+                                       href="{{ path('role_publisher',{'id':c.id,'role':'publisher'}) }}">Publicador</a>
+                                </td>
+                            {% else %}
+                                <td><a type="button" class="btn btn-outline-dark"
+                                       href="{{ path('role_publisher',{'id':c.id,'role':'user'}) }}">Usuario</a></td>
+                            {% endif %}
                             <td>{{ c.userOf=='google'?c.email:'' }}</td>
+                            <td>{{ c.redirectedBy }}</td>
                             <td>{{ c.userOf }}</td>
-                            <td>roles</td>
-                            <td>poner asignar rol</td>
+                            <td>{{ c.registeredAt|date }}</td>
                         </tr>
                     {% else %}
-                        <th colspan="5">No se han insertado carros</th>
+                        <th colspan="5">No hay usuarios registrados</th>
                     {% endfor %}
 
                     </tbody>

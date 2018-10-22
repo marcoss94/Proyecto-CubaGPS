@@ -40,13 +40,22 @@ class UserController extends AbstractController
         return $this->render('users/users.html.twig', ['users' => $users]);
     }
 
-
-
-
-
-
-
-
+    /**
+     * @Route("/admin/role_publisher", name="role_publisher")
+     * @param UserRepository $userRepository
+     * @param Request $request
+     * @return Response
+     */
+    public function setRolePublisher(UserRepository $userRepository, Request $request): Response
+    {
+        $user = $userRepository->find($request->get('id'));
+        $roles=$request->get('role')=='user'?['ROLE_USER','ROLE_PUBLISHER']:['ROLE_USER'];
+        $user->setRoles($roles);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+        return $this->redirectToRoute('users');
+    }
 
 
 }

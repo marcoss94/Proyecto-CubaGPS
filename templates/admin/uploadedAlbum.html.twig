@@ -36,12 +36,14 @@
             <div class="row">
                 <div class="col-auto mr-auto">
                     <i class="fas fa-images"></i>
-                     {{ 'Album de: '~type }}
+                    {{ 'Album de: '~type }}
                 </div>
                 {% if main == 'true' %}
-                <a href="{{ path('uploadedImages',{'ownerId':owner.id,'type':type,'main':'false'}) }}" class="btn btn-default">Mostrar Todas</a>
+                    <a href="{{ path('uploadedImages',{'ownerId':owner.id,'type':type,'main':'false'}) }}"
+                       class="btn btn-default">Mostrar Todas</a>
                 {% else %}
-                    <a href="{{ path('uploadedImages',{'ownerId':owner.id,'type':type,'main':'true'}) }}" class="btn btn-default">Solo las Principales</a>
+                    <a href="{{ path('uploadedImages',{'ownerId':owner.id,'type':type,'main':'true'}) }}"
+                       class="btn btn-default">Solo las Principales</a>
                 {% endif %}
                 <div class="col-auto">
                     <button onclick="submitForm()" class="btn btn-default">Guardar</button>
@@ -61,13 +63,17 @@
             <form id="form" action="{{ path('saveUploads') }}">
                 <input type="hidden" name="images" value="">
                 <input type="hidden" name="ownerId" value="{{ owner.id }}">
-                {% for i in 0..images|length-1 %}
+                {% for row in images|batch(4,'vacio') %}
                     <tr>
-                        {% for j in 0..images[i]|length-1 %}
-                            <td name="imageId" data-value="{{ images[i][j].id }}">
-                                <img style="max-width: 270px;" src="{{ asset(images[i][j].half) }}" class="img-thumbnail"
-                                     alt="Responsive image">
-                            </td>
+                        {% for col in row %}
+                            {% if col == 'vacio' %}
+                                <td></td>
+                            {% else %}
+                                <td name="imageId" data-value="{{ col.id }}">
+                                    <img style="max-width: 270px;" src="{{ asset(col.half) }}" class="img-thumbnail"
+                                         alt="Responsive image">
+                                </td>
+                            {% endif %}
                         {% endfor %}
                     </tr>
                 {% endfor %}
