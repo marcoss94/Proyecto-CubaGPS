@@ -71,36 +71,17 @@ class Carro extends DisplayableComponent
      */
     private $idiomas=['Español'];
 
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $valoracionArray=[0=>0,1=>0,2=>5];
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $active = true;
 
-    /**
-     * @return mixed
-     */
-    public function getValoracionArray()
-    {
-        return $this->valoracionArray;
-    }
 
-    /**
-     * @param mixed $valoracionArray
-     */
-    public function setValoracionArray($valoracionArray)
-    {
-        $this->valoracionArray = $valoracionArray;
-    }
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $valoracion=0;
+
+
+
 
     /**
      * @return mixed
@@ -126,24 +107,8 @@ class Carro extends DisplayableComponent
         return $this->provincia;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getValoracion()
-    {
-        return $this->valoracion;
-    }
 
-    /**
-     * @param mixed $valoracion
-     */
-    public function setValoracion($valoracion)
-    {
-        $this->valoracion = $valoracion;
-        $this->valoracionArray[0]=(integer)($valoracion/2);
-        $this->valoracionArray[1]=$valoracion%2;
-        $this->valoracionArray[2]=5-$this->valoracionArray[0]-$this->valoracionArray[1];
-    }
+
 
     /**
      * @param mixed $provincia

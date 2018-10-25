@@ -53,6 +53,19 @@ abstract class DisplayableComponent
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $valoracion=10;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     */
+    private $valoracionArray = [0 => 5, 1 => 0, 2 => 0];
+
+
+    /**
      * @return mixed
      */
     public function getCreatedAt()
@@ -75,6 +88,41 @@ abstract class DisplayableComponent
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValoracion()
+    {
+        return $this->valoracion;
+    }
+
+    /**
+     * @param mixed $valoracion
+     */
+    public function setValoracion($valoracion)
+    {
+        $this->valoracion = $valoracion;
+        $this->valoracionArray[0] = (integer)($valoracion / 2);
+        $this->valoracionArray[1] = $valoracion % 2;
+        $this->valoracionArray[2] = 5 - $this->valoracionArray[0] - $this->valoracionArray[1];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValoracionArray()
+    {
+        return $this->valoracionArray;
+    }
+
+    /**
+     * @param mixed $valoracionArray
+     */
+    public function setValoracionArray($valoracionArray)
+    {
+        $this->valoracionArray = $valoracionArray;
     }
 
     /**

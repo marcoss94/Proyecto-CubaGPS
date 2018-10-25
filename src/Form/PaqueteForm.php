@@ -29,6 +29,7 @@ class PaqueteForm extends AbstractType
     {
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
+            ->add('name', TextType::class, ['label' => 'Name'])
             ->add('diasDuracion', IntegerType::class, ['label' => 'Dias de duración'])
             ->add('nochesDuracion', IntegerType::class, ['label' => 'Noches de duración'])
             ->add('precio1', MoneyType::class, ['label' => 'Precio para una persona'])
@@ -36,7 +37,9 @@ class PaqueteForm extends AbstractType
             ->add('precio3', MoneyType::class, ['label' => 'Precio para tres o más personas'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
             ->add('description',TextareaType::class,['label' => 'Description'])
+            ->add('incluye', TextareaType::class, ['label' => 'incluye'])
             ->add('noIncluye', TextareaType::class, ['label' => 'No incluye'])
+            ->add('valoracion',null,['label' => 'Valoración'])
             ->add('active', ChoiceType::class, ['label' => 'Activo','choices'  => array(
                 'Si' => true,
                 'No' => false,

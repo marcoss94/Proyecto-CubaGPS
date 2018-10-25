@@ -27,8 +27,17 @@
     </ol>
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fas fa-car"></i>
-            Excursiones
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-home"></i>
+                    Excursiones
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">
+                        Agregar
+                    </button>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -142,7 +151,8 @@
                                    href="{{ path('excursiones',{'id':c.id,'status':'edit'}) }}"><i
                                             class="fa fa-edit" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
-                            <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_excursion',{'id':c.id}) }}"><i
+                            <td><a title="Eliminar" class="btn btn-default"
+                                   href="{{ path('delete_excursion',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
                             <td>{{ c.updatedAt|date }}</td>
@@ -153,10 +163,19 @@
 
                     </tbody>
                 </table>
-
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
-                    Agregar
-                </button>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-home"></i>
+                    Excursiones
+                </div>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">
+                        Agregar
+                    </button>
+                </div>
             </div>
         </div>
     </div>

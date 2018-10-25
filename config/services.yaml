@@ -7,6 +7,9 @@ parameters:
     app.notifications.email_sender: anonymous@example.com
     image_directory: '%kernel.project_dir%/public/uploads/images'
 
+
+
+
 services:
     # default configuration for services in *this* file
     _defaults:

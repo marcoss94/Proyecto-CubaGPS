@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PaqueteRepository")
  * @ORM\HasLifecycleCallbacks()
@@ -22,6 +25,11 @@ class Paquete
      * @ORM\Column(type="string", length=100)
      */
     private $nombre;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $name;
 
     /**
      * @ORM\Column(type="integer", length=20)
@@ -61,6 +69,11 @@ class Paquete
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $incluye;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $noIncluye;
 
     /**
@@ -85,12 +98,25 @@ class Paquete
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $valoracion=10;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     */
+    private $valoracionArray = [0 => 5, 1 => 0, 2 => 0];
+
+    /**
      * @return mixed
      */
     public function getCreatedAt()
     {
         return $this->createdAt;
     }
+
 
     /**
      * @ORM\PrePersist()
@@ -115,6 +141,91 @@ class Paquete
     public function setUpdatedAt()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIncluye()
+    {
+        return $this->incluye;
+    }
+
+    /**
+     * @param mixed $incluye
+     */
+    public function setIncluye($incluye)
+    {
+        $this->incluye = $incluye;
+    }
+
+    public function getImages()
+    {
+        $dias = $this->getDias();
+        $activities = [];
+        foreach ($dias as $dia) {
+            foreach ($dia->getActivities() as $activity){
+                $activities[] = $activity;
+            }
+        }
+        $images = [];
+        foreach ($activities as $activity) {
+            if (count($activity->getImages())) {
+                $images[] = $activity->getMainImage();
+            }
+        }
+        return $images;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValoracion()
+    {
+        return $this->valoracion;
+    }
+
+    /**
+     * @param mixed $valoracion
+     */
+    public function setValoracion($valoracion)
+    {
+        $this->valoracion = $valoracion;
+        $this->valoracionArray[0] = (integer)($valoracion / 2);
+        $this->valoracionArray[1] = $valoracion % 2;
+        $this->valoracionArray[2] = 5 - $this->valoracionArray[0] - $this->valoracionArray[1];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getValoracionArray()
+    {
+        return $this->valoracionArray;
+    }
+
+    /**
+     * @param mixed $valoracionArray
+     */
+    public function setValoracionArray($valoracionArray)
+    {
+        $this->valoracionArray = $valoracionArray;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
 
@@ -265,7 +376,7 @@ class Paquete
     /**
      * @return mixed
      */
-    public function getDias()
+    public function getDias(): Collection
     {
         return $this->dias;
     }
@@ -276,18 +387,6 @@ class Paquete
     public function setDias($dias)
     {
         $this->dias = $dias;
-    }
-
-    public function getImages()
-    {
-        $result = [];
-        foreach ($this->dias as $dia){
-            foreach ($dia->getActivities() as $activity)
-            {
-                $result[]=$activity->getMainImage();
-            }
-        }
-        return $result;
     }
 
     /**

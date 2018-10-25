@@ -23,7 +23,7 @@ class Image
     /**
      * Many Features have One Product.
      * @ORM\ManyToOne(targetEntity="DisplayableComponent", inversedBy="images")
-     * @ORM\JoinColumn(name="component_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="component_id", referencedColumnName="id",onDelete="cascade")
      */
     private $displayableComponent;
 

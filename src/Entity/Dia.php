@@ -29,7 +29,7 @@ class Dia
     private $nombre;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Paquete", inversedBy="day")
+     * @ORM\ManyToOne(targetEntity="Paquete", inversedBy="dias")
      * @ORM\JoinColumn(name="paquete_id", referencedColumnName="id",onDelete="cascade")
      */
     private $paquete;

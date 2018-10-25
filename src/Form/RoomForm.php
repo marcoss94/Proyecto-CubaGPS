@@ -35,10 +35,6 @@ class RoomForm extends AbstractType
             ->add('piso', IntegerType::class, ['label' => 'Piso'])
             ->add('vista', TextType::class, ['label' => 'Vistas a:'])
             ->add('precio', MoneyType::class, ['label' => 'Precio'])
-            ->add('bathroom', ChoiceType::class, ['label' => 'Baño', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
             ->add('escaleras', ChoiceType::class, ['label' => 'Escaleras', 'choices' => array(
                 'si' => true,
                 'no' => false,
@@ -51,17 +47,23 @@ class RoomForm extends AbstractType
                 'si' => true,
                 'no' => false,
             ),])
+            ->add('comun', ChoiceType::class, ['label' => 'Común', 'choices' => array(
+                'si' => true,
+                'no' => false,
+            ),])
             ->add('servicios', ChoiceType::class, ['label' => 'Servicios', 'choices' => array(
-                'Ducha' => 'Ducha',
-                'Jacuzzi' => 'Jacuzzi',
-                'Secadora' => 'Secadora',
-                'Aire acondicionado' => 'Aire acondicionado',
-                'Ventilador' => 'Ventilador',
-                'TV' => 'TV',
-                'Mini bar' => 'Mini bar',
-                'Refrigerador' => 'Refrigerador',
-                'Caja de seguridad' => 'Caja de seguridad',
-                'Plancha' => 'Plancha',
+                'Baño'=>'bathroom',
+                'Wi-Fi'=>'wifi',
+                'Ducha' => 'ducha',
+                'Jacuzzi' => 'jacuzzi',
+                'Secadora' => 'secadora',
+                'Aire acondicionado' => 'aire_acondicionado',
+                'Ventilador' => 'ventilador',
+                'TV' => 'tv',
+                'Mini bar' => 'mini_bar',
+                'Refrigerador' => 'refrigerador',
+                'Caja de seguridad' => 'caja_fuerte',
+                'Plancha' => 'plancha',
             ), 'expanded' => true, 'multiple' => true])
             ->add('active', ChoiceType::class, ['label' => 'Activa', 'choices' => array(
                 'si' => true,

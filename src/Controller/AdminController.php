@@ -526,6 +526,7 @@ class AdminController extends Controller
             $excursion = $excursionRepository->find($excursionId);
             $activity->setNombre($excursion->getNombre());
             $activity->setDescripcion($excursion->getDescripcion());
+            $activity->setDescription($excursion->getDescription());
             $originalImages = $excursion->getImages();
             foreach ($originalImages as $originalImage) {
                 $newImage = new Image();
@@ -555,6 +556,7 @@ class AdminController extends Controller
         $activity = $activityRepository->find($request->get('id'));
         $activity->setNombre($request->get('nombre'));
         $activity->setDescripcion($request->get('descripcion'));
+        $activity->setDescription($request->get('description'));
         $activity->setHorario($request->get('horario'));
         $em = $this->getDoctrine()->getManager();
         $em->persist($activity);
@@ -636,7 +638,7 @@ class AdminController extends Controller
     public function excursiones(Request $request, ExcursionRepository $excursionRepository)
     {
         $excursiones = $excursionRepository->findBy([], ['updatedAt' => 'DESC'], null);
-        $status = $request->get('status');
+        $status = $request->get('status')==('edit')?'edit':'create';
         $exc = $status == 'create' ? new Excursion() : $excursionRepository->find($request->get('id'));
         $form = $this->createForm(ExcursionForm::class, $exc);
         $form->handleRequest($request);

@@ -58,11 +58,6 @@ class Habitacion extends DisplayableComponent
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $bathroom;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
     private $escaleras;
 
     /**
@@ -81,6 +76,11 @@ class Habitacion extends DisplayableComponent
     private $independiente;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $comun;
+
+    /**
      * @return mixed
      */
     public function getActive()
@@ -94,6 +94,22 @@ class Habitacion extends DisplayableComponent
     public function getPiso()
     {
         return $this->piso;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComun()
+    {
+        return $this->comun;
+    }
+
+    /**
+     * @param mixed $comun
+     */
+    public function setComun($comun)
+    {
+        $this->comun = $comun;
     }
 
     /**
@@ -120,20 +136,8 @@ class Habitacion extends DisplayableComponent
         $this->escaleras = $escaleras;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getBathroom()
-    {
-        return $this->bathroom;
-    }
-
-    /**
-     * @param mixed $bathroom
-     */
-    public function setBathroom($bathroom)
-    {
-        $this->bathroom = $bathroom;
+    public function getCapacidad(){
+        return $this->camasDobles*2+$this->camasSimples+$this->literas*2;
     }
 
     /**

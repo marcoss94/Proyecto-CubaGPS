@@ -58,12 +58,15 @@
                     <thead>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Dias</th>
                         <th scope="col">Noches</th>
                         <th scope="col" colspan="3">Precio por persona para 1, 2 y 3 o más personas</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Incluye</th>
                         <th scope="col">No incluye</th>
+                        <th scope="col">Valoración</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Actividades</th>
                         <th scope="col">Editar</th>
@@ -73,12 +76,15 @@
                     <tfoot>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Dias</th>
                         <th scope="col">Noches</th>
                         <th scope="col" colspan="3">Precio por persona para 1, 2 y 3 o más personas</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Incluye</th>
                         <th scope="col">No incluye</th>
+                        <th scope="col">Valoración</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Actividades</th>
                         <th scope="col">Editar</th>
@@ -90,6 +96,7 @@
                     {% for c in paquetes %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.nombre }}</td>
+                            <td>{{ c.name }}</td>
                             <td>{{ c.diasDuracion }}</td>
                             <td>{{ c.nochesDuracion }}</td>
                             <td>{{ c.precio1 }}</td>
@@ -97,7 +104,9 @@
                             <td>{{ c.precio3 }}</td>
                             <td>{{ c.descripcion }}</td>
                             <td>{{ c.description }}</td>
+                            <td>{{ c.incluye }}</td>
                             <td>{{ c.noIncluye }}</td>
+                            <td>{{ c.valoracion }}</td>
                             <td>{{ c.active ? 'si' : 'no' }}</td>
                             <td><a title="Actividades" class="btn btn-default"
                                    href="{{ path('activities',{'id':c.id}) }}"><i

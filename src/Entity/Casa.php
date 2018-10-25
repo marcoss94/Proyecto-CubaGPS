@@ -32,15 +32,7 @@ class Casa extends DisplayableComponent
      */
     private $licencia;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $valoracion = 0;
 
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $valoracionArray = [0 => 0, 1 => 0, 2 => 5];
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -120,6 +112,26 @@ class Casa extends DisplayableComponent
 
     }
 
+    public function getCapacidad()
+    {
+        $c = 0;
+        $rooms = $this->getHabitaciones();
+        foreach ($rooms as $room) {
+            $c+=$room->getCapacidad();
+
+        }
+        return $c;
+    }
+
+    public function getPrecio(){
+        $c=0;
+        $rooms = $this->getHabitaciones();
+        foreach ($rooms as $room) {
+            $c+=$room->getPrecio();
+        }
+
+    }
+
     /**
      * @return mixed
      */
@@ -173,41 +185,6 @@ class Casa extends DisplayableComponent
     public function setActive($active)
     {
         $this->active = $active;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getValoracion()
-    {
-        return $this->valoracion;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getValoracionArray()
-    {
-        return $this->valoracionArray;
-    }
-
-    /**
-     * @param mixed $valoracionArray
-     */
-    public function setValoracionArray($valoracionArray)
-    {
-        $this->valoracionArray = $valoracionArray;
-    }
-
-    /**
-     * @param mixed $valoracion
-     */
-    public function setValoracion($valoracion)
-    {
-        $this->valoracion = $valoracion;
-        $this->valoracionArray[0] = (integer)($valoracion / 2);
-        $this->valoracionArray[1] = $valoracion % 2;
-        $this->valoracionArray[2] = 5 - $this->valoracionArray[0] - $this->valoracionArray[1];
     }
 
 

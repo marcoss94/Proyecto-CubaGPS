@@ -1,0 +1,823 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta':'Offer' }}{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}"/>
+     <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
+ {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+    <header class="bannerOferta">
+        <div class="bodyCarucel gallery-block grid-gallery">
+            <div class="containerCarucel">
+                <div class="carouselCarucel">
+                    <div class="itemCarucel a item">
+                        <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                            <img class="imgOfertaGaleria image scale-on-hover"
+                                 src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                        </a>
+                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/13-thumbnail grand.jpg') }}" alt="First slide">#}
+                    </div>
+                    <div class="itemCarucel b item">
+                        <a class="lightbox" href="{{ asset('build/img/portfolio/03-thumbnail.jpg') }}">
+                            <img class="imgOfertaGaleria image scale-on-hover"
+                                 src="{{ asset('build/img/portfolio/03-thumbnail.jpg') }}">
+                        </a>
+                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/12-thumbnail grand.jpg') }}"#}
+                        {#alt="First slide">#}
+                    </div>
+                    <div class="itemCarucel c item">
+                        <a class="lightbox" href="{{ asset('build/img/portfolio/04-thumbnail.jpg') }}">
+                            <img class="imgOfertaGaleria image scale-on-hover"
+                                 src="{{ asset('build/img/portfolio/04-thumbnail.jpg') }}">
+                        </a>
+                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/11-thumbnail grand.jpg') }}"#}
+                        {#alt="First slide">#}
+                    </div>
+                    <div class="itemCarucel d item">
+                        <a class="lightbox" href="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}">
+                            <img class="imgOfertaGaleria image scale-on-hover"
+                                 src="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}">
+                        </a>
+                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/02-thumbnail.jpg') }}"#}
+                        {#alt="First slide">#}
+                    </div>
+                    <div class="itemCarucel e item">
+                        <a class="lightbox" href="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}">
+                            <img class="imgOfertaGaleria image scale-on-hover"
+                                 src="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}">
+                        </a>
+                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}"#}
+                        {#alt="First slide">#}
+                    </div>
+                    <div class="itemCarucel f item">
+                        <a class="lightbox" href="{{ asset('build/img/portfolio/07-thumbnail.jpg') }}">
+                            <img class="imgOfertaGaleria image scale-on-hover"
+                                 src="{{ asset('build/img/portfolio/07-thumbnail.jpg') }}">
+                        </a>
+                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}"#}
+                        {#alt="First slide">#}
+                    </div>
+                </div>
+            </div>
+            <div class="nextCarucel"><i class="fas fa-arrow-circle-right fa-2x"></i></div>
+            <div class="prevCarucel"><i class="fas fa-arrow-circle-left fa-2x"></i></div>
+
+        </div>
+
+        {#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#}
+
+
+
+        {#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#}
+
+
+    </header>
+
+
+
+    <section class="bg-light" id="portfolio" style="padding: 44px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 portfolio-item">
+                    <div class=" infoOferta text-left">
+                        {#Nombre#}
+                        <h2 class="nombreO">{{ casa.nombre~' '~casa.municipio }}</h2>
+
+                        {#provincia#}
+                        <h4 class="section-subheading">{{ casa.provincia }}</h4>
+                        {#servicios principales #}
+                        <div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <div style="margin-right: 8px">
+                                            <span><i class="fas fa-users"></i></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="iconoServ">
+                                        <span>{{ casa.capacidad }}{{ app.session.get('language') == 'es'? ' personas ':' guests' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <div style="margin-right: 8px">
+                                            <span><i class="fas fa-door-open"></i></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="iconoServ">
+                                        <span>{{ casa.habitaciones|length }}{{ app.session.get('language') == 'es'? ' habitaciones ':' bedrooms' }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="separador"></div>
+                        {#Descripcion --------------------------------------------------------------------------------------#}
+                        {#descripcion#}
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? casa.descripcion:casa.description }}</p>
+
+
+                        <div class="separador"></div>
+
+                        {#servicios --------------------------------------------------------------------------------------#}
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Servicios':'Service' }}</h4>
+                        <div class="row">
+                            {% for service in casa.servicios %}
+                                <div class="col-6 col-md-4">
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <img src="{{ iconos[service][0] }}"/>
+                                                </div>
+                                            </div>
+                                            <div class="iconoServ">
+                                                <span>{{ app.session.get('language') == 'es'? iconos[service][1]:iconos[service][1] }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="section-subheading" style="margin-top: 24px">
+                            <a class=" nav-item nombreO" href="" data-toggle="modal"
+                               data-target="#servicehModal">
+                                <h6 class="">{{ app.session.get('language') == 'es'? 'Mostrar todos los servicios':'Show all services' }}</h6>
+                            </a>
+                            </a>
+                        </div>
+
+                        <div class="separador"></div>
+
+
+                        {#Habitaciones --------------------------------------------------------------------------------------#}
+
+
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Habitaciones':'Bedrooms' }}</h4>
+                        <div class="rooms">
+                            {% for i in casa.habitaciones %}
+                                <div class="row">
+                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div id="{{ 'carouselpaquete'~loop.index }}" class="carousel slide"
+                                                 data-ride="carousel "
+                                                 data-interval="false">
+                                                <div class="carousel-inner">
+                                                    {% for image in i.images %}
+                                                        <div {% if loop.index==1 %}class="carousel-item active"
+                                                             {% else %}class="carousel-item"{% endif %}>
+                                                            <img class="img-fluid fotosOferta"
+                                                                 src="{{ asset(image.half) }}"
+                                                                 alt="{{ image.altName }}">
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <a class="carousel-control-prev"
+                                                   href="{{ '#carouselpaquete'~loop.index }}"
+                                                   role="button"
+                                                   data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next"
+                                                   href="{{ '#carouselpaquete'~loop.index }}"
+                                                   role="button"
+                                                   data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class=" infoOferta text-left">
+                                            <a class="nav-item nombreO" href="">
+                                                <h4>{{ i.nombre }}{{ ' '~i.capacidad }}{{ app.session.get('language') == 'es'? ' personas ':' guests' }}</h4>
+                                            </a>
+                                            <p class="text-muted">{{ app.session.get('language') == 'es'?
+                                                i.descripcion : i.description }}</p>
+                                            {#servicios#}
+                                            <div>
+                                                {% if i.camasDobles %}
+                                                    <div class="serviciosOfertas" style="margin-right: 10px">
+                                                        <div class="iconogeneral">
+                                                            <div class="iconoServ">
+                                                                <div style="margin-right: 8px">
+                                                                    <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDM5MC41NTcgMzkwLjU1NyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzkwLjU1NyAzOTAuNTU3OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPHBhdGggZD0iTTM4OS43NzIsMjQ4LjI5NmwtNDIuOTkxLTY4LjA2M1Y1NS4wMjhsLTE3LjUtMTcuNUg2MS4yNzVsLTE3LjUsMTcuNXYxMjUuMjA0TDAuNzg0LDI0OC4yOTYgICBIMzg5Ljc3MnogTTMxMS43ODEsNzIuNTI4djg3LjM2MmMtMjIuNTUzLTUuODM0LTYxLjUxNC0xMy4wMjgtMTE2LjUwMy0xMy4wMjhzLTkzLjk1LDcuMTk0LTExNi41MDMsMTMuMDI4VjcyLjUyOEgzMTEuNzgxeiIgZmlsbD0iIzAwMDAwMCIvPgoJPHBvbHlnb24gcG9pbnRzPSIwLDI2OS44MzEgMCwzMDQuODMxIDQwLjc3OCwzMDQuODMxIDQwLjc3OCwzNTMuMDI4IDc1Ljc3OCwzNTMuMDI4IDc1Ljc3OCwzMDQuODMxICAgIDMxNC43NzgsMzA0LjgzMSAzMTQuNzc4LDM1My4wMjggMzQ5Ljc3OCwzNTMuMDI4IDM0OS43NzgsMzA0LjgzMSAzOTAuNTU3LDMwNC44MzEgMzkwLjU1NywyNjkuODMxICAiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0xODEuMDc1LDEyOC42NTN2LTIwLjM4OWMwLTEyLjEwMi0xNy41NjQtMjEuOTE2LTM5LjIzLTIxLjkxNnMtMzkuMjI5LDkuODE0LTM5LjIyOSwyMS45MTZ2MzAuNjA0ICAgYzAsMCwyMy4xNC01LjgyNiwzOS4wNDUtNy4zMzJDMTU1Ljk4LDEzMC4xNzksMTgxLjA3NSwxMjguNjUzLDE4MS4wNzUsMTI4LjY1M3oiIGZpbGw9IiMwMDAwMDAiLz4KCTxwYXRoIGQ9Ik0yODcuOTQxLDEzOC44Njh2LTMwLjYwNGMwLTEyLjEwMi0xNy41NjQtMjEuOTE2LTM5LjIzLTIxLjkxNnMtMzkuMjMsOS44MTQtMzkuMjMsMjEuOTE2djIwLjM4OSAgIGMwLDAsMjUuMDk2LDEuNTI1LDM5LjQxNSwyLjg4M0MyNjQuODAyLDEzMy4wNDIsMjg3Ljk0MSwxMzguODY4LDI4Ny45NDEsMTM4Ljg2OHoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="iconoServ">
+                                                                <span>{{ i.camasDobles }}{{ app.session.get('language') == 'es'? ' Cama doble':'Double bed' }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                                {% if i.camasSimples %}
+                                                    <div class="serviciosOfertas" style="margin-right: 10px">
+                                                        <div class="iconogeneral">
+                                                            <div class="iconoServ">
+                                                                <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQzNyA0MzciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQzNyA0Mzc7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cmVjdCB4PSIxNTAuNjY3IiB5PSIxNDEuODM0IiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMTc1LjgyIiB3aWR0aD0iNjMuOTkyIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMDAwMDAwIi8+Cgk8cG9seWdvbiBwb2ludHM9IjQwMiwxNzYuMzI2IDQwMiwyMzQuNjggMzUsMjM0LjY4IDM1LDExMC44MiAwLDExMC44MiAwLDMyNi4xOCAzNSwzMjYuMTggMzUsMjY5LjY4ICAgIDQwMiwyNjkuNjggNDAyLDMyNi4xOCA0MzcsMzI2LjE4IDQzNywyNTIuMTggNDM3LDIzNC42OCA0MzcsMTc2LjMyNiAgIiBmaWxsPSIjMDAwMDAwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="/>
+                                                            </div>
+                                                            <div class="iconoServ">
+                                                                <span>{{ ' '~i.camasSimples }}{{ app.session.get('language') == 'es'? ' Cama simple ':' Bed' }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                                {% if i.literas %}
+                                                    <div class="serviciosOfertas" style="margin-right: 10px">
+                                                        <div class="iconogeneral">
+                                                            <div class="iconoServ">
+                                                                <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQzNyA0MzciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQzNyA0Mzc7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cmVjdCB4PSIxNTAuNjY3IiB5PSIyMTkuMTc5IiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMjUzLjE2NiIgd2lkdGg9IjYzLjk5MiIgaGVpZ2h0PSIzNSIgZmlsbD0iIzAwMDAwMCIvPgoJPHJlY3QgeD0iMTUwLjY2NyIgeT0iNjcuMzMzIiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMTAxLjMxOSIgd2lkdGg9IjYzLjk5MiIgaGVpZ2h0PSIzNSIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTQwMiwxMDEuODI2djU4LjM1NEgzNVYzNi4zMjFIMHYxNDl2NjYuMzU4djE0OWgzNXYtNTYuNWgzNjd2NTYuNWgzNXYtNzR2LTE3LjV2LTEzMS41di0xNy41ICAgdi01OC4zNTRINDAyeiBNMzUsMzA5LjE3OXYtNTcuNXYtNTYuNWgzNjd2MTE0SDM1eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="/>
+                                                            </div>
+                                                            <div class="iconoServ">
+                                                                <span>{{ ' '~i.literas }}{{ app.session.get('language') == 'es'? ' Litera':' Bunk bed' }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                                {% for service in i.servicios %}
+                                                    <div class="serviciosOfertas" style="margin-right: 10px">
+                                                        <div class="iconogeneral">
+                                                            <div class="iconoServ">
+                                                                <div style="margin-right: 8px">
+                                                                    <img src="{{ iconos[service][0] }}"/>
+                                                                </div>
+                                                            </div>
+                                                            <div class="iconoServ">
+                                                                <span>{{ app.session.get('language') == 'es'? iconos[service][1]:iconos[service][2] }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                            <div class="section-subheading" style="margin-top: 24px">
+                                                <a class=" nav-item nombreO" href="" data-toggle="modal"
+                                                   data-target="#servicehModal">
+                                                    <h6 class="">{{ app.session.get('language') == 'es'? 'Mostrar todos los servicios':'Show all services' }}</h6>
+                                                </a>
+                                            </div>
+                                            <h6 class="text-muted">{{ i.precio~'€' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6>
+                                            {#</div>#}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="separador"></div>
+                            {% endfor %}
+                        </div>
+
+
+                        <div class="separador"></div>
+
+                        {#Habitaciones --------------------------------------------------------------------------------------#}
+
+
+                        {#Map no sirve quitar --------------------------------------------------------------------------------------#}
+
+
+                        {% if oferta == 'casa' %}
+                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Ubicación':'Location' }}</h4>
+
+                            <div class="row">
+                                <div class="col-12item">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.945332184053!2d-82.15209155659214!3d22.96122580129051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d29cf2999294b1%3A0x9ef5fea096791ac7!2sLa+4+Esquinas+Bar!5e0!3m2!1ses-419!2scu!4v1537897127429"
+                                            width="600" height="450" frameborder="0" style="border:0"
+                                            allowfullscreen></iframe>
+
+                                </div>
+                            </div>
+                            <div class="separador"></div>
+
+                        {% elseif oferta == 'escursiones' %}
+                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Reglamentos':'Regulations' }}</h4>
+
+                            <ul class="text-muted">
+                                <li>Reglamento 1</li>
+                                <li>Reglamento 2</li>
+                                <li>Reglamento 3</li>
+                                <li>Reglamento 4</li>
+                                <li>Reglamento 5</li>
+                                <li>Reglamento 6</li>
+                            </ul>
+
+                            <div class="separador"></div>
+
+                        {% elseif oferta == 'paquete' %}
+                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Actividades':'Activities' }}</h4>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia 1':'Day 1' }}</h4>
+                                    <ul class="timelineGPS">
+                                        <li>
+                                            <div class="timeline-imageGPS">
+                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                     src="{{ asset('build/img/excurciones/excurciones1.jpg') }}" alt="">
+                                            </div>
+                                            <div class="timeline-panelGPS">
+                                                <div class="timeline-headingGPS">
+                                                    <h4>2009-2011</h4>
+                                                    <h4 class="subheadingGPS">Our Humble Beginnings</h4>
+                                                </div>
+                                                <div class="timeline-bodyGPS">
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
+                                                        adipisicing elit.
+                                                        Sunt
+                                                        ut
+                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
+                                                        quibusdam,
+                                                        recusandae
+                                                        sit
+                                                        vero unde, sed, incidunt et ea quo dolore laudantium
+                                                        consectetur!</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-invertedGPS">
+                                            <div class="timeline-imageGPS">
+                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                     src="{{ asset('build/img/excurciones/excurciones2.jpg') }}" alt="">
+                                            </div>
+                                            <div class="timeline-panelGPS">
+                                                <div class="timeline-headingGPS">
+                                                    <h4>March 2011</h4>
+                                                    <h4 class="subheadingGPS">An Agency is Born</h4>
+                                                </div>
+                                                <div class="timeline-bodyGPS">
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
+                                                        adipisicing elit.
+                                                        Sunt
+                                                        ut
+                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
+                                                        quibusdam,
+                                                        recusandae
+                                                        sit
+                                                        vero unde, sed, incidunt et ea quo dolore laudantium
+                                                        consectetur!</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-imageGPS">
+                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                     src="{{ asset('build/img/excurciones/excurciones3.jpg') }}" alt="">
+                                            </div>
+                                            <div class="timeline-panelGPS">
+                                                <div class="timeline-headingGPS">
+                                                    <h4>December 2012</h4>
+                                                    <h4 class="subheadingGPS">Transition to Full Service</h4>
+                                                </div>
+                                                <div class="timeline-bodyGPS">
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
+                                                        adipisicing elit.
+                                                        Sunt
+                                                        ut
+                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
+                                                        quibusdam,
+                                                        recusandae
+                                                        sit
+                                                        vero unde, sed, incidunt et ea quo dolore laudantium
+                                                        consectetur!</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-invertedGPS">
+                                            <div class="timeline-imageGPS">
+                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                     src="{{ asset('build/img/excurciones/excurciones4.jpg') }}" alt="">
+                                            </div>
+                                            <div class="timeline-panelGPS">
+                                                <div class="timeline-headingGPS">
+                                                    <h4>July 2014</h4>
+                                                    <h4 class="subheadingGPS">Phase Two Expansion</h4>
+                                                </div>
+                                                <div class="timeline-bodyGPS">
+                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
+                                                        adipisicing elit.
+                                                        Sunt
+                                                        ut
+                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
+                                                        quibusdam,
+                                                        recusandae
+                                                        sit
+                                                        vero unde, sed, incidunt et ea quo dolore laudantium
+                                                        consectetur!</p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="timeline-invertedGPS">
+                                            <div class="timeline-imageGPS">
+                                                {#boton de ver mas#}
+
+                                                <a class="btn-primary masExcur">
+
+                                                    <h4>
+                                                        {{ app.session.get('language') == 'es'? 'Fin':'End' }}
+                                                        <div><i class="fas fa-hand-peace fa-2x"></i>
+                                                        </div>
+                                                    </h4>
+                                                </a>
+
+                                                {#boton de ver mas#}
+                                            </div>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                            <div class="separador"></div>
+                        {% else %}
+
+
+                        {% endif %}
+
+                        {#Map --------------------------------------------------------------------------------------#}
+
+
+                        {#Comentarios --------------------------------------------------------------------------------------#}
+
+
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Comentarios':'Comments' }}</h4>
+
+
+                        {#///////////////////////////comentarios./////////////////////////////////////////////#}
+                        <ul class="list-unstyled ">
+                            <li class="media">
+                                <a class="pr-3 " href="#">
+                                    <img class="mr-3 rounded-circle fotocomment"
+                                         src="{{ asset('build/img/default.jpg') }}"
+                                         alt="Generic placeholder image">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                    <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia
+                                        almenos 3
+                                        renglones. Lorem ipsum</p>
+
+
+                                </div>
+                            </li>
+                            <li class="media my-4">
+                                <a class="pr-3 " href="#">
+                                    <img class="mr-3 fotocomment rounded-circle"
+                                         src="{{ asset('build/img/default.jpg') }}"
+                                         alt="Generic placeholder image" alt="...">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">Probando</h5>
+                                    <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia
+                                        almenos 3
+                                    </p>
+
+
+                                    <div class="media mt-3">
+                                        <a class="pr-3 " href="#">
+                                            <img class="mr-3 fotocomment rounded-circle"
+                                                 src="{{ asset('build/img/default.jpg') }}"
+                                                 alt="Generic placeholder image">
+                                        </a>
+                                        <div class="media-body">
+                                            <h5 class="mt-0">Media heading</h5>
+                                            <p class="text-muted">Espacio para la descripcion de la oferta un poco
+                                                amplia almenos 3
+                                                renglones. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                Sunt ut voluptatum eius </p>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="media">
+                                <a class="pr-3 " href="#">
+                                    <img class="mr-3 fotocomment rounded-circle"
+                                         src="{{ asset('build/img/default.jpg') }}"
+                                         alt="Generic placeholder image">
+                                </a>
+                                <div class="media-body">
+                                    <h5 class="mt-0 mb-1">List-based media object</h5>
+                                    <p class="text-muted">Espacio para la descripcion de la oferta </p>
+
+
+                                </div>
+                            </li>
+                        </ul>
+
+
+                        <div class="form-group">
+                                <textarea class="form-control" id="message"
+                                          placeholder="{{ app.session.get('language') == 'es'? 'Tu mensaje ':'Your Message ' }}*"
+                                          required="required"
+                                          data-validation-required-message="Please enter a message."></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="col-lg-12 text-center">
+                            <div id="success"></div>
+                            <button id="sendMessageButton" class="btn btn-primary text-uppercase" type="submit">
+                                {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
+                            </button>
+                        </div>
+
+
+                        <div class="separador"></div>
+                        {#///////////////////////////comentarios./////////////////////////////////////////////#}
+
+
+
+
+                        {#Comentarios --------------------------------------------------------------------------------------#}
+
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-12 col-md-4 portfolio-item">
+                    <div class="container">
+                        <div class="modal-content">
+                            <form action="" method="post">
+                                <div class="modal-body">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-8">
+                                            <h6 class="text-muted">
+                                                56€ {{ app.session.get('language') == 'es'? 'por habitación':'per room' }}  </h6>
+                                            {#si tiene 3 estrellas de valoracion hay que hacer un for para que ponga tres fas(estrella rellena) y 2 far(estrella sin relleno)#}
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star star"></i>
+                                            <i class="fas fa-star-half-alt star"></i>
+                                            <i class="far fa-star star"></i>
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Adultos':'Adults' }}</label>
+                                            <select class="custom-select">
+                                                <option selected>0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label class="text-muted"
+                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Niños':'Number of children' }}</label>
+                                            <label class="text-muted"
+                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Hasta 12':'up to 12' }}</label>
+                                            <select class="custom-select">
+                                                <option selected>0</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group col-md-12">
+
+                                            <label class="text-muted"
+                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Habitaciones':'Number of Rooms' }}</label>
+                                            {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
+                                            <div class="form-group">
+                                                <select class="custom-select">
+                                                    <option selected>Todas</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                    <option value="6">6</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+
+                                            <label class="text-muted"
+                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</label>
+                                            {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
+                                            <div class="form-group">
+                                                <select class="custom-select">
+                                                    <option selected>Habitacion 1</option>
+                                                    <option value="1">Habitacion 2</option>
+                                                    <option value="2">Habitacion 3</option>
+                                                    <option value="3">Habitacion 4</option>
+                                                    <option value="4">1er Piso</option>
+                                                    <option value="5">Planta Alta</option>
+                                                    <option value="6">Azul</option>
+                                                    <option value="7">Verde</option>
+                                                    <option value="8">Suite presidencial</option>
+
+                                                </select>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label class="text-muted"
+                                                   for="inputEntrada">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</label>
+                                            <input type="date" class="form-control" id="inputEntrada">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label class="text-muted"
+                                                   for="inputSalida">{{ app.session.get('language') == 'es'? 'Salida':'Exit' }}</label>
+                                            <input type="date" class="form-control" id="inputSalida">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit"
+                                            class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </section>
+
+
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+    {{ parent() }}
+
+
+
+    {#Modal ver servicios------------------------------------------------------------------------------------------#}
+    <div class="portfolio-modal-sm modal fade" id="servicehModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"
+                        style="float: left">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</h4>
+                    <button type="button" class="close" style="float: right" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                </div>
+
+                {#..........................................................#}
+
+                <div class="modal-body">
+
+                    <div class="text-muted">
+                        Todos los servicios que puedas existir y se quieran poner
+                    </div>
+
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+
+                {#..................................................#}
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+
+    {#Galeria modal ---------------------------------------------------------------------------------------------------------#}
+
+
+
+
+
+    {#Galeria ---------------------------------------------------------------------------------------------------------#}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/js/popper.min.js') }}"></script>
+
+    <script src="{{ asset('build/js/baguetteBox.min.js') }}"></script>
+
+    <script>
+        baguetteBox.run('.grid-gallery', {animation: 'slideIn'});
+    </script>
+
+    {#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////#}
+    <script>
+        var carousel = $(".carouselCarucel"),
+            currdeg = 0;
+
+        $(".nextCarucel").on("click", {d: "n"}, rotate);
+        $(".prevCarucel").on("click", {d: "p"}, rotate);
+
+        function rotate(e) {
+            if (e.data.d == "n") {
+                currdeg = currdeg - 60;
+            }
+            if (e.data.d == "p") {
+                currdeg = currdeg + 60;
+            }
+            carousel.css({
+                "-webkit-transform": "rotateY(" + currdeg + "deg)",
+                "-moz-transform": "rotateY(" + currdeg + "deg)",
+                "-o-transform": "rotateY(" + currdeg + "deg)",
+                "transform": "rotateY(" + currdeg + "deg)"
+            });
+        }
+    </script>
+
+    {#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////#}
+
+
+
+{% endblock %}
+
+
+
+
