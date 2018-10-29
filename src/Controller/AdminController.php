@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Activity;
 use App\Entity\Carro;
 use App\Entity\Casa;
+use App\Entity\Contador;
 use App\Entity\Dia;
 use App\Entity\Excursion;
 use App\Entity\Habitacion;
@@ -18,6 +19,7 @@ use App\Form\RoomForm;
 use App\Repository\ActivityRepository;
 use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
+use App\Repository\ContadorRepository;
 use App\Repository\DiaRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\ExcursionRepository;
@@ -39,10 +41,12 @@ class AdminController extends Controller
     /**
      * @Route("/admin", name="admin")
      */
-    public function index()
+    public function index(ContadorRepository $contadorRepository)
     {
+        $contador=$contadorRepository->findAll();
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+            'contador'=>$contador[0],
         ]);
     }
 
@@ -51,7 +55,7 @@ class AdminController extends Controller
      */
     public function cars(Request $request, CarroRepository $carroRepository)
     {
-        $carros = $carroRepository->findBy([], ['updatedAt' => 'DESC'], null);
+        $carros = $carroRepository->find(1);
         $carro = new Carro();
         $form = $this->createForm(CarForm::class, $carro);
         $form->handleRequest($request);

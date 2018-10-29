@@ -64,6 +64,11 @@ abstract class DisplayableComponent
      */
     private $valoracionArray = [0 => 5, 1 => 0, 2 => 0];
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="component")
+     */
+    private $comentarios;
+
 
     /**
      * @return mixed
@@ -157,6 +162,7 @@ abstract class DisplayableComponent
     public function __construct()
     {
         $this->images =new ArrayCollection();
+        $this->comentarios = new ArrayCollection();
     }
 
     /**
@@ -203,5 +209,36 @@ abstract class DisplayableComponent
             if($img->getMain())return $img;
         }
         return $images[0];
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setComponent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->contains($comentario)) {
+            $this->comentarios->removeElement($comentario);
+            // set the owning side to null (unless already changed)
+            if ($comentario->getComponent() === $this) {
+                $comentario->setComponent(null);
+            }
+        }
+
+        return $this;
     }
 }

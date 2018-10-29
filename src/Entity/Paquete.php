@@ -110,6 +110,11 @@ class Paquete
     private $valoracionArray = [0 => 5, 1 => 0, 2 => 0];
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="paquete")
+     */
+    private $comentarios;
+
+    /**
      * @return mixed
      */
     public function getCreatedAt()
@@ -413,10 +418,42 @@ class Paquete
     public function __construct()
     {
         $this->dias = new ArrayCollection();
+        $this->comentarios = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setPaquete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->contains($comentario)) {
+            $this->comentarios->removeElement($comentario);
+            // set the owning side to null (unless already changed)
+            if ($comentario->getPaquete() === $this) {
+                $comentario->setPaquete(null);
+            }
+        }
+
+        return $this;
     }
 }

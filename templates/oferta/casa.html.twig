@@ -4,7 +4,7 @@
 
  {% block stylesheets %}
      {{ parent() }}
-     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}"/>
+     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}" xmlns="http://www.w3.org/1999/html"/>
      <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
  {% endblock %}
 
@@ -93,10 +93,10 @@
                 <div class="col-12 col-md-8 portfolio-item">
                     <div class=" infoOferta text-left">
                         {#Nombre#}
-                        <h2 class="nombreO">{{ casa.nombre~' '~casa.municipio }}</h2>
+                        <h2 class="nombreO">{{ object.nombre~' '~object.municipio }}</h2>
 
                         {#provincia#}
-                        <h4 class="section-subheading">{{ casa.provincia }}</h4>
+                        <h4 class="section-subheading">{{ object.provincia }}</h4>
                         {#servicios principales #}
                         <div>
                             <div class="serviciosOfertas" style="margin-right: 10px">
@@ -108,7 +108,7 @@
                                     </div>
 
                                     <div class="iconoServ">
-                                        <span>{{ casa.capacidad }}{{ app.session.get('language') == 'es'? ' personas ':' guests' }}</span>
+                                        <span>{{ object.capacidad }}{{ app.session.get('language') == 'es'? ' personas ':' guests' }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                                     </div>
 
                                     <div class="iconoServ">
-                                        <span>{{ casa.habitaciones|length }}{{ app.session.get('language') == 'es'? ' habitaciones ':' bedrooms' }}</span>
+                                        <span>{{ object.habitaciones|length }}{{ app.session.get('language') == 'es'? ' habitaciones ':' bedrooms' }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@
                         <div class="separador"></div>
                         {#Descripcion --------------------------------------------------------------------------------------#}
                         {#descripcion#}
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? casa.descripcion:casa.description }}</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? object.descripcion:object.description }}</p>
 
 
                         <div class="separador"></div>
@@ -137,7 +137,7 @@
                         {#servicios --------------------------------------------------------------------------------------#}
                         <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Servicios':'Service' }}</h4>
                         <div class="row">
-                            {% for service in casa.servicios %}
+                            {% for service in object.servicios %}
                                 <div class="col-6 col-md-4">
                                     <div class="" style="margin-right: 10px">
                                         <div class="iconogeneral">
@@ -147,7 +147,7 @@
                                                 </div>
                                             </div>
                                             <div class="iconoServ">
-                                                <span>{{ app.session.get('language') == 'es'? iconos[service][1]:iconos[service][1] }}</span>
+                                                <span>{{ app.session.get('language') == 'es'? iconos[service][1]:iconos[service][2] }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +171,7 @@
 
                         <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Habitaciones':'Bedrooms' }}</h4>
                         <div class="rooms">
-                            {% for i in casa.habitaciones %}
+                            {% for i in object.habitaciones %}
                                 <div class="row">
                                     <a class="portfolio-link" data-toggle="modal" href="#portfolioModal6">
                                         <div class="col-lg-6 col-md-6 col-sm-12">
@@ -207,11 +207,20 @@
                                     </a>
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class=" infoOferta text-left">
-                                            <a class="nav-item nombreO" href="">
-                                                <h4>{{ i.nombre }}{{ ' '~i.capacidad }}{{ app.session.get('language') == 'es'? ' personas ':' guests' }}</h4>
+                                            <a class="nav-item nombreO">
+                                                <h4>{{ i.nombre}}</h4>
                                             </a>
-                                            <p class="text-muted">{{ app.session.get('language') == 'es'?
-                                                i.descripcion : i.description }}</p>
+                                            <div class="iconogeneral">
+                                                <div class="iconoServ">
+                                                    <div style="margin-right: 8px">
+                                                        <span><i class="fas fa-users"></i></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="iconoServ">
+                                                    <span>{{ i.capacidad }}{{ app.session.get('language') == 'es'? ' personas ':' guests' }}</span>
+                                                </div>
+                                            </div>
                                             {#servicios#}
                                             <div>
                                                 {% if i.camasDobles %}
@@ -267,12 +276,6 @@
                                                     </div>
                                                 {% endfor %}
                                             </div>
-                                            <div class="section-subheading" style="margin-top: 24px">
-                                                <a class=" nav-item nombreO" href="" data-toggle="modal"
-                                                   data-target="#servicehModal">
-                                                    <h6 class="">{{ app.session.get('language') == 'es'? 'Mostrar todos los servicios':'Show all services' }}</h6>
-                                                </a>
-                                            </div>
                                             <h6 class="text-muted">{{ i.precio~'€' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6>
                                             {#</div>#}
                                         </div>
@@ -282,265 +285,65 @@
                             {% endfor %}
                         </div>
 
-
-                        <div class="separador"></div>
-
                         {#Habitaciones --------------------------------------------------------------------------------------#}
 
 
                         {#Map no sirve quitar --------------------------------------------------------------------------------------#}
 
 
-                        {% if oferta == 'casa' %}
-                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Ubicación':'Location' }}</h4>
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Ubicación':'Location' }}</h4>
 
-                            <div class="row">
-                                <div class="col-12item">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.945332184053!2d-82.15209155659214!3d22.96122580129051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d29cf2999294b1%3A0x9ef5fea096791ac7!2sLa+4+Esquinas+Bar!5e0!3m2!1ses-419!2scu!4v1537897127429"
-                                            width="600" height="450" frameborder="0" style="border:0"
-                                            allowfullscreen></iframe>
+                        <div class="row">
+                            <div class="col-12item">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2924.945332184053!2d-82.15209155659214!3d22.96122580129051!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d29cf2999294b1%3A0x9ef5fea096791ac7!2sLa+4+Esquinas+Bar!5e0!3m2!1ses-419!2scu!4v1537897127429"
+                                        width="600" height="450" frameborder="0" style="border:0"
+                                        allowfullscreen></iframe>
 
-                                </div>
                             </div>
-                            <div class="separador"></div>
-
-                        {% elseif oferta == 'escursiones' %}
-                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Reglamentos':'Regulations' }}</h4>
-
-                            <ul class="text-muted">
-                                <li>Reglamento 1</li>
-                                <li>Reglamento 2</li>
-                                <li>Reglamento 3</li>
-                                <li>Reglamento 4</li>
-                                <li>Reglamento 5</li>
-                                <li>Reglamento 6</li>
-                            </ul>
-
-                            <div class="separador"></div>
-
-                        {% elseif oferta == 'paquete' %}
-                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Actividades':'Activities' }}</h4>
-
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia 1':'Day 1' }}</h4>
-                                    <ul class="timelineGPS">
-                                        <li>
-                                            <div class="timeline-imageGPS">
-                                                <img class="rounded-circle fotoExcurc img-fluid"
-                                                     src="{{ asset('build/img/excurciones/excurciones1.jpg') }}" alt="">
-                                            </div>
-                                            <div class="timeline-panelGPS">
-                                                <div class="timeline-headingGPS">
-                                                    <h4>2009-2011</h4>
-                                                    <h4 class="subheadingGPS">Our Humble Beginnings</h4>
-                                                </div>
-                                                <div class="timeline-bodyGPS">
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit.
-                                                        Sunt
-                                                        ut
-                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
-                                                        quibusdam,
-                                                        recusandae
-                                                        sit
-                                                        vero unde, sed, incidunt et ea quo dolore laudantium
-                                                        consectetur!</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-invertedGPS">
-                                            <div class="timeline-imageGPS">
-                                                <img class="rounded-circle fotoExcurc img-fluid"
-                                                     src="{{ asset('build/img/excurciones/excurciones2.jpg') }}" alt="">
-                                            </div>
-                                            <div class="timeline-panelGPS">
-                                                <div class="timeline-headingGPS">
-                                                    <h4>March 2011</h4>
-                                                    <h4 class="subheadingGPS">An Agency is Born</h4>
-                                                </div>
-                                                <div class="timeline-bodyGPS">
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit.
-                                                        Sunt
-                                                        ut
-                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
-                                                        quibusdam,
-                                                        recusandae
-                                                        sit
-                                                        vero unde, sed, incidunt et ea quo dolore laudantium
-                                                        consectetur!</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="timeline-imageGPS">
-                                                <img class="rounded-circle fotoExcurc img-fluid"
-                                                     src="{{ asset('build/img/excurciones/excurciones3.jpg') }}" alt="">
-                                            </div>
-                                            <div class="timeline-panelGPS">
-                                                <div class="timeline-headingGPS">
-                                                    <h4>December 2012</h4>
-                                                    <h4 class="subheadingGPS">Transition to Full Service</h4>
-                                                </div>
-                                                <div class="timeline-bodyGPS">
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit.
-                                                        Sunt
-                                                        ut
-                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
-                                                        quibusdam,
-                                                        recusandae
-                                                        sit
-                                                        vero unde, sed, incidunt et ea quo dolore laudantium
-                                                        consectetur!</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-invertedGPS">
-                                            <div class="timeline-imageGPS">
-                                                <img class="rounded-circle fotoExcurc img-fluid"
-                                                     src="{{ asset('build/img/excurciones/excurciones4.jpg') }}" alt="">
-                                            </div>
-                                            <div class="timeline-panelGPS">
-                                                <div class="timeline-headingGPS">
-                                                    <h4>July 2014</h4>
-                                                    <h4 class="subheadingGPS">Phase Two Expansion</h4>
-                                                </div>
-                                                <div class="timeline-bodyGPS">
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit.
-                                                        Sunt
-                                                        ut
-                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
-                                                        quibusdam,
-                                                        recusandae
-                                                        sit
-                                                        vero unde, sed, incidunt et ea quo dolore laudantium
-                                                        consectetur!</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-invertedGPS">
-                                            <div class="timeline-imageGPS">
-                                                {#boton de ver mas#}
-
-                                                <a class="btn-primary masExcur">
-
-                                                    <h4>
-                                                        {{ app.session.get('language') == 'es'? 'Fin':'End' }}
-                                                        <div><i class="fas fa-hand-peace fa-2x"></i>
-                                                        </div>
-                                                    </h4>
-                                                </a>
-
-                                                {#boton de ver mas#}
-                                            </div>
-                                        </li>
-
-
-                                    </ul>
-                                </div>
-                            </div>
-
-
-                            <div class="separador"></div>
-                        {% else %}
-
-
-                        {% endif %}
-
-                        {#Map --------------------------------------------------------------------------------------#}
-
+                        </div>
+                        <div class="separador"></div>
 
                         {#Comentarios --------------------------------------------------------------------------------------#}
 
-
-                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Comentarios':'Comments' }}</h4>
-
-
-                        {#///////////////////////////comentarios./////////////////////////////////////////////#}
-                        <ul class="list-unstyled ">
-                            <li class="media">
-                                <a class="pr-3 " href="#">
-                                    <img class="mr-3 rounded-circle fotocomment"
-                                         src="{{ asset('build/img/default.jpg') }}"
-                                         alt="Generic placeholder image">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                    <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia
-                                        almenos 3
-                                        renglones. Lorem ipsum</p>
-
-
-                                </div>
-                            </li>
-                            <li class="media my-4">
-                                <a class="pr-3 " href="#">
-                                    <img class="mr-3 fotocomment rounded-circle"
-                                         src="{{ asset('build/img/default.jpg') }}"
-                                         alt="Generic placeholder image" alt="...">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-1">Probando</h5>
-                                    <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia
-                                        almenos 3
-                                    </p>
-
-
-                                    <div class="media mt-3">
+                        {% if object.comentarios|length %}
+                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Comentarios':'Comments' }}</h4>
+                            {#///////////////////////////comentarios./////////////////////////////////////////////#}
+                            <ul class="list-unstyled ">
+                                {% for c in object.comentarios if c.revisado %}
+                                    <li class="media">
                                         <a class="pr-3 " href="#">
-                                            <img class="mr-3 fotocomment rounded-circle"
-                                                 src="{{ asset('build/img/default.jpg') }}"
+                                            <img class="mr-3 rounded-circle fotocomment"
+                                                 src="{{ asset(c.autor.picture) }}"
                                                  alt="Generic placeholder image">
                                         </a>
                                         <div class="media-body">
-                                            <h5 class="mt-0">Media heading</h5>
-                                            <p class="text-muted">Espacio para la descripcion de la oferta un poco
-                                                amplia almenos 3
-                                                renglones. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                Sunt ut voluptatum eius </p>
-
-
+                                            <h5 class="mt-0 mb-1">{{ c.firstname~' '~c.lastname }}</h5>
+                                            <p class="text-muted">{{ c.text }}</p>
                                         </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="media">
-                                <a class="pr-3 " href="#">
-                                    <img class="mr-3 fotocomment rounded-circle"
-                                         src="{{ asset('build/img/default.jpg') }}"
-                                         alt="Generic placeholder image">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                    <p class="text-muted">Espacio para la descripcion de la oferta </p>
-
-
-                                </div>
-                            </li>
-                        </ul>
-
-
-                        <div class="form-group">
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if app.user %}
+                            <form action="{{ path('create_comment') }}">
+                                <div class="form-group">
+                                    <input type="hidden" name="targetId" value="{{ object.id }}">
+                                    <input type="hidden" name="type" value="component">
                                 <textarea class="form-control" id="message"
-                                          placeholder="{{ app.session.get('language') == 'es'? 'Tu mensaje ':'Your Message ' }}*"
-                                          required="required"
+                                          placeholder="{{ app.session.get('language') == 'es'? 'Tu Comentario ':'Your Comment ' }}*"
+                                          required="required" name="text"
                                           data-validation-required-message="Please enter a message."></textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
-                            <div id="success"></div>
-                            <button id="sendMessageButton" class="btn btn-primary text-uppercase" type="submit">
-                                {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
-                            </button>
-                        </div>
-
-
-                        <div class="separador"></div>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-lg-12 text-center">
+                                    <div id="success"></div>
+                                    <button id="sendMessageButton" class="btn btn-primary text-uppercase" type="submit">
+                                        {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
+                                    </button>
+                                </div>
+                            </form>
+                        {% endif %}
                         {#///////////////////////////comentarios./////////////////////////////////////////////#}
 
 

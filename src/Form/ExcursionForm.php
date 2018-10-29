@@ -86,6 +86,8 @@ class ExcursionForm extends AbstractType
             ->add('precio2', MoneyType::class, ['label' => 'Precio para dos personas'])
             ->add('precio3', MoneyType::class, ['label' => 'Precio para tres personas'])
             ->add('precio4', MoneyType::class, ['label' => 'Precio para cuatro o más personas'])
+            ->add('longitud',null, ['label' => 'Longitud'])
+            ->add('latitud',null, ['label' => 'Latitud'])
             ->add('active', ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'Si' => true,
                 'No' => false,

@@ -96,6 +96,16 @@ class Casa extends DisplayableComponent
     private $habitaciones;
 
     /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longitud;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latitud;
+
+    /**
      * @return mixed
      */
     public function getServicios()
@@ -129,7 +139,39 @@ class Casa extends DisplayableComponent
         foreach ($rooms as $room) {
             $c+=$room->getPrecio();
         }
+        return $c;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getLongitud()
+    {
+        return $this->longitud;
+    }
+
+    /**
+     * @param mixed $longitud
+     */
+    public function setLongitud($longitud)
+    {
+        $this->longitud = $longitud;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitud()
+    {
+        return $this->latitud;
+    }
+
+    /**
+     * @param mixed $latitud
+     */
+    public function setLatitud($latitud)
+    {
+        $this->latitud = $latitud;
     }
 
     /**

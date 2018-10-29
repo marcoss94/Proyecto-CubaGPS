@@ -29,7 +29,7 @@
                 <div class="intro-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</div>
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" style="background-color: #f9b501;
 border-color: #f9b501;"
-                   href="{{ path('oferta_casa') }}">{{ app.session.get('language') == 'es'? 'Saber más':'Know more' }}</a>
+                   href="#">{{ app.session.get('language') == 'es'? 'Saber más':'Know more' }}</a>
             </div>
         </div>
     </header>
@@ -55,7 +55,7 @@ border-color: #f9b501;"
                                 <div class="item">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                        <a class="portfolio-link" href="{{ path('oferta_casa',{'id':i.id}) }}">
+                                        <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':'casa'}) }}">
                                             <div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide"
                                                  data-ride="carousel "
                                                  data-interval="false">
@@ -84,7 +84,7 @@ border-color: #f9b501;"
                                             </div>
                                         </a>
                                         <div class=" infoOferta text-left">
-                                            <a class="nav-item nombreO" href="">
+                                            <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':'casa'}) }}">
                                                 <h4>{{ i.nombre }}</h4></a>
                                             <h4>{{ i.municipio~', '~i.provincia }}</h4></a>
                                             {% if i.valoracionArray[0]!=0 %}
@@ -101,9 +101,8 @@ border-color: #f9b501;"
                                                 {% endfor %}
                                             {% endif %}
                                             <div class="timeline-body">
-                                                <p class="text-muted">{{ i.municipio~', '~i.provincia }}</p>
                                                 <h6 class="text-muted">
-                                                    {{ i.precio~app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>
+                                                    {{ '€ '~i.precio }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +123,7 @@ border-color: #f9b501;"
 
                             <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                               href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1500)>':'Show all (1500)' }}</a>
+                               href="{{ path('lista',{'type':'casa'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1500)>':'Show all (1500)' }}</a>
 
                         </div>
                     </div>
@@ -225,7 +224,7 @@ border-color: #f9b501;"
                         {% for i in paquetes %}
                             <div class="item">
                                 <div class="col-xs-12 col-sm-12 col-lg-12">
-                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                                    <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':'paquete'}) }}">
                                         <div id="{{ 'carouselpaquete'~loop.index }}" class="carousel slide"
                                              data-ride="carousel "
                                              data-interval="false">
@@ -255,7 +254,7 @@ border-color: #f9b501;"
 
                                     </a>
                                     <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO" href="">
+                                        <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':'paquete'}) }}">
                                             <h4>{{ app.session.get('language') == 'es'?
                                                 i.nombre:
                                                 i.name }}</h4></a>
@@ -300,7 +299,7 @@ border-color: #f9b501;"
                                         </div>
                                         <div class="timeline-body">
                                             <h6 class="text-muted">
-                                                {{ i.precio1 }}  </h6>
+                                                {{ '€ '~i.precio1 }}</h6>
                                             <h6>
                                                 {{ app.session.get('language') == 'es'?
                                                 i.descripcion:
@@ -321,7 +320,7 @@ border-color: #f9b501;"
                     <div class="col-12 botonMas portfolio-item md-auto">
                         <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                           href="#services">{{ app.session.get('language') == 'es'? 'Mostrar todo (1000)>':'Show all (1000)' }}</a>
+                           href="{{ path('lista',{'type':'paquete'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1000)>':'Show all (1000)' }}</a>
                     </div>
                 </div>
             </div>
@@ -338,7 +337,7 @@ border-color: #f9b501;"
                             <div class="item">
                                 <div class="col-xs-12 col-sm-12 col-lg-12">
                                     {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                                    <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':'carro'}) }}">
                                         <div id="{{ 'carouselcarro'~loop.index }}" class="carousel slide"
                                              data-ride="carousel "
                                              data-interval="false">
@@ -368,7 +367,7 @@ border-color: #f9b501;"
 
                                     </a>
                                     <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO" href="">
+                                        <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':'carro'}) }}">
                                             <h4>{{ i.modelo }}</h4></a>
                                         <h4>{{ i.provincia }}</h4></a>
                                         {% if i.valoracionArray[0]!=0 %}
@@ -403,7 +402,7 @@ border-color: #f9b501;"
                     <div class="col-12 botonMas portfolio-item md-auto">
                         <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                           href="#services">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
+                           href="{{ path('lista',{'type':'carro'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
 
                     </div>
                 </div>
@@ -420,7 +419,7 @@ border-color: #f9b501;"
                             <div class="item">
                                 <div class="col-xs-12 col-sm-12 col-lg-12">
                                     {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                                    <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':'excursion'}) }}">
                                         <div id="{{ 'carouselexcursion'~loop.index }}" class="carousel slide"
                                              data-ride="carousel "
                                              data-interval="false">
@@ -452,7 +451,7 @@ border-color: #f9b501;"
 
                                     </a>
                                     <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO" href="">
+                                        <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':'excursion'}) }}">
                                             <h4>{{ i.nombre }}</h4></a>
                                         <h4>{{ i.provincia }}</h4></a>
                                         {% if i.valoracionArray[0]!=0 %}
@@ -470,7 +469,7 @@ border-color: #f9b501;"
                                         {% endif %}
                                         <div class="timeline-body">
                                             <h6 class="text-muted">
-                                                {{ i.precio1 }}  </h6>
+                                                {{ '€ '~i.precio1 }}  </h6>
                                             <p class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</p>
                                         </div>
                                     </div>
@@ -492,7 +491,7 @@ border-color: #f9b501;"
 
                         <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                           href="#services">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
+                           href="{{ path('lista',{'type':'excursion'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
 
                     </div>
                 </div>
