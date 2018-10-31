@@ -66,6 +66,7 @@ abstract class DisplayableComponent
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="component")
+     * @ORM\OrderBy({"publishedAt" = "DESC"})
      */
     private $comentarios;
 
@@ -212,7 +213,7 @@ abstract class DisplayableComponent
     }
 
     /**
-     * @return Collection|Comentario[]
+     * @return mixed
      */
     public function getComentarios(): Collection
     {

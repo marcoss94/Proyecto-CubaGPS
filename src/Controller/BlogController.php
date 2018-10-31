@@ -17,6 +17,7 @@ use App\Events;
 use App\Form\CommentType;
 use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
+use App\Repository\ComentarioRepository;
 use App\Repository\ExcursionRepository;
 use App\Repository\PaqueteRepository;
 use App\Repository\PostRepository;
@@ -54,10 +55,20 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(Request $request,CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository,PaqueteRepository $paqueteRepository)
+    public function index(Request $request,CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository,PaqueteRepository $paqueteRepository,ComentarioRepository $comentarioRepository)
     {
-        if ($this->get('session')->get('language') != 'en') {
-            $this->get('session')->set('language', 'es');
+        $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+        switch ($lang){
+            case "es":
+                $this->get('session')->set('language', 'es');
+                break;
+            case "en":
+                ($this->get('session')->get('language') != 'en');
+                break;
+            default:
+                //echo "PAGE EN - Configuración por defecto";
+                ($this->get('session')->get('language') != 'en');
+                break;
         }
         $carros = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
         $casas = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
@@ -66,6 +77,7 @@ class BlogController extends AbstractController
         if($request->get('redirectId')){
             $this->get('session')->set('redirectedBy',$request->get('redirectId'));
         }
+        $comments=$comentarioRepository->findBy(['type'=>'sitio','revisado'=>true],['publishedAt'=>'DESC'],6);
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
@@ -75,6 +87,7 @@ class BlogController extends AbstractController
             'casas' => $casas,
             'excursiones' => $excursiones,
             'paquetes'=>$paquetes,
+            'comments'=>$comments
         ]);
     }
 

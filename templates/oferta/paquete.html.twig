@@ -312,90 +312,44 @@
                         {#Comentarios --------------------------------------------------------------------------------------#}
 
 
-                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Comentarios':'Comments' }}</h4>
-
-
-                        {#///////////////////////////comentarios./////////////////////////////////////////////#}
-                        <ul class="list-unstyled ">
-                            <li class="media">
-                                <a class="pr-3 " href="#">
-                                    <img class="mr-3 rounded-circle fotocomment"
-                                         src="{{ asset('build/img/default.jpg') }}"
-                                         alt="Generic placeholder image">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                    <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia
-                                        almenos 3
-                                        renglones. Lorem ipsum</p>
-
-
-                                </div>
-                            </li>
-                            <li class="media my-4">
-                                <a class="pr-3 " href="#">
-                                    <img class="mr-3 fotocomment rounded-circle"
-                                         src="{{ asset('build/img/default.jpg') }}"
-                                         alt="Generic placeholder image" alt="...">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-1">Probando</h5>
-                                    <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia
-                                        almenos 3
-                                    </p>
-
-
-                                    <div class="media mt-3">
+                        {% if object.comentarios|length %}
+                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Comentarios':'Comments' }}</h4>
+                            {#///////////////////////////comentarios./////////////////////////////////////////////#}
+                            <ul class="list-unstyled ">
+                                {% for c in object.comentarios if c.revisado %}
+                                    <li class="media">
                                         <a class="pr-3 " href="#">
-                                            <img class="mr-3 fotocomment rounded-circle"
-                                                 src="{{ asset('build/img/default.jpg') }}"
-                                                 alt="Generic placeholder image">
+                                            <img class="mr-3 rounded-circle fotocomment"
+                                                 src="{{ asset(c.autor.picture) }}"
+                                                 alt="profile picture">
                                         </a>
                                         <div class="media-body">
-                                            <h5 class="mt-0">Media heading</h5>
-                                            <p class="text-muted">Espacio para la descripcion de la oferta un poco
-                                                amplia almenos 3
-                                                renglones. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                Sunt ut voluptatum eius </p>
-
-
+                                            <h5 class="mt-0 mb-1">{{ c.autor }}</h5>
+                                            <p class="text-muted">{{ c.text }}</p>
                                         </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="media">
-                                <a class="pr-3 " href="#">
-                                    <img class="mr-3 fotocomment rounded-circle"
-                                         src="{{ asset('build/img/default.jpg') }}"
-                                         alt="Generic placeholder image">
-                                </a>
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-1">List-based media object</h5>
-                                    <p class="text-muted">Espacio para la descripcion de la oferta </p>
-
-
-                                </div>
-                            </li>
-                        </ul>
-
-
-                        <div class="form-group">
-                                <textarea class="form-control" id="message"
-                                          placeholder="{{ app.session.get('language') == 'es'? 'Tu mensaje ':'Your Message ' }}*"
-                                          required="required"
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if app.user %}
+                            <div class="form-group">
+                                <input type="hidden" id="objectId" name="targetId" value="{{ object.id }}">
+                                <input type="hidden" id="objectType" name="type" value="paquete">
+                                <input type="hidden" id="userId" name="user" value="{{ app.user.id }}">
+                                <textarea class="form-control" id="commentArea"
+                                          placeholder="{{ app.session.get('language') == 'es'? 'Tu Comentario ':'Your Comment ' }}*"
+                                          required="required" name="text"
                                           data-validation-required-message="Please enter a message."></textarea>
-                            <p class="help-block text-danger"></p>
-                        </div>
-
-                        <div class="clearfix"></div>
-                        <div class="col-lg-12 text-center">
-                            <div id="success"></div>
-                            <button id="sendMessageButton" class="btn btn-primary text-uppercase" type="submit">
-                                {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
-                            </button>
-                        </div>
-
-
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button id="createCommentButton" class="btn btn-primary text-uppercase" type="button">
+                                    {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
+                                </button>
+                            </div>
+                        {% endif %}
                         <div class="separador"></div>
                         {#///////////////////////////comentarios./////////////////////////////////////////////#}
 
@@ -666,6 +620,30 @@
                 "transform": "rotateY(" + currdeg + "deg)"
             });
         }
+        $('#createCommentButton').click(function () {
+            var objectId= $('#objectId').val();
+            var objectType= $('#objectType').val();
+            var comment= $('#commentArea').val();
+            var userId= $('#userId').val();
+            if(comment == ''){
+                alert('debe escribir un comentario');
+            }else{
+                var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('ajax_create_comment') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
+                    data: data,
+                    success: function (response) {
+                        if (response.result) {
+                            alert('Su comentario ha sido recivido correctamente');
+                            $('#commentArea').val('');
+                        }
+                    }
+                })
+                ;
+            }
+
+        })
     </script>
 
 

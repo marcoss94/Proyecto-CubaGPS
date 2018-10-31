@@ -456,4 +456,9 @@ class Paquete
 
         return $this;
     }
+
+    function __toString()
+    {
+        return $this->nombre;
+    }
 }

@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ComentarioRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Comentario
 {
@@ -53,6 +54,26 @@ class Comentario
      * @ORM\Column(type="integer")
      */
     private $valoracion=0;
+
+    /**
+     *
+     * @ORM\Column(type="datetime")
+     *
+     */
+    private $publishedAt;
+
+    public function getPublishedAt()
+    {
+        return $this->publishedAt;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setPublishedAt()
+    {
+        $this->publishedAt = new \DateTime();
+    }
 
 
     public function getTarget(){

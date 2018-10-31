@@ -15,6 +15,7 @@ use App\Entity\Comentario;
 use App\Entity\Contacto;
 use App\Entity\DisplayableComponent;
 use App\Entity\User;
+use App\Repository\ComentarioRepository;
 use App\Repository\ContactoRepository;
 use App\Repository\ContadorRepository;
 use App\Repository\DisplayableComponentRepository;
@@ -65,9 +66,9 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/create_comment", name="create_comment")
+     * @Route("/ajax_create_comment", name="ajax_create_comment")
      */
-    public function create_comment(Request $request, DisplayableComponentRepository $componentRepository, PaqueteRepository $paqueteRepository)
+    public function create_comment(Request $request, DisplayableComponentRepository $componentRepository, PaqueteRepository $paqueteRepository, UserRepository $userRepository, ContadorRepository $contadorRepository)
     {
         $em = $this->getDoctrine()->getManager();
         $comment = new Comentario();
@@ -79,8 +80,12 @@ class UserController extends AbstractController
         }
         $comment->setType($type);
         $comment->setText($request->get('text'));
-        $comment->setAutor($this->getUser());
+        $autor = $userRepository->find($request->get('userId'));
+        $comment->setAutor($autor);
         $em->persist($comment);
+        $contador = $contadorRepository->find(1);
+        $contador->setNewComments($contador->getNewComments() + 1);
+        $em->persist($contador);
         $em->flush();
         $response = new JsonResponse();
         $response->setData(['result' => true]);
@@ -88,7 +93,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/admin/ajax_contact", name="ajax_contact")
+     * @Route("/ajax_contact", name="ajax_contact")
      */
     public function ajax_contact(Request $request, ContadorRepository $contadorRepository)
     {
@@ -112,32 +117,78 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/view_contacts", name="view_contacts")
      */
-    public function view_contacts(ContactoRepository $contactoRepository,ContadorRepository $contadorRepository)
+    public function view_contacts(ContactoRepository $contactoRepository, ContadorRepository $contadorRepository)
     {
         $em = $this->getDoctrine()->getManager();
-        $contador=$contadorRepository->find(1);
-        $count=$contador->getNewMessages();
+        $contador = $contadorRepository->find(1);
+        $count = $contador->getNewMessages();
         $contador->setNewMessages(0);
         $em->persist($contador);
         $em->flush();
-        $contactos = $contactoRepository->findBy(array(),['createdAt' => 'DESC']);
+        $contactos = $contactoRepository->findBy(array(), ['createdAt' => 'DESC']);
         return $this->render('admin/contactos.html.twig', [
             'contactos' => $contactos,
-            'count'=>$count,
+            'count' => $count,
         ]);
     }
 
     /**
      * @Route("/admin/delete_contact", name="delete_contact")
      */
-    public function delete_contact(Request $request,ContactoRepository $contactoRepository)
+    public function delete_contact(Request $request, ContactoRepository $contactoRepository)
     {
-        $contacto=$contactoRepository->find($request->get('id'));
+        $contacto = $contactoRepository->find($request->get('id'));
         $em = $this->getDoctrine()->getManager();
         $em->remove($contacto);
         $em->flush();
         return $this->redirectToRoute('view_contacts');
     }
+
+    /**
+     * @Route("/admin/view_comments", name="view_comments")
+     */
+    public function view_comments(Request $request, ComentarioRepository $comentarioRepository, ContadorRepository $contadorRepository)
+    {
+        $comentarios = $comentarioRepository->findBy(array(),['publishedAt'=>'DESC']);
+        $contador = $contadorRepository->find(1);
+        $count = $contador->getNewComments();
+        $contador->setNewComments(0);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($contador);
+        $em->flush();
+        return $this->render('admin/comments.html.twig',[
+            'comments'=>$comentarios,
+            'count'=>$count,
+        ]);
+    }
+
+    /**
+     * @Route("/admin/delete_comment", name="delete_comment")
+     */
+    public function delete_comment(Request $request, ComentarioRepository $comentarioRepository)
+    {
+        $comment = $comentarioRepository->find($request->get('id'));
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($comment);
+        $em->flush();
+        return $this->redirectToRoute('view_comments');
+    }
+
+    /**
+     * @Route("/admin/aprove_comment", name="aprove_comment")
+     */
+    public function aprove_comment(Request $request, ComentarioRepository $comentarioRepository)
+    {
+        $comment = $comentarioRepository->find($request->get('id'));
+        $em = $this->getDoctrine()->getManager();
+        $comment->setRevisado(!$comment->getRevisado());
+        $em->persist($comment);
+        $em->flush();
+        return $this->redirectToRoute('view_comments');
+    }
+
+
+
 
 
 }

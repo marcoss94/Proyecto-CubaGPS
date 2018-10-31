@@ -375,7 +375,7 @@ class Casa extends DisplayableComponent
 
     public function __toString()
     {
-        return $this->getDireccion() . ' ' . $this->getMunicipio();
+        return (string)$this->nombre;
     }
 
     /**
