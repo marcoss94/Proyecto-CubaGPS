@@ -78,11 +78,6 @@ class Carro extends DisplayableComponent
     private $active = true;
 
 
-
-
-
-
-
     /**
      * @return mixed
      */

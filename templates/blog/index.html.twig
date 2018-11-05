@@ -29,7 +29,7 @@
                 <div class="intro-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</div>
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" style="background-color: #f9b501;
 border-color: #f9b501;"
-                   href="{{ path('oferta_casa') }}">{{ app.session.get('language') == 'es'? 'Saber más':'Know more' }}</a>
+                   href="#">{{ app.session.get('language') == 'es'? 'Saber más':'Know more' }}</a>
             </div>
         </div>
     </header>
@@ -55,7 +55,7 @@ border-color: #f9b501;"
                                 <div class="item">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                        <a class="portfolio-link" href="{{ path('oferta_casa',{'id':i.id}) }}">
+                                        <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':'casa'}) }}">
                                             <div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide"
                                                  data-ride="carousel "
                                                  data-interval="false">
@@ -84,7 +84,8 @@ border-color: #f9b501;"
                                             </div>
                                         </a>
                                         <div class=" infoOferta text-left">
-                                            <a class="nav-item nombreO" href="">
+                                            <a class="nav-item nombreO"
+                                               href="{{ path('oferta',{'id':i.id,'type':'casa'}) }}">
                                                 <h4>{{ i.nombre }}</h4></a>
                                             <h4>{{ i.municipio~', '~i.provincia }}</h4></a>
                                             {% if i.valoracionArray[0]!=0 %}
@@ -101,9 +102,8 @@ border-color: #f9b501;"
                                                 {% endfor %}
                                             {% endif %}
                                             <div class="timeline-body">
-                                                <p class="text-muted">{{ i.municipio~', '~i.provincia }}</p>
                                                 <h6 class="text-muted">
-                                                    {{ i.precio~app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>
+                                                    {{ '€ '~i.precio }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>
                                             </div>
                                         </div>
                                     </div>
@@ -124,7 +124,7 @@ border-color: #f9b501;"
 
                             <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                               href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1500)>':'Show all (1500)' }}</a>
+                               href="{{ path('lista',{'type':'casa'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1500)>':'Show all (1500)' }}</a>
 
                         </div>
                     </div>
@@ -225,7 +225,7 @@ border-color: #f9b501;"
                         {% for i in paquetes %}
                             <div class="item">
                                 <div class="col-xs-12 col-sm-12 col-lg-12">
-                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                                    <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':'paquete'}) }}">
                                         <div id="{{ 'carouselpaquete'~loop.index }}" class="carousel slide"
                                              data-ride="carousel "
                                              data-interval="false">
@@ -255,7 +255,8 @@ border-color: #f9b501;"
 
                                     </a>
                                     <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO" href="">
+                                        <a class="nav-item nombreO"
+                                           href="{{ path('oferta',{'id':i.id,'type':'paquete'}) }}">
                                             <h4>{{ app.session.get('language') == 'es'?
                                                 i.nombre:
                                                 i.name }}</h4></a>
@@ -300,7 +301,7 @@ border-color: #f9b501;"
                                         </div>
                                         <div class="timeline-body">
                                             <h6 class="text-muted">
-                                                {{ i.precio1 }}  </h6>
+                                                {{ '€ '~i.precio1 }}</h6>
                                             <h6>
                                                 {{ app.session.get('language') == 'es'?
                                                 i.descripcion:
@@ -321,7 +322,7 @@ border-color: #f9b501;"
                     <div class="col-12 botonMas portfolio-item md-auto">
                         <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                           href="#services">{{ app.session.get('language') == 'es'? 'Mostrar todo (1000)>':'Show all (1000)' }}</a>
+                           href="{{ path('lista',{'type':'paquete'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1000)>':'Show all (1000)' }}</a>
                     </div>
                 </div>
             </div>
@@ -338,7 +339,7 @@ border-color: #f9b501;"
                             <div class="item">
                                 <div class="col-xs-12 col-sm-12 col-lg-12">
                                     {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                                    <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':'carro'}) }}">
                                         <div id="{{ 'carouselcarro'~loop.index }}" class="carousel slide"
                                              data-ride="carousel "
                                              data-interval="false">
@@ -368,7 +369,8 @@ border-color: #f9b501;"
 
                                     </a>
                                     <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO" href="">
+                                        <a class="nav-item nombreO"
+                                           href="{{ path('oferta',{'id':i.id,'type':'carro'}) }}">
                                             <h4>{{ i.modelo }}</h4></a>
                                         <h4>{{ i.provincia }}</h4></a>
                                         {% if i.valoracionArray[0]!=0 %}
@@ -403,7 +405,7 @@ border-color: #f9b501;"
                     <div class="col-12 botonMas portfolio-item md-auto">
                         <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                           href="#services">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
+                           href="{{ path('lista',{'type':'carro'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
 
                     </div>
                 </div>
@@ -420,7 +422,8 @@ border-color: #f9b501;"
                             <div class="item">
                                 <div class="col-xs-12 col-sm-12 col-lg-12">
                                     {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                    <a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">
+                                    <a class="portfolio-link"
+                                       href="{{ path('oferta',{'id':i.id,'type':'excursion'}) }}">
                                         <div id="{{ 'carouselexcursion'~loop.index }}" class="carousel slide"
                                              data-ride="carousel "
                                              data-interval="false">
@@ -452,7 +455,8 @@ border-color: #f9b501;"
 
                                     </a>
                                     <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO" href="">
+                                        <a class="nav-item nombreO"
+                                           href="{{ path('oferta',{'id':i.id,'type':'excursion'}) }}">
                                             <h4>{{ i.nombre }}</h4></a>
                                         <h4>{{ i.provincia }}</h4></a>
                                         {% if i.valoracionArray[0]!=0 %}
@@ -470,7 +474,7 @@ border-color: #f9b501;"
                                         {% endif %}
                                         <div class="timeline-body">
                                             <h6 class="text-muted">
-                                                {{ i.precio1 }}  </h6>
+                                                {{ '€ '~i.precio1 }}  </h6>
                                             <p class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</p>
                                         </div>
                                     </div>
@@ -492,7 +496,7 @@ border-color: #f9b501;"
 
                         <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                           href="#services">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
+                           href="{{ path('lista',{'type':'excursion'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
 
                     </div>
                 </div>
@@ -722,85 +726,48 @@ border-color: #f9b501;"
             {#</div>#}
             {#</div>#}
             {#///////////////////////////comentarios./////////////////////////////////////////////#}
-            <ul class="list-unstyled ">
-                <li class="media">
-                    <a class="pr-3 " href="#">
-                        <img class="mr-3 rounded-circle fotocomment" src="{{ asset('build/img/default.jpg') }}"
-                             alt="Generic placeholder image">
-                    </a>
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                        Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                        nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </li>
-                <li class="media my-4">
-                    <a class="pr-3 " href="#">
-                        <img class="mr-3 fotocomment rounded-circle" src="{{ asset('build/img/default.jpg') }}"
-                             alt="Generic placeholder image" alt="...">
-                    </a>
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">Probando</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                        Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                        nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
+            {#Comentarios --------------------------------------------------------------------------------------#}
 
-                        <div class="media mt-3">
+            {% if comments|length %}
+                <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Comentarios':'Comments' }}</h4>
+                {#///////////////////////////comentarios./////////////////////////////////////////////#}
+                <ul class="list-unstyled ">
+                    {% for c in comments if c.revisado %}
+                        <li class="media">
                             <a class="pr-3 " href="#">
-                                <img class="mr-3 fotocomment rounded-circle"
-                                     src="{{ asset('build/img/default.jpg') }}"
-                                     alt="Generic placeholder image">
+                                <img class="mr-3 rounded-circle fotocomment"
+                                     src="{{ asset(c.autor.picture) }}"
+                                     alt="profile picture">
                             </a>
                             <div class="media-body">
-                                <h5 class="mt-0">Media heading</h5>
-                                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante
-                                sollicitudin.
-                                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce
-                                condimentum
-                                nunc
-                                ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                                <h5 class="mt-0 mb-1">{{ c.autor }}</h5>
+                                <p class="text-muted">{{ c.text }}</p>
                             </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="media">
-                    <a class="pr-3 " href="#">
-                        <img class="mr-3 fotocomment rounded-circle" src="{{ asset('build/img/default.jpg') }}"
-                             alt="Generic placeholder image">
-                    </a>
-                    <div class="media-body">
-                        <h5 class="mt-0 mb-1">List-based media object</h5>
-                        Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                        Cras
-                        purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac
-                        nisi
-                        vulputate fringilla. Donec lacinia congue felis in faucibus.
-                    </div>
-                </li>
-            </ul>
-
-
-            <div class="form-group">
-                                <textarea class="form-control" id="message"
-                                          placeholder="{{ app.session.get('language') == 'es'? 'Tu mensaje ':'Your Message ' }}*"
-                                          required="required"
-                                          data-validation-required-message="Please enter a message."></textarea>
-                <p class="help-block text-danger"></p>
-            </div>
-
-            <div class="clearfix"></div>
-            <div class="col-lg-12 text-center">
-                <div id="success"></div>
-                <button id="sendMessageButton" class="btn btn-primary text-uppercase" type="submit">
-                    {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
-                </button>
-            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if app.user %}
+                <div class="form-group">
+                    <input type="hidden" id="objectId" name="targetId" value="none">
+                    <input type="hidden" id="objectType" name="type" value="sitio">
+                    <input type="hidden" id="userId" name="user" value="{{ app.user.id }}">
+                    <textarea class="form-control" id="commentArea"
+                              placeholder="{{ app.session.get('language') == 'es'? 'Tu Comentario ':'Your Comment ' }}*"
+                              required="required" name="text"
+                              data-validation-required-message="Please enter a message."></textarea>
+                    <p class="help-block text-danger"></p>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-lg-12 text-center">
+                    <div id="success"></div>
+                    <button id="createCommentButton" class="btn btn-primary text-uppercase" type="button">
+                        {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
+                    </button>
+                </div>
+            {% endif %}
             {#///////////////////////////comentarios./////////////////////////////////////////////#}
+
 
         </div>
     </section>
@@ -1279,7 +1246,32 @@ border-color: #f9b501;"
 
         {% block javascripts %}
             {{ parent() }}
+            <script type="text/javascript">
+                $('#createCommentButton').click(function () {
+                    var objectId = $('#objectId').val();
+                    var objectType = $('#objectType').val();
+                    var comment = $('#commentArea').val();
+                    var userId = $('#userId').val();
+                    if (comment == '') {
+                        alert('debe escribir un comentario');
+                    } else {
+                        var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
+                        $.ajax({
+                            type: "POST",
+                            url: "{{ path('ajax_create_comment') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
+                            data: data,
+                            success: function (response) {
+                                if (response.result) {
+                                    alert('Su comentario ha sido recivido correctamente');
+                                    $('#commentArea').val('');
+                                }
+                            }
+                        })
+                        ;
+                    }
 
+                })
+            </script>
             <script src="{{ asset('build/js/resCarousel.js') }}"></script>
 
             <script>

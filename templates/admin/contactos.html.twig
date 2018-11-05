@@ -1,0 +1,98 @@
+{% extends 'backendBase.html.twig' %}
+
+
+{% block title %}Administración | Carros{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item active">Contactos</li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-car"></i>
+                    Contáctos
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Mensaje</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Teléfono</th>
+                        <th scope="col">Mensaje</th>
+                        <th scope="col">Eliminar</th>
+                    </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for c in contactos %}
+                        <tr {% if loop.index <= count %} class="table-success" {% endif %}>
+                            <td>{{ c.createdAt|date }}</td>
+                            <td>{{ c.nombre }}</td>
+                            <td>{{ c.email }}</td>
+                            <td>{{ c.tel }}</td>
+                            <td>{{ c.texto }}</td>
+                            <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_contact',{'id':c.id}) }}"><i
+                                            class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
+                                            class="caret"></span></a></td>
+                        </tr>
+                    {% else %}
+                        <th colspan="5">No hay información de contactos</th>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-car"></i>
+                    Contactos
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+{% endblock %}

@@ -94,6 +94,16 @@ class Excursion extends DisplayableComponent
      */
     private $precio4;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $longitud;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $latitud;
+
 
     public function getProvincia(): ?string
     {
@@ -118,6 +128,38 @@ class Excursion extends DisplayableComponent
     public function getActive()
     {
         return $this->active;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLongitud()
+    {
+        return $this->longitud;
+    }
+
+    /**
+     * @param mixed $longitud
+     */
+    public function setLongitud($longitud)
+    {
+        $this->longitud = $longitud;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLatitud()
+    {
+        return $this->latitud;
+    }
+
+    /**
+     * @param mixed $latitud
+     */
+    public function setLatitud($latitud)
+    {
+        $this->latitud = $latitud;
     }
 
     /**

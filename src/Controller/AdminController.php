@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Activity;
 use App\Entity\Carro;
 use App\Entity\Casa;
+use App\Entity\Contador;
 use App\Entity\Dia;
 use App\Entity\Excursion;
 use App\Entity\Habitacion;
@@ -18,6 +19,7 @@ use App\Form\RoomForm;
 use App\Repository\ActivityRepository;
 use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
+use App\Repository\ContadorRepository;
 use App\Repository\DiaRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\ExcursionRepository;
@@ -39,10 +41,12 @@ class AdminController extends Controller
     /**
      * @Route("/admin", name="admin")
      */
-    public function index()
+    public function index(ContadorRepository $contadorRepository)
     {
+        $contador = $contadorRepository->find(1);
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
+            'contador' => $contador,
         ]);
     }
 
@@ -51,7 +55,7 @@ class AdminController extends Controller
      */
     public function cars(Request $request, CarroRepository $carroRepository)
     {
-        $carros = $carroRepository->findBy([], ['updatedAt' => 'DESC'], null);
+        $carros = $carroRepository->find(1);
         $carro = new Carro();
         $form = $this->createForm(CarForm::class, $carro);
         $form->handleRequest($request);
@@ -212,42 +216,45 @@ class AdminController extends Controller
         }
         $image = new Image();
         $form = $this->createFormBuilder($image)
-            ->add('full', FileType::class, array('label' => 'Imagen'))
+            ->add('full', FileType::class, array('label' => 'Imagen', 'multiple' => true))
             ->add('save', SubmitType::class, array('label' => 'Guardar'))
             ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $image->getFull();
-            $fileName = $fileUploader->upload($file);
-            $image->setFull('uploads/images/' . $fileName);
-            $image->setDisplayableComponent($owner);
-            $this->createThumb($image->getFull(), $fileName);
-            $imageThumb = $this->resize_image($image->getFull(), 100, 100, false);
-            $imageLow = $this->resize_image($image->getFull(), 350, 350, false);
-            $image->setMin('uploads/thumb/' . $fileName);
-            $image->setHalf('uploads/low/' . $fileName);
-            $image->setAltName($owner);
-            $exploding = explode(".", $image->getFull());
-            $ext = end($exploding);
-            switch ($ext) {
-                case "png":
-                    imagepng($imageThumb, 'uploads/thumb/' . $fileName);
-                    imagepng($imageLow, 'uploads/low/' . $fileName);
-                    break;
-                case "jpeg":
-                    imagejpeg($imageThumb, 'uploads/thumb/' . $fileName);
-                    imagejpeg($imageLow, 'uploads/low/' . $fileName);
-                    break;
-                case "jpg":
-                    imagejpg($imageThumb, 'uploads/thumb/' . $fileName);
-                    imagejpg($imageLow, 'uploads/low/' . $fileName);
-                    break;
-                default:
-                    imagejpeg($imageThumb, 'uploads/thumb/' . $fileName);
-                    imagejpeg($imageLow, 'uploads/low/' . $fileName);
-                    break;
+            $files = $image->getFull();
+            foreach ($files as $file) {
+                $image = new Image();
+                $fileName = $fileUploader->upload($file);
+                $image->setFull('uploads/images/' . $fileName);
+                $image->setDisplayableComponent($owner);
+                $this->createThumb($image->getFull(), $fileName);
+                $imageThumb = $this->resize_image($image->getFull(), 100, 100, false);
+                $imageLow = $this->resize_image($image->getFull(), 350, 350, false);
+                $image->setMin('uploads/thumb/' . $fileName);
+                $image->setHalf('uploads/low/' . $fileName);
+                $image->setAltName($owner);
+                $exploding = explode(".", $image->getFull());
+                $ext = end($exploding);
+                switch ($ext) {
+                    case "png":
+                        imagepng($imageThumb, 'uploads/thumb/' . $fileName);
+                        imagepng($imageLow, 'uploads/low/' . $fileName);
+                        break;
+                    case "jpeg":
+                        imagejpeg($imageThumb, 'uploads/thumb/' . $fileName);
+                        imagejpeg($imageLow, 'uploads/low/' . $fileName);
+                        break;
+                    case "jpg":
+                        imagejpg($imageThumb, 'uploads/thumb/' . $fileName);
+                        imagejpg($imageLow, 'uploads/low/' . $fileName);
+                        break;
+                    default:
+                        imagejpeg($imageThumb, 'uploads/thumb/' . $fileName);
+                        imagejpeg($imageLow, 'uploads/low/' . $fileName);
+                        break;
+                }
+                $em->persist($image);
             }
-            $em->persist($image);
             $em->flush();
 
             return $this->render('admin/album.html.twig',
@@ -638,7 +645,7 @@ class AdminController extends Controller
     public function excursiones(Request $request, ExcursionRepository $excursionRepository)
     {
         $excursiones = $excursionRepository->findBy([], ['updatedAt' => 'DESC'], null);
-        $status = $request->get('status')==('edit')?'edit':'create';
+        $status = $request->get('status') == ('edit') ? 'edit' : 'create';
         $exc = $status == 'create' ? new Excursion() : $excursionRepository->find($request->get('id'));
         $form = $this->createForm(ExcursionForm::class, $exc);
         $form->handleRequest($request);

@@ -85,6 +85,8 @@ class HouseForm extends AbstractType
                 'Equipos de música'=>'equipo_música',
                 'Parqueo'=>'parqueo',
             ),'expanded'=>true,'multiple'=>true])
+            ->add('longitud',null, ['label' => 'Longitud'])
+            ->add('latitud',null, ['label' => 'Latitud'])
             ->add('active',  ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'si' => true,
                 'no' => false,

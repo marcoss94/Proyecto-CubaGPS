@@ -409,7 +409,6 @@
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <form id="contactForm" name="sentMessage" novalidate="novalidate">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -429,14 +428,14 @@
                                 <div class="form-group">
                                     <input class="form-control" id="phone" type="tel"
                                            placeholder="{{ app.session.get('language') == 'es'? 'Tu Teléfono':'Your Phone' }} *"
-                                           required="required"
+                                           required="required number"
                                            data-validation-required-message="{{ app.session.get('language') == 'es'? 'Por favor entre su número de teléfono':'Please enter your phone number.' }}">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                <textarea class="form-control" id="message"
+                                <textarea class="form-control" id="messageArea"
                                           placeholder="{{ app.session.get('language') == 'es'? 'Tu Mensaje':'Your Message' }} *"
                                           required="required"
                                           data-validation-required-message="{{ app.session.get('language') == 'es'? 'Por favor entre su mensaje':'Please enter a message.' }}"></textarea>
@@ -446,13 +445,13 @@
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" style="background-color: #f9b501;
-border-color: #f9b501" type="submit">
+                                <button id="createContact" class="btn btn-primary btn-xl text-uppercase" style="background-color: #f9b501;
+border-color: #f9b501">
                                     {{ app.session.get('language') == 'es'? 'Enviar mensaje':'Send Menssage' }}
                                 </button>
+
                             </div>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -583,14 +582,43 @@ border-color: #f9b501" type="submit">
             {% set languaje = 'en' %};
         })
     </script>
-    <script>
+    <script type="text/javascript">
+        $('#createContact').click(function () {
+            var telPattern = "^[0-9]{4,30}$";
+            var namePattern = "^[a-z A-Z]{4,30}$";
+            var emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$";
+            var nombre = $('#name').val();
+            var tel = $('#phone').val();
+            var email = $('#email').val();
+            var texto = $('#messageArea').val();
+            if (!nombre.match(namePattern)) {
+                alert('Para contactarnos es necesario que insertes tu nombre');
+            } else if (!email.match(emailPattern)) {
+                alert('Para contactarnos es necesario que insertes tu correo electrónico');
+            } else if (isNaN(tel)){
+                alert('Para contactarnos es necesario que insertes tu número de telefono');
+            } else {
+                var data = {nombre: nombre, tel: tel, email: email, text: texto}
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('ajax_contact') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
+                    data: data,
+                    success: function (response) {
+                        if (response.result) {
+                            alert('Su mensaje ha sido recivido correctamente');
+                            $('#messageArea').val('');
+                        }
+                    }
+                })
+                ;
+            }
+        });
         $("#carouselExampleControls .carousel-indicators li").hover(function () {
             var goto = Number($(this).attr('data-slide-to'));
             $("#carouselExampleControls").carousel(goto);
         });
+
     </script>
-
-
 {% endblock %}
 </body>
 

@@ -120,11 +120,19 @@ class User implements UserInterface, \Serializable
      */
     private $usersRedirected;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="autor", orphanRemoval=true)
+     */
+    private $comentarios;
+
+
+
 
 
     public function __construct()
     {
         $this->usersRedirected = new ArrayCollection();
+        $this->comentarios = new ArrayCollection();
     }
 
     public function getId(): int
@@ -366,6 +374,37 @@ class User implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($usersRedirected->getRedirectedBy() === $this) {
                 $usersRedirected->setRedirectedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comentario[]
+     */
+    public function getComentarios(): Collection
+    {
+        return $this->comentarios;
+    }
+
+    public function addComentario(Comentario $comentario): self
+    {
+        if (!$this->comentarios->contains($comentario)) {
+            $this->comentarios[] = $comentario;
+            $comentario->setAutor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComentario(Comentario $comentario): self
+    {
+        if ($this->comentarios->contains($comentario)) {
+            $this->comentarios->removeElement($comentario);
+            // set the owning side to null (unless already changed)
+            if ($comentario->getAutor() === $this) {
+                $comentario->setAutor(null);
             }
         }
 

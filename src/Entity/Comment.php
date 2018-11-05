@@ -61,10 +61,7 @@ class Comment
     private $content;
 
     /**
-     * @var \DateTime
-     *
      * @ORM\Column(type="datetime")
-     * @Assert\DateTime
      */
     private $publishedAt;
 
@@ -106,14 +103,14 @@ class Comment
         $this->content = $content;
     }
 
-    public function getPublishedAt(): \DateTime
+    public function getPublishedAt(): ?\DateTimeInterface
     {
         return $this->publishedAt;
     }
 
-    public function setPublishedAt(\DateTime $publishedAt): void
+    public function setPublishedAt(): void
     {
-        $this->publishedAt = $publishedAt;
+        $this->publishedAt = new \DateTime();
     }
 
     public function getAuthor(): User
