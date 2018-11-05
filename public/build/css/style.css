@@ -607,3 +607,66 @@ h2 {
     width: 100% !important;
     height: 100% !important;
 }
+.botonGoogle{
+    background-color: #db4633;
+}
+.botonFace{
+    background-color: #3b579d;
+}
+.botonInicioSesion{
+    padding: 8px 15px !important;
+    color: #fff;
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 98px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 700;
+    text-align: center;
+}
+
+
+/*Boton reserva*/
+
+@media (min-width: 576px) {
+    .botonReserva{
+        display: none;
+    }
+
+}
+@media (max-width: 576px) {
+
+    .reserva{
+        display: none;
+    }
+}
+
+.botonReserva {
+    position: fixed;
+
+    right: 15px;
+    bottom: 15px;
+    /*display: none;*/
+    /*width: 50px;*/
+    height: 50px;
+    text-align: center;
+    color: #fff;
+    /*background: rgba(52, 58, 64, 0.5);*/
+    line-height: 46px;
+    z-index: 1000;
+}
+
+.botonReserva:focus, .botonReserva:hover {
+    color: white;
+}
+
+.botonReserva:hover {
+    /*background: #343a40;*/
+}
+
+.botonReserva i {
+    font-weight: 800;
+}
+
+/*Boton reserva*/
