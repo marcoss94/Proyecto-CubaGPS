@@ -23,6 +23,7 @@ class ExcursionForm extends AbstractType
     {
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
+            ->add('name', TextType::class, ['label' => 'Name'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
             ->add('description',TextareaType::class,['label' => 'Description'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
@@ -81,7 +82,8 @@ class ExcursionForm extends AbstractType
                 'Si'=>true,
                 'No'=>false,
             ),'expanded'=>false,'multiple'=>false])
-            ->add('reglamento', TextType::class, ['label' => 'Reglamento'])
+            ->add('reglamento', TextareaType::class, ['label' => 'Reglamento'])
+            ->add('reglament', TextareaType::class, ['label' => 'Reglament'])
             ->add('precio1', MoneyType::class, ['label' => 'Precio para una persona'])
             ->add('precio2', MoneyType::class, ['label' => 'Precio para dos personas'])
             ->add('precio3', MoneyType::class, ['label' => 'Precio para tres personas'])

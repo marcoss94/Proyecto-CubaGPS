@@ -29,6 +29,11 @@ class Dia
     private $nombre;
 
     /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $name;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Paquete", inversedBy="dias")
      * @ORM\JoinColumn(name="paquete_id", referencedColumnName="id",onDelete="cascade")
      */
@@ -55,6 +60,22 @@ class Dia
     public function getActivities()
     {
         return $this->activities;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**

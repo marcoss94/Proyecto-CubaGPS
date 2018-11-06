@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
 
@@ -17,9 +18,10 @@ class FacebookController extends Controller
      *
      * @Route("/connect/facebook", name="connect_facebook_start")
      */
-    public function connectAction(ClientRegistry $clientRegistry)
+    public function connectAction(Request $request,ClientRegistry $clientRegistry)
     {
         // will redirect to Facebook!
+        $this->get('session')->set('redirectBack',$request->server->get('HTTP_REFERER'));
         return $clientRegistry
             ->getClient('facebook_main') // key used in config/packages/knpu_oauth2_client.yaml
             ->redirect([
@@ -37,6 +39,7 @@ class FacebookController extends Controller
      */
     public function connectCheckAction()
     {
+        return $this->redirect($this->get('session')->get('redirectBack'));
         return $this->redirectToRoute('blog_index');
     }
 

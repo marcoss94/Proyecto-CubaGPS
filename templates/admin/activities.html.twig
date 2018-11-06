@@ -77,8 +77,9 @@
                     <tbody>
                     {% for d in paquete.dias %}
                         <tr class="table-active">
-                            <td scope="col" colspan="2">{{ 'Día '~d.orden }}</td>
+                            <td scope="col" colspan="3">{{ 'Día '~d.orden }}</td>
                             <td scope="col" colspan="4">{{ d.nombre }}</td>
+                            <td scope="col" colspan="4">{{ d.name }}</td>
                             <td scope="col">
                                 <a title="Editar" class="btn btn-default" href="{{ path('edit_day',{'diaId':d.id,}) }}"><i
                                             class="fa fa-edit" aria-hidden="true"></i><span
@@ -100,6 +101,8 @@
                                 <form action="{{ path('edit_activity') }}">
                                     <input type="hidden" name="id" value="{{ a.id }}">
                                     <td><input type="text" class="form-control" name="nombre" value=" {{ a.nombre }} ">
+                                    </td>
+                                    <td><input type="text" class="form-control" name="nombre" value=" {{ a.name }} ">
                                     </td>
                                     <td><input type="text" class="form-control" name="horario"
                                                value=" {{ a.horario }} ">

@@ -97,7 +97,6 @@
     </header>
 
 
-
     <section class="bg-light" id="portfolio" style="padding: 44px 0;">
         <div class="container">
 
@@ -108,59 +107,64 @@
 
 
                     <div class=" infoOferta text-left">
-                        <h2 class="nombreO">Casa Yuli Varadero</h2>
-                        <h4 class="section-subheading">Provincia</h4>
+                        <h2 class="nombreO">{{ app.session.get('language')== 'es' ? object.nombre : object.name }}</h2>
+                        <h4 class="section-subheading">{{ object.provincia }}</h4>
                         <div>
                             <div class="serviciosOfertas" style="margin-right: 10px">
                                 <div class="iconogeneral">
-
                                     <div class="iconoServ">
                                         <h6>
                                             <span><i class="far fa-clock"></i></span>
-                                            3h
+                                            {{ object.duracion }}
                                         </h6>
                                     </div>
                                 </div>
                             </div>
-                            <div class="serviciosOfertas" style="margin-right: 10px">
-                                <div class="iconogeneral">
+                            {% if object.incluyeTransporte %}
+                                <div class="serviciosOfertas" style="margin-right: 10px">
+                                    <div class="iconogeneral">
 
-                                    <div class="iconoServ">
-                                        <h6>
-                                            <span><i class="fas fa-bus-alt"></i></span>
-                                            {#Transportacion#}
-                                            Normal o clasico
-                                        </h6>
+                                        <div class="iconoServ">
+                                            <h6>
+                                                <span><i class="fas fa-bus-alt"></i></span>
+                                                {% if object.tipoTransporte == 'Clásico' %}
+                                                    {{ app.session.get('language')== 'es' ?
+                                                    'Transporte en auto Clásico' :
+                                                    'Classic car transportation' }}
+                                                {% else %}
+                                                    {{ app.session.get('language')== 'es' ?
+                                                    'Transporte incluído' :
+                                                    'Transportation included' }}
+                                                {% endif %}
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="serviciosOfertas" style="margin-right: 10px">
-                                <div class="iconogeneral">
+                            {% endif %}
+                            {% if object.guia %}
+                                <div class="serviciosOfertas" style="margin-right: 10px">
+                                    <div class="iconogeneral">
 
-                                    <div class="iconoServ">
-                                        <h6>
-                                            <span><i class="fas fa-user-tie"></i></span>
-                                            {#Transportacion#}
-                                            Guia
-                                        </h6>
+                                        <div class="iconoServ">
+                                            <h6>
+                                                <span><i class="fas fa-user-tie"></i></span>
+                                                {{ app.session.get('language')== 'es' ?
+                                                'Guía' :
+                                                'Guide' }}
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
+                            {% endif %}
                         </div>
 
                         <div class="separador"></div>
                         {#Descripcion --------------------------------------------------------------------------------------#}
                         {#descripcion#}
-                        <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia almenos 3
-                            renglones. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius
-                            sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt
-                            et ea quo dolore laudantium consectetur!</p>
-
-
+                        <p class="text-muted">{{ app.session.get('language')== 'es' ?
+                            object.descripcion:
+                            object.description }}</p>
                         <div class="separador"></div>
-
-
                         <div class="row">
                             <div class="col-6 col-md-4">
                                 <div class="" style="margin-right: 10px">
@@ -170,58 +174,73 @@
                                                 <span><i class="far fa-calendar-alt"></i></span>
                                             </div>
                                         </div>
-
                                         <div class="iconoServ">
-                                            <span>De Lunes a Viernes</span>
+                                            <span>{{ app.session.get('language')== 'es' ?
+                                                'Días disponibles :':
+                                                '' }}</span>
                                         </div>
+                                        {% for dia in object.dias %}
+                                            <div class="iconoServ">
+                                            <span>{{ app.session.get('language')== 'es' ?
+                                                dia :
+                                                days[dia] }}</span>
+                                            </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
-                                <div class="" style="margin-right: 10px">
-                                    <div class="iconogeneral">
-                                        <div class="iconoServ">
-                                            <div style="margin-right: 8px">
-                                                <span><i class="fas fa-utensils"></i></span>
+                                {% if object.desayuno %}
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-utensils"></i></span>
+                                                </div>
+                                            </div>
+                                            <div class="iconoServ">
+                                                <span>{{ app.session.get('language')== 'es' ?
+                                                    'Desayuno' :
+                                                    'Breakfast' }}</span>
                                             </div>
                                         </div>
-
-                                        <div class="iconoServ">
-                                            <span>Desayuno</span>
-                                        </div>
                                     </div>
-
-                                </div>
+                                {% endif %}
                             </div>
+
                             <div class="col-6 col-md-4">
-                                <div class="" style="margin-right: 10px">
-                                    <div class="iconogeneral">
-                                        <div class="iconoServ">
-                                            <div style="margin-right: 8px">
-                                                <span><i class="fas fa-utensils"></i></span>
+                                {% if object.almuerzo %}
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-utensils"></i></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="iconoServ">
+                                            <span>{{ app.session.get('language')== 'es' ?
+                                                'Almuerzo' :
+                                                'Almorzation' }}</span>
                                             </div>
                                         </div>
-
-                                        <div class="iconoServ">
-                                            <span>Almuerzo</span>
-                                        </div>
                                     </div>
+                                {% endif %}
+                                {% if object.comida %}
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-utensils"></i></span>
+                                                </div>
+                                            </div>
 
-
-                                </div>
-                                <div class="" style="margin-right: 10px">
-                                    <div class="iconogeneral">
-                                        <div class="iconoServ">
-                                            <div style="margin-right: 8px">
-                                                <span><i class="fas fa-utensils"></i></span>
+                                            <div class="iconoServ">
+                                            <span>{{ app.session.get('language')== 'es' ?
+                                                'Comida' :
+                                                'Comedation' }}</span>
                                             </div>
                                         </div>
-
-                                        <div class="iconoServ">
-                                            <span>Comida</span>
-                                        </div>
                                     </div>
-
-
-                                </div>
+                                {% endif %}
                             </div>
                             <div class="col-6 col-md-4">
                                 <div class="" style="margin-right: 10px">
@@ -233,52 +252,24 @@
                                         </div>
 
                                         <div class="iconoServ">
-                                            <span>Inicia: 9:00AM</span>
+                                            <span>{{ app.session.get('language')== 'es' ?
+                                                'Inicia: ' :
+                                                'Start at: ' }}{{ object.horaInicio }}</span>
                                         </div>
                                     </div>
-
-
                                 </div>
-                                {#<div class="" style="margin-right: 10px">#}
-                                {#<div class="iconogeneral">#}
-                                {#<div class="iconoServ">#}
-                                {#<div style="margin-right: 8px">#}
-                                {#<span><i class="fas fa-user-tie"></i></span>#}
-                                {#</div>#}
-                                {#</div>#}
-
-                                {#<div class="iconoServ">#}
-                                {#<span>{{ app.session.get('language') == 'es'? 'Guia ':'Guide' }}</span>#}
-                                {#</div>#}
-                                {#</div>#}
-
-
-                                {#</div>#}
                             </div>
                         </div>
+                        <div class="separador"></div>
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Reglamentos':'Regulations' }}</h4>
 
-                        <div class="section-subheading" style="margin-top: 24px">
-                            <a class=" nav-item nombreO" href="" data-toggle="modal"
-                               data-target="#servicehModal">
-                                <h6 class="">{{ app.session.get('language') == 'es'? 'Mostrar todos los servicios':'Show all services' }}</h6>
-                            </a>
-                            </a>
-                        </div>
+                        <ul class="text-muted">
+                            <p class="text-muted">{{ app.session.get('language')== 'es' ?
+                                object.reglamento:
+                                object.description }}</p>
+                        </ul>
 
                         <div class="separador"></div>
-
-                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Reglamentos':'Regulations' }}</h4>
-
-                            <ul class="text-muted">
-                                <li>Reglamento 1</li>
-                                <li>Reglamento 2</li>
-                                <li>Reglamento 3</li>
-                                <li>Reglamento 4</li>
-                                <li>Reglamento 5</li>
-                                <li>Reglamento 6</li>
-                            </ul>
-
-                            <div class="separador"></div>
 
                         {% if object.comentarios|length %}
                             <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Comentarios':'Comments' }}</h4>
@@ -333,178 +324,63 @@
 
                 </div>
 
-
+                {#---------------------------------Formulario de Reserva-----------------------------------------------------#}
                 <div class="col-12 col-md-4 portfolio-item">
                     <div class="container">
                         <div class="modal-content">
-                            <form action="" method="post">
+                            <form action="{{ path('reserva_casa') }}" method="post" id="reserveForm">
+                                <input type="hidden" name="objectId" value="{{ object.id }}">
                                 <div class="modal-body">
                                     <div class="form-row">
                                         <div class="form-group col-md-8">
-                                            <h6 class="text-muted">
-                                                56€ {{ app.session.get('language') == 'es'? 'por habitación':'per room' }}  </h6>
-                                            {#si tiene 3 estrellas de valoracion hay que hacer un for para que ponga tres fas(estrella rellena) y 2 far(estrella sin relleno)#}
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star-half-alt star"></i>
-                                            <i class="far fa-star star"></i>
+                                            {% if object.valoracionArray[0]!=0 %}
+                                                {% for j in 1..object.valoracionArray[0] %}
+                                                    <i class="fas fa-star star"></i>
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% if object.valoracionArray[1] %}
+                                                <i class="fas fa-star-half-alt star"></i>
+                                            {% endif %}
+                                            {% if object.valoracionArray[2]!=0 %}
+                                                {% for j in 1..object.valoracionArray[2] %}
+                                                    <i class="far fa-star star"></i>
+                                                {% endfor %}
+                                            {% endif %}
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Adultos':'Adults' }}</label>
-                                            <select class="custom-select">
-                                                <option selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
+                                            <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'People Count' }}</label>
+                                            <select class="custom-select" id="cantA" name="cantA">
+                                                {% for number in 1..30 %}
+                                                    <option value="{{ number }}" {% if number==1 %} selected {% endif %}>{{ number }}</option>
+                                                {% endfor %}
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label class="text-muted"
-                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Niños':'Number of children' }}</label>
-                                            <label class="text-muted"
-                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Hasta 12':'up to 12' }}</label>
-                                            <select class="custom-select">
-                                                <option selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
-                                            </select>
-
+                                                   for="inputEntrada">{{ app.session.get('language') == 'es'? 'Fecha':'Day' }}</label>
+                                            <input type="date" class="form-control" name="entrada" id="inputEntrada"
+                                                   required>
                                         </div>
-                                        <div class="form-group col-md-12">
-
-                                            <label class="text-muted"
-                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Habitaciones':'Number of Rooms' }}</label>
-                                            {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
-                                            <div class="form-group">
-                                                <select class="custom-select">
-                                                    <option selected>Todas</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                    <option value="11">11</option>
-                                                    <option value="12">12</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-
-                                            <label class="text-muted"
-                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</label>
-                                            {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
-                                            <div class="form-group">
-                                                <select class="custom-select">
-                                                    <option selected>Habitacion 1</option>
-                                                    <option value="1">Habitacion 2</option>
-                                                    <option value="2">Habitacion 3</option>
-                                                    <option value="3">Habitacion 4</option>
-                                                    <option value="4">1er Piso</option>
-                                                    <option value="5">Planta Alta</option>
-                                                    <option value="6">Azul</option>
-                                                    <option value="7">Verde</option>
-                                                    <option value="8">Suite presidencial</option>
-
-                                                </select>
-                                            </div>
-
-                                        </div>
-
-
                                     </div>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted"
-                                                   for="inputEntrada">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</label>
-                                            <input type="date" class="form-control" id="inputEntrada">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted"
-                                                   for="inputSalida">{{ app.session.get('language') == 'es'? 'Salida':'Exit' }}</label>
-                                            <input type="date" class="form-control" id="inputSalida">
-                                        </div>
-
-                                    </div>
-
                                 </div>
-
+                                <div id="errorBox"></div>
                                 <div class="modal-footer">
-                                    <button type="submit"
+                                    <button type="button" id="reserveButton"
                                             class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                 </div>
-
                             </form>
                         </div>
                     </div>
                 </div>
+                {#---------------------------------Formulario de Reserva-----------------------------------------------------#}
 
             </div>
         </div>
 
 
     </section>
-
-
-
 
 
 {% endblock %}
@@ -590,15 +466,27 @@
                 "transform": "rotateY(" + currdeg + "deg)"
             });
         }
+        $('#reserveButton').click(function () {
+            var entrada = new Date($('#inputEntrada').val());
+            var cantA = new Number($('#cantA').val());
+            if (entrada.toTimeString() == 'Invalid Date') {
+                var text = ($('#lang').val() == 'es') ? 'Debe seleccionar una Fecha'
+                    : 'You must select a Date';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+            $('#reserveForm').submit();
+        });
         $('#createCommentButton').click(function () {
-            var objectId= $('#objectId').val();
-            var objectType= $('#objectType').val();
-            var comment= $('#commentArea').val();
-            var userId= $('#userId').val();
-            if(comment == ''){
+            var objectId = $('#objectId').val();
+            var objectType = $('#objectType').val();
+            var comment = $('#commentArea').val();
+            var userId = $('#userId').val();
+            if (comment == '') {
                 alert('debe escribir un comentario');
-            }else{
-                var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
+            } else {
+                var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                 $.ajax({
                     type: "POST",
                     url: "{{ path('ajax_create_comment') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)

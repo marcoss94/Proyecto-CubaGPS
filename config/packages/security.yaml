@@ -68,7 +68,7 @@ security:
     access_control:
         # this is a catch-all for the admin area
         # additional security lives in the controllers
-        - { path: '^/user/', roles: ROLE_USER }
+        - { path: '^/reserve/', roles: ROLE_USER }
         - { path: '^/admin/*', roles: ROLE_ADMIN }
 
 

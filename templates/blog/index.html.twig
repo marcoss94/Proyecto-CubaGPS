@@ -117,11 +117,8 @@ border-color: #f9b501;"
                 </div>
                 {#boton de ver mas#}
                 <div class="container">
-
-
                     <div class="row text-center ">
                         <div class="col-12 botonMas portfolio-item md-auto">
-
                             <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
                                href="{{ path('lista',{'type':'casa'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1500)>':'Show all (1500)' }}</a>
@@ -372,7 +369,6 @@ border-color: #f9b501;"
                                         <a class="nav-item nombreO"
                                            href="{{ path('oferta',{'id':i.id,'type':'carro'}) }}">
                                             <h4>{{ i.modelo }}</h4></a>
-                                        <h4>{{ i.provincia }}</h4></a>
                                         {% if i.valoracionArray[0]!=0 %}
                                             {% for j in 1..i.valoracionArray[0] %}
                                                 <i class="fas fa-star star"></i>

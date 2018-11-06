@@ -23,6 +23,7 @@ class HouseForm extends AbstractType
     {
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
+            ->add('name', TextType::class, ['label' => 'Name'])
             ->add('manager', TextType::class, ['label' => 'Manager'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripcion'])
             ->add('description',TextareaType::class,['label' => 'Description'])

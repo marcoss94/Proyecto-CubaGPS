@@ -125,6 +125,11 @@ class User implements UserInterface, \Serializable
      */
     private $comentarios;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="usuario")
+     */
+    private $reservas;
+
 
 
 
@@ -133,6 +138,7 @@ class User implements UserInterface, \Serializable
     {
         $this->usersRedirected = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
+        $this->reservas = new ArrayCollection();
     }
 
     public function getId(): int
@@ -405,6 +411,37 @@ class User implements UserInterface, \Serializable
             // set the owning side to null (unless already changed)
             if ($comentario->getAutor() === $this) {
                 $comentario->setAutor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reserva[]
+     */
+    public function getReservas(): Collection
+    {
+        return $this->reservas;
+    }
+
+    public function addReserva(Reserva $reserva): self
+    {
+        if (!$this->reservas->contains($reserva)) {
+            $this->reservas[] = $reserva;
+            $reserva->setUsuario($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReserva(Reserva $reserva): self
+    {
+        if ($this->reservas->contains($reserva)) {
+            $this->reservas->removeElement($reserva);
+            // set the owning side to null (unless already changed)
+            if ($reserva->getUsuario() === $this) {
+                $reserva->setUsuario(null);
             }
         }
 

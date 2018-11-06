@@ -29,6 +29,7 @@ class RoomForm extends AbstractType
     {
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
+            ->add('name', TextType::class, ['label' => 'Name'])
             ->add('camasDobles', IntegerType::class, ['label' => 'Camas Dobles'])
             ->add('camasSimples', IntegerType::class, ['label' => 'Camas Simples'])
             ->add('literas', IntegerType::class, ['label' => 'Literas'])

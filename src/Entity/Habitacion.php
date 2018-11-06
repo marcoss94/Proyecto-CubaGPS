@@ -9,10 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Habitacion extends DisplayableComponent
 {
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $nombre;
 
     /**
      * @ORM\Column(type="integer")
@@ -213,18 +209,6 @@ class Habitacion extends DisplayableComponent
     }
 
 
-    public function getNombre(): ?string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre(string $nombre): self
-    {
-        $this->nombre = $nombre;
-
-        return $this;
-    }
-
     public function getCamasDobles(): ?int
     {
         return $this->camasDobles;
@@ -281,12 +265,12 @@ class Habitacion extends DisplayableComponent
     public function setCasa(?Casa $casa): self
     {
         $this->casa = $casa;
-
         return $this;
     }
 
-    public function __toString()
+    function __toString()
     {
-        return $this->getNombre();
+        return (string)parent::getNombre();
     }
+
 }

@@ -39,6 +39,8 @@ final class Versions
   'imagine/imagine' => 'v0.7.1@a9a702a946073cbca166718f1b02a1e72d742daa',
   'jdorn/sql-formatter' => 'v1.2.17@64990d96e0959dff8e059dfcdc1af130728d92bc',
   'jms/metadata' => '1.6.0@6a06970a10e0a532fb52d3959547123b84a3b3ab',
+  'knplabs/knp-components' => 'v1.3.10@fc1755ba2b77f83a3d3c99e21f3026ba2a1429be',
+  'knplabs/knp-paginator-bundle' => 'v2.8.0@f4ece5b347121b9fe13166264f197f90252d4bd2',
   'knplabs/knp-snappy' => 'v1.0.4@144c4ecd1ccaeda936bf832b93079efc490e6850',
   'knplabs/knp-snappy-bundle' => 'v1.5.2@f7c2541008525bb621a0bd492e1d83a6d2b48adf',
   'knpuniversity/oauth2-client-bundle' => 'v1.22.0@a7faba0303b55ec2a3b7387d434704e866162aa7',

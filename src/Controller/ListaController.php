@@ -7,6 +7,7 @@ use App\Repository\CasaRepository;
 use App\Repository\ExcursionRepository;
 use App\Repository\PaqueteRepository;
 use App\Repository\SistemRepository;
+use App\Service\DataService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,10 +18,12 @@ class ListaController extends Controller
     /**
      * @Route("/lista", name="lista")
      */
-    public function index(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository, PaqueteRepository $paqueteRepository)
+    public function index(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository, PaqueteRepository $paqueteRepository,DataService $query)
     {
         if ($request->get('type') == 'casa') {
             $objects = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC']);
+            $data=$query->returnData($request);
+            dump($data);
             $type='casa';
         } elseif ($request->get('type') == 'carro') {
             $objects = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC']);
@@ -32,8 +35,10 @@ class ListaController extends Controller
             $objects = $paqueteRepository->findBy(['active' => true], ['valoracion' => 'DESC']);
             $type='paquete';
         }
-        return $this->render('lista/index.html.twig', ['base' => 'false', 'objects' => $objects,'type'=>$type]);
+        return $this->render('lista/index.html.twig', ['base' => 'false', 'objects' => $objects,'type'=>$type,'data'=>$data]);
     }
+
+
 
 
 }
