@@ -4,7 +4,7 @@
 
  {% block stylesheets %}
      {{ parent() }}
-     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}" xmlns="http://www.w3.org/1999/html"/>
+     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}"/>
      <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
  {% endblock %}
 
@@ -155,13 +155,13 @@
                                 </div>
                             {% endfor %}
                         </div>
-                        <div class="section-subheading" style="margin-top: 24px">
-                            <a class=" nav-item nombreO" href="" data-toggle="modal"
-                               data-target="#servicehModal">
-                                <h6 class="">{{ app.session.get('language') == 'es'? 'Mostrar todos los servicios':'Show all services' }}</h6>
-                            </a>
-                            </a>
-                        </div>
+                        {#<div class="section-subheading" style="margin-top: 24px">#}
+                            {#<a class=" nav-item nombreO" href="" data-toggle="modal"#}
+                               {#data-target="#servicehModal">#}
+                                {#<h6 class="">{{ app.session.get('language') == 'es'? 'Mostrar todos los servicios':'Show all services' }}</h6>#}
+                            {#</a>#}
+                            {#</a>#}
+                        {#</div>#}
 
                         <div class="separador"></div>
 
@@ -261,7 +261,12 @@
                                                         </div>
                                                     </div>
                                                 {% endif %}
+
+
+
+                                            <div class="row">
                                                 {% for service in i.servicios %}
+                                                <div class="col-6 col-md-6">
                                                     <div class="serviciosOfertas" style="margin-right: 10px">
                                                         <div class="iconogeneral">
                                                             <div class="iconoServ">
@@ -274,8 +279,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
                                                 {% endfor %}
                                             </div>
+
+                                            </div>
+                                            {#<div class="section-subheading" style="margin-top: 24px">#}
+                                                {#<a class=" nav-item nombreO" href="" data-toggle="modal"#}
+                                                   {#data-target="#servicehModal">#}
+                                                    {#<h6 class="">{{ app.session.get('language') == 'es'? 'Mostrar todos los servicios':'Show all services' }}</h6>#}
+                                                {#</a>#}
+                                            {#</div>#}
                                             <h6 class="text-muted">{{ i.precio~'€' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6>
                                             {#</div>#}
                                         </div>
@@ -449,6 +463,16 @@
         </div>
     </section>
 
+
+
+    <a class="botonReserva" href="" data-toggle="modal"
+       data-target="#reservaModal">
+
+        <button type="submit"
+                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+
+    </a>
+
 {% endblock %}
 {% block footer %}
     {{ parent() }}
@@ -456,25 +480,162 @@
     <div class="portfolio-modal-sm modal fade" id="servicehModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title"
-                        style="float: left">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</h4>
-                    <button type="button" class="close" style="float: right" data-dismiss="modal"><span
-                                aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                </div>
+                <form action="" method="post">
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <h6 class="text-muted">
+                                    56€ {{ app.session.get('language') == 'es'? 'por habitación':'per room' }}  </h6>
+                                {#si tiene 3 estrellas de valoracion hay que hacer un for para que ponga tres fas(estrella rellena) y 2 far(estrella sin relleno)#}
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star-half-alt star"></i>
+                                <i class="far fa-star star"></i>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Adultos':'Adults' }}</label>
+                                <select class="custom-select">
+                                    <option selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Niños':'Number of children' }}</label>
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Hasta 12':'up to 12' }}</label>
+                                <select class="custom-select">
+                                    <option selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                </select>
 
-                {#..........................................................#}
+                            </div>
+                            <div class="form-group col-md-12">
 
-                <div class="modal-body">
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Habitaciones':'Number of Rooms' }}</label>
+                                {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected>Todas</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                </div>
 
-                    <div class="text-muted">
-                        Todos los servicios que puedas existir y se quieran poner
+                            </div>
+
+                            <div class="form-group col-md-12">
+
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</label>
+                                {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected>Habitacion 1</option>
+                                        <option value="1">Habitacion 2</option>
+                                        <option value="2">Habitacion 3</option>
+                                        <option value="3">Habitacion 4</option>
+                                        <option value="4">1er Piso</option>
+                                        <option value="5">Planta Alta</option>
+                                        <option value="6">Azul</option>
+                                        <option value="7">Verde</option>
+                                        <option value="8">Suite presidencial</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputEntrada">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</label>
+                                <input type="date" class="form-control" id="inputEntrada">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputSalida">{{ app.session.get('language') == 'es'? 'Salida':'Exit' }}</label>
+                                <input type="date" class="form-control" id="inputSalida">
+                            </div>
+
+                        </div>
+
                     </div>
 
                     <div class="modal-footer">
-
+                        <button type="submit"
+                                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                     </div>
-                </div>
+
+                </form>
 
                 {#..................................................#}
 
