@@ -109,6 +109,12 @@
     margin-bottom: 24px;
     border-bottom: 1px solid #EBEBEB !important;
 }
+.separadorIconos{
+
+
+
+    border-bottom: 1px solid #EBEBEB !important;
+}
 .bannerOferta {
     background-position: center center !important;
 
@@ -633,6 +639,36 @@ h2 {
     .botonReserva{
         display: none;
     }
+    .timelineGPS > li .timeline-imageGPS {
+        position: absolute;
+        z-index: 100;
+        left: 0;
+        width: 150px;
+        height: 150px;
+        margin-left: 30px;
+        text-align: center;
+        color: white;
+        border: 7px solid #e9ecef;
+        border-radius: 100%;
+        background-color: #fed136;
+    }
+    .timelineGPS:before {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 80px;
+        width: 2px;
+        margin-left: -1.5px;
+        content: '';
+        background-color: #e9ecef;
+    }
+    .timelineGPS > li .timeline-panelGPS {
+        position: relative;
+        float: right;
+        width: 100%;
+        padding: 0 20px 0 190px;
+        text-align: left;
+    }
 
 }
 @media (max-width: 576px) {
@@ -670,3 +706,44 @@ h2 {
 }
 
 /*Boton reserva*/
+
+.botonCerrarModal{
+    top: 20px;
+    right: 2%;
+    right: calc(2% + 6px);
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    cursor: pointer;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    -moz-border-radius: 15%;
+    border-radius: 15%;
+    background-color: #323232;
+    background-color: rgba(50,50,50,.5);
+    color: #ddd;
+    font: 1.6em sans-serif;
+    -webkit-transition: background-color .4s ease;
+    transition: background-color .4s ease;"
+}
+.imgModalPaquete{
+    display: inline-block;
+
+    width: auto;
+
+    height: auto;
+
+    max-height: 100%;
+
+    max-width: 100%;
+
+    vertical-align: middle;
+
+    -webkit-box-shadow: 0 0 8px rgba(0,0,0,.6);
+
+    -moz-box-shadow: 0 0 8px rgba(0,0,0,.6);
+
+    box-shadow: 0 0 8px rgba(0,0,0,.6);
+}

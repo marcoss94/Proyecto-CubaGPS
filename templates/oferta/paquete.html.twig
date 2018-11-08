@@ -12,6 +12,7 @@
 
 
      <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
+     <link href="{{ asset('build/css/resCarousel.css') }}" rel="stylesheet">
      <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
 
 
@@ -182,132 +183,338 @@
                         <div class="separador"></div>
 
 
-                            <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Actividades':'Activities' }}</h4>
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia 1':'Day 1' }}</h4>
-                                    <ul class="timelineGPS">
-                                        <li>
-                                            <div class="timeline-imageGPS">
-                                                <img class="rounded-circle fotoExcurc img-fluid"
-                                                     src="{{ asset('build/img/excurciones/excurciones1.jpg') }}" alt="">
-                                            </div>
-                                            <div class="timeline-panelGPS">
-                                                <div class="timeline-headingGPS">
-                                                    <h4>2009-2011</h4>
-                                                    <h4 class="subheadingGPS">Our Humble Beginnings</h4>
-                                                </div>
-                                                <div class="timeline-bodyGPS">
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit.
-                                                        Sunt
-                                                        ut
-                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
-                                                        quibusdam,
-                                                        recusandae
-                                                        sit
-                                                        vero unde, sed, incidunt et ea quo dolore laudantium
-                                                        consectetur!</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-invertedGPS">
-                                            <div class="timeline-imageGPS">
-                                                <img class="rounded-circle fotoExcurc img-fluid"
-                                                     src="{{ asset('build/img/excurciones/excurciones2.jpg') }}" alt="">
-                                            </div>
-                                            <div class="timeline-panelGPS">
-                                                <div class="timeline-headingGPS">
-                                                    <h4>March 2011</h4>
-                                                    <h4 class="subheadingGPS">An Agency is Born</h4>
-                                                </div>
-                                                <div class="timeline-bodyGPS">
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit.
-                                                        Sunt
-                                                        ut
-                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
-                                                        quibusdam,
-                                                        recusandae
-                                                        sit
-                                                        vero unde, sed, incidunt et ea quo dolore laudantium
-                                                        consectetur!</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="timeline-imageGPS">
-                                                <img class="rounded-circle fotoExcurc img-fluid"
-                                                     src="{{ asset('build/img/excurciones/excurciones3.jpg') }}" alt="">
-                                            </div>
-                                            <div class="timeline-panelGPS">
-                                                <div class="timeline-headingGPS">
-                                                    <h4>December 2012</h4>
-                                                    <h4 class="subheadingGPS">Transition to Full Service</h4>
-                                                </div>
-                                                <div class="timeline-bodyGPS">
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit.
-                                                        Sunt
-                                                        ut
-                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
-                                                        quibusdam,
-                                                        recusandae
-                                                        sit
-                                                        vero unde, sed, incidunt et ea quo dolore laudantium
-                                                        consectetur!</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-invertedGPS">
-                                            <div class="timeline-imageGPS">
-                                                <img class="rounded-circle fotoExcurc img-fluid"
-                                                     src="{{ asset('build/img/excurciones/excurciones4.jpg') }}" alt="">
-                                            </div>
-                                            <div class="timeline-panelGPS">
-                                                <div class="timeline-headingGPS">
-                                                    <h4>July 2014</h4>
-                                                    <h4 class="subheadingGPS">Phase Two Expansion</h4>
-                                                </div>
-                                                <div class="timeline-bodyGPS">
-                                                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur
-                                                        adipisicing elit.
-                                                        Sunt
-                                                        ut
-                                                        voluptatum eius sapiente, totam reiciendis temporibus qui
-                                                        quibusdam,
-                                                        recusandae
-                                                        sit
-                                                        vero unde, sed, incidunt et ea quo dolore laudantium
-                                                        consectetur!</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="timeline-invertedGPS">
-                                            <div class="timeline-imageGPS">
-                                                {#boton de ver mas#}
 
-                                                <a class="btn-primary masExcur">
 
-                                                    <h4>
-                                                        {{ app.session.get('language') == 'es'? 'Fin':'End' }}
-                                                        <div><i class="fas fa-hand-peace fa-2x"></i>
+
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Actividades':'Activities' }}</h4>
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia 1':'Day 1' }}</h4>
+
+
+                                <div class="resCarousel" data-items="1-1-1-1" data-slide="1" data-speed="900"
+                                     data-animator="lazy">
+                                    <div class="resCarousel-inner" style="font-size: 30px">
+                                        <div class="item">
+
+                                            <ul class="timelineGPS">
+
+                                                <li>
+
+                                                    <div class="timeline-imageGPS" >
+
+                                                        <a href="" class="lightbox" data-toggle="modal"
+                                                           data-target="#PruebaModal" style="cursor: pointer;">
+                                                            <img class="rounded-circle fotoExcurc img-fluid"
+                                                                 src="{{ asset('build/img/excurciones/excurciones1.jpg') }}"
+                                                                 alt="">
+                                                        </a>
+
+                                                        {#<img class="rounded-circle fotoExcurc img-fluid"#}
+                                                             {#src="{{ asset('build/img/excurciones/excurciones1.jpg') }}"#}
+                                                             {#alt="">#}
+                                                    </div>
+
+                                                    <div class="timeline-panelGPS">
+                                                        <div class="timeline-headingGPS">
+                                                            <h4>Nombre de Actividad</h4>
+                                                            <h4 class="subheadingGPS">Horario de actividad</h4>
                                                         </div>
-                                                    </h4>
-                                                </a>
-
-                                                {#boton de ver mas#}
-                                            </div>
-                                        </li>
+                                                        <div class="timeline-bodyGPS">
+                                                            <p class="text-muted">Descripcion de actividad
 
 
-                                    </ul>
+                                                                temporibus qui
+                                                                quibusdam,
+                                                                recusandae
+                                                                sit
+                                                                vero unde, sed, incidunt et ea quo dolore
+                                                                laudantium
+                                                                consectetur!</p>
+                                                        </div>
+
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="item">
+
+
+                                            <ul class="timelineGPS">
+
+                                                <li>
+
+                                                    <div class="timeline-imageGPS">
+                                                        <img class="rounded-circle fotoExcurc img-fluid"
+                                                             src="{{ asset('build/img/excurciones/excurciones2.jpg') }}"
+                                                             alt="">
+                                                    </div>
+
+                                                    <div class="timeline-panelGPS">
+                                                        <div class="timeline-headingGPS">
+                                                            <h4>Nombre de Actividad</h4>
+                                                            <h4 class="subheadingGPS">Horario de actividad</h4>
+                                                        </div>
+                                                        <div class="timeline-bodyGPS">
+                                                            <p class="text-muted">Descripcion de actividad
+
+
+                                                                temporibus qui
+                                                                quibusdam,
+                                                                recusandae
+                                                                sit
+                                                                vero unde, sed, incidunt et ea quo dolore
+                                                                laudantium
+                                                                consectetur!</p>
+                                                        </div>
+
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
                                 </div>
+                                <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
+                                <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
                             </div>
 
 
                             <div class="separador"></div>
+
+                            <div class="col-lg-12">
+
+                                <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia 2':'Day 2' }}</h4>
+
+
+                                <div class="resCarousel" data-items="1-1-1-1" data-slide="1" data-speed="900"
+                                     data-animator="lazy">
+                                    <div class="resCarousel-inner" style="font-size: 30px">
+                                        <div class="item">
+
+                                            <ul class="timelineGPS">
+
+                                                <li>
+
+                                                    <div class="timeline-imageGPS">
+                                                        <img class="rounded-circle fotoExcurc img-fluid"
+                                                             src="{{ asset('build/img/excurciones/excurciones3.jpg') }}"
+                                                             alt="">
+                                                    </div>
+
+                                                    <div class="timeline-panelGPS">
+                                                        <div class="timeline-headingGPS">
+                                                            <h4>Nombre de Actividad</h4>
+                                                            <h4 class="subheadingGPS">Horario de actividad</h4>
+                                                        </div>
+                                                        <div class="timeline-bodyGPS">
+                                                            <p class="text-muted">Descripcion de actividad
+
+
+                                                                temporibus qui
+                                                                quibusdam,
+                                                                recusandae
+                                                                sit
+                                                                vero unde, sed, incidunt et ea quo dolore
+                                                                laudantium
+                                                                consectetur!</p>
+                                                        </div>
+
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="item">
+
+
+                                            <ul class="timelineGPS">
+
+                                                <li>
+
+                                                    <div class="timeline-imageGPS">
+                                                        <img class="rounded-circle fotoExcurc img-fluid"
+                                                             src="{{ asset('build/img/excurciones/excurciones4.jpg') }}"
+                                                             alt="">
+                                                    </div>
+
+                                                    <div class="timeline-panelGPS">
+                                                        <div class="timeline-headingGPS">
+                                                            <h4>Nombre de Actividad</h4>
+                                                            <h4 class="subheadingGPS">Horario de actividad</h4>
+                                                        </div>
+                                                        <div class="timeline-bodyGPS">
+                                                            <p class="text-muted">Descripcion de actividad
+
+
+                                                                temporibus qui
+                                                                quibusdam,
+                                                                recusandae
+                                                                sit
+                                                                vero unde, sed, incidunt et ea quo dolore
+                                                                laudantium
+                                                                consectetur!</p>
+                                                        </div>
+
+
+                                                    </div>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
+                                <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
+
+
+                            </div>
+                        </div>
+
+
+                        {#<div class="row">#}
+                        {#<div class="col-lg-12">#}
+                        {#<h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia 1':'Day 1' }}</h4>#}
+                        {#<ul class="timelineGPS">#}
+
+                        {#Probando carrusel para actividades#}
+
+                        {#Probando carrusel para actividades#}
+                        {#<li>#}
+                        {#<div class="timeline-imageGPS">#}
+                        {#<img class="rounded-circle fotoExcurc img-fluid"#}
+                        {#src="{{ asset('build/img/excurciones/excurciones1.jpg') }}"#}
+                        {#alt="">#}
+                        {#</div>#}
+                        {#<div class="timeline-panelGPS">#}
+                        {#<div class="timeline-headingGPS">#}
+                        {#<h4>2009-2011</h4>#}
+                        {#<h4 class="subheadingGPS">Our Humble Beginnings</h4>#}
+                        {#</div>#}
+                        {#<div class="timeline-bodyGPS">#}
+                        {#<p class="text-muted">Lorem ipsum dolor sit amet,#}
+                        {#consectetur#}
+                        {#adipisicing elit.#}
+                        {#Sunt#}
+                        {#ut#}
+                        {#voluptatum eius sapiente, totam reiciendis#}
+                        {#temporibus qui#}
+                        {#quibusdam,#}
+                        {#recusandae#}
+                        {#sit#}
+                        {#vero unde, sed, incidunt et ea quo dolore laudantium#}
+                        {#consectetur!</p>#}
+                        {#</div>#}
+                        {#</div>#}
+                        {#</li>#}
+
+
+                        {#<button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>#}
+                        {#<button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>#}
+
+                        {#<li class="timeline-invertedGPS">#}
+                        {#<div class="timeline-imageGPS">#}
+                        {#<img class="rounded-circle fotoExcurc img-fluid"#}
+                        {#src="{{ asset('build/img/excurciones/excurciones2.jpg') }}" alt="">#}
+                        {#</div>#}
+                        {#<div class="timeline-panelGPS">#}
+                        {#<div class="timeline-headingGPS">#}
+                        {#<h4>March 2011</h4>#}
+                        {#<h4 class="subheadingGPS">An Agency is Born</h4>#}
+                        {#</div>#}
+                        {#<div class="timeline-bodyGPS">#}
+                        {#<p class="text-muted">Lorem ipsum dolor sit amet, consectetur#}
+                        {#adipisicing elit.#}
+                        {#Sunt#}
+                        {#ut#}
+                        {#voluptatum eius sapiente, totam reiciendis temporibus qui#}
+                        {#quibusdam,#}
+                        {#recusandae#}
+                        {#sit#}
+                        {#vero unde, sed, incidunt et ea quo dolore laudantium#}
+                        {#consectetur!</p>#}
+                        {#</div>#}
+                        {#</div>#}
+                        {#</li>#}
+                        {#<li>#}
+                        {#<div class="timeline-imageGPS">#}
+                        {#<img class="rounded-circle fotoExcurc img-fluid"#}
+                        {#src="{{ asset('build/img/excurciones/excurciones3.jpg') }}" alt="">#}
+                        {#</div>#}
+                        {#<div class="timeline-panelGPS">#}
+                        {#<div class="timeline-headingGPS">#}
+                        {#<h4>December 2012</h4>#}
+                        {#<h4 class="subheadingGPS">Transition to Full Service</h4>#}
+                        {#</div>#}
+                        {#<div class="timeline-bodyGPS">#}
+                        {#<p class="text-muted">Lorem ipsum dolor sit amet, consectetur#}
+                        {#adipisicing elit.#}
+                        {#Sunt#}
+                        {#ut#}
+                        {#voluptatum eius sapiente, totam reiciendis temporibus qui#}
+                        {#quibusdam,#}
+                        {#recusandae#}
+                        {#sit#}
+                        {#vero unde, sed, incidunt et ea quo dolore laudantium#}
+                        {#consectetur!</p>#}
+                        {#</div>#}
+                        {#</div>#}
+                        {#</li>#}
+                        {#<li class="timeline-invertedGPS">#}
+                        {#<div class="timeline-imageGPS">#}
+                        {#<img class="rounded-circle fotoExcurc img-fluid"#}
+                        {#src="{{ asset('build/img/excurciones/excurciones4.jpg') }}" alt="">#}
+                        {#</div>#}
+                        {#<div class="timeline-panelGPS">#}
+                        {#<div class="timeline-headingGPS">#}
+                        {#<h4>July 2014</h4>#}
+                        {#<h4 class="subheadingGPS">Phase Two Expansion</h4>#}
+                        {#</div>#}
+                        {#<div class="timeline-bodyGPS">#}
+                        {#<p class="text-muted">Lorem ipsum dolor sit amet, consectetur#}
+                        {#adipisicing elit.#}
+                        {#Sunt#}
+                        {#ut#}
+                        {#voluptatum eius sapiente, totam reiciendis temporibus qui#}
+                        {#quibusdam,#}
+                        {#recusandae#}
+                        {#sit#}
+                        {#vero unde, sed, incidunt et ea quo dolore laudantium#}
+                        {#consectetur!</p>#}
+                        {#</div>#}
+                        {#</div>#}
+                        {#</li>#}
+                        {#<li class="timeline-invertedGPS">#}
+                        {#<div class="timeline-imageGPS">#}
+                        {#boton de ver mas#}
+
+                        {#<a class="btn-primary masExcur">#}
+
+                        {#<h4>#}
+                        {#{{ app.session.get('language') == 'es'? 'Fin':'End' }}#}
+                        {#<div><i class="fas fa-hand-peace fa-2x"></i>#}
+                        {#</div>#}
+                        {#</h4>#}
+                        {#</a>#}
+
+                        {#boton de ver mas#}
+                        {#</div>#}
+                        {#</li>#}
+
+
+                        {#</ul>#}
+                        {#</div>#}
+                        {#</div>#}
+
+
+                        <div class="separador"></div>
 
                         {#Comentarios --------------------------------------------------------------------------------------#}
 
@@ -364,7 +571,7 @@
                 </div>
 
 
-                <div class="col-12 col-md-4 portfolio-item">
+                <div class="col-12 col-md-4 portfolio-item reserva">
                     <div class="container">
                         <div class="modal-content">
                             <form action="" method="post">
@@ -534,7 +741,13 @@
     </section>
 
 
+    <a class="botonReserva" href="" data-toggle="modal"
+       data-target="#reservaModal">
 
+        <button type="submit"
+                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+
+    </a>
 
 
 {% endblock %}
@@ -546,6 +759,142 @@
 
 
     {#Modal ver servicios------------------------------------------------------------------------------------------#}
+
+    <div class="portfolio-modal-sm modal fade" id="reservaModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {#<div class="modal-header">#}
+                {##}
+                {##}
+                {#</div>#}
+                <form action="" method="post">
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h6 class="text-muted">
+                                    56€ {{ app.session.get('language') == 'es'? 'por habitación':'per room' }}  </h6>
+                                {#si tiene 3 estrellas de valoracion hay que hacer un for para que ponga tres fas(estrella rellena) y 2 far(estrella sin relleno)#}
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star-half-alt star"></i>
+                                <i class="far fa-star star"></i>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Adultos':'Adults' }}</label>
+                                <select class="custom-select">
+                                    <option selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Niños':'Number of children' }}</label>
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Hasta 12':'up to 12' }}</label>
+                                <select class="custom-select">
+                                    <option selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-12">
+
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Habitaciones':'Number of Rooms' }}</label>
+                                {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected>Todas</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-md-12">
+
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</label>
+                                {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected>Habitacion 1</option>
+                                        <option value="1">Habitacion 2</option>
+                                        <option value="2">Habitacion 3</option>
+                                        <option value="3">Habitacion 4</option>
+                                        <option value="4">1er Piso</option>
+                                        <option value="5">Planta Alta</option>
+                                        <option value="6">Azul</option>
+                                        <option value="7">Verde</option>
+                                        <option value="8">Suite presidencial</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputEntrada">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</label>
+                                <input type="date" class="form-control" id="inputEntrada">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputSalida">{{ app.session.get('language') == 'es'? 'Salida':'Exit' }}</label>
+                                <input type="date" class="form-control" id="inputSalida">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit"
+                                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                    </div>
+
+                </form>
+
+                {#..................................................#}
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+
+
+
     <div class="portfolio-modal-sm modal fade" id="servicehModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -575,6 +924,30 @@
         </div><!-- /.modal-dialog -->
     </div>
 
+    <div class="portfolio-modal-sm modal fade" id="PruebaModal" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <div class="modal-dialog">
+
+
+            <button type="botonCerrarModal" class="close" data-dismiss="modal"><span
+                        aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+
+
+            <img class="imgModalPaquete" src="{{ asset('build/img/excurciones/excurciones1.jpg') }}"
+                 alt="">
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
 
     {#Galeria modal ---------------------------------------------------------------------------------------------------------#}
 
@@ -597,6 +970,8 @@
     <script>
         baguetteBox.run('.grid-gallery', {animation: 'slideIn'});
     </script>
+
+    <script src="{{ asset('build/js/resCarousel.js') }}"></script>
 
     {#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////#}
     <script>
@@ -621,21 +996,21 @@
             });
         }
         $('#createCommentButton').click(function () {
-            var objectId= $('#objectId').val();
-            var objectType= $('#objectType').val();
-            var comment= $('#commentArea').val();
-            var userId= $('#userId').val();
-            if(comment == ''){
+            var objectId = $('#objectId').val();
+            var objectType = $('#objectType').val();
+            var comment = $('#commentArea').val();
+            var userId = $('#userId').val();
+            if (comment == '') {
                 alert('debe escribir un comentario');
-            }else{
-                var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
+            } else {
+                var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                 $.ajax({
                     type: "POST",
                     url: "{{ path('ajax_create_comment') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
                     data: data,
                     success: function (response) {
                         if (response.result) {
-                            alert('Su comentario ha sido recivido correctamente');
+                            alert('Su comentario ha sido recibido correctamente');
                             $('#commentArea').val('');
                         }
                     }

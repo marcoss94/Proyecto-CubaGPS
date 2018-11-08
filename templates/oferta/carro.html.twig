@@ -228,7 +228,7 @@
                 </div>
 
 
-                <div class="col-12 col-md-4 portfolio-item">
+                <div class="col-12 col-md-4 portfolio-item reserva">
                     <div class="container">
                         <div class="modal-content">
                             <form action="" method="post">
@@ -397,7 +397,13 @@
 
     </section>
 
+    <a class="botonReserva" href="" data-toggle="modal"
+       data-target="#reservaModal">
 
+        <button type="submit"
+                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+
+    </a>
 
 
 
@@ -410,6 +416,141 @@
 
 
     {#Modal ver servicios------------------------------------------------------------------------------------------#}
+
+    <div class="portfolio-modal-sm modal fade" id="reservaModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {#<div class="modal-header">#}
+                {##}
+                {##}
+                {#</div>#}
+                <form action="" method="post">
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-8">
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                <h6 class="text-muted">
+                                    56€ {{ app.session.get('language') == 'es'? 'por habitación':'per room' }}  </h6>
+                                {#si tiene 3 estrellas de valoracion hay que hacer un for para que ponga tres fas(estrella rellena) y 2 far(estrella sin relleno)#}
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star-half-alt star"></i>
+                                <i class="far fa-star star"></i>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Adultos':'Adults' }}</label>
+                                <select class="custom-select">
+                                    <option selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Niños':'Number of children' }}</label>
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Hasta 12':'up to 12' }}</label>
+                                <select class="custom-select">
+                                    <option selected>0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+
+                                </select>
+
+                            </div>
+                            <div class="form-group col-md-12">
+
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Habitaciones':'Number of Rooms' }}</label>
+                                {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected>Todas</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group col-md-12">
+
+                                <label class="text-muted"
+                                       for="inputAge">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</label>
+                                {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
+                                <div class="form-group">
+                                    <select class="custom-select">
+                                        <option selected>Habitacion 1</option>
+                                        <option value="1">Habitacion 2</option>
+                                        <option value="2">Habitacion 3</option>
+                                        <option value="3">Habitacion 4</option>
+                                        <option value="4">1er Piso</option>
+                                        <option value="5">Planta Alta</option>
+                                        <option value="6">Azul</option>
+                                        <option value="7">Verde</option>
+                                        <option value="8">Suite presidencial</option>
+
+                                    </select>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputEntrada">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</label>
+                                <input type="date" class="form-control" id="inputEntrada">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label class="text-muted"
+                                       for="inputSalida">{{ app.session.get('language') == 'es'? 'Salida':'Exit' }}</label>
+                                <input type="date" class="form-control" id="inputSalida">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit"
+                                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                    </div>
+
+                </form>
+
+                {#..................................................#}
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+
+
     <div class="portfolio-modal-sm modal fade" id="servicehModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

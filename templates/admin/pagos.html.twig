@@ -1,0 +1,177 @@
+{% extends 'backendBase.html.twig' %}
+
+
+{% block title %}Administración | Pagos{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item active">Pagos</li>
+    </ol>
+
+
+
+    <div class="card mb-3">
+        <div class="card-header">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-home"></i>
+                    Pagos
+                </div>
+                <div class="col-auto">
+                    {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+                    {#Agregar#}
+                    {#</button>#}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Precio de Habitacion</th>
+                        <th>Precio de Servicios</th>
+                        <th>Precio de algo mas</th>
+                        <th>Total</th>
+                        <th>Ganancia</th>
+                        <th>Impresion</th>
+
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Precio de Habitacion</th>
+                        <th>Precio de Servicios</th>
+                        <th>Precio de algo mas</th>
+                        <th>Total</th>
+                        <th>Ganancia</th>
+                        <th>Impresion</th>
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    <tr>
+                        <td>1</td>
+                        <td>Reyner Baily</td>
+                        <td>2018-01-16</td>
+                        <td>2018-01-25</td>
+                        <td>$500</td>
+                        <td>$100</td>
+                        <td>$50</td>
+                        <td>$650</td>
+                        <td>$100</td>
+
+
+                        <td> <a href="print.php?pid=6" class="btn btn-primary"> <i class="fa fa-print"></i> Print</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Marcos Alvarez</td>
+                        <td>2018-01-16</td>
+                        <td>2018-01-25</td>
+                        <td>$500</td>
+                        <td>$100</td>
+                        <td>$50</td>
+                        <td>$650</td>
+                        <td>$100</td>
+
+
+                        <td> <a href="print.php?pid=6" class="btn btn-primary"> <i class="fa fa-print"></i> Print</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Reyner Baily</td>
+                        <td>2018-01-16</td>
+                        <td>2018-01-25</td>
+                        <td>$500</td>
+                        <td>$100</td>
+                        <td>$50</td>
+                        <td>$650</td>
+                        <td>$100</td>
+
+
+                        <td> <a href="print.php?pid=6" class="btn btn-primary"> <i class="fa fa-print"></i> Print</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+        </div>
+
+        <div class="card-footer">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-home"></i>
+                    Pagos
+                </div>
+                <div class="col-auto">
+                    {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+                    {#Agregar#}
+                    {#</button>#}
+                </div>
+            </div>
+
+        </div>
+
+        </form>
+
+
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/js/popper.min.js')}}"></script>
+
+    <script src="{{ asset('build/js/baguetteBox.min.js') }}"></script>
+
+    <script></script>
+
+
+{% endblock %}
+
+
+

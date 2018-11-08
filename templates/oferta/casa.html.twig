@@ -208,7 +208,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class=" infoOferta text-left">
                                             <a class="nav-item nombreO">
-                                                <h4>{{ i.nombre}}</h4>
+                                                <h4>{{ i.nombre }}</h4>
                                             </a>
                                             <div class="iconogeneral">
                                                 <div class="iconoServ">
@@ -222,6 +222,7 @@
                                                 </div>
                                             </div>
                                             {#servicios#}
+                                            <div class="separadorIconos"></div>
                                             <div>
                                                 {% if i.camasDobles %}
                                                     <div class="serviciosOfertas" style="margin-right: 10px">
@@ -241,7 +242,9 @@
                                                     <div class="serviciosOfertas" style="margin-right: 10px">
                                                         <div class="iconogeneral">
                                                             <div class="iconoServ">
-                                                                <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQzNyA0MzciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQzNyA0Mzc7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cmVjdCB4PSIxNTAuNjY3IiB5PSIxNDEuODM0IiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMTc1LjgyIiB3aWR0aD0iNjMuOTkyIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMDAwMDAwIi8+Cgk8cG9seWdvbiBwb2ludHM9IjQwMiwxNzYuMzI2IDQwMiwyMzQuNjggMzUsMjM0LjY4IDM1LDExMC44MiAwLDExMC44MiAwLDMyNi4xOCAzNSwzMjYuMTggMzUsMjY5LjY4ICAgIDQwMiwyNjkuNjggNDAyLDMyNi4xOCA0MzcsMzI2LjE4IDQzNywyNTIuMTggNDM3LDIzNC42OCA0MzcsMTc2LjMyNiAgIiBmaWxsPSIjMDAwMDAwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="/>
+                                                                <div style="margin-right: 8px">
+                                                                    <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQzNyA0MzciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQzNyA0Mzc7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cmVjdCB4PSIxNTAuNjY3IiB5PSIxNDEuODM0IiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMTc1LjgyIiB3aWR0aD0iNjMuOTkyIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMDAwMDAwIi8+Cgk8cG9seWdvbiBwb2ludHM9IjQwMiwxNzYuMzI2IDQwMiwyMzQuNjggMzUsMjM0LjY4IDM1LDExMC44MiAwLDExMC44MiAwLDMyNi4xOCAzNSwzMjYuMTggMzUsMjY5LjY4ICAgIDQwMiwyNjkuNjggNDAyLDMyNi4xOCA0MzcsMzI2LjE4IDQzNywyNTIuMTggNDM3LDIzNC42OCA0MzcsMTc2LjMyNiAgIiBmaWxsPSIjMDAwMDAwIi8+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=="/>
+                                                                </div>
                                                             </div>
                                                             <div class="iconoServ">
                                                                 <span>{{ ' '~i.camasSimples }}{{ app.session.get('language') == 'es'? ' Cama simple ':' Bed' }}</span>
@@ -253,7 +256,9 @@
                                                     <div class="serviciosOfertas" style="margin-right: 10px">
                                                         <div class="iconogeneral">
                                                             <div class="iconoServ">
-                                                                <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQzNyA0MzciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQzNyA0Mzc7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cmVjdCB4PSIxNTAuNjY3IiB5PSIyMTkuMTc5IiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMjUzLjE2NiIgd2lkdGg9IjYzLjk5MiIgaGVpZ2h0PSIzNSIgZmlsbD0iIzAwMDAwMCIvPgoJPHJlY3QgeD0iMTUwLjY2NyIgeT0iNjcuMzMzIiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMTAxLjMxOSIgd2lkdGg9IjYzLjk5MiIgaGVpZ2h0PSIzNSIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTQwMiwxMDEuODI2djU4LjM1NEgzNVYzNi4zMjFIMHYxNDl2NjYuMzU4djE0OWgzNXYtNTYuNWgzNjd2NTYuNWgzNXYtNzR2LTE3LjV2LTEzMS41di0xNy41ICAgdi01OC4zNTRINDAyeiBNMzUsMzA5LjE3OXYtNTcuNXYtNTYuNWgzNjd2MTE0SDM1eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="/>
+                                                                <div style="margin-right: 8px">
+                                                                    <img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTcuMS4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQzNyA0MzciIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQzNyA0Mzc7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8cmVjdCB4PSIxNTAuNjY3IiB5PSIyMTkuMTc5IiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMjUzLjE2NiIgd2lkdGg9IjYzLjk5MiIgaGVpZ2h0PSIzNSIgZmlsbD0iIzAwMDAwMCIvPgoJPHJlY3QgeD0iMTUwLjY2NyIgeT0iNjcuMzMzIiB3aWR0aD0iMjI1LjM4OCIgaGVpZ2h0PSI2OC45ODYiIGZpbGw9IiMwMDAwMDAiLz4KCTxyZWN0IHg9IjU5LjgzOSIgeT0iMTAxLjMxOSIgd2lkdGg9IjYzLjk5MiIgaGVpZ2h0PSIzNSIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTQwMiwxMDEuODI2djU4LjM1NEgzNVYzNi4zMjFIMHYxNDl2NjYuMzU4djE0OWgzNXYtNTYuNWgzNjd2NTYuNWgzNXYtNzR2LTE3LjV2LTEzMS41di0xNy41ICAgdi01OC4zNTRINDAyeiBNMzUsMzA5LjE3OXYtNTcuNXYtNTYuNWgzNjd2MTE0SDM1eiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="/>
+                                                                </div>
                                                             </div>
                                                             <div class="iconoServ">
                                                                 <span>{{ ' '~i.literas }}{{ app.session.get('language') == 'es'? ' Litera':' Bunk bed' }}</span>
@@ -262,26 +267,28 @@
                                                     </div>
                                                 {% endif %}
 
+                                                <div class="separadorIconos"></div>
 
 
-                                            <div class="row">
-                                                {% for service in i.servicios %}
-                                                <div class="col-6 col-md-6">
-                                                    <div class="serviciosOfertas" style="margin-right: 10px">
-                                                        <div class="iconogeneral">
-                                                            <div class="iconoServ">
-                                                                <div style="margin-right: 8px">
-                                                                    <img src="{{ iconos[service][0] }}"/>
+                                                <div class="row">
+                                                    {% for service in i.servicios %}
+                                                        <div class="col-6 col-md-6">
+                                                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                                                <div class="iconogeneral">
+                                                                    <div class="iconoServ">
+                                                                        <div style="margin-right: 8px">
+                                                                            <img src="{{ iconos[service][0] }}"/>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="iconoServ">
+                                                                        <span>{{ app.session.get('language') == 'es'? iconos[service][1]:iconos[service][2] }}</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="iconoServ">
-                                                                <span>{{ app.session.get('language') == 'es'? iconos[service][1]:iconos[service][2] }}</span>
-                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    {% endfor %}
                                                 </div>
-                                                {% endfor %}
-                                            </div>
+                                                <div class="separadorIconos"></div>
 
                                             </div>
                                             {#<div class="section-subheading" style="margin-top: 24px">#}
@@ -526,6 +533,7 @@
                                 </div>
 
                                 <div class="modal-footer">
+                                    <a href="{{ path('reservacion') }}">Reservacion </a>
                                     <button type="submit"
                                             class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                 </div>
@@ -563,10 +571,17 @@
     <div class="portfolio-modal-sm modal fade" id="reservaModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+                {#<div class="modal-header">#}
+                    {##}
+                    {##}
+                {#</div>#}
                 <form action="" method="post">
                     <div class="modal-body">
                         <div class="form-row">
                             <div class="form-group col-md-8">
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
                                 <h6 class="text-muted">
                                     56€ {{ app.session.get('language') == 'es'? 'por habitación':'per room' }}  </h6>
                                 {#si tiene 3 estrellas de valoracion hay que hacer un for para que ponga tres fas(estrella rellena) y 2 far(estrella sin relleno)#}
@@ -589,24 +604,7 @@
                                     <option value="7">7</option>
                                     <option value="8">8</option>
                                     <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
+
                                 </select>
                             </div>
                         </div>
@@ -626,25 +624,7 @@
                                     <option value="6">6</option>
                                     <option value="7">7</option>
                                     <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
+
                                 </select>
 
                             </div>
@@ -661,13 +641,7 @@
                                         <option value="3">3</option>
                                         <option value="4">4</option>
                                         <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
+
                                     </select>
                                 </div>
 
