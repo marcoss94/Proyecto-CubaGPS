@@ -48,6 +48,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Camas Dobles</th>
                         <th scope="col">Camas Simples</th>
                         <th scope="col">Literas</th>
@@ -56,7 +57,6 @@
                         <th scope="col">Privada</th>
                         <th scope="col">Independiente</th>
                         <th scope="col">Común</th>
-                        {#<th scope="col">Baño</th>#}
                         <th scope="col">Escaleras</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Servicios</th>
@@ -71,6 +71,7 @@
                     <tfoot>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Camas Dobles</th>
                         <th scope="col">Camas Simples</th>
                         <th scope="col">Literas</th>
@@ -79,7 +80,6 @@
                         <th scope="col">Privada</th>
                         <th scope="col">Independiente</th>
                         <th scope="col">Común</th>
-                        {#<th scope="col">Baño</th>#}
                         <th scope="col">Escaleras</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Servicios</th>
@@ -95,6 +95,7 @@
                     {% for c in casa.habitaciones %}
                     <tr {% if c.active == false %} class="table-danger" {% endif %}>
                         <td>{{ c.nombre }}</td>
+                        <td>{{ c.name }}</td>
                         <td>{{ c.camasDobles }}</td>
                         <td>{{ c.camasSimples }}</td>
                         <td>{{ c.literas }}</td>
@@ -103,7 +104,6 @@
                         <td>{{ c.privada?'si':'no' }}</td>
                         <td>{{ c.independiente?'si':'no' }}</td>
                         <td>{{ c.comun?'si':'no' }}</td>
-                        {#<td>{{ c.bathroom?'si':'no' }}</td>#}
                         <td>{{ c.escaleras?'si':'no' }}</td>
                         <td>{{ c.precio }}</td>
                         <td>

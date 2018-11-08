@@ -553,7 +553,7 @@ border-color: #f9b501">
             </div>
         {% endif %}
 
-
+    <input type="hidden" id="lang" value="{{ app.session.get('language') }}">
     </footer>
 {% endblock %}
 
@@ -575,6 +575,7 @@ border-color: #f9b501">
     <script src="{{ asset('build/js/agency.min.js') }}"></script>
 
     <script type="text/javascript">
+        var lang={{ app.session.get('languaje') }};
         $('#spanish').click(function () {
             {% set languaje = 'es' %};
         })

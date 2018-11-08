@@ -25,11 +25,6 @@ class Activity extends DisplayableComponent
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nombre;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $horario;
 
     /**
@@ -40,13 +35,17 @@ class Activity extends DisplayableComponent
         return $this->horario;
     }
 
-
     /**
      * @param mixed $horario
      */
     public function setHorario($horario)
     {
         $this->horario = $horario;
+    }
+
+    function __toString()
+    {
+        return (string)parent::getNombre();
     }
 
     /**
@@ -68,22 +67,6 @@ class Activity extends DisplayableComponent
     /**
      * @return mixed
      */
-    public function getNombre(): ?string
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * @param mixed $nombre
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getDia()
     {
         return $this->dia;
@@ -97,10 +80,6 @@ class Activity extends DisplayableComponent
         $this->dia = $dia;
     }
 
-    public function __toString()
-    {
-        return $this->getNombre();
-    }
 
 
 

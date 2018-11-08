@@ -31,6 +31,12 @@ class Contador
      */
     private $preReserve=0;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $postReserve=0;
+
+
 
 
     public function getId(): ?int
@@ -57,6 +63,22 @@ class Contador
     public function setNewComments($newComments)
     {
         $this->newComments = $newComments;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPostReserve()
+    {
+        return $this->postReserve;
+    }
+
+    /**
+     * @param mixed $postReserve
+     */
+    public function setPostReserve($postReserve)
+    {
+        $this->postReserve = $postReserve;
     }
 
     /**

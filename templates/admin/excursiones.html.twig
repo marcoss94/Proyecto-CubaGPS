@@ -46,6 +46,7 @@
                     <tr>
                         <th scope="col">Creado</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
                         <th scope="col">Provincia</th>
@@ -59,6 +60,7 @@
                         <th scope="col">Almuerzo</th>
                         <th scope="col">Comida</th>
                         <th scope="col">Reglamento</th>
+                        <th scope="col">Reglament</th>
                         <th scope="col">Precio para una persona</th>
                         <th scope="col">Precio para dos personas</th>
                         <th scope="col">Precio para tres personas</th>
@@ -77,6 +79,7 @@
                     <tr>
                         <th scope="col">Creado</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
                         <th scope="col">Provincia</th>
@@ -90,6 +93,7 @@
                         <th scope="col">Almuerzo</th>
                         <th scope="col">Comida</th>
                         <th scope="col">Reglamento</th>
+                        <th scope="col">Reglament</th>
                         <th scope="col">Precio para una persona</th>
                         <th scope="col">Precio para dos personas</th>
                         <th scope="col">Precio para tres personas</th>
@@ -109,6 +113,7 @@
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.createdAt|date }}</td>
                             <td>{{ c.nombre }}</td>
+                            <td>{{ c.name }}</td>
                             <td>{{ c.descripcion }}</td>
                             <td>{{ c.description }}</td>
                             <td>{{ c.provincia }}</td>
@@ -135,6 +140,7 @@
                             <td>{{ c.almuerzo?'si':'no' }}</td>
                             <td>{{ c.comida?'si':'no' }}</td>
                             <td>{{ c.reglamento }}</td>
+                            <td>{{ c.reglament }}</td>
                             <td>{{ c.precio1 }}</td>
                             <td>{{ c.precio2 }}</td>
                             <td>{{ c.precio3 }}</td>

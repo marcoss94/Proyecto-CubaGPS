@@ -20,11 +20,6 @@ class Excursion extends DisplayableComponent
     private $dias=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $nombre;
-
-    /**
      * @ORM\Column(type="string", length=20)
      */
     private $horaInicio;
@@ -73,6 +68,11 @@ class Excursion extends DisplayableComponent
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $reglamento;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $reglament;
 
     /**
      * @ORM\Column(type="float")
@@ -139,6 +139,22 @@ class Excursion extends DisplayableComponent
     }
 
     /**
+     * @return mixed
+     */
+    public function getReglament()
+    {
+        return $this->reglament;
+    }
+
+    /**
+     * @param mixed $reglament
+     */
+    public function setReglament($reglament)
+    {
+        $this->reglament = $reglament;
+    }
+
+    /**
      * @param mixed $longitud
      */
     public function setLongitud($longitud)
@@ -173,18 +189,6 @@ class Excursion extends DisplayableComponent
     public function setDias(array $dias): self
     {
         $this->dias = $dias;
-
-        return $this;
-    }
-
-    public function getNombre(): ?string
-    {
-        return $this->nombre;
-    }
-
-    public function setNombre(string $nombre): self
-    {
-        $this->nombre = $nombre;
 
         return $this;
     }
@@ -349,8 +353,9 @@ class Excursion extends DisplayableComponent
         $this->precio4 = $precio4;
     }
 
-    public function __toString()
+    function __toString()
     {
-        return $this->getNombre();
+        return (string)parent::getNombre();
     }
+
 }

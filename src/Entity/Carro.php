@@ -13,7 +13,7 @@ class Carro extends DisplayableComponent
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nombre;
+    private $nombreChofer;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -102,7 +102,10 @@ class Carro extends DisplayableComponent
         return $this->provincia;
     }
 
-
+    function __toString()
+    {
+        return (string)$this->modelo;
+    }
 
 
     /**
@@ -132,17 +135,17 @@ class Carro extends DisplayableComponent
     /**
      * @return mixed
      */
-    public function getNombre()
+    public function getNombreChofer()
     {
-        return $this->nombre;
+        return $this->nombreChofer;
     }
 
     /**
-     * @param mixed $nombre
+     * @param mixed $nombreChofer
      */
-    public function setNombre($nombre)
+    public function setNombreChofer($nombreChofer)
     {
-        $this->nombre = $nombre;
+        $this->nombreChofer = $nombreChofer;
     }
 
     /**
@@ -305,9 +308,5 @@ class Carro extends DisplayableComponent
         $this->idiomas = $idiomas;
     }
 
-    public function __toString()
-    {
-        return $this->getModelo();
-    }
 
 }

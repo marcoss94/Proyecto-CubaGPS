@@ -22,7 +22,7 @@ class CarForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre',TextType::class,['label' => 'Nombre del Chofer'])
+            ->add('nombreChofer',TextType::class,['label' => 'Nombre del Chofer'])
             ->add('descripcion',TextareaType::class,['label' => 'Descripción'])
             ->add('description',TextareaType::class,['label' => 'Description'])
             ->add('tel', TelType::class, ['label' => 'Teléfono fijo'])

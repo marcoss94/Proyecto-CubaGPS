@@ -52,7 +52,6 @@
                         </a>
                         {#<img class="imgOferta " src="{{ asset('build/img/portfolio/02-thumbnail.jpg') }}"#}
                         {#alt="First slide">#}
-
                     </div>
                     <div class="itemCarucel e item">
                         <a class="lightbox" href="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}">
@@ -110,6 +109,7 @@
 
                                     <div class="iconoServ">
                                         <span>{{ object.capacidad }}{{ app.session.get('language') == 'es'? ' personas ':' guests' }}</span>
+                                        <input type="hidden" id="capacidad" value="{{ object.capacidad }}">;
                                     </div>
                                 </div>
                             </div>
@@ -332,39 +332,39 @@
                             <ul class="list-unstyled ">
                                 {% for c in object.comentarios if c.revisado %}
                                     {% if loop.index < 7 %}
-                                    <li class="media">
-                                        <a class="pr-3 " href="#">
-                                            <img class="mr-3 rounded-circle fotocomment"
-                                                 src="{{ asset(c.autor.picture) }}"
-                                                 alt="profile picture">
-                                        </a>
-                                        <div class="media-body">
-                                            <h5 class="mt-0 mb-1">{{ c.autor }}</h5>
-                                            <p class="text-muted">{{ c.text }}</p>
-                                        </div>
-                                    </li>
+                                        <li class="media">
+                                            <a class="pr-3 " href="#">
+                                                <img class="mr-3 rounded-circle fotocomment"
+                                                     src="{{ asset(c.autor.picture) }}"
+                                                     alt="profile picture">
+                                            </a>
+                                            <div class="media-body">
+                                                <h5 class="mt-0 mb-1">{{ c.autor }}</h5>
+                                                <p class="text-muted">{{ c.text }}</p>
+                                            </div>
+                                        </li>
                                     {% endif %}
                                 {% endfor %}
                             </ul>
                         {% endif %}
                         {% if app.user %}
-                                <div class="form-group">
-                                    <input type="hidden" id="objectId" name="targetId" value="{{ object.id }}">
-                                    <input type="hidden" id="objectType" name="type" value="component">
-                                    <input type="hidden" id="userId" name="user" value="{{ app.user.id }}">
+                            <div class="form-group">
+                                <input type="hidden" id="objectId" name="targetId" value="{{ object.id }}">
+                                <input type="hidden" id="objectType" name="type" value="component">
+                                <input type="hidden" id="userId" name="user" value="{{ app.user.id }}">
                                 <textarea class="form-control" id="commentArea"
                                           placeholder="{{ app.session.get('language') == 'es'? 'Tu Comentario ':'Your Comment ' }}*"
                                           required="required" name="text"
                                           data-validation-required-message="Please enter a message."></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="clearfix"></div>
-                                <div class="col-lg-12 text-center">
-                                    <div id="success"></div>
-                                    <button id="createCommentButton" class="btn btn-primary text-uppercase" type="button">
-                                        {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
-                                    </button>
-                                </div>
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="col-lg-12 text-center">
+                                <div id="success"></div>
+                                <button id="createCommentButton" class="btn btn-primary text-uppercase" type="button">
+                                    {{ app.session.get('language') == 'es'? 'Enviar':'Send' }}
+                                </button>
+                            </div>
                         {% endif %}
                         {#///////////////////////////comentarios./////////////////////////////////////////////#}
 
@@ -382,50 +382,31 @@
                 <div class="col-12 col-md-4 portfolio-item reserva">
                     <div class="container">
                         <div class="modal-content">
-                            <form action="" method="post">
+                            <form action="{{ path('reserva_casa') }}" method="post" id="reserveForm">
+                                <input type="hidden" name="objectId" value="{{ object.id }}">
                                 <div class="modal-body">
                                     <div class="form-row">
                                         <div class="form-group col-md-8">
-                                            <h6 class="text-muted">
-                                                56€ {{ app.session.get('language') == 'es'? 'por habitación':'per room' }}  </h6>
-                                            {#si tiene 3 estrellas de valoracion hay que hacer un for para que ponga tres fas(estrella rellena) y 2 far(estrella sin relleno)#}
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star-half-alt star"></i>
-                                            <i class="far fa-star star"></i>
+                                            {% if object.valoracionArray[0]!=0 %}
+                                                {% for j in 1..object.valoracionArray[0] %}
+                                                    <i class="fas fa-star star"></i>
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% if object.valoracionArray[1] %}
+                                                <i class="fas fa-star-half-alt star"></i>
+                                            {% endif %}
+                                            {% if object.valoracionArray[2]!=0 %}
+                                                {% for j in 1..object.valoracionArray[2] %}
+                                                    <i class="far fa-star star"></i>
+                                                {% endfor %}
+                                            {% endif %}
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Adultos':'Adults' }}</label>
-                                            <select class="custom-select">
-                                                <option selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
+                                            <select class="custom-select" id="cantA" name="cantA">
+                                                {% for number in 1..30 %}
+                                                    <option value="{{ number }}" {% if number==1 %} selected {% endif %}>{{ number }}</option>
+                                                {% endfor %}
                                             </select>
                                         </div>
                                     </div>
@@ -435,113 +416,58 @@
                                                    for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Niños':'Number of children' }}</label>
                                             <label class="text-muted"
                                                    for="inputAge">{{ app.session.get('language') == 'es'? 'Hasta 12':'up to 12' }}</label>
-                                            <select class="custom-select">
-                                                <option selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
+                                            <select class="custom-select" id="cantN" name="cantN">
+                                                {% for number in 1..30 %}
+                                                    <option value="{{ number }}" {% if number==1 %} selected {% endif %}>{{ number }}</option>
+                                                {% endfor %}
                                             </select>
 
                                         </div>
                                         <div class="form-group col-md-12">
-
-                                            <label class="text-muted"
-                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Habitaciones':'Number of Rooms' }}</label>
-                                            {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
-                                            <div class="form-group">
-                                                <select class="custom-select">
-                                                    <option selected>Todas</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                    <option value="11">11</option>
-                                                    <option value="12">12</option>
-                                                </select>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-
                                             <label class="text-muted"
                                                    for="inputAge">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</label>
-                                            {#0000000000000000000000000000000poner for en dependencia de cantidad de niños seleccionados para poner las edades0000000000000000000#}
                                             <div class="form-group">
-                                                <select class="custom-select">
-                                                    <option selected>Habitacion 1</option>
-                                                    <option value="1">Habitacion 2</option>
-                                                    <option value="2">Habitacion 3</option>
-                                                    <option value="3">Habitacion 4</option>
-                                                    <option value="4">1er Piso</option>
-                                                    <option value="5">Planta Alta</option>
-                                                    <option value="6">Azul</option>
-                                                    <option value="7">Verde</option>
-                                                    <option value="8">Suite presidencial</option>
-
-                                                </select>
+                                                {% for h in object.habitaciones %}
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox"
+                                                               name="{{ h.id }}"
+                                                               id="{{ loop.index0 }}">
+                                                        <label class="form-check-label" for="{{ loop.index }}">
+                                                            {{ app.session.get('language') == 'es'? h.nombre : h.name }}
+                                                        </label>
+                                                    </div>
+                                                {% endfor %}
                                             </div>
-
                                         </div>
-
-
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label class="text-muted"
                                                    for="inputEntrada">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</label>
-                                            <input type="date" class="form-control" id="inputEntrada">
+                                            <input type="date" class="form-control" name="entrada" id="inputEntrada"
+                                                   required>
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label class="text-muted"
                                                    for="inputSalida">{{ app.session.get('language') == 'es'? 'Salida':'Exit' }}</label>
-                                            <input type="date" class="form-control" id="inputSalida">
+                                            <input type="date" class="form-control" name="salida" id="inputSalida"
+                                                   required>
                                         </div>
-
                                     </div>
 
                                 </div>
-
+                                <div id="errorBox"></div>
                                 <div class="modal-footer">
                                     <a href="{{ path('reservacion') }}">Reservacion </a>
-                                    <button type="submit"
+
+                                    <button type="button" id="reserveButton"
                                             class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                 </div>
-
                             </form>
                         </div>
                     </div>
                 </div>
+                {#---------------------------------Formulario de Reserva-----------------------------------------------------#}
             </div>
         </div>
     </section>
@@ -557,8 +483,6 @@
     </a>
 
 {% endblock %}
-
-
 {% block footer %}
 
 
@@ -722,15 +646,13 @@
     <script>
         baguetteBox.run('.grid-gallery', {animation: 'slideIn'});
     </script>
-
     {#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////#}
     <script>
+        $('#wrongDate').hide;
         var carousel = $(".carouselCarucel"),
             currdeg = 0;
-
         $(".nextCarucel").on("click", {d: "n"}, rotate);
         $(".prevCarucel").on("click", {d: "p"}, rotate);
-
         function rotate(e) {
             if (e.data.d == "n") {
                 currdeg = currdeg - 60;
@@ -745,15 +667,59 @@
                 "transform": "rotateY(" + currdeg + "deg)"
             });
         }
+        $('#reserveButton').click(function () {
+            var entrada = new Date($('#inputEntrada').val());
+            var salida = new Date($('#inputSalida').val());
+            var cantA=new Number($('#cantA').val());
+            var cantN=new Number($('#cantN').val());
+            if (salida < entrada) {
+                var entrada = new Date($('#inputEntrada').val());
+                var salida = new Date($('#inputSalida').val());
+                if (salida < entrada) {
+                    var text = ($('#lang').val() == 'es') ? 'La fecha de salida no puede ser antes que la fecha de entrada'
+                        : 'The departure date can not be before the date of entry';
+                    tpl = '<div class="alert alert-danger">' + text + '</div>';
+                    $('#errorBox').html(tpl)
+                    return;
+                }
+            }
+            if ($('input:checkbox').filter(':checked').length < 1) {
+                var text = ($('#lang').val() == 'es') ? 'Debe seleccionar al menos una habitacion'
+                    : 'You must select at least one room';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+            if (salida.toTimeString() == 'Invalid Date' || entrada.toTimeString() == 'Invalid Date') {
+                var text = ($('#lang').val() == 'es') ? 'Debe seleccionar las fechas de entrada y salida'
+                    : 'You must select the entry and departure dates';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+            alert(($('#cantA').val()+$('#cantN').val()));
+            alert($('#capacidad').val());
+            if (($('#capacidad').val()) < ($('#cantA').val()+$('#cantN').val())){
+                var text = ($('#lang').val() == 'es') ? 'cant'
+                    : 'You must select the entry and departure dates';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+
+                $('#reserveForm').submit();
+
+
+        })
         $('#createCommentButton').click(function () {
-            var objectId= $('#objectId').val();
-            var objectType= $('#objectType').val();
-            var comment= $('#commentArea').val();
-            var userId= $('#userId').val();
-            if(comment == ''){
+            var objectId = $('#objectId').val();
+            var objectType = $('#objectType').val();
+            var comment = $('#commentArea').val();
+            var userId = $('#userId').val();
+            if (comment == '') {
                 alert('debe escribir un comentario');
-            }else{
-                var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
+            } else {
+                var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                 $.ajax({
                     type: "POST",
                     url: "{{ path('ajax_create_comment') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
@@ -767,7 +733,6 @@
                 })
                 ;
             }
-
         })
 
     </script>

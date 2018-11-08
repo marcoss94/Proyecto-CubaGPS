@@ -17,6 +17,7 @@ class GoogleController extends Controller
      */
     public function connectAction(ClientRegistry $clientRegistry)
     {
+        $this->get('session')->set('redirectBack',$request->server->get('HTTP_REFERER'));
         return $clientRegistry
             ->getClient('google')
             ->redirect();
@@ -34,7 +35,7 @@ class GoogleController extends Controller
         if (!$this->getUser()) {
             return new JsonResponse(array('status' => false, 'message' => "User not found!"));
         } else {
-            return $this->redirectToRoute('blog_index');
+            return $this->redirect($this->get('session')->get('redirectBack'));
         }
 
     }

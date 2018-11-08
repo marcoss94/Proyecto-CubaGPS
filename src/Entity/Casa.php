@@ -12,10 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Casa extends DisplayableComponent
 {
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $nombre;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -172,22 +168,6 @@ class Casa extends DisplayableComponent
     public function setLatitud($latitud)
     {
         $this->latitud = $latitud;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * @param mixed $nombre
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
     }
 
 
@@ -372,10 +352,9 @@ class Casa extends DisplayableComponent
         return $this;
     }
 
-
-    public function __toString()
+    function __toString()
     {
-        return (string)$this->nombre;
+        return (string)parent::getNombre();
     }
 
     /**

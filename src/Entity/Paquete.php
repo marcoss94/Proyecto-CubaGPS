@@ -74,7 +74,18 @@ class Paquete
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $included;
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $noIncluye;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $notIncluded;
 
     /**
      * @ORM\OneToMany(targetEntity="Dia", mappedBy="paquete")
@@ -115,6 +126,11 @@ class Paquete
     private $comentarios;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="paquete")
+     */
+    private $reservas;
+
+    /**
      * @return mixed
      */
     public function getCreatedAt()
@@ -146,6 +162,38 @@ class Paquete
     public function setUpdatedAt()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIncluded()
+    {
+        return $this->included;
+    }
+
+    /**
+     * @param mixed $included
+     */
+    public function setIncluded($included)
+    {
+        $this->included = $included;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNotIncluded()
+    {
+        return $this->notIncluded;
+    }
+
+    /**
+     * @param mixed $notIncluded
+     */
+    public function setNotIncluded($notIncluded)
+    {
+        $this->notIncluded = $notIncluded;
     }
 
     /**
@@ -419,6 +467,7 @@ class Paquete
     {
         $this->dias = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
+        $this->reservas = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -461,4 +510,37 @@ class Paquete
     {
         return $this->nombre;
     }
+
+    /**
+     * @return Collection|Reserva[]
+     */
+    public function getReservas(): Collection
+    {
+        return $this->reservas;
+    }
+
+    public function addReserva(Reserva $reserva): self
+    {
+        if (!$this->reservas->contains($reserva)) {
+            $this->reservas[] = $reserva;
+            $reserva->setPaquete($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReserva(Reserva $reserva): self
+    {
+        if ($this->reservas->contains($reserva)) {
+            $this->reservas->removeElement($reserva);
+            // set the owning side to null (unless already changed)
+            if ($reserva->getPaquete() === $this) {
+                $reserva->setPaquete(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }

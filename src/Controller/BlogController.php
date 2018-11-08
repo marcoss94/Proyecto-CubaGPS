@@ -95,11 +95,11 @@ class BlogController extends AbstractController
      * @Route("/blog_languaje", name="change_language")
      * @Method("GET")
      */
-    public function changeLanguaje()
+    public function changeLanguaje(Request $request)
     {
         $language = ($this->get('session')->get('language') == 'es') ? 'en' : 'es';
         $this->get('session')->set('language', $language);
-        return $this->redirectToRoute('blog_index');
+        return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 
     /**

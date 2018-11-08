@@ -102,20 +102,11 @@
 
     <section class="bg-light" id="portfolio" style="padding: 44px 0;">
         <div class="container">
-
-
             <div class="row">
-
                 <div class="col-12 col-md-8 portfolio-item">
-
-
                     <div class=" infoOferta text-left">
-
                         {#Nombre#}
-                        <h2 class="nombreO">Casa Yuli Varadero</h2>
-
-                        {#provincia#}
-                        <h4 class="section-subheading">Provincia</h4>
+                        <h2 class="nombreO">{{ app.session.get('language')=='es'? object.nombre : object.name }}</h2>
 
                         <div>
 
@@ -126,7 +117,7 @@
                                         <h6>
                                             <span><i class="far fa-sun"></i></span>
                                             {#Cantidad de dias#}
-                                            3 {{ app.session.get('language') == 'es'? 'Días ':'Days' }}
+                                            {{ object.diasDuracion }} {{ app.session.get('language') == 'es'? ' Días ':' Days' }}
                                         </h6>
                                     </div>
                                 </div>
@@ -138,47 +129,19 @@
                                         <h6>
                                             <span><i class="far fa-moon"></i></span>
                                             {#Cantidad de noches#}
-                                            2 {{ app.session.get('language') == 'es'? 'Noches ':'Nights' }}
+                                            {{ object.nochesDuracion }} {{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
                                         </h6>
                                     </div>
                                 </div>
                             </div>
-                            {#<div class="serviciosOfertas" style="margin-right: 10px">#}
-                            {#<div class="iconogeneral">#}
-
-                            {#<div class="iconoServ">#}
-                            {#<h6>#}
-                            {#<span><i class="fas fa-user-tie"></i></span>#}
-                            {#Transportacion#}
-                            {#Guia#}
-                            {#</h6>#}
-                            {#</div>#}
-                            {#</div>#}
-                            {#</div>#}
 
                         </div>
 
                         <div class="separador"></div>
                         {#Descripcion --------------------------------------------------------------------------------------#}
                         {#descripcion#}
-                        <p class="text-muted">Espacio para la descripcion de la oferta un poco amplia almenos 3
-                            renglones. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius
-                            sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt
-                            et ea quo dolore laudantium consectetur!</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? object.descripcion : object.description }}</p>
 
-
-                        <div class="separador"></div>
-
-                        {#servicios --------------------------------------------------------------------------------------#}
-                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Servicios':'Service' }}</h4>
-
-                        <div class="section-subheading" style="margin-top: 24px">
-                            <a class=" nav-item nombreO" href="" data-toggle="modal"
-                               data-target="#servicehModal">
-                                <h6 class="">{{ app.session.get('language') == 'es'? 'Mostrar todos los servicios':'Show all services' }}</h6>
-                            </a>
-                            </a>
-                        </div>
 
                         <div class="separador"></div>
 
@@ -514,7 +477,7 @@
                         {#</div>#}
 
 
-                        <div class="separador"></div>
+                            <div class="separador"></div>
 
                         {#Comentarios --------------------------------------------------------------------------------------#}
 
@@ -995,6 +958,50 @@
                 "transform": "rotateY(" + currdeg + "deg)"
             });
         }
+        $('#reserveButton').click(function () {
+            var entrada = new Date($('#inputEntrada').val());
+            var salida = new Date($('#inputSalida').val());
+            var cantA=new Number($('#cantA').val());
+            var cantN=new Number($('#cantN').val());
+            if (salida < entrada) {
+                var entrada = new Date($('#inputEntrada').val());
+                var salida = new Date($('#inputSalida').val());
+                if (salida < entrada) {
+                    var text = ($('#lang').val() == 'es') ? 'La fecha de salida no puede ser antes que la fecha de entrada'
+                        : 'The departure date can not be before the date of entry';
+                    tpl = '<div class="alert alert-danger">' + text + '</div>';
+                    $('#errorBox').html(tpl)
+                    return;
+                }
+            }
+            if ($('input:checkbox').filter(':checked').length < 1) {
+                var text = ($('#lang').val() == 'es') ? 'Debe seleccionar al menos una habitacion'
+                    : 'You must select at least one room';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+            if (salida.toTimeString() == 'Invalid Date' || entrada.toTimeString() == 'Invalid Date') {
+                var text = ($('#lang').val() == 'es') ? 'Debe seleccionar las fechas de entrada y salida'
+                    : 'You must select the entry and departure dates';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+            alert(($('#cantA').val()+$('#cantN').val()));
+            alert($('#capacidad').val());
+            if (($('#capacidad').val()) < ($('#cantA').val()+$('#cantN').val())){
+                var text = ($('#lang').val() == 'es') ? 'cant'
+                    : 'You must select the entry and departure dates';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+
+            $('#reserveForm').submit();
+
+
+        })
         $('#createCommentButton').click(function () {
             var objectId = $('#objectId').val();
             var objectType = $('#objectType').val();

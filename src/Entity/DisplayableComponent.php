@@ -40,7 +40,18 @@ abstract class DisplayableComponent
     /**
      * @ORM\Column(type="string", length=255,nullable=true)
      */
+    private $nombre;
+
+
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     */
     private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255,nullable=true)
+     */
+    private $name;
 
     /**
      * @ORM\Column(type="datetime")
@@ -69,6 +80,11 @@ abstract class DisplayableComponent
      * @ORM\OrderBy({"publishedAt" = "DESC"})
      */
     private $comentarios;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="commponent")
+     */
+    private $reservas;
 
 
     /**
@@ -113,6 +129,38 @@ abstract class DisplayableComponent
         $this->valoracionArray[0] = (integer)($valoracion / 2);
         $this->valoracionArray[1] = $valoracion % 2;
         $this->valoracionArray[2] = 5 - $this->valoracionArray[0] - $this->valoracionArray[1];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
 
     /**
@@ -164,6 +212,7 @@ abstract class DisplayableComponent
     {
         $this->images =new ArrayCollection();
         $this->comentarios = new ArrayCollection();
+        $this->reservas = new ArrayCollection();
     }
 
     /**
@@ -237,6 +286,37 @@ abstract class DisplayableComponent
             // set the owning side to null (unless already changed)
             if ($comentario->getComponent() === $this) {
                 $comentario->setComponent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reserva[]
+     */
+    public function getReservas(): Collection
+    {
+        return $this->reservas;
+    }
+
+    public function addReserva(Reserva $reserva): self
+    {
+        if (!$this->reservas->contains($reserva)) {
+            $this->reservas[] = $reserva;
+            $reserva->setCommponent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReserva(Reserva $reserva): self
+    {
+        if ($this->reservas->contains($reserva)) {
+            $this->reservas->removeElement($reserva);
+            // set the owning side to null (unless already changed)
+            if ($reserva->getCommponent() === $this) {
+                $reserva->setCommponent(null);
             }
         }
 

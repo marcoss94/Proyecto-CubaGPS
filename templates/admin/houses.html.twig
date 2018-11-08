@@ -59,6 +59,7 @@
                     <tr>
                         <th scope="col">Creado</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Manager</th>
                         <th scope="col">Dirección</th>
                         <th scope="col">Municipio</th>
@@ -88,6 +89,7 @@
                     <tr>
                         <th scope="col">Creado</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Name</th>
                         <th scope="col">Manager</th>
                         <th scope="col">Dirección</th>
                         <th scope="col">Municipio</th>
@@ -118,6 +120,7 @@
                     <tr {% if c.active == false %} class="table-danger" {% endif %}>
                         <td>{{ c.createdAt|date }}</td>
                         <td>{{ c.nombre }}</td>
+                        <td>{{ c.name }}</td>
                         <td>{{ c.manager }}</td>
                         <td>{{ c.direccion }}</td>
                         <td>{{ c.municipio }}</td>
