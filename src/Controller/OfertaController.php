@@ -21,11 +21,11 @@ class OfertaController extends Controller
     {
 
         $type=$request->get('type');
-        if ($type == 'casa') {
+        if ($type == 'Casa') {
             $object = $casaRepository->find($request->get('id'));
-        } elseif ($type == 'carro') {
+        } elseif ($type == 'Carro') {
             $object = $carroRepository->find($request->get('id'));
-        } elseif ($type == 'excursion') {
+        } elseif ($type == 'Excursion') {
             $object = $excursionRepository->find($request->get('id'));
         } else {
             $object = $paqueteRepository->find($request->get('id'));

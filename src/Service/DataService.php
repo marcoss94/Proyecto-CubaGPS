@@ -104,6 +104,7 @@ class DataService
                       u.provincia LIKE :text) 
                       AND 
                       (u NOT INSTANCE OF App\Entity\Habitacion AND u NOT INSTANCE OF App\Entity\Activity)
+                      AND u.active = TRUE 
                       ORDER BY u.valoracion DESC'
         )->setParameters(['text'=>'%'.$request->get('searchText').'%',
             ]);

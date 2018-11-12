@@ -36,11 +36,6 @@ class Excursion extends DisplayableComponent
     private $incluyeTransporte;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $active = true;
-
-    /**
      * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $tipoTransporte;
@@ -110,14 +105,6 @@ class Excursion extends DisplayableComponent
     /**
      * @return mixed
      */
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getLongitud()
     {
         return $this->longitud;
@@ -179,13 +166,6 @@ class Excursion extends DisplayableComponent
         $this->latitud = $latitud;
     }
 
-    /**
-     * @param mixed $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
 
     public function setDiasDisponibles(array $diasDisponibles): self
     {

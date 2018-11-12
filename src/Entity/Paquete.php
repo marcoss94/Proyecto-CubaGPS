@@ -57,13 +57,6 @@ class Paquete extends DisplayableComponent
     private $notIncluded;
 
 
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $active = true;
-
-
     /**
      * @return mixed
      */
@@ -110,23 +103,6 @@ class Paquete extends DisplayableComponent
     public function setIncluye($incluye)
     {
         $this->incluye = $incluye;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @param mixed $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
     }
 
     /**

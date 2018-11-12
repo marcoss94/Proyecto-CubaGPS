@@ -51,6 +51,38 @@ class AdminController extends Controller
     }
 
     /**
+     * @Route("/reservasnoconfirmadas", name="reservasnoconfirmadas")
+     */
+    public function reservasnoconfirmadas()
+    {
+        return $this->render('admin/reservasnoconfirmadas.html.twig', [
+
+        ]);
+    }
+
+
+    /**
+     * @Route("/reservasconfirmadas", name="reservasconfirmadas")
+     */
+    public function reservasconfirmadas()
+    {
+        return $this->render('admin/reservasconfirmadas.html.twig', [
+
+        ]);
+    }
+
+
+    /**
+     * @Route("/pagos", name="pagos")
+     */
+    public function pagos()
+    {
+        return $this->render('admin/pagos.html.twig', [
+
+        ]);
+    }
+
+    /**
      * @Route("/admin/cars", name="admin_cars")
      */
     public function cars(Request $request, CarroRepository $carroRepository)

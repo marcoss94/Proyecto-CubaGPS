@@ -113,6 +113,11 @@ abstract class DisplayableComponent
     private $dias;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active = true;
+
+    /**
      * @return mixed
      */
     public function getDias(): Collection
@@ -126,6 +131,22 @@ abstract class DisplayableComponent
     public function setDias($dias)
     {
         $this->dias = $dias;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param mixed $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
 
     /**

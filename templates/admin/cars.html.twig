@@ -57,7 +57,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th scope="col">Creado</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre del Chofer</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
@@ -77,12 +77,13 @@
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col">Creado</th>
                         <th scope="col">Última Modificación</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th scope="col">Creado</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre del Chofer</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
@@ -102,13 +103,15 @@
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col">Creado</th>
                         <th scope="col">Última Modificación</th>
+
                     </tr>
                     </tfoot>
                     <tbody>
                     {% for c in carros %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
-                            <td>{{ c.createdAt|date }}</td>
+                            <td>{{ c.id }}</td>
                             <td>{{ c.nombreChofer }}</td>
                             <td>{{ c.descripcion }}</td>
                             <td>{{ c.description }}</td>
@@ -158,7 +161,9 @@
                             <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_car',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
+                            <td>{{ c.createdAt|date }}</td>
                             <td>{{ c.updatedAt|date }}</td>
+
                         </tr>
                     {% else %}
                         <th colspan="5">No se han insertado carros</th>

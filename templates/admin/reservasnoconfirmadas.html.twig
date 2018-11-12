@@ -1,0 +1,175 @@
+{% extends 'backendBase.html.twig' %}
+
+
+{% block title %}Administración | Reservas no Confirmadas{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item active">Reservas no Confirmadas</li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-home"></i>
+                    Reservas no Confirmadas
+                </div>
+                <div class="col-auto">
+                    {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+                        {#Agregar#}
+                    {#</button>#}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Pais</th>
+                        <th>Habitacion</th>
+                        <th>Lecho</th>
+                        <th>Comida</th>
+                        <th>Registrarse</th>
+                        <th>Revisa</th>
+                        <th>estado</th>
+                        <th>Más</th>
+
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Pais</th>
+                        <th>Habitacion</th>
+                        <th>Lecho</th>
+                        <th>Comida</th>
+                        <th>Registrarse</th>
+                        <th>Revisa</th>
+                        <th>estado</th>
+                        <th>Más</th>
+
+                    </tr>
+                    </tfoot>
+                    <tbody>
+
+                    <tr>
+                        <td>4</td>
+                        <td>Reyner Baily</td>
+                        <td>ricardocorazondeleon2018@gmail.com</td>
+                        <td>Costa Rica</td>
+                        <td>Guest House</td>
+                        <td>Single</td>
+                        <td>Full Board</td>
+                        <td>2018-01-16</td>
+                        <td>2018-01-25</td>
+                        <td>Not Conform</td>
+
+                        <td><a href="roombook.php?rid=4 " class="btn btn-primary">Action</a></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>asd sdf</td>
+                        <td>qwe@ASD.A</td>
+                        <td>Albania</td>
+                        <td>Single Room</td>
+                        <td>Double</td>
+                        <td>Breakfast</td>
+                        <td>2018-10-10</td>
+                        <td>2018-10-20</td>
+                        <td>Not Conform</td>
+
+                        <td><a href="roombook.php?rid=5 " class="btn btn-primary">Action</a></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Marcos ALvarez</td>
+                        <td>marcos@AS.AS</td>
+                        <td>Aruba</td>
+                        <td>Superior Room</td>
+                        <td>Triple</td>
+                        <td>Full Board</td>
+                        <td>2018-11-22</td>
+                        <td>2018-12-07</td>
+                        <td>Not Conform</td>
+
+                        <td><a href="roombook.php?rid=6 " class="btn btn-primary">Action</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+
+        </div>
+
+        <div class="card-footer">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-home"></i>
+                    Reservas no Confirmadas
+                </div>
+                <div class="col-auto">
+                    {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+                        {#Agregar#}
+                    {#</button>#}
+                </div>
+            </div>
+
+        </div>
+
+        </form>
+
+
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/js/popper.min.js')}}"></script>
+
+    <script src="{{ asset('build/js/baguetteBox.min.js') }}"></script>
+
+
+{% endblock %}
+
+
+

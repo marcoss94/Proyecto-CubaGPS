@@ -29,7 +29,6 @@ class SearchController extends Controller
     public function genericSearch(Request $request,DataService $query)
     {
         $data=$query->returnGenericSearchData($request);
-
         return $this->render('lista/index.html.twig', ['base' => 'false','type'=>'search','data'=>$data]);
     }
 

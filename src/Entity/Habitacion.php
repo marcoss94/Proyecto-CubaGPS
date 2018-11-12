@@ -58,10 +58,6 @@ class Habitacion extends DisplayableComponent
      */
     private $escaleras;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $active;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -78,13 +74,7 @@ class Habitacion extends DisplayableComponent
      */
     private $comun;
 
-    /**
-     * @return mixed
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
+
 
     /**
      * @return mixed
@@ -200,14 +190,6 @@ class Habitacion extends DisplayableComponent
     public function setLiteras($literas)
     {
         $this->literas = $literas;
-    }
-
-    /**
-     * @param mixed $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
     }
 
 

@@ -49,11 +49,6 @@ class Casa extends DisplayableComponent
     private $tipoEstablecimiento;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $active = true;
-
-    /**
      * @var array
      *
      * @ORM\Column(type="json")
@@ -166,13 +161,6 @@ class Casa extends DisplayableComponent
         $this->habitaciones = new ArrayCollection();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getActive()
-    {
-        return ($this->active && count($this->habitaciones));
-    }
 
     /**
      * @return mixed
@@ -190,13 +178,6 @@ class Casa extends DisplayableComponent
         $this->licencia = $licencia;
     }
 
-    /**
-     * @param mixed $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
 
 
     public function getManager(): ?string

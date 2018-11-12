@@ -67,29 +67,6 @@ class Carro extends DisplayableComponent
     private $idiomas=['Español'];
 
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $active = true;
-
-
-    /**
-     * @return mixed
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @param mixed $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
-
-
     function __toString()
     {
         return (string)$this->modelo;
