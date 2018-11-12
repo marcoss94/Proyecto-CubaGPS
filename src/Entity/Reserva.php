@@ -32,11 +32,6 @@ class Reserva
     private $commponent;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Paquete", inversedBy="reservas")
-     */
-    private $paquete;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="reservas")
      */
     private $usuario;
@@ -155,10 +150,6 @@ class Reserva
         return $this;
     }
 
-    public function getPaquete(): ?Paquete
-    {
-        return $this->paquete;
-    }
 
     /**
      * @return mixed
@@ -174,13 +165,6 @@ class Reserva
     public function setCosto($costo)
     {
         $this->costo = $costo;
-    }
-
-    public function setPaquete(?Paquete $paquete): self
-    {
-        $this->paquete = $paquete;
-
-        return $this;
     }
 
     public function getUsuario(): ?User

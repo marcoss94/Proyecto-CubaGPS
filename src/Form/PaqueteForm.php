@@ -30,7 +30,7 @@ class PaqueteForm extends AbstractType
         $builder
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('name', TextType::class, ['label' => 'Name'])
-            ->add('diasDuracion', IntegerType::class, ['label' => 'Dias de duración'])
+            ->add('duracion', IntegerType::class, ['label' => 'Dias de duración'])
             ->add('nochesDuracion', IntegerType::class, ['label' => 'Noches de duración'])
             ->add('precio1', MoneyType::class, ['label' => 'Precio para una persona'])
             ->add('precio2', MoneyType::class, ['label' => 'Precio para dos personas'])

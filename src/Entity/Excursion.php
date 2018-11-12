@@ -9,15 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Excursion extends DisplayableComponent
 {
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $provincia;
 
     /**
      * @ORM\Column(type="array")
      */
-    private $dias=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
+    private $diasDisponibles=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'];
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -25,14 +21,14 @@ class Excursion extends DisplayableComponent
     private $horaInicio;
 
     /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $duracion;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $guia;
+
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $tiempoDuracion;
 
     /**
      * @ORM\Column(type="boolean")
@@ -105,21 +101,10 @@ class Excursion extends DisplayableComponent
     private $latitud;
 
 
-    public function getProvincia(): ?string
-    {
-        return $this->provincia;
-    }
 
-    public function setProvincia(string $provincia): self
+    public function getDiasDisponibles(): ?array
     {
-        $this->provincia = $provincia;
-
-        return $this;
-    }
-
-    public function getDias(): ?array
-    {
-        return $this->dias;
+        return $this->diasDisponibles;
     }
 
     /**
@@ -155,6 +140,22 @@ class Excursion extends DisplayableComponent
     }
 
     /**
+     * @return mixed
+     */
+    public function getTiempoDuracion()
+    {
+        return $this->tiempoDuracion;
+    }
+
+    /**
+     * @param mixed $tiempoDuracion
+     */
+    public function setTiempoDuracion($tiempoDuracion)
+    {
+        $this->tiempoDuracion = $tiempoDuracion;
+    }
+
+    /**
      * @param mixed $longitud
      */
     public function setLongitud($longitud)
@@ -186,9 +187,9 @@ class Excursion extends DisplayableComponent
         $this->active = $active;
     }
 
-    public function setDias(array $dias): self
+    public function setDiasDisponibles(array $diasDisponibles): self
     {
-        $this->dias = $dias;
+        $this->diasDisponibles = $diasDisponibles;
 
         return $this;
     }
@@ -201,18 +202,6 @@ class Excursion extends DisplayableComponent
     public function setHoraInicio(string $horaInicio): self
     {
         $this->horaInicio = $horaInicio;
-
-        return $this;
-    }
-
-    public function getDuracion(): ?string
-    {
-        return $this->duracion;
-    }
-
-    public function setDuracion(string $duracion): self
-    {
-        $this->duracion = $duracion;
 
         return $this;
     }
@@ -357,5 +346,10 @@ class Excursion extends DisplayableComponent
     {
         return (string)parent::getNombre();
     }
+
+    public function getType(){
+        return 'Excursion';
+    }
+
 
 }

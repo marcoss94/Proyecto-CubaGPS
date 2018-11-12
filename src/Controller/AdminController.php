@@ -55,7 +55,7 @@ class AdminController extends Controller
      */
     public function cars(Request $request, CarroRepository $carroRepository)
     {
-        $carros = $carroRepository->find(1);
+        $carros = $carroRepository->findAll();
         $carro = new Carro();
         $form = $this->createForm(CarForm::class, $carro);
         $form->handleRequest($request);
@@ -209,6 +209,9 @@ class AdminController extends Controller
             $type = 'habitaciones';
             $parent = $owner->getCasa();
             $label = '';
+        } elseif ($owner instanceof Paquete) {
+            $type = 'paquetes';
+            $label = 'Paquetes';
         } else {
             $type = 'actividad';
             $parent = $owner->getDia()->getPaquete();
@@ -256,7 +259,6 @@ class AdminController extends Controller
                 $em->persist($image);
             }
             $em->flush();
-
             return $this->render('admin/album.html.twig',
                 ['owner' => $owner, 'form' => $form->createView(), 'parent' => $parent, 'type' => $type, 'label' => $label]);
         }
@@ -450,6 +452,7 @@ class AdminController extends Controller
         $form = $this->createFormBuilder($day)
             ->add('orden', null, array('label' => 'Orden'))
             ->add('nombre', TextType::class, array('label' => 'Nombre'))
+            ->add('name', TextType::class, array('label' => 'Name'))
             ->add('save', SubmitType::class, array('label' => 'Guardar'))
             ->getForm();
         $form->handleRequest($request);
@@ -475,6 +478,7 @@ class AdminController extends Controller
         $editDayform = $this->createFormBuilder($dia)
             ->add('orden', null, array('label' => 'Orden'))
             ->add('nombre', TextType::class, array('label' => 'Nombre'))
+            ->add('name', TextType::class, array('label' => 'Name'))
             ->add('save', SubmitType::class, array('label' => 'Guardar'))
             ->getForm();
         $editDayform->handleRequest($request);
@@ -489,6 +493,7 @@ class AdminController extends Controller
         $form = $this->createFormBuilder($newDay)
             ->add('orden', null, array('label' => 'Orden'))
             ->add('nombre', TextType::class, array('label' => 'Nombre'))
+            ->add('name', TextType::class, array('label' => 'Name'))
             ->add('save', SubmitType::class, array('label' => 'Guardar'))
             ->getForm();
         $form->handleRequest($request);
@@ -547,7 +552,9 @@ class AdminController extends Controller
             $activity->setImages($excursion->getImages());
         } else {
             $activity->setNombre($request->get('nombre'));
-            $activity->setDescripcion($request->get('description'));
+            $activity->setName($request->get('name'));
+            $activity->setDescripcion($request->get('descripcion'));
+            $activity->setDescription($request->get('description'));
         }
         $activity->setDia($dia);
         $em->persist($activity);
@@ -562,6 +569,7 @@ class AdminController extends Controller
     {
         $activity = $activityRepository->find($request->get('id'));
         $activity->setNombre($request->get('nombre'));
+        $activity->setName($request->get('name'));
         $activity->setDescripcion($request->get('descripcion'));
         $activity->setDescription($request->get('description'));
         $activity->setHorario($request->get('horario'));

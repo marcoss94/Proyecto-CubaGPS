@@ -109,7 +109,7 @@
                     {% for c in carros %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.createdAt|date }}</td>
-                            <td>{{ c.nombre }}</td>
+                            <td>{{ c.nombreChofer }}</td>
                             <td>{{ c.descripcion }}</td>
                             <td>{{ c.description }}</td>
                             <td>

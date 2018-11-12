@@ -45,11 +45,6 @@ class Carro extends DisplayableComponent
      */
     private $licencia;
 
-    /**
-     * @ORM\Column(type="string", length=40)
-     */
-    private $provincia;
-
 
     /**
      * @ORM\Column(type="boolean")
@@ -94,27 +89,12 @@ class Carro extends DisplayableComponent
         $this->active = $active;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getProvincia()
-    {
-        return $this->provincia;
-    }
 
     function __toString()
     {
         return (string)$this->modelo;
     }
 
-
-    /**
-     * @param mixed $provincia
-     */
-    public function setProvincia($provincia)
-    {
-        $this->provincia = $provincia;
-    }
 
     /**
      * @return mixed
@@ -307,6 +287,11 @@ class Carro extends DisplayableComponent
     {
         $this->idiomas = $idiomas;
     }
+
+    public function getType(){
+        return 'Carro';
+    }
+
 
 
 }

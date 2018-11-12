@@ -125,14 +125,14 @@
                                         Días
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        {% for dia in c.dias %}
+                                        {% for dia in c.diasDisponibles %}
                                             <a class="dropdown-item">{{ dia }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>
                             </td>
                             <td>{{ c.horaInicio }}</td>
-                            <td>{{ c.duracion }}</td>
+                            <td>{{ c.tiempoDuracion }}</td>
                             <td>{{ c.guia? 'si':'no' }}</td>
                             <td>{{ c.incluyeTransporte? 'si':'no' }}</td>
                             <td>{{ c.tipoTransporte }}</td>

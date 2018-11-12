@@ -3,12 +3,10 @@
 namespace App\Controller;
 
 
-
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use KnpU\OAuth2ClientBundle\Client\ClientRegistry;
-
 
 
 class FacebookController extends Controller
@@ -18,16 +16,27 @@ class FacebookController extends Controller
      *
      * @Route("/connect/facebook", name="connect_facebook_start")
      */
-    public function connectAction(Request $request,ClientRegistry $clientRegistry)
+    public function connectAction(Request $request, ClientRegistry $clientRegistry)
     {
         // will redirect to Facebook!
-        $this->get('session')->set('redirectBack',$request->server->get('HTTP_REFERER'));
+        $this->get('session')->set('redirectBack', $request->server->get('HTTP_REFERER'));
         return $clientRegistry
-            ->getClient('facebook_main') // key used in config/packages/knpu_oauth2_client.yaml
+            ->getClient('facebook_main')// key used in config/packages/knpu_oauth2_client.yaml
             ->redirect([
                 'public_profile', 'email' // the scopes you want to access
-            ])
-            ;
+            ]);
+    }
+
+    /**
+     * @Route("/facebook_forced", name="facebook_forced")
+     */
+    public function facebook_forced(ClientRegistry $clientRegistry)
+    {
+        return $clientRegistry
+            ->getClient('facebook_main')
+            ->redirect([
+                'public_profile', 'email'
+            ]);
     }
 
     /**
@@ -40,7 +49,18 @@ class FacebookController extends Controller
     public function connectCheckAction()
     {
         return $this->redirect($this->get('session')->get('redirectBack'));
-        return $this->redirectToRoute('blog_index');
     }
+
+    /**
+     *
+     *
+     * @Route("/connect/auth_forced", name="auth_forced")
+     */
+    public function auth_forced(Request $request)
+    {
+        $this->get('session')->set('redirectBack', $request->server->get('HTTP_REFERER'));
+        return $this->redirectToRoute('login');
+    }
+
 
 }

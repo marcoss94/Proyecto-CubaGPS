@@ -41,11 +41,6 @@ class Comentario
     private $component;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Paquete", inversedBy="comentarios")
-     */
-    private $paquete;
-
-    /**
      * @ORM\Column(type="string", length=15)
      */
     private $type='global';
@@ -148,18 +143,6 @@ class Comentario
     public function setComponent(?DisplayableComponent $component): self
     {
         $this->component = $component;
-
-        return $this;
-    }
-
-    public function getPaquete(): ?Paquete
-    {
-        return $this->paquete;
-    }
-
-    public function setPaquete(?Paquete $paquete): self
-    {
-        $this->paquete = $paquete;
 
         return $this;
     }

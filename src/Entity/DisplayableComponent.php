@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity(repositoryClass="App\Repository\DisplayableComponentRepository")
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="discr", type="string")
- * @DiscriminatorMap({"Carro" = "Carro", "Casa" = "Casa","Activity"="Activity","Excursion"="Excursion","Habitacion"="Habitacion"})
+ * @DiscriminatorMap({"Carro" = "Carro", "Casa" = "Casa","Activity"="Activity","Excursion"="Excursion","Habitacion"="Habitacion","Paquete"="Paquete"})
  * @ORM\HasLifecycleCallbacks()
  */
 abstract class DisplayableComponent
@@ -54,6 +54,16 @@ abstract class DisplayableComponent
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=50,nullable=true)
+     */
+    private $municipio;
+
+    /**
+     * @ORM\Column(type="string", length=50,nullable=true)
+     */
+    private $provincia;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
@@ -66,7 +76,7 @@ abstract class DisplayableComponent
     /**
      * @ORM\Column(type="integer")
      */
-    private $valoracion=10;
+    private $valoracion = 10;
 
     /**
      * @var array
@@ -86,6 +96,37 @@ abstract class DisplayableComponent
      */
     private $reservas;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $capacidad = 100;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $duracion = 1;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Dia", mappedBy="paquete")
+     * @ORM\OrderBy({"orden" = "ASC"})
+     */
+    private $dias;
+
+    /**
+     * @return mixed
+     */
+    public function getDias(): Collection
+    {
+        return $this->dias;
+    }
+
+    /**
+     * @param mixed $dias
+     */
+    public function setDias($dias)
+    {
+        $this->dias = $dias;
+    }
 
     /**
      * @return mixed
@@ -115,6 +156,38 @@ abstract class DisplayableComponent
     /**
      * @return mixed
      */
+    public function getDuracion()
+    {
+        return $this->duracion;
+    }
+
+    /**
+     * @param mixed $duracion
+     */
+    public function setDuracion($duracion)
+    {
+        $this->duracion = $duracion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCapacidad()
+    {
+        return $this->capacidad;
+    }
+
+    /**
+     * @param mixed $capacidad
+     */
+    public function setCapacidad($capacidad)
+    {
+        $this->capacidad = $capacidad;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getValoracion()
     {
         return $this->valoracion;
@@ -129,6 +202,7 @@ abstract class DisplayableComponent
         $this->valoracionArray[0] = (integer)($valoracion / 2);
         $this->valoracionArray[1] = $valoracion % 2;
         $this->valoracionArray[2] = 5 - $this->valoracionArray[0] - $this->valoracionArray[1];
+
     }
 
     /**
@@ -137,6 +211,38 @@ abstract class DisplayableComponent
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMunicipio()
+    {
+        return $this->municipio;
+    }
+
+    /**
+     * @param mixed $municipio
+     */
+    public function setMunicipio($municipio)
+    {
+        $this->municipio = $municipio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProvincia()
+    {
+        return $this->provincia;
+    }
+
+    /**
+     * @param mixed $provincia
+     */
+    public function setProvincia($provincia)
+    {
+        $this->provincia = $provincia;
     }
 
     /**
@@ -210,9 +316,10 @@ abstract class DisplayableComponent
      */
     public function __construct()
     {
-        $this->images =new ArrayCollection();
+        $this->images = new ArrayCollection();
         $this->comentarios = new ArrayCollection();
         $this->reservas = new ArrayCollection();
+        $this->dias = new ArrayCollection();
     }
 
     /**
@@ -252,11 +359,12 @@ abstract class DisplayableComponent
         return $this->id;
     }
 
-    public function getMainImage(){
+    public function getMainImage()
+    {
 
-        $images=$this->images;
-        foreach ($images as $img){
-            if($img->getMain())return $img;
+        $images = $this->images;
+        foreach ($images as $img) {
+            if ($img->getMain()) return $img;
         }
         return $images[0];
     }

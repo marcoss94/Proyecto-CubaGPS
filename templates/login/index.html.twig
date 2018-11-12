@@ -45,7 +45,7 @@
                         <div class="form-label-group">
                             {#<button class="botonGoogle botonInicioSesion" type="button" href="{{ path('connect_facebook_start') }}">Ingresa con Google</button>#}
 
-                            <a class="btn btn-primary btn-xl botonFace botonInicioSesion"  href="{{ path('connect_facebook_start') }}">{{ app.session.get('language') == 'es'? 'Ingresa con Facebook':'Log in with Facebook' }}</a>
+                            <a class="btn btn-primary btn-xl botonFace botonInicioSesion"  href="{{ path('facebook_forced') }}">{{ app.session.get('language') == 'es'? 'Ingresa con Facebook':'Log in with Facebook' }}</a>
 
                             {#<a href="{{ path('connect_facebook_start') }}">#}
                                 {#<img class="botonInicioSesion" src="{{ asset('build/img/inicio_sesion_facebook.png') }}" alt="">#}
@@ -59,7 +59,7 @@
                         <div class="form-label-group">
                             {#<button data-test="google-button"  class="botonFace botonInicioSesion" type="button" href="{{ path('connect_facebook_start') }}">Ingresa con Facebook</button>#}
 
-                            <a class="btn btn-danger btn-xl botonGoogle botonInicioSesion"  href="{{ path('connect_google') }}">{{ app.session.get('language') == 'es'? 'Ingresa con Google':'Log in with Google' }}</a>
+                            <a class="btn btn-danger btn-xl botonGoogle botonInicioSesion"  href="{{ path('google_forced') }}">{{ app.session.get('language') == 'es'? 'Ingresa con Google':'Log in with Google' }}</a>
 
                             {#<a href="{{ path('connect_google') }}">{{ app.session.get('language') == 'es'? 'Inicia Sesión con Google':'Log in with Google' }}</a>#}
                         </div>

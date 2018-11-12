@@ -36,7 +36,9 @@ class Habitacion extends DisplayableComponent
     private $vista;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @var array
+     *
+     * @ORM\Column(type="json", nullable=true)
      */
     private $servicios;
 
@@ -272,5 +274,10 @@ class Habitacion extends DisplayableComponent
     {
         return (string)parent::getNombre();
     }
+
+    public function getType(){
+        return 'Habitacion';
+    }
+
 
 }
