@@ -668,6 +668,7 @@ h2 {
         width: 100%;
         padding: 0 20px 0 190px;
         text-align: left;
+        /*overflow: hidden;*/
     }
 
 }
