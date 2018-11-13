@@ -322,10 +322,6 @@ class Excursion extends DisplayableComponent
         $this->precio4 = $precio4;
     }
 
-    function __toString()
-    {
-        return (string)parent::getNombre();
-    }
 
     public function getType(){
         return 'Excursion';

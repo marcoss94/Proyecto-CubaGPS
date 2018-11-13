@@ -33,11 +33,6 @@ class Carro extends DisplayableComponent
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $modelo;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $color;
 
     /**
@@ -57,20 +52,9 @@ class Carro extends DisplayableComponent
     private $descapotable;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $cantidadAsientos;
-
-    /**
      * @ORM\Column(type="array")
      */
     private $idiomas=['Español'];
-
-
-    function __toString()
-    {
-        return (string)$this->modelo;
-    }
 
 
     /**
@@ -156,22 +140,6 @@ class Carro extends DisplayableComponent
     /**
      * @return mixed
      */
-    public function getModelo(): ?string
-    {
-        return $this->modelo;
-    }
-
-    /**
-     * @param mixed $modelo
-     */
-    public function setModelo($modelo)
-    {
-        $this->modelo = $modelo;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getColor()
     {
         return $this->color;
@@ -231,22 +199,6 @@ class Carro extends DisplayableComponent
     public function setDescapotable($descapotable)
     {
         $this->descapotable = $descapotable;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCantidadAsientos()
-    {
-        return $this->cantidadAsientos;
-    }
-
-    /**
-     * @param mixed $cantidadAsientos
-     */
-    public function setCantidadAsientos($cantidadAsientos)
-    {
-        $this->cantidadAsientos = $cantidadAsientos;
     }
 
     /**

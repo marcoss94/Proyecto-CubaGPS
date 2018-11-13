@@ -8,8 +8,7 @@
 
 namespace App\Service;
 
-use App\Entity\Activity;
-use App\Entity\Habitacion;
+
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -108,6 +107,42 @@ class DataService
                       ORDER BY u.valoracion DESC'
         )->setParameters(['text'=>'%'.$request->get('searchText').'%',
             ]);
+        $paginator = $container->get('knp_paginator');
+        $results = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 6)
+        );
+        return ($results);
+    }
+
+    public function returnAdvancedSearchData(Request $request){
+        $lugar=$request->get('lugar');
+        $cant=$request->get('cantidadP');
+        $entrada=new \DateTime($request->get('fechaEntrada'));
+        $salida=new \DateTime($request->get('fechaSalida'));
+        $precio=$request->get('precio');
+        $servicio=$request->get('servicios');
+        $dias=$entrada->diff($salida)->days;
+        $em = $this->em;
+        $container = $this->container;
+        $query = $em->createQuery(
+            'SELECT u ,p FROM App\Entity\DisplayableComponent u JOIN u.images  p 
+                      WHERE (u.name LIKE :lugar OR 
+                      u.nombre LIKE :lugar OR                      
+                      u.municipio LIKE :lugar OR
+                      u.provincia LIKE :lugar) 
+                      AND 
+                      (u NOT INSTANCE OF App\Entity\Habitacion AND u NOT INSTANCE OF App\Entity\Activity)
+                      AND u.active = TRUE 
+                      AND u.capacidad >= :cant
+                      AND u.duracion < :dias
+                      ORDER BY u.valoracion DESC'
+        )->setParameters([
+            'lugar'=>'%'.$lugar.'%',
+            'cant'=>$cant,
+            'dias'=>$dias,
+        ]);
         $paginator = $container->get('knp_paginator');
         $results = $paginator->paginate(
             $query,

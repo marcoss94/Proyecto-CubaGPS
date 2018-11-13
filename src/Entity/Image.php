@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -152,7 +151,7 @@ class Image
     public function setAltName(DisplayableComponent $owner)
     {
         if ($owner instanceof Carro) {
-            $this->altName = $owner->getModelo() . ' ' . 'autos clásicos Cuba GPS';
+            $this->altName = $owner->getNombre() . ' ' . 'autos clásicos Cuba GPS';
         } elseif ($owner instanceof Casa) {
             $this->altName = 'renta en ' . $owner->getMunicipio() . '. ' . $owner->getProvincia() . ' Cuba GPS';
         } else {
@@ -180,8 +179,4 @@ class Image
         }
     }
 
-    public function updatePaquete()
-    {
-
-    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ReservaRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,4 +17,6 @@ class ReservacionController extends Controller
             'type' => 'casa',
         ]);
     }
+
+
 }

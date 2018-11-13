@@ -379,7 +379,7 @@ border-color: #f9b501;"
                                     <div class=" infoOferta text-left">
                                         <a class="nav-item nombreO"
                                            href="{{ path('oferta',{'id':i.id,'type':'carro'}) }}">
-                                            <h4>{{ i.modelo }}</h4></a>
+                                            <h4>{{ i.nombre }}</h4></a>
                                         {% if i.valoracionArray[0]!=0 %}
                                             {% for j in 1..i.valoracionArray[0] %}
                                                 <i class="fas fa-star star"></i>

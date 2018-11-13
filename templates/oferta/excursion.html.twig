@@ -328,7 +328,7 @@
                 <div class="col-12 col-md-4 portfolio-item reserva">
                     <div class="container">
                         <div class="modal-content">
-                            <form action="{{ path('reserva_casa') }}" method="post" id="reserveForm">
+                            <form action="{{ path('reserva_excursion') }}" method="post" id="reserveForm">
                                 <input type="hidden" name="objectId" value="{{ object.id }}">
                                 <div class="modal-body">
                                     <div class="form-row">
@@ -367,6 +367,7 @@
                                 </div>
                                 <div id="errorBox"></div>
                                 <div class="modal-footer">
+                                    <label id="precio"></label>
                                     <button type="button" id="reserveButton"
                                             class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                 </div>
@@ -610,6 +611,27 @@
                 "transform": "rotateY(" + currdeg + "deg)"
             });
         }
+        $(document).ready( function() {
+            $('#inputEntrada').attr('min',yyyymmdd());
+            document.getElementById('precio').innerHTML = setPrice($('#cantA').val());
+        });
+        function setPrice(cant) {
+            var precio;
+            if(cant == 1){
+                precio=parseInt({{ object.precio1 }});
+            }else if(cant==2){
+                precio=parseInt({{ object.precio2 }}) * 2;
+            }
+            else if(cant==3){
+                precio=parseInt({{ object.precio3 }}) * 3;
+            }else{
+                precio=parseInt({{ object.precio4 }}) * parseInt(cant);
+            }
+            return '€'+precio;
+        }
+        $('#cantA').on('change', function() {
+            document.getElementById('precio').innerHTML = setPrice(this.value);
+        });
         $('#reserveButton').click(function () {
             var entrada = new Date($('#inputEntrada').val());
             var cantA = new Number($('#cantA').val());

@@ -50,37 +50,6 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * @Route("/reservasnoconfirmadas", name="reservasnoconfirmadas")
-     */
-    public function reservasnoconfirmadas()
-    {
-        return $this->render('admin/reservasnoconfirmadas.html.twig', [
-
-        ]);
-    }
-
-
-    /**
-     * @Route("/reservasconfirmadas", name="reservasconfirmadas")
-     */
-    public function reservasconfirmadas()
-    {
-        return $this->render('admin/reservasconfirmadas.html.twig', [
-
-        ]);
-    }
-
-
-    /**
-     * @Route("/pagos", name="pagos")
-     */
-    public function pagos()
-    {
-        return $this->render('admin/pagos.html.twig', [
-
-        ]);
-    }
 
     /**
      * @Route("/admin/cars", name="admin_cars")
@@ -732,5 +701,16 @@ class AdminController extends Controller
             return $this->redirectToRoute('habitaciones', ['id' => $casa->getId(), 'status' => 'create']);
         }
         return $this->render('admin/rooms.html.twig', ['casa' => $casa, 'form' => $form->createView(), 'status' => $status]);
+    }
+
+    /**
+     * @Route("/admin/delete_room", name="delete_room")
+     */
+    public function deleteHabitacion(Request $request,HabitacionRepository $habitacionRepository){
+        $hab=$habitacionRepository->find($request->get('id'));
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($hab);
+        $em->flush();
+        return $this->redirectToRoute('habitaciones',['id'=>$hab->getCasa()->getId(),'status'=>'create']);
     }
 }

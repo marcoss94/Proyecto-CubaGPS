@@ -563,7 +563,7 @@ border-color: #f9b501">
                                 <div class="form-group col-md-7">
                                     <label class="text-muted"
                                            for="inputEmail4">{{ app.session.get('language') == 'es'? 'Lugar':'Place' }}</label>
-                                    <input type="text" name="lugar" class="form-control" placeholder="La Habana">
+                                    <input type="text" name="lugar" class="form-control" placeholder="Cuba">
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label class="text-muted"> {{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</label>
@@ -594,13 +594,13 @@ border-color: #f9b501">
                                     <div class="form-group col-md-6">
                                         <label class="text-muted"
                                                for="inputEmail4">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</label>
-                                        <input type="number" name="Precio" class="form-control" placeholder="0$">
+                                        <input type="number" name="precio" step="any" class="form-control" placeholder="0$">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="text-muted"
                                                for="inputEmail4">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</label>
                                         <select id="inputServicios" name="servicios" class="form-control">
-                                            <option value="servicio" selected>{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</option>
+                                            <option value="servicio" selected>{{ app.session.get('language') == 'es'? 'Todos':'All' }}</option>
                                             <option value="paquete">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</option>
                                             <option value="casa">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</option>
                                             <option value="carro">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</option>
@@ -686,7 +686,17 @@ border-color: #f9b501">
             var goto = Number($(this).attr('data-slide-to'));
             $("#carouselExampleControls").carousel(goto);
         });
-
+        function yyyymmdd() {
+            var today = new Date();
+            var now = new Date();
+            now.setDate(today.getDate()+4);
+            var y = now.getFullYear();
+            var m = now.getMonth() + 1;
+            var d = now.getDate();
+            var mm = m < 10 ? '0' + m : m;
+            var dd = d < 10 ? '0' + d : d;
+            return '' + y +'-'+ mm +'-'+ dd;
+        }
     </script>
 {% endblock %}
 </body>

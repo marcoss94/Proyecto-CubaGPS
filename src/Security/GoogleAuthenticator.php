@@ -59,9 +59,9 @@ class GoogleAuthenticator extends SocialAuthenticator
             $user->setRegisteredAt();
             $user->setUserOf('google');
             $user->setRoles(['ROLE_USER']);
-            if($_SESSION['_sf2_attributes']['redirectedBy']){
+            if(isset($_SESSION['redirectedBy'])){
                 $publisher= $this->em->getRepository(User::class)
-                    ->find($_SESSION['_sf2_attributes']['redirectedBy']);
+                    ->find($_SESSION['redirectedBy']);
                 $user->setRedirectedBy($publisher);
             }
             $this->em->persist($user);

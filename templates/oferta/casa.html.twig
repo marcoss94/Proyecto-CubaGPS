@@ -292,7 +292,7 @@
                                                     <div class="serviciosOfertas" style="margin-right: 10px">
                                                         <div class="iconogeneral">
                                                             <div class="iconoServ">
-                                                                <span>{{ app.session.get('language') == 'es'? 'Vistas a: ':'' }}{{ ' '~i.vista }}</span>
+                                                                <span>{{ app.session.get('language') == 'es'? ' Con vistas a: ':'With views to: ' }}{{ ' '~i.vista }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -475,13 +475,13 @@
                                         <div class="form-group col-md-12">
                                             <label class="text-muted"
                                                    for="inputEntrada">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</label>
-                                            <input type="date" class="form-control" name="entrada" id="inputEntrada"
+                                            <input type="date" class="form-control" name="entrada" id="inputEntrada" min="2017-01-01"
                                                    required>
                                         </div>
                                         <div class="form-group col-md-12">
                                             <label class="text-muted"
                                                    for="inputSalida">{{ app.session.get('language') == 'es'? 'Salida':'Exit' }}</label>
-                                            <input type="date" class="form-control" name="salida" id="inputSalida"
+                                            <input type="date" class="form-control" name="salida" id="inputSalida" min="2017-01-01"
                                                    required>
                                         </div>
                                     </div>
@@ -680,6 +680,10 @@
     {#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////#}
     <script>
         $('#wrongDate').hide;
+        $(document).ready( function() {
+            $('#inputEntrada').attr('min',yyyymmdd());
+            $('#inputSalida').attr('min',yyyymmdd());
+        });
         var carousel = $(".carouselCarucel"),
             currdeg = 0;
         $(".nextCarucel").on("click", {d: "n"}, rotate);

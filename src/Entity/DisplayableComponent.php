@@ -439,6 +439,11 @@ abstract class DisplayableComponent
         return $this;
     }
 
+    function __toString()
+    {
+        return $this->nombre;
+    }
+
     public function removeReserva(Reserva $reserva): self
     {
         if ($this->reservas->contains($reserva)) {
