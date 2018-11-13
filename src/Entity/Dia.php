@@ -34,7 +34,7 @@ class Dia
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Paquete", inversedBy="dias")
+     * @ORM\ManyToOne(targetEntity="DisplayableComponent", inversedBy="dias")
      * @ORM\JoinColumn(name="paquete_id", referencedColumnName="id",onDelete="cascade")
      */
     private $paquete;

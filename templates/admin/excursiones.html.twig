@@ -44,7 +44,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th scope="col">Creado</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Descripción</th>
@@ -72,12 +72,13 @@
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col">Creado</th>
                         <th scope="col">Última modificación</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th scope="col">Creado</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Descripción</th>
@@ -105,13 +106,14 @@
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col">Creado</th>
                         <th scope="col">Última modificación</th>
                     </tr>
                     </tfoot>
                     <tbody>
                     {% for c in excursiones %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
-                            <td>{{ c.createdAt|date }}</td>
+                            <td>{{ c.id}}</td>
                             <td>{{ c.nombre }}</td>
                             <td>{{ c.name }}</td>
                             <td>{{ c.descripcion }}</td>
@@ -125,14 +127,14 @@
                                         Días
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                        {% for dia in c.dias %}
+                                        {% for dia in c.diasDisponibles %}
                                             <a class="dropdown-item">{{ dia }}</a>
                                         {% endfor %}
                                     </div>
                                 </div>
                             </td>
                             <td>{{ c.horaInicio }}</td>
-                            <td>{{ c.duracion }}</td>
+                            <td>{{ c.tiempoDuracion }}</td>
                             <td>{{ c.guia? 'si':'no' }}</td>
                             <td>{{ c.incluyeTransporte? 'si':'no' }}</td>
                             <td>{{ c.tipoTransporte }}</td>
@@ -167,7 +169,9 @@
                                    href="{{ path('delete_excursion',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
+                            <td>{{ c.createdAt|date }}</td>
                             <td>{{ c.updatedAt|date }}</td>
+
                         </tr>
                     {% else %}
                         <th colspan="5">No se han insertado excursiones</th>

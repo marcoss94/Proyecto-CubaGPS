@@ -8,9 +8,10 @@
 
 namespace App\Service;
 
+use App\Entity\Activity;
+use App\Entity\Habitacion;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Casa;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -25,27 +26,99 @@ class DataService
         $this->container = $container;
     }
 
-    public function returnData(Request $request)
+    public function returnCasaData(Request $request)
     {
         $em = $this->em;
-        $container=$this->container;
+        $container = $this->container;
         $query = $em->createQuery(
-            'SELECT 
-            t.id,
-            t.nombre,
-            t.municipio,
-            t.provincia,
-            t.valoracionArray                       
-            FROM App\Entity\Casa t 
-            '
+            'SELECT u,p FROM App\Entity\Casa u JOIN u.images  p'
         );
-        $paginator=$container->get('knp_paginator');
+        $paginator = $container->get('knp_paginator');
         $results = $paginator->paginate(
             $query,
-            $request->query->getInt('page',1),
-            $request->query->getInt('limit',5)
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 6)
         );
         return ($results);
     }
+
+    public function returnExcursionData(Request $request)
+    {
+        $em = $this->em;
+        $container = $this->container;
+        $query = $em->createQuery(
+            'SELECT u,p FROM App\Entity\Excursion u JOIN u.images  p'
+        );
+        $paginator = $container->get('knp_paginator');
+        $results = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 6)
+        );
+        return ($results);
+    }
+
+    public function returnCarroData(Request $request)
+    {
+        $em = $this->em;
+        $container = $this->container;
+        $query = $em->createQuery(
+            'SELECT u,p FROM App\Entity\Carro u JOIN u.images  p'
+        );
+        $paginator = $container->get('knp_paginator');
+        $results = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 6)
+        );
+        return ($results);
+    }
+
+    public function returnPaqueteData(Request $request)
+    {
+        $em = $this->em;
+        $container = $this->container;
+        $query = $em->createQuery(
+            'SELECT u ,p FROM App\Entity\Paquete u JOIN u.images  p'
+        );
+        $paginator = $container->get('knp_paginator');
+        $results = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 6)
+        );
+        return ($results);
+    }
+
+    public function returnGenericSearchData(Request $request)
+    {
+        $em = $this->em;
+        $container = $this->container;
+        $query = $em->createQuery(
+            'SELECT u ,p FROM App\Entity\DisplayableComponent u JOIN u.images  p 
+                      WHERE (u.name LIKE :text OR 
+                      u.nombre LIKE :text OR
+                      u.descripcion LIKE :text OR
+                      u.description LIKE :text OR
+                      u.municipio LIKE :text OR
+                      u.provincia LIKE :text) 
+                      AND 
+                      (u NOT INSTANCE OF App\Entity\Habitacion AND u NOT INSTANCE OF App\Entity\Activity)
+                      AND u.active = TRUE 
+                      ORDER BY u.valoracion DESC'
+        )->setParameters(['text'=>'%'.$request->get('searchText').'%',
+            ]);
+        $paginator = $container->get('knp_paginator');
+        $results = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 6)
+        );
+        return ($results);
+    }
+
+
+
+
 
 }

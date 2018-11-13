@@ -177,9 +177,9 @@
                                         <div class="iconoServ">
                                             <span>{{ app.session.get('language')== 'es' ?
                                                 'Días disponibles :':
-                                                '' }}</span>
+                                                'Available days' }}</span>
                                         </div>
-                                        {% for dia in object.dias %}
+                                        {% for dia in object.diasDisponibles %}
                                             <div class="iconoServ">
                                             <span>{{ app.session.get('language')== 'es' ?
                                                 dia :
@@ -219,7 +219,7 @@
                                             <div class="iconoServ">
                                             <span>{{ app.session.get('language')== 'es' ?
                                                 'Almuerzo' :
-                                                'Almorzation' }}</span>
+                                                'Lunch' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -235,8 +235,8 @@
 
                                             <div class="iconoServ">
                                             <span>{{ app.session.get('language')== 'es' ?
-                                                'Comida' :
-                                                'Comedation' }}</span>
+                                                'Cena' :
+                                                'Dinner' }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -348,7 +348,7 @@
                                             {% endif %}
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'People Count' }}</label>
+                                            <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of people' }}</label>
                                             <select class="custom-select" id="cantA" name="cantA">
                                                 {% for number in 1..30 %}
                                                     <option value="{{ number }}" {% if number==1 %} selected {% endif %}>{{ number }}</option>
@@ -359,7 +359,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-12">
                                             <label class="text-muted"
-                                                   for="inputEntrada">{{ app.session.get('language') == 'es'? 'Fecha':'Day' }}</label>
+                                                   for="inputEntrada">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</label>
                                             <input type="date" class="form-control" name="entrada" id="inputEntrada"
                                                    required>
                                         </div>

@@ -57,6 +57,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Dias</th>
@@ -71,12 +72,16 @@
                         <th scope="col">Valoración</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Actividades</th>
+                        <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col">Creado</th>
+                        <th scope="col">Última modificación</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Dias</th>
@@ -91,17 +96,21 @@
                         <th scope="col">Valoración</th>
                         <th scope="col">Activo</th>
                         <th scope="col">Actividades</th>
+                        <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col">Creado</th>
+                        <th scope="col">Última modificación</th>
                     </tr>
                     </tfoot>
                     <tbody>
 
                     {% for c in paquetes %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
+                            <td>{{ c.id }}</td>
                             <td>{{ c.nombre }}</td>
                             <td>{{ c.name }}</td>
-                            <td>{{ c.diasDuracion }}</td>
+                            <td>{{ c.duracion }}</td>
                             <td>{{ c.nochesDuracion }}</td>
                             <td>{{ c.precio1 }}</td>
                             <td>{{ c.precio2 }}</td>
@@ -118,6 +127,16 @@
                                    href="{{ path('activities',{'id':c.id}) }}"><i
                                             class="fa fa-calendar" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
+                            <td><a title="Album de Imagenes" class="btn btn-default"
+                                   href="{{ path('album',{'id':c.id}) }}"><i
+                                            class="fa fa-camera"
+                                            {% if c.images|length %}
+                                                style="color: green"
+                                            {% else %}
+                                                style="color: gray"
+                                            {% endif %}
+                                            aria-hidden="true"></i><span
+                                            class="caret"></span></a></td>
                             <td><a title="Editar" class="btn btn-default" href="{{ path('edit_paquete',{'id':c.id}) }}"><i
                                             class="fa fa-edit" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
@@ -125,6 +144,8 @@
                                    href="{{ path('delete_paquete',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
+                            <td>{{ c.createdAt|date }}</td>
+                            <td>{{ c.updatedAt|date }}</td>
                         </tr>
                     {% else %}
                         <th colspan="5">No se han insertado paquetes</th>

@@ -57,9 +57,10 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th scope="col">Creado</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Capacidad</th>
                         <th scope="col">Manager</th>
                         <th scope="col">Dirección</th>
                         <th scope="col">Municipio</th>
@@ -70,9 +71,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">#Licencia</th>
                         <th scope="col">Tipo de Establecimiento</th>
-                        <th scope="col">Desayuno</th>
-                        <th scope="col">Almuerzo</th>
-                        <th scope="col">Cena</th>
+                        <th scope="col">Composicion</th>
                         <th scope="col">Servicios</th>
                         <th scope="col">Longitud</th>
                         <th scope="col">Latitud</th>
@@ -82,14 +81,16 @@
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col">Creado</th>
                         <th scope="col">Última modificación</th>
                     </tr>
                     </thead>
                     <tfoot>
                     <tr>
-                        <th scope="col">Creado</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Capacidad</th>
                         <th scope="col">Manager</th>
                         <th scope="col">Dirección</th>
                         <th scope="col">Municipio</th>
@@ -100,9 +101,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">#Licencia</th>
                         <th scope="col">Tipo de Establecimiento</th>
-                        <th scope="col">Desayuno</th>
-                        <th scope="col">Almuerzo</th>
-                        <th scope="col">Cena</th>
+                        <th scope="col">Composicion</th>
                         <th scope="col">Servicios</th>
                         <th scope="col">Longitud</th>
                         <th scope="col">Latitud</th>
@@ -112,15 +111,17 @@
                         <th scope="col">Album</th>
                         <th scope="col">Editar</th>
                         <th scope="col">Eliminar</th>
+                        <th scope="col">Creado</th>
                         <th scope="col">Última modificación</th>
                     </tr>
                     </tfoot>
                     <tbody>
                     {% for c in casas %}
                     <tr {% if c.active == false %} class="table-danger" {% endif %}>
-                        <td>{{ c.createdAt|date }}</td>
+                        <td>{{ c.id}}</td>
                         <td>{{ c.nombre }}</td>
                         <td>{{ c.name }}</td>
+                        <td>{{ c.capacidad }}</td>
                         <td>{{ c.manager }}</td>
                         <td>{{ c.direccion }}</td>
                         <td>{{ c.municipio }}</td>
@@ -132,9 +133,22 @@
                         <td>{{ c.email }}</td>
                         <td>{{ c.licencia }}</td>
                         <td>{{ c.tipoEstablecimiento }}</td>
-                        <td>{{ c.desayuno ? 'si' : 'no' }}</td>
-                        <td>{{ c.almuerzo ? 'si' : 'no' }}</td>
-                        <td>{{ c.cena ? 'si' : 'no' }}</td>
+                        <td>
+                            <div>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button"
+                                            class="btn btn-outline-secondary dropdown-toggle"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Composición
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        {% for comp in c.composicion%}
+                                            <a class="dropdown-item">{{ comp }}</a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                         <td>
                             <div>
                                 <div class="btn-group" role="group">
@@ -177,7 +191,6 @@
                                         {% endif %}
                                         aria-hidden="true"></i><span
                                         class="caret"></span></a></td>
-
                         <td><a title="Editar" class="btn btn-default" href="{{ path('edit_house',{'id':c.id}) }}"><i
                                         class="fa fa-edit" aria-hidden="true"></i><span
                                         class="caret"></span></a></td>
@@ -185,6 +198,7 @@
                                href="{{ path('delete_house',{'id':c.id}) }}"><i
                                         class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                         class="caret"></span></a></td>
+                        <td>{{ c.createdAt|date }}</td>
                         <td>{{ c.updatedAt|date }}</td>
                         {% else %}
                             <th colspan="5">No se han insertado casas</th>

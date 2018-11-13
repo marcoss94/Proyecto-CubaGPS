@@ -8,9 +8,11 @@
 
 namespace App\Form;
 
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -26,7 +28,7 @@ class HouseForm extends AbstractType
             ->add('name', TextType::class, ['label' => 'Name'])
             ->add('manager', TextType::class, ['label' => 'Manager'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripcion'])
-            ->add('description',TextareaType::class,['label' => 'Description'])
+            ->add('description', TextareaType::class, ['label' => 'Description'])
             ->add('direccion', TextType::class, ['label' => 'Direción'])
             ->add('municipio', TextType::class, ['label' => 'Municipio'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
@@ -56,43 +58,40 @@ class HouseForm extends AbstractType
                 'habitación' => 'habitación',
                 'apartamento' => 'apartamento',
             ),])
-            ->add('desayuno', ChoiceType::class, ['label' => 'Desayuno', 'choices' => array(
+            ->add('composicion', ChoiceType::class, ['label' => 'Composición', 'choices' => array(
+                'Cocina' => 'cocina',
+                'Terraza' => 'terraza',
+                'Patio' => 'patio',
+                'Jacuzzi' => 'jacuzzi',
+                'Caja Fuerte' => 'caja_fuerte',
+                'Lavandería' => 'lavandería',
+                'Hamaca' => 'hamaca',
+                'Escritorio de Trabajo' => 'escritorio',
+                'Ducha de Playa' => 'ducha_playa',
+                'Piscina' => 'piscina',
+                'Cámaras de seguridad' => 'camaras',
+                'Cunas para bebes' => 'cuna',
+                'Bar/Restaurant' => 'bar_Restaurant',
+                'Equipos de música' => 'equipo_música',
+                'Parqueo' => 'parqueo',
+            ), 'expanded' => true, 'multiple' => true])
+            ->add('servicios', ChoiceType::class, ['label' => 'Servicios', 'choices' => array(
+                'Desayuno' => 'desayuno',
+                'Almuerzo' => 'almuerzo',
+                'Cena' => 'cena',
+                'Lavandería' => 'lavandería',
+                'Masaje' => 'masaje',
+                'Bar/Restaurant' => 'bar_Restaurant',
+                'Limpieza' => 'limpieza',
+                'Peluquería'=> 'peluqueria'
+            ), 'expanded' => true, 'multiple' => true])
+            ->add('longitud', NumberType::class, ['label' => 'Longitud'])
+            ->add('latitud', NumberType::class, ['label' => 'Latitud'])
+            ->add('active', ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'si' => true,
                 'no' => false,
             ),])
-            ->add('almuerzo',  ChoiceType::class, ['label' => 'Almuerzo', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
-            ->add('cena',  ChoiceType::class, ['label' => 'Cena', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
-            ->add('servicios', ChoiceType::class, ['label' => 'Servicios','choices'=>array(
-                'Cocina'=>'cocina',
-                'Terraza'=>'terraza',
-                'Patio'=>'patio',
-                'Jacuzzi'=>'jacuzzi',
-                'Caja Fuerte'=>'caja_fuerte',
-                'Lavandería'=>'lavandería',
-                'Masaje'=>'masaje',
-                'Hamaca'=>'hamaca',
-                'Escritorio de Trabajo'=>'escritorio',
-                'Ducha de Playa'=>'ducha_playa',
-                'Piscina'=>'piscina',
-                'Cámaras de seguridad'=>'camaras',
-                'Cunas para bebes'=>'cuna',
-                'Bar/Restaurant'=>'bar_Restaurant',
-                'Equipos de música'=>'equipo_música',
-                'Parqueo'=>'parqueo',
-            ),'expanded'=>true,'multiple'=>true])
-            ->add('longitud',null, ['label' => 'Longitud'])
-            ->add('latitud',null, ['label' => 'Latitud'])
-            ->add('active',  ChoiceType::class, ['label' => 'Activo', 'choices' => array(
-                'si' => true,
-                'no' => false,
-            ),])
-            ->add('valoracion', ChoiceType::class, ['label' => 'Valoración','choices' => array(
+            ->add('valoracion', ChoiceType::class, ['label' => 'Valoración', 'choices' => array(
                 '0' => 0,
                 '1' => 1,
                 '2' => 2,

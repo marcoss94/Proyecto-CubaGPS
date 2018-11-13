@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Casa extends DisplayableComponent
 {
 
-
     /**
      * @ORM\Column(type="string", length=50)
      */
@@ -28,17 +27,6 @@ class Casa extends DisplayableComponent
      */
     private $licencia;
 
-
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $municipio;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $provincia;
 
     /**
      * @ORM\Column(type="string", length=50, nullable=true)
@@ -61,30 +49,18 @@ class Casa extends DisplayableComponent
     private $tipoEstablecimiento;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $desayuno;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $almuerzo;
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $cena;
-
-
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $active = true;
-
-    /**
-     * @ORM\Column(type="array")
+     * @var array
+     *
+     * @ORM\Column(type="json")
      */
     private $servicios;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     */
+    private $composicion;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Habitacion", mappedBy="casa", orphanRemoval=true, cascade={"remove"})
@@ -100,6 +76,8 @@ class Casa extends DisplayableComponent
      * @ORM\Column(type="float", nullable=true)
      */
     private $latitud;
+
+
 
     /**
      * @return mixed
@@ -118,22 +96,28 @@ class Casa extends DisplayableComponent
 
     }
 
-    public function getCapacidad()
+    /**
+     * @return mixed
+     */
+    public function getComposicion()
+    {
+        return $this->composicion;
+    }
+
+    /**
+     * @param mixed $composicion
+     */
+    public function setComposicion($composicion)
+    {
+        $this->composicion = $composicion;
+    }
+
+    public function getPrecio()
     {
         $c = 0;
         $rooms = $this->getHabitaciones();
         foreach ($rooms as $room) {
-            $c+=$room->getCapacidad();
-
-        }
-        return $c;
-    }
-
-    public function getPrecio(){
-        $c=0;
-        $rooms = $this->getHabitaciones();
-        foreach ($rooms as $room) {
-            $c+=$room->getPrecio();
+            $c += $room->getPrecio();
         }
         return $c;
     }
@@ -177,13 +161,6 @@ class Casa extends DisplayableComponent
         $this->habitaciones = new ArrayCollection();
     }
 
-    /**
-     * @return mixed
-     */
-    public function getActive()
-    {
-        return ($this->active && count($this->habitaciones));
-    }
 
     /**
      * @return mixed
@@ -201,46 +178,6 @@ class Casa extends DisplayableComponent
         $this->licencia = $licencia;
     }
 
-    /**
-     * @param mixed $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getMunicipio()
-    {
-        return $this->municipio;
-    }
-
-    /**
-     * @param mixed $municipio
-     */
-    public function setMunicipio($municipio)
-    {
-        $this->municipio = $municipio;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProvincia()
-    {
-        return $this->provincia;
-    }
-
-    /**
-     * @param mixed $provincia
-     */
-    public function setProvincia($provincia)
-    {
-        $this->provincia = $provincia;
-    }
 
 
     public function getManager(): ?string
@@ -311,44 +248,6 @@ class Casa extends DisplayableComponent
     public function setTipoEstablecimiento(?string $tipoEstablecimiento): self
     {
         $this->tipoEstablecimiento = $tipoEstablecimiento;
-
-        return $this;
-    }
-
-
-    public function getDesayuno(): ?bool
-    {
-        return $this->desayuno;
-    }
-
-    public function setDesayuno(?bool $desayuno): self
-    {
-        $this->desayuno = $desayuno;
-
-        return $this;
-    }
-
-    public function getAlmuerzo(): ?bool
-    {
-        return $this->almuerzo;
-    }
-
-    public function setAlmuerzo(?bool $almuerzo): self
-    {
-        $this->almuerzo = $almuerzo;
-
-        return $this;
-    }
-
-    public function getCena(): ?bool
-    {
-        return $this->cena;
-    }
-
-    public function setCena(?bool $cena): self
-    {
-        $this->cena = $cena;
-
         return $this;
     }
 
@@ -387,4 +286,9 @@ class Casa extends DisplayableComponent
 
         return $this;
     }
+
+    public function getType(){
+        return 'Casa';
+    }
+
 }

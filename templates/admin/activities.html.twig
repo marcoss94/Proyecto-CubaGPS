@@ -100,16 +100,16 @@
                             <tr>
                                 <form action="{{ path('edit_activity') }}">
                                     <input type="hidden" name="id" value="{{ a.id }}">
-                                    <td><input type="text" class="form-control" name="nombre" value=" {{ a.nombre }} ">
+                                    <td colspan="2"><input type="text" class="form-control" name="nombre" value=" {{ a.nombre }} ">
                                     </td>
-                                    <td><input type="text" class="form-control" name="nombre" value=" {{ a.name }} ">
+                                    <td colspan="2"><input type="text" class="form-control" name="name" value=" {{ a.name }} ">
                                     </td>
                                     <td><input type="text" class="form-control" name="horario"
                                                value=" {{ a.horario }} ">
                                     </td>
-                                    <td colspan="2"><textarea type="text" class="form-control"
+                                    <td colspan="3"><textarea type="text" class="form-control"
                                                               name="descripcion">{{ a.descripcion }}</textarea></td>
-                                    <td colspan="2"><textarea type="text" class="form-control"
+                                    <td colspan="3"><textarea type="text" class="form-control"
                                                               name="description">{{ a.description }}</textarea></td>
 
                                     <td>
@@ -216,7 +216,17 @@
                                            placeholder="Enter name">
                                 </div>
                                 <div class="form-group">
+                                    <label for="nombre">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name"
+                                           placeholder="Enter name">
+                                </div>
+                                <div class="form-group">
                                     <label for="description">Descripción</label>
+                                    <textarea class="form-control" id="descripcion" name="descripcion"
+                                              placeholder="Enter Description"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Description</label>
                                     <textarea class="form-control" id="description" name="description"
                                               placeholder="Enter Description"></textarea>
                                 </div>
@@ -224,7 +234,6 @@
                                 </button>
                             </form>
                         </div>
-
                     </div>
                 </div>
             </div>

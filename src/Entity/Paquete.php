@@ -11,30 +11,9 @@ use Doctrine\Common\Collections\Collection;
  * @ORM\Entity(repositoryClass="App\Repository\PaqueteRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class Paquete
+class Paquete extends DisplayableComponent
 {
 
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $nombre;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="integer", length=20)
-     */
-    private $diasDuracion;
 
     /**
      * @ORM\Column(type="integer", length=20)
@@ -59,16 +38,6 @@ class Paquete
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $descripcion;
-
-    /**
-     * @ORM\Column(type="string", length=255,nullable=true)
-     */
-    private $description;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $incluye;
 
     /**
@@ -87,82 +56,6 @@ class Paquete
      */
     private $notIncluded;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Dia", mappedBy="paquete")
-     * @ORM\OrderBy({"orden" = "ASC"})
-     */
-    private $dias;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $active = true;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $valoracion=10;
-
-    /**
-     * @var array
-     *
-     * @ORM\Column(type="json")
-     */
-    private $valoracionArray = [0 => 5, 1 => 0, 2 => 0];
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="paquete")
-     */
-    private $comentarios;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Reserva", mappedBy="paquete")
-     */
-    private $reservas;
-
-    /**
-     * @return mixed
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-
-    /**
-     * @ORM\PrePersist()
-     */
-    public function setCreatedAt()
-    {
-        $this->createdAt = new \DateTime();
-        $this->updatedAt = $this->createdAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * @ORM\PreUpdate()
-     */
-    public function setUpdatedAt()
-    {
-        $this->updatedAt = new \DateTime();
-    }
 
     /**
      * @return mixed
@@ -212,92 +105,6 @@ class Paquete
         $this->incluye = $incluye;
     }
 
-    public function getImages()
-    {
-        $dias = $this->getDias();
-        $activities = [];
-        foreach ($dias as $dia) {
-            foreach ($dia->getActivities() as $activity){
-                $activities[] = $activity;
-            }
-        }
-        $images = [];
-        foreach ($activities as $activity) {
-            if (count($activity->getImages())) {
-                $images[] = $activity->getMainImage();
-            }
-        }
-        return $images;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getValoracion()
-    {
-        return $this->valoracion;
-    }
-
-    /**
-     * @param mixed $valoracion
-     */
-    public function setValoracion($valoracion)
-    {
-        $this->valoracion = $valoracion;
-        $this->valoracionArray[0] = (integer)($valoracion / 2);
-        $this->valoracionArray[1] = $valoracion % 2;
-        $this->valoracionArray[2] = 5 - $this->valoracionArray[0] - $this->valoracionArray[1];
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getValoracionArray()
-    {
-        return $this->valoracionArray;
-    }
-
-    /**
-     * @param mixed $valoracionArray
-     */
-    public function setValoracionArray($valoracionArray)
-    {
-        $this->valoracionArray = $valoracionArray;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @param mixed $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
-
     /**
      * @return mixed
      */
@@ -320,22 +127,6 @@ class Paquete
     public function getPrecio2()
     {
         return $this->precio2;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNombre()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * @param mixed $nombre
-     */
-    public function setNombre($nombre)
-    {
-        $this->nombre = $nombre;
     }
 
     /**
@@ -365,22 +156,6 @@ class Paquete
     /**
      * @return mixed
      */
-    public function getDescripcion()
-    {
-        return $this->descripcion;
-    }
-
-    /**
-     * @param mixed $descripcion
-     */
-    public function setDescripcion($descripcion)
-    {
-        $this->descripcion = $descripcion;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getNoIncluye()
     {
         return $this->noIncluye;
@@ -392,22 +167,6 @@ class Paquete
     public function setNoIncluye($noIncluye)
     {
         $this->noIncluye = $noIncluye;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDiasDuracion()
-    {
-        return $this->diasDuracion;
-    }
-
-    /**
-     * @param mixed $diasDuracion
-     */
-    public function setDiasDuracion($diasDuracion)
-    {
-        $this->diasDuracion = $diasDuracion;
     }
 
     /**
@@ -426,121 +185,17 @@ class Paquete
         $this->nochesDuracion = $nochesDuracion;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDias(): Collection
+
+
+    function __toString(): String
     {
-        return $this->dias;
+        return $this->getNombre();
     }
 
-    /**
-     * @param mixed $dias
-     */
-    public function setDias($dias)
-    {
-        $this->dias = $dias;
+    public function getType(){
+        return 'Paquete';
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    }
-
-
-    /**
-     * Paquete constructor.
-     * @param $activities
-     */
-    public function __construct()
-    {
-        $this->dias = new ArrayCollection();
-        $this->comentarios = new ArrayCollection();
-        $this->reservas = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @return Collection|Comentario[]
-     */
-    public function getComentarios(): Collection
-    {
-        return $this->comentarios;
-    }
-
-    public function addComentario(Comentario $comentario): self
-    {
-        if (!$this->comentarios->contains($comentario)) {
-            $this->comentarios[] = $comentario;
-            $comentario->setPaquete($this);
-        }
-
-        return $this;
-    }
-
-    public function removeComentario(Comentario $comentario): self
-    {
-        if ($this->comentarios->contains($comentario)) {
-            $this->comentarios->removeElement($comentario);
-            // set the owning side to null (unless already changed)
-            if ($comentario->getPaquete() === $this) {
-                $comentario->setPaquete(null);
-            }
-        }
-
-        return $this;
-    }
-
-    function __toString()
-    {
-        return $this->nombre;
-    }
-
-    /**
-     * @return Collection|Reserva[]
-     */
-    public function getReservas(): Collection
-    {
-        return $this->reservas;
-    }
-
-    public function addReserva(Reserva $reserva): self
-    {
-        if (!$this->reservas->contains($reserva)) {
-            $this->reservas[] = $reserva;
-            $reserva->setPaquete($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReserva(Reserva $reserva): self
-    {
-        if ($this->reservas->contains($reserva)) {
-            $this->reservas->removeElement($reserva);
-            // set the owning side to null (unless already changed)
-            if ($reserva->getPaquete() === $this) {
-                $reserva->setPaquete(null);
-            }
-        }
-
-        return $this;
-    }
 
 
 }

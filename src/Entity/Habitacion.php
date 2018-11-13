@@ -36,7 +36,9 @@ class Habitacion extends DisplayableComponent
     private $vista;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @var array
+     *
+     * @ORM\Column(type="json", nullable=true)
      */
     private $servicios;
 
@@ -56,10 +58,6 @@ class Habitacion extends DisplayableComponent
      */
     private $escaleras;
 
-    /**
-     * @ORM\Column(type="boolean", nullable=true)
-     */
-    private $active;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -76,13 +74,7 @@ class Habitacion extends DisplayableComponent
      */
     private $comun;
 
-    /**
-     * @return mixed
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
+
 
     /**
      * @return mixed
@@ -200,14 +192,6 @@ class Habitacion extends DisplayableComponent
         $this->literas = $literas;
     }
 
-    /**
-     * @param mixed $active
-     */
-    public function setActive($active)
-    {
-        $this->active = $active;
-    }
-
 
     public function getCamasDobles(): ?int
     {
@@ -272,5 +256,10 @@ class Habitacion extends DisplayableComponent
     {
         return (string)parent::getNombre();
     }
+
+    public function getType(){
+        return 'Habitacion';
+    }
+
 
 }

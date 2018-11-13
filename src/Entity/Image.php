@@ -151,12 +151,12 @@ class Image
      */
     public function setAltName(DisplayableComponent $owner)
     {
-        if($owner instanceof Carro){
-            $this->altName=$owner->getModelo().' '.'autos clásicos Cuba GPS';
-        }elseif ($owner instanceof Casa){
-            $this->altName='renta en '.$owner->getMunicipio().'. '.$owner->getProvincia().' Cuba GPS';
-        }else{
-            $this->altName='descubiendo Cuba con cubaGPS';
+        if ($owner instanceof Carro) {
+            $this->altName = $owner->getModelo() . ' ' . 'autos clásicos Cuba GPS';
+        } elseif ($owner instanceof Casa) {
+            $this->altName = 'renta en ' . $owner->getMunicipio() . '. ' . $owner->getProvincia() . ' Cuba GPS';
+        } else {
+            $this->altName = 'descubiendo Cuba con cubaGPS';
         }
     }
 
@@ -178,5 +178,10 @@ class Image
         if ($file) {
             unlink($file);
         }
+    }
+
+    public function updatePaquete()
+    {
+
     }
 }

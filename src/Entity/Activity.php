@@ -80,6 +80,10 @@ class Activity extends DisplayableComponent
         $this->dia = $dia;
     }
 
+    public function getType(){
+        return 'Activity';
+    }
+
 
 
 

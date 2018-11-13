@@ -9,8 +9,8 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -44,7 +44,7 @@ class ExcursionForm extends AbstractType
                 'Guantánamo' => 'Guantánamo',
                 'Isla de la Juventud' => 'Isla de la Juventud',
             ),])
-            ->add('dias', ChoiceType::class, ['label' => 'Días disponibles','choices'=>array(
+            ->add('diasDisponibles', ChoiceType::class, ['label' => 'Días disponibles','choices'=>array(
                 'Lunes'=>'Lunes',
                 'Martes'=>'Martes',
                 'Miércoles'=>'Miércoles',
@@ -54,7 +54,7 @@ class ExcursionForm extends AbstractType
                 'Domingo'=>'Domingo',
             ),'expanded'=>true,'multiple'=>true])
             ->add('horaInicio', TextType::class, ['label' => 'Hora de inicio'])
-            ->add('duracion', TextType::class, ['label' => 'Duración'])
+            ->add('tiempoDuracion', TextType::class, ['label' => 'Duración'])
             ->add('guia', ChoiceType::class, ['label' => 'Guía', 'choices' => array(
                 'Si' => true,
                 'No' => false,
@@ -88,8 +88,8 @@ class ExcursionForm extends AbstractType
             ->add('precio2', MoneyType::class, ['label' => 'Precio para dos personas'])
             ->add('precio3', MoneyType::class, ['label' => 'Precio para tres personas'])
             ->add('precio4', MoneyType::class, ['label' => 'Precio para cuatro o más personas'])
-            ->add('longitud',null, ['label' => 'Longitud'])
-            ->add('latitud',null, ['label' => 'Latitud'])
+            ->add('longitud',NumberType::class, ['label' => 'Longitud'])
+            ->add('latitud',NumberType::class, ['label' => 'Latitud'])
             ->add('active', ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'Si' => true,
                 'No' => false,

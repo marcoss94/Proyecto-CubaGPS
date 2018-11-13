@@ -37,70 +37,94 @@
                             {{ app.session.get('language') == 'es'? 'Carros':'Cars' }}
                         {% elseif type == 'excursion' %}
                             {{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}
-                        {% else %}
+                        {% elseif type == 'paquete' %}
                             {{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}
+                        {% else %}
+                            {{ app.session.get('language') == 'es'? 'Resultados':'Results' }}
                         {% endif %}
                     </h2>
+                    <div class="count">
+                        {{ data.getTotalItemCount }}
+                    </div>
                 </div>
                 {% for i in data %}
                     <div class="col-md-4 col-sm-6 portfolio-item">
-                        {#<a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':'casa'}) }}">#}
-                            {#<div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide"#}
-                                 {#data-ride="carousel "#}
-                                 {#data-interval="false">#}
-                                {#<div class="carousel-inner">#}
-                                    {#{% for image in i.images %}#}
-                                        {#<div {% if loop.index==1 %}class="carousel-item active"#}
-                                             {#{% else %}class="carousel-item"{% endif %}>#}
-                                            {#<img class="img-fluid fotosOferta"#}
-                                                 {#src="{{ asset(image.half) }}"#}
-                                                 {#alt="{{ image.altName }}">#}
-                                        {#</div>#}
-                                    {#{% endfor %}#}
-                                {#</div>#}
-                                {#<a class="carousel-control-prev" href="{{ '#carouselcasa'~loop.index }}"#}
-                                   {#role="button"#}
-                                   {#data-slide="prev">#}
-                                    {#<span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-                                    {#<span class="sr-only">Previous</span>#}
-                                {#</a>#}
-                                {#<a class="carousel-control-next" href="{{ '#carouselcasa'~loop.index }}"#}
-                                   {#role="button"#}
-                                   {#data-slide="next">#}
-                                    {#<span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-                                    {#<span class="sr-only">Next</span>#}
-                                {#</a>#}
-                            {#</div>#}
-                        {#</a>#}
+                        <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                            <div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide"
+                                 data-ride="carousel "
+                                 data-interval="false">
+                                <div class="carousel-inner">
+                                    {% for image in i.images %}
+                                        <div {% if loop.index==1 %}class="carousel-item active"
+                                             {% else %}class="carousel-item"{% endif %}>
+                                            <img class="img-fluid fotosOferta"
+                                                 src="{{ asset(image.half) }}"
+                                                 alt="{{ image.altName }}">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <a class="carousel-control-prev" href="{{ '#carouselcasa'~loop.index }}"
+                                   role="button"
+                                   data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="{{ '#carouselcasa'~loop.index }}"
+                                   role="button"
+                                   data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
+                            </div>
+                        </a>
                         <div class=" infoOferta text-left">
-
-                            {% if type=='casa' %}
-                                <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':'casa'}) }}">
-                                    <h4>{{ i.nombre }}</h4></a>
+                            <div class="timeline-body">
+                                {% if i.valoracionArray[0]!=0 %}
+                                    {% for j in 1..i.valoracionArray[0] %}
+                                        <i class="fas fa-star star"></i>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if i.valoracionArray[1] %}
+                                    <i class="fas fa-star-half-alt star"></i>
+                                {% endif %}
+                                {% if i.valoracionArray[2]!=0 %}
+                                    {% for j in 1..i.valoracionArray[2] %}
+                                        <i class="far fa-star star"></i>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            {% if i.getType=='Casa' %}
+                                <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                                    <h4>{{ app.session.get('language') == 'es'?
+                                        i.nombre:
+                                        i.name }}</h4></a>
                                 <h4>{{ i.municipio~', '~i.provincia }}</h4></a>
                                 {#<div class="timeline-body">#}
-                                    {#<h6 class="text-muted">#}
-                                        {#{{ '€ '~i.precio }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>#}
+                                {#<h6 class="text-muted">#}
+                                {#{{ '€ '~i.precio }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>#}
                                 {#</div>#}
-                            {% elseif type == 'carro' %}
-                                <a class="nav-item nombreO" href="">
+                            {% elseif i.getType == 'Carro' %}
+                                <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                     <h4>{{ i.modelo }}</h4></a>
-                                <h4>{{ i.provincia }}</h4></a>
+                                <h5>{{ i.provincia }}</h5>
                                 <div class="timeline-body">
                                     <h6 class="text-muted">
                                         {{ app.session.get('language') == 'es'? i.descripcion:i.description }}  </h6>
                                 </div>
-                            {% elseif type == 'excursion' %}
-                                <a class="nav-item nombreO" href="">
-                                    <h4>{{ i.nombre }}</h4></a>
-                                <h4>{{ i.provincia }}</h4></a>
+                            {% elseif i.getType == 'Excursion' %}
+                                <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                                    <h4>{{ app.session.get('language') == 'es'?
+                                        i.nombre:
+                                        i.name }}</h4></a>
+
+                                <h5>{{ i.provincia }}</h5>
                                 <div class="timeline-body">
                                     <h6 class="text-muted">
                                         {{ '€ '~i.precio1 }}  </h6>
                                     <p class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</p>
                                 </div>
                             {% else %}
-                                <a class="nav-item nombreO" href="">
+                                <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                     <h4>{{ app.session.get('language') == 'es'?
                                         i.nombre:
                                         i.name }}</h4></a>
@@ -111,7 +135,7 @@
                                             <h6>
                                                 <span><i class="far fa-sun"></i></span>
                                                 {#Cantidad de dias#}
-                                                {{ i.diasDuracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
+                                                {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
                                             </h6>
                                         </div>
                                     </div>
@@ -129,21 +153,6 @@
                                     </div>
                                 </div>
                                 <div class="timeline-body">
-                                    {% if i.valoracionArray[0]!=0 %}
-                                        {% for j in 1..i.valoracionArray[0] %}
-                                            <i class="fas fa-star star"></i>
-                                        {% endfor %}
-                                    {% endif %}
-                                    {% if i.valoracionArray[1] %}
-                                        <i class="fas fa-star-half-alt star"></i>
-                                    {% endif %}
-                                    {% if i.valoracionArray[2]!=0 %}
-                                        {% for j in 1..i.valoracionArray[2] %}
-                                            <i class="far fa-star star"></i>
-                                        {% endfor %}
-                                    {% endif %}
-                                </div>
-                                <div class="timeline-body">
 
                                     <p class="text-muted">
                                         {{ app.session.get('language') == 'es'?
@@ -157,6 +166,10 @@
 
                         </div>
                     </div>
+                {% else %}
+                    <h3>{{ app.session.get('language') == 'es'?
+                        'No se han enontrado resultados':
+                        'No results have been found' }}</h3>
                 {% endfor %}
                 {#boton de ver mas#}
                 <div class="navigation">
