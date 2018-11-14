@@ -251,7 +251,7 @@
                                     </div>
                                 </div>
                                 <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
-                                <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
+                                <button class='btn btn-default rightRs' style="right: 0px"><i class="fa fa-fw fa-angle-right"></i></button>
                             </div>
 
 
@@ -341,7 +341,7 @@
                                     </div>
                                 </div>
                                 <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
-                                <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
+                                <button class='btn btn-default rightRs' style="right: 0px"><i class="fa fa-fw fa-angle-right"></i></button>
 
 
                             </div>
@@ -407,7 +407,7 @@
 
 
                 {#---------------------------------Formulario de Reserva-----------------------------------------------------#}
-                <div class="col-12 col-md-4 portfolio-item reserva">
+                <div class="col-12 col-md-4 portfolio-item" id="reserva">
                     <div class="container">
                         <div class="modal-content">
                             <form action="{{ path('reserva_casa') }}" method="post" id="reserveForm">
@@ -463,6 +463,12 @@
 
     </section>
 
+    <a class="botonReserva js-scroll-trigger "
+       href="#reserva">
+
+        <button class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+
+    </a>
 
 
 
