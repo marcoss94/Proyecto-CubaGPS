@@ -43,11 +43,6 @@ class Activity extends DisplayableComponent
         $this->horario = $horario;
     }
 
-    function __toString()
-    {
-        return (string)parent::getNombre();
-    }
-
     /**
      * @return mixed
      */

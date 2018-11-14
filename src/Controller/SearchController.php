@@ -26,34 +26,39 @@ class SearchController extends Controller
     /**
      * @Route("/generic_search", name="generic_search")
      */
-    public function genericSearch(Request $request,DataService $query)
+    public function genericSearch(Request $request, DataService $query)
     {
-        $data=$query->returnGenericSearchData($request);
-        return $this->render('lista/index.html.twig', ['base' => 'false','type'=>'search','data'=>$data]);
+        $data = $query->returnGenericSearchData($request);
+        return $this->render('lista/index.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $data]);
     }
 
     /**
      * @Route("/advanced_search", name="advanced_search")
      */
-    public function advancedSearch(Request $request)
+    public function advancedSearch(Request $request, DataService $query)
+    {
+        $data = $query->returnAdvancedSearchData($request);
+        dump($data);
+        return $this->render('lista/index.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $data]);
+    }
+
+    public function findCasa(Request $request, CasaRepository $casaRepository)
     {
 
-        return;
     }
 
-    public function findCasa(Request $request,CasaRepository $casaRepository){
-
-    }
-
-    public function findCarro(Request $request,CarroRepository $carroRepository){
+    public function findCarro(Request $request, CarroRepository $carroRepository)
+    {
 
     }
 
-    public function findExcursion(Request $request,ExcursionRepository $excursionRepository){
+    public function findExcursion(Request $request, ExcursionRepository $excursionRepository)
+    {
 
     }
 
-    public function findPaquete(Request $request,PaqueteRepository $paqueteRepository){
+    public function findPaquete(Request $request, PaqueteRepository $paqueteRepository)
+    {
 
     }
 }

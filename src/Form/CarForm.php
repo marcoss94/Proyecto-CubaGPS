@@ -28,7 +28,7 @@ class CarForm extends AbstractType
             ->add('tel', TelType::class, ['label' => 'Teléfono fijo'])
             ->add('cel', TelType::class, ['label' => 'Teléfono móvil'])
             ->add('chapa', TextType::class, ['label' => 'Chapa'])
-            ->add('modelo', TextType::class, ['label' => 'Modelo y Año'])
+            ->add('nombre', TextType::class, ['label' => 'Modelo y Año'])
             ->add('color', TextType::class, ['label' => 'Color'])
             ->add('licencia', ChoiceType::class, ['label' => 'Tipo de Licencia','choices'  => array(
                 'Asociado' => 'Asociado',
@@ -60,7 +60,7 @@ class CarForm extends AbstractType
                 'Si' => true,
                 'No' => false,
             ),])
-            ->add('cantidadAsientos',null, ['label' => 'Cantidad de Asientos'])
+            ->add('capacidad',null, ['label' => 'Cantidad de Asientos'])
             ->add('idiomas',ChoiceType::class, ['label' => 'Idiomas','choices'  => array(
                 'English' => 'English',
                 'Español' => 'Español',

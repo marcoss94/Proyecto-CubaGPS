@@ -37,14 +37,19 @@ class Reserva
     private $usuario;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     */
+    private $habitaciones=[];
+
+
+    /**
+     *
+     *
      * @ORM\Column(type="string",length=10)
      */
     private $status = 'pre';
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $type;
 
     /**
      * @ORM\Column(type="integer")
@@ -57,9 +62,25 @@ class Reserva
     private $cantPersonas;
 
     /**
+     * @return array
+     */
+    public function getHabitaciones(): array
+    {
+        return $this->habitaciones;
+    }
+
+    /**
+     * @param array $habitaciones
+     */
+    public function setHabitaciones(array $habitaciones)
+    {
+        $this->habitaciones = $habitaciones;
+    }
+
+    /**
      * @ORM\Column(type="integer")
      */
-    private $children;
+    private $children=0;
 
     public function getId(): ?int
     {
@@ -81,14 +102,6 @@ class Reserva
     public function getEndAt(): ?\DateTimeInterface
     {
         return $this->endAt;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getType()
-    {
-        return $this->type;
     }
 
     /**
@@ -121,14 +134,6 @@ class Reserva
     public function setChildren($children)
     {
         $this->children = $children;
-    }
-
-    /**
-     * @param mixed $type
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
     }
 
     public function setEndAt(?\DateTimeInterface $endAt): self

@@ -2,10 +2,13 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HabitacionRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Habitacion extends DisplayableComponent
 {
@@ -75,7 +78,6 @@ class Habitacion extends DisplayableComponent
     private $comun;
 
 
-
     /**
      * @return mixed
      */
@@ -124,8 +126,9 @@ class Habitacion extends DisplayableComponent
         $this->escaleras = $escaleras;
     }
 
-    public function getCapacidad(){
-        return $this->camasDobles*2+$this->camasSimples+$this->literas*2;
+    public function getCapacidad()
+    {
+        return $this->camasDobles * 2 + $this->camasSimples + $this->literas * 2;
     }
 
     /**
@@ -252,14 +255,36 @@ class Habitacion extends DisplayableComponent
         return $this;
     }
 
-    function __toString()
-    {
-        return (string)parent::getNombre();
-    }
 
-    public function getType(){
+    public function getType()
+    {
         return 'Habitacion';
     }
+
+    /**
+     * @ORM\PostPersist()
+     */
+    public function agregarCapacidad(LifecycleEventArgs $args)
+    {
+        $casa=$this->casa;
+        $em=$args->getEntityManager();
+        $casa->setCapacidad($casa->getCapacidad()+($this->getCamasSimples())+($this->getCamasDobles()*2)+($this->getLiteras()*2));
+        $em->persist($casa);
+        $em->flush();
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function restarCapacidad(LifecycleEventArgs $args){
+        $casa=$this->casa;
+        $em=$args->getEntityManager();
+        $casa->setCapacidad($casa->getCapacidad()-($this->getCamasSimples()+($this->getCamasDobles()*2)+($this->getLiteras()*2)));
+        $em->persist($casa);
+        $em->flush();
+    }
+
+
 
 
 }

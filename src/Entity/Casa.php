@@ -159,6 +159,7 @@ class Casa extends DisplayableComponent
     {
         parent::__construct();
         $this->habitaciones = new ArrayCollection();
+        $this->setCapacidad(0);
     }
 
 
@@ -251,11 +252,6 @@ class Casa extends DisplayableComponent
         return $this;
     }
 
-    function __toString()
-    {
-        return (string)parent::getNombre();
-    }
-
     /**
      * @return Collection|Habitacion[]
      */
@@ -283,7 +279,6 @@ class Casa extends DisplayableComponent
                 $habitacione->setCasa(null);
             }
         }
-
         return $this;
     }
 

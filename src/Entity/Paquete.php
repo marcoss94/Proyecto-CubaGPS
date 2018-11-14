@@ -36,6 +36,11 @@ class Paquete extends DisplayableComponent
     private $precio3;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $precio4;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $incluye;
@@ -95,6 +100,22 @@ class Paquete extends DisplayableComponent
     public function getIncluye()
     {
         return $this->incluye;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrecio4()
+    {
+        return $this->precio4;
+    }
+
+    /**
+     * @param mixed $precio4
+     */
+    public function setPrecio4($precio4)
+    {
+        $this->precio4 = $precio4;
     }
 
     /**
@@ -187,10 +208,6 @@ class Paquete extends DisplayableComponent
 
 
 
-    function __toString(): String
-    {
-        return $this->getNombre();
-    }
 
     public function getType(){
         return 'Paquete';
