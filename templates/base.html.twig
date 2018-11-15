@@ -697,6 +697,17 @@ border-color: #f9b501">
             var dd = d < 10 ? '0' + d : d;
             return '' + y +'-'+ mm +'-'+ dd;
         }
+        function yyyymmdd_salida() {
+            var today = new Date();
+            var now = new Date();
+            now.setDate(today.getDate()+5);
+            var y = now.getFullYear();
+            var m = now.getMonth() + 1;
+            var d = now.getDate();
+            var mm = m < 10 ? '0' + m : m;
+            var dd = d < 10 ? '0' + d : d;
+            return '' + y +'-'+ mm +'-'+ dd;
+        }
     </script>
 {% endblock %}
 </body>

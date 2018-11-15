@@ -461,7 +461,7 @@
                                                 {% for h in object.habitaciones %}
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value="{{ h.capacidad }}"
-                                                               name="{{ h.id }}"
+                                                               name="{{ h.id }}" alt="{{ h.precio }}"
                                                                id="{{ loop.index0 }}">
                                                         <label class="form-check-label" for="{{ loop.index }}">
                                                             {{ app.session.get('language') == 'es'? h.nombre : h.name }}
@@ -490,7 +490,7 @@
                                 <div id="errorBox"></div>
                                 <div class="modal-footer">
                                     <a href="{{ path('reservacion') }}">Reservacion </a>
-
+                                    <label id="precio"></label>
                                     <button type="button" id="reserveButton"
                                             class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                 </div>
@@ -643,6 +643,7 @@
                     </div>
 
                     <div class="modal-footer">
+
                         <button type="submit"
                                 class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                     </div>
@@ -682,8 +683,34 @@
         $('#wrongDate').hide;
         $(document).ready( function() {
             $('#inputEntrada').attr('min',yyyymmdd());
-            $('#inputSalida').attr('min',yyyymmdd());
+            $('#inputSalida').attr('min',yyyymmdd_salida());
+            $('#inputEntrada').val(yyyymmdd());
+            $('#inputSalida').val(yyyymmdd_salida());
+            setPrice();
+            $('#inputSalida').on('change',function () {
+                setPrice();
+            })
+            $('#inputEntrada').on('change',function () {
+                setPrice();
+            })
+            $('.form-check-input').click(function () {
+                setPrice()
+            })
         });
+
+        function setPrice(){
+            var precio=0;
+            $('input:checkbox').filter(':checked').each(function () {
+                precio+=parseInt(this.alt);
+            })
+            var entrada = new Date($('#inputEntrada').val());
+            var salida = new Date($('#inputSalida').val());
+            var dias = salida-entrada;
+            dias= parseInt(dias)/86400000;
+            if(dias==0)dias=1;
+            if(dias<0)dias=0;
+            document.getElementById('precio').innerHTML = '€'+dias*precio ;
+        }
         var carousel = $(".carouselCarucel"),
             currdeg = 0;
         $(".nextCarucel").on("click", {d: "n"}, rotate);
