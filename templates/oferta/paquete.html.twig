@@ -146,209 +146,55 @@
                         <div class="separador"></div>
 
 
-
-
-
-
                         <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Actividades':'Activities' }}</h4>
 
 
                         <div class="row">
-
-
-
                             <div class="separador"></div>
-
-                            <div class="col-lg-12">
-
-                                <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia 1':'Day 1' }}</h4>
-
-
-                                <div class="resCarousel" data-items="1-1-1-1" data-slide="1" data-speed="900"
-                                     data-animator="lazy">
-                                    <div class="resCarousel-inner" style="font-size: 30px">
-                                        <div class="item" style="vertical-align: super">
-
-                                            <ul class="timelineGPS">
-
-                                                <li>
-
-                                                    <div class="timeline-imageGPS" >
-
-                                                        <a href="" class="lightbox" data-toggle="modal"
-                                                           data-target="#PruebaModal" style="cursor: pointer;">
-                                                            <img class="rounded-circle fotoExcurc img-fluid"
-                                                                 src="{{ asset('build/img/excurciones/excurciones1.jpg') }}"
-                                                                 alt="">
-                                                        </a>
-
-                                                        {#<img class="rounded-circle fotoExcurc img-fluid"#}
-                                                        {#src="{{ asset('build/img/excurciones/excurciones1.jpg') }}"#}
-                                                        {#alt="">#}
-                                                    </div>
-
-                                                    <div class="timeline-panelGPS">
-                                                        <div class="timeline-headingGPS">
-                                                            <h4>Nombre de Actividad</h4>
-                                                            <h4 class="subheadingGPS">Horario de actividad</h4>
+                            {% for d in object.dias %}
+                                <div class="col-lg-12">
+                                    <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia ':'Day ' }}
+                                        {{ d.orden~' ' }}
+                                        {{ app.session.get('language') == 'es'? d.nombre:d.name }}</h4>
+                                    <div class="resCarousel" data-items="1-1-1-1" data-slide="1" data-speed="900"
+                                         data-animator="lazy">
+                                        <div class="resCarousel-inner" style="font-size: 30px">
+                                            {% for a in d.activities %}
+                                            <div class="item" style="vertical-align: super">
+                                                <ul class="timelineGPS">
+                                                    <li>
+                                                        <div class="timeline-imageGPS">
+                                                            <a href="" class="lightbox" data-toggle="modal"
+                                                               data-target="#PruebaModal" style="cursor: pointer;">
+                                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                                     src="{{ asset(a.getMainImage().half) }}"
+                                                                     alt="{{ a.getMainImage().altName }}">
+                                                            </a>
                                                         </div>
-                                                        <div class="timeline-bodyGPS">
-                                                            <p class="text-muted">Descripcion de actividad
-
-
-                                                                temporibus qui
-                                                                quibusdam,
-                                                                recusandae
-                                                                sit
-                                                                vero unde, sed, incidunt et ea quo dolore
-                                                                laudantium
-                                                                consectetur!</p>
+                                                        <div class="timeline-panelGPS">
+                                                            <div class="timeline-headingGPS">
+                                                                <h4>{{ app.session.get('language') == 'es'? a.nombre:a.name }}</h4>
+                                                                <h4 class="subheadingGPS">{{ a.horario }}</h4>
+                                                            </div>
+                                                            <div class="timeline-bodyGPS">
+                                                                <p class="text-muted">
+                                                                    {{ app.session.get('language') == 'es'? a.descripcion:a.description }}</p>
+                                                            </div>
                                                         </div>
-
-
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            {% endfor %}
                                         </div>
-                                        <div class="item">
-
-
-                                            <ul class="timelineGPS">
-
-                                                <li>
-
-                                                    <div class="timeline-imageGPS">
-                                                        <img class="rounded-circle fotoExcurc img-fluid"
-                                                             src="{{ asset('build/img/excurciones/excurciones2.jpg') }}"
-                                                             alt="">
-                                                    </div>
-
-                                                    <div class="timeline-panelGPS">
-                                                        <div class="timeline-headingGPS">
-                                                            <h4>Nombre de Actividad</h4>
-                                                            <h4 class="subheadingGPS">Horario de actividad</h4>
-                                                        </div>
-                                                        <div class="timeline-bodyGPS">
-                                                            <p class="text-muted">Descripcion de actividad
-
-
-                                                                temporibus qui
-                                                                quibusdam,
-                                                                recusandae
-                                                                sit
-                                                                vero unde, sed, incidunt et ea quo dolore
-                                                                laudantium
-                                                                consectetur!</p>
-                                                        </div>
-
-
-                                                    </div>
-                                                </li>
-                                            </ul>
-
-                                        </div>
-
                                     </div>
+                                    <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i>
+                                    </button>
+                                    <button class='btn btn-default rightRs' style="right: 0px"><i class="fa fa-fw fa-angle-right"></i>
+                                    </button>
                                 </div>
-                                <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
-                                <button class='btn btn-default rightRs' style="right: 0px"><i class="fa fa-fw fa-angle-right"></i></button>
-                            </div>
-
-
-                            <div class="separador"></div>
-
-                            <div class="col-lg-12">
-
-                                <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia 2':'Day 2' }}</h4>
-
-
-                                <div class="resCarousel" data-items="1-1-1-1" data-slide="1" data-speed="900"
-                                     data-animator="lazy">
-                                    <div class="resCarousel-inner" style="font-size: 30px">
-                                        <div class="item" style="vertical-align: super">
-
-                                            <ul class="timelineGPS">
-
-                                                <li>
-
-                                                    <div class="timeline-imageGPS">
-                                                        <img class="rounded-circle fotoExcurc img-fluid"
-                                                             src="{{ asset('build/img/excurciones/excurciones3.jpg') }}"
-                                                             alt="">
-                                                    </div>
-
-                                                    <div class="timeline-panelGPS">
-                                                        <div class="timeline-headingGPS">
-                                                            <h4>Nombre de Actividad</h4>
-                                                            <h4 class="subheadingGPS">Horario de actividad</h4>
-                                                        </div>
-                                                        <div class="timeline-bodyGPS">
-                                                            <p class="text-muted">Descripcion de actividad
-
-
-                                                                temporibus qui
-                                                                quibusdam,
-                                                                recusandae
-                                                                sit
-                                                                vero unde, sed, incidunt et ea quo dolore
-                                                                laudantium
-                                                                consectetur!</p>
-                                                        </div>
-
-
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="item">
-
-
-                                            <ul class="timelineGPS">
-
-                                                <li>
-
-                                                    <div class="timeline-imageGPS">
-                                                        <img class="rounded-circle fotoExcurc img-fluid"
-                                                             src="{{ asset('build/img/excurciones/excurciones4.jpg') }}"
-                                                             alt="">
-                                                    </div>
-
-                                                    <div class="timeline-panelGPS">
-                                                        <div class="timeline-headingGPS">
-                                                            <h4>Nombre de Actividad</h4>
-                                                            <h4 class="subheadingGPS">Horario de actividad</h4>
-                                                        </div>
-                                                        <div class="timeline-bodyGPS">
-                                                            <p class="text-muted">Descripcion de actividad
-
-
-                                                                temporibus qui
-                                                                quibusdam,
-                                                                recusandae
-                                                                sit
-                                                                vero unde, sed, incidunt et ea quo dolore
-                                                                laudantium
-                                                                consectetur!</p>
-                                                        </div>
-
-
-                                                    </div>
-                                                </li>
-                                            </ul>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
-                                <button class='btn btn-default rightRs' style="right: 0px"><i class="fa fa-fw fa-angle-right"></i></button>
-
-
-                            </div>
+                                <div class="separador"></div>
+                            {% endfor %}
                         </div>
-
-
-
                         <div class="separador"></div>
 
                         {#Comentarios --------------------------------------------------------------------------------------#}
@@ -559,25 +405,25 @@
                 "transform": "rotateY(" + currdeg + "deg)"
             });
         }
-        $(document).ready( function() {
-            $('#inputEntrada').attr('min',yyyymmdd());
+        $(document).ready(function () {
+            $('#inputEntrada').attr('min', yyyymmdd());
             document.getElementById('precio').innerHTML = setPrice($('#cantA').val());
         });
         function setPrice(cant) {
             var precio;
-            if(cant == 1){
-                precio=parseInt({{ object.precio1 }});
-            }else if(cant==2){
-                precio=parseInt({{ object.precio2 }}) * 2;
+            if (cant == 1) {
+                precio = parseInt({{ object.precio1 }});
+            } else if (cant == 2) {
+                precio = parseInt({{ object.precio2 }}) * 2;
             }
-            else if(cant==3){
-                precio=parseInt({{ object.precio3 }}) * 3;
-            }else{
-                precio=parseInt({{ object.precio4 }}) * parseInt(cant);
+            else if (cant == 3) {
+                precio = parseInt({{ object.precio3 }}) * 3;
+            } else {
+                precio = parseInt({{ object.precio4 }}) * parseInt(cant);
             }
-            return '€'+precio;
+            return '€' + precio;
         }
-        $('#cantA').on('change', function() {
+        $('#cantA').on('change', function () {
             document.getElementById('precio').innerHTML = setPrice(this.value);
         });
         $('#reserveButton').click(function () {

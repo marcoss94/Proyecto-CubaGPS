@@ -77,12 +77,13 @@
                                     border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
                                 {{ r.usuario }}</td>
                             </td>
-                            <td>{{ r.commponent }}
+                            <td><a data-toggle="modal"
+                                   data-target="#{{ 'contactInfoModal'~r.id }}">{{ r.commponent }}</a>
                                 {% if r.commponent.getType()== 'Casa' %}
                                     <button id="btnGroupDrop1" type="button"
                                             class="btn btn-outline-secondary dropdown-toggle"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Habitaciones
+                                        <i class="fa fa-door-open"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                         {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
@@ -125,12 +126,64 @@
             </div>
 
         </div>
-
         </form>
-
-
     </div>
 
+    {% for r in preReserves if r.commponent.getType == 'Casa' or r.commponent.getType == 'Carro' %}
+        <div class="modal fade" id="{{ 'contactInfoModal'~r.id }}" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ r.commponent }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% if r.commponent.getType == 'Casa' %}
+                            <div class="col">
+                                <div class="row"><strong>Manager:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.manager }}</div>
+                                <div class="row"><strong>Teléfono Móvil:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.cel }}</div>
+                                <div class="row"><strong>Teléfono Fijo:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.tel }}</div>
+                                {% if r.commponent.email != ''  %}
+                                    <div class="row"><strong>Email:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.email }}</div>
+                                {% endif %}
+                                <div class="row"><strong>Provincia:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.provincia}}</div>
+                                <div class="row"><strong>Municipio:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.municipio }}</div>
+                                <div class="row"><strong>Dirección:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.direccion}}</div>
+                            </div>
+                        {% elseif e.commponent == 'Carro' %}
+                            <div class="col">
+                                <div class="row"><strong>Chofer:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.nombreChofer }}</div>
+                                <div class="row"><strong>Teléfono Móvil:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.cel }}</div>
+                                <div class="row"><strong>Teléfono Fijo:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.tel }}</div>
+                                <div class="row"><strong>Chapa:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.chapa}}</div>
+                                <div class="row"><strong>Licencia:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.licencia }}</div>
+                                <div class="row"><strong>Provincia:</strong></div>
+                                <div class="row" style="margin-left: 10px">{{ r.commponent.provincia}}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
 
 {% block footer %}

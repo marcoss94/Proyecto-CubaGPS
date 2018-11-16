@@ -126,7 +126,13 @@
                             <td>{{ c.active ? 'si' : 'no' }}</td>
                             <td><a title="Actividades" class="btn btn-default"
                                    href="{{ path('activities',{'id':c.id}) }}"><i
-                                            class="fa fa-calendar" aria-hidden="true"></i><span
+                                            class="fa fa-calendar"
+                                            {% if c.dias|length %}
+                                                style="color: purple"
+                                            {% else %}
+                                                style="color: gray"
+                                            {% endif %}
+                                            aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
                             <td><a title="Album de Imagenes" class="btn btn-default"
                                    href="{{ path('album',{'id':c.id}) }}"><i
