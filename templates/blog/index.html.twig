@@ -26,7 +26,19 @@
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in">{{ app.session.get('language') == 'es'? 'Bienvenido':'Welcome' }}</div>
-                <div class="intro-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</div>
+                {#<div class="intro-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</div>#}
+
+
+
+<div class="bodyLetra">
+                <div id="table">
+                    <div id="centeralign">
+                        <h1 class="h1Letra">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</h1>
+                        {#<p class="pLetra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ante arcu, dignissim non risus id, posuere efficitur felis. Vestibulum arcu diam, semper non ipsum quis, dictum ultricies diam. Suspendisse vel luctus sapien. Mauris tristique condimentum velit tincidunt pharetra. Curabitur ut lectus eleifend, malesuada lorem eget, consectetur augue. Nunc scelerisque nisi in lacus eleifend eleifend. Praesent blandit ex at nunc maximus, ut sodales ante auctor. Nunc elementum eros sit amet malesuada facilisis. Morbi eget elit consequat, sodales urna in, lobortis nisi. Morbi dapibus velit eu mattis bibendum. Nulla et nisi eget turpis vulputate suscipit eu nec nunc. Pellentesque ut pulvinar quam.</p>#}
+                    </div>
+                </div>
+</div>
+
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" style="background-color: #f9b501;
 border-color: #f9b501;"
                    href="#">{{ app.session.get('language') == 'es'? 'Saber más':'Know more' }}</a>
@@ -102,11 +114,11 @@ border-color: #f9b501;"
                                                 {% endfor %}
                                             {% endif %}
                                             <div class="timeline-body">
-                                                <p class="text-muted">
+                                                <h7 class="text-muted">
                                                     {{ app.session.get('language') == 'es'?
                                                     i.descripcion:
                                                     i.description }}
-                                                </p>
+                                                </h7>
                                                 <h6 class="text-muted">
                                                     {{ '€ '~i.precio }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>
 
@@ -194,11 +206,11 @@ border-color: #f9b501;"
                                                 {% endfor %}
                                             {% endif %}
                                             <div class="timeline-body">
-                                                <p class="text-muted">
+                                                <h7 class="text-muted">
                                                     {{ app.session.get('language') == 'es'?
                                                     i.descripcion:
                                                     i.description }}
-                                                </p>
+                                                </h7>
                                                 <h6 class="text-muted">
                                                     56$ {{ app.session.get('language') == 'es'? 'por noche':'per night' }}  </h6>
                                             </div>
@@ -307,11 +319,11 @@ border-color: #f9b501;"
                                             {% endif %}
                                         </div>
                                         <div class="timeline-body">
-                                            <p class="text-muted">
+                                            <h7 class="text-muted">
                                                 {{ app.session.get('language') == 'es'?
                                                 i.descripcion:
                                                 i.description }}
-                                            </p>
+                                            </h7>
                                             <h6 class="text-muted">
                                                 {{ '€ '~i.precio1 }}</h6>
 
@@ -395,8 +407,8 @@ border-color: #f9b501;"
                                         {% endif %}
                                         <div class="timeline-body">
 
-                                            <h6 class="text-muted">
-                                                {{ app.session.get('language') == 'es'? i.descripcion:i.description }}  </h6>
+                                            <h7 class="text-muted">
+                                                {{ app.session.get('language') == 'es'? i.descripcion:i.description }}  </h7>
                                         </div>
                                     </div>
                                 </div>
@@ -482,7 +494,7 @@ border-color: #f9b501;"
                                         <div class="timeline-body">
                                             <h6 class="text-muted">
                                                 {{ '€ '~i.precio1 }}  </h6>
-                                            <p class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</p>
+                                            <h7 class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</h7>
                                         </div>
                                     </div>
                                 </div>
@@ -540,10 +552,10 @@ border-color: #f9b501;"
         <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
         </span>
                                 <h4 class="service-heading info">E-Commerce</h4>
-                                <p style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
                                     maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.</p>
+                                    architecto quo inventore harum ex magni, dicta impedit.</h7>
                             </div>
                             <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -551,10 +563,10 @@ border-color: #f9b501;"
         <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
         </span>
                                 <h4 class="service-heading info">Responsive Design</h4>
-                                <p style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
                                     maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.</p>
+                                    architecto quo inventore harum ex magni, dicta impedit.</h7>
                             </div>
                             <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -562,10 +574,10 @@ border-color: #f9b501;"
         <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
         </span>
                                 <h4 class="service-heading info">Web Security</h4>
-                                <p style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
                                     maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.</p>
+                                    architecto quo inventore harum ex magni, dicta impedit.</h7>
                             </div>
                         </div>
                         {#///////////////////////////comentarios./////////////////////////////////////////////#}
@@ -605,7 +617,7 @@ border-color: #f9b501;"
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/1.jpg') }}" alt="">
                                     <h4 class="info">Kay Garland</h4>
-                                    <p style="color: white">Lead Designer</p>
+                                    <h7 style="color: white">Lead Designer</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
@@ -630,7 +642,7 @@ border-color: #f9b501;"
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/2.jpg') }}" alt="">
                                     <h4 class="info">Larry Parker</h4>
-                                    <p style="color: white">Lead Marketer</p>
+                                    <h7 style="color: white">Lead Marketer</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
@@ -655,7 +667,7 @@ border-color: #f9b501;"
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/3.jpg') }}" alt="">
                                     <h4 class="info">Diana Pertersen</h4>
-                                    <p style="color: white">Lead Developer</p>
+                                    <h7 style="color: white">Lead Developer</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
@@ -678,12 +690,12 @@ border-color: #f9b501;"
                         </div>
                         <div class="row">
                             <div class="col-lg-8 mx-auto text-center">
-                                <p class="large" style="color: white">Lorem ipsum dolor sit amet, consectetur
+                                <h7 class="large" style="color: white">Lorem ipsum dolor sit amet, consectetur
                                     adipisicing
                                     elit. Aut
                                     eaque,
                                     laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut
-                                    unde.</p>
+                                    unde.</h7>
                             </div>
                         </div>
                     </div>
@@ -748,7 +760,7 @@ border-color: #f9b501;"
                             </a>
                             <div class="media-body">
                                 <h5 class="mt-0 mb-1">{{ c.autor }}</h5>
-                                <p class="text-muted">{{ c.text }}</p>
+                                <h7 class="text-muted">{{ c.text }}</h7>
                             </div>
                         </li>
                     {% endfor %}
@@ -763,7 +775,7 @@ border-color: #f9b501;"
                               placeholder="{{ app.session.get('language') == 'es'? 'Tu Comentario ':'Your Comment ' }}*"
                               required="required" name="text"
                               data-validation-required-message="Please enter a message."></textarea>
-                    <p class="help-block text-danger"></p>
+                    <h7 class="help-block text-danger"></h7>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-lg-12 text-center">
@@ -847,9 +859,39 @@ border-color: #f9b501;"
 
                 })
             </script>
+
+
             <script src="{{ asset('build/js/resCarousel.js') }}"></script>
+
+
 
             <script>
 
+                function typeEffect(element, speed) {
+                    var text = $(element).text();
+                    $(element).html('');
+
+                    var i = 0;
+                    var timer = setInterval(function() {
+                        if (i < text.length) {
+                            $(element).append(text.charAt(i));
+                            i++;
+                        } else {
+                            clearInterval(timer);
+                        }
+                    }, speed);
+                }
+
+                $( document ).ready(function() {
+                    var speed = 75;
+                    var delay = $('h1').text().length * speed + speed;
+                    typeEffect($('h1'), speed);
+                    setTimeout(function(){
+                        $('p').css('display', 'inline-block');
+                        typeEffect($('p'), speed);
+                    }, delay);
+                });
             </script>
+
+
         {% endblock %}
