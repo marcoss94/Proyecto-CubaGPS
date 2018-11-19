@@ -130,7 +130,12 @@ class User implements UserInterface, \Serializable
      */
     private $reservas;
 
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $idioma='en';
 
 
 
@@ -158,6 +163,22 @@ class User implements UserInterface, \Serializable
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdioma(): string
+    {
+        return $this->idioma;
+    }
+
+    /**
+     * @param string $idioma
+     */
+    public function setIdioma(string $idioma)
+    {
+        $this->idioma = $idioma;
     }
 
     /**

@@ -17,7 +17,6 @@ use App\Entity\DisplayableComponent;
 use App\Entity\User;
 use App\Repository\ComentarioRepository;
 use App\Repository\ContactoRepository;
-use App\Repository\ContadorRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\PaqueteRepository;
 use App\Repository\UserRepository;
@@ -68,7 +67,7 @@ class UserController extends AbstractController
     /**
      * @Route("/ajax_create_comment", name="ajax_create_comment")
      */
-    public function create_comment(Request $request, DisplayableComponentRepository $componentRepository, PaqueteRepository $paqueteRepository, UserRepository $userRepository, ContadorRepository $contadorRepository)
+    public function create_comment(Request $request, DisplayableComponentRepository $componentRepository, PaqueteRepository $paqueteRepository, UserRepository $userRepository)
     {
         $em = $this->getDoctrine()->getManager();
         $comment = new Comentario();
@@ -83,9 +82,6 @@ class UserController extends AbstractController
         $autor = $userRepository->find($request->get('userId'));
         $comment->setAutor($autor);
         $em->persist($comment);
-        $contador = $contadorRepository->find(1);
-        $contador->setNewComments($contador->getNewComments() + 1);
-        $em->persist($contador);
         $em->flush();
         $response = new JsonResponse();
         $response->setData(['result' => true]);
@@ -95,9 +91,9 @@ class UserController extends AbstractController
     /**
      * @Route("/ajax_contact", name="ajax_contact")
      */
-    public function ajax_contact(Request $request, ContadorRepository $contadorRepository)
+    public function ajax_contact(Request $request)
     {
-        $contador = $contadorRepository->find(1);
+
         $em = $this->getDoctrine()->getManager();
         $contacto = new Contacto();
         $contacto->setEmail($request->get('email'));
@@ -106,8 +102,6 @@ class UserController extends AbstractController
         $contacto->setTexto($request->get('text'));
         $contacto->setCreatedAt();
         $em->persist($contacto);
-        $contador->setNewMessages($contador->getNewMessages() + 1);
-        $em->persist($contador);
         $em->flush();
         $response = new JsonResponse();
         $response->setData(['result' => true]);
@@ -117,18 +111,16 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/view_contacts", name="view_contacts")
      */
-    public function view_contacts(ContactoRepository $contactoRepository, ContadorRepository $contadorRepository)
+    public function view_contacts(ContactoRepository $contactoRepository)
     {
         $em = $this->getDoctrine()->getManager();
-        $contador = $contadorRepository->find(1);
-        $count = $contador->getNewMessages();
-        $contador->setNewMessages(0);
+
+
         $em->persist($contador);
         $em->flush();
         $contactos = $contactoRepository->findBy(array(), ['createdAt' => 'DESC']);
         return $this->render('admin/contactos.html.twig', [
             'contactos' => $contactos,
-            'count' => $count,
         ]);
     }
 
@@ -147,18 +139,13 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/view_comments", name="view_comments")
      */
-    public function view_comments(Request $request, ComentarioRepository $comentarioRepository, ContadorRepository $contadorRepository)
+    public function view_comments(Request $request, ComentarioRepository $comentarioRepository)
     {
-        $comentarios = $comentarioRepository->findBy(array(),['publishedAt'=>'DESC']);
-        $contador = $contadorRepository->find(1);
-        $count = $contador->getNewComments();
-        $contador->setNewComments(0);
+        $comentarios = $comentarioRepository->findBy(array(), ['publishedAt' => 'DESC']);
         $em = $this->getDoctrine()->getManager();
-        $em->persist($contador);
         $em->flush();
-        return $this->render('admin/comments.html.twig',[
-            'comments'=>$comentarios,
-            'count'=>$count,
+        return $this->render('admin/comments.html.twig', [
+            'comments' => $comentarios,
         ]);
     }
 
@@ -186,9 +173,6 @@ class UserController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('view_comments');
     }
-
-
-
 
 
 }

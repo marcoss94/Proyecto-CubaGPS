@@ -38,7 +38,6 @@ class SearchController extends Controller
     public function advancedSearch(Request $request, DataService $query)
     {
         $data = $query->returnAdvancedSearchData($request);
-        dump($data);
         return $this->render('lista/index.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $data]);
     }
 

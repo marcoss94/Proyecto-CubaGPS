@@ -19,13 +19,15 @@ use App\Form\RoomForm;
 use App\Repository\ActivityRepository;
 use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
-use App\Repository\ContadorRepository;
+use App\Repository\ComentarioRepository;
+use App\Repository\ContactoRepository;
 use App\Repository\DiaRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\ExcursionRepository;
 use App\Repository\HabitacionRepository;
 use App\Repository\ImageRepository;
 use App\Repository\PaqueteRepository;
+use App\Repository\ReservaRepository;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -41,12 +43,16 @@ class AdminController extends Controller
     /**
      * @Route("/admin", name="admin")
      */
-    public function index(ContadorRepository $contadorRepository)
+    public function index(ComentarioRepository $comentarioRepository, ContactoRepository $contactoRepository, ReservaRepository $reservaRepository)
     {
-        $contador = $contadorRepository->find(1);
+        $count=[];
+        $count[0]=$contactoRepository->count(array());
+        $count[1]=$comentarioRepository->count(['revisado'=>false]);
+        $count[2]=$reservaRepository->count(['status'=>'pre']);
+        $count[3]=$reservaRepository->count(['status'=>'payed']);
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
-            'contador' => $contador,
+            'count'=>$count,
         ]);
     }
 

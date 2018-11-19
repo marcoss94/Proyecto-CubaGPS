@@ -24,7 +24,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  * @author Clément JOBEILI <clement.jobeili@gmail.com>
  * @author Toni Uebernickel <tuebernickel@gmail.com>
  */
-class SendEmailCommand extends ContainerAwareCommand
+class SendEmailCommand extends AbstractSwiftMailerCommand
 {
     protected static $defaultName = 'swiftmailer:spool:send';
 
@@ -95,8 +95,12 @@ EOF
         if ($transport instanceof \Swift_Transport_SpoolTransport) {
             $spool = $transport->getSpool();
             if ($spool instanceof \Swift_ConfigurableSpool) {
-                $spool->setMessageLimit($input->getOption('message-limit'));
-                $spool->setTimeLimit($input->getOption('time-limit'));
+                if (null !== $input->getOption('message-limit')) {
+                    $spool->setMessageLimit($input->getOption('message-limit'));
+                }
+                if (null !== $input->getOption('time-limit')) {
+                    $spool->setTimeLimit($input->getOption('time-limit'));
+                }
             }
 
             if ($spool instanceof \Swift_FileSpool) {

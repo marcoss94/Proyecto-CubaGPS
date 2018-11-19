@@ -73,7 +73,7 @@ class FaceBookAuthenticator extends SocialAuthenticator
         $user->setLastname($facebookUser->getLastName());
         $user->setUsername($facebookUser->getFirstName());
         $user->setPicture($facebookUser->getPictureUrl());
-        $user->setEmail($facebookUser->getEmail()==null?'none':$facebookUser->getEmail());
+        $user->setEmail($facebookUser->getEmail()==null?'':$facebookUser->getEmail());
         $user->setRegisteredAt();
         $user->setUserOf('facebook');
         $user->setRoles(['ROLE_USER']);
