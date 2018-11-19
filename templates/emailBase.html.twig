@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <!-- If you delete this meta tag, the ground will open and swallow you. -->
+    <meta name="viewport" content="width=device-width" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>{% block title %}Email{% endblock %}</title>
+
+    {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/css/email.css') }}" >
+    {% endblock %}
+</head>
+
+
+
+<body bgcolor="#FFFFFF" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+
+{% block body %}
+
+    <table class="head-wrap" bgcolor="#212529">
+        <tr>
+            <td></td>
+            <td class="header container" align="">
+
+                <!-- /content -->
+                <div class="content">
+                    <table bgcolor="#212529" >
+                        <tr>
+                            <td><img src="{{ asset('build/img/logo.png') }}"
+                                     width="140" height="50"
+                                     class="d-inline-block align-top" alt="Logo cubaGPS"></td>
+
+
+                            <td align="right"><h6 class="collapse">Newsletter</h6></td>
+                        </tr>
+                    </table>
+                </div><!-- /content -->
+
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block footer %}
+
+    <div class="content">
+        <table bgcolor="">
+            <tr>
+                <td>
+
+                    <!-- social & contact -->
+                    <table bgcolor="" class="social" width="100%">
+                        <tr>
+                            <td>
+
+                                <!--- column 1 -->
+                                <div class="column">
+                                    <table bgcolor="" cellpadding="" align="left">
+                                        <tr>
+                                            <td>
+
+                                                <h5 class="" style="color: white">Conecta con nosotros:</h5>
+                                                <p class=""><a href="#" class="soc-btn fb">Facebook</a> <a href="#" class="soc-btn tw">Twitter</a> <a href="#" class="soc-btn gp">Google+</a></p>
+
+
+                                            </td>
+                                        </tr>
+                                    </table><!-- /column 1 -->
+                                </div>
+
+                                <!--- column 2 -->
+                                <div class="column">
+                                    <table bgcolor="" cellpadding="" align="left">
+                                        <tr>
+                                            <td>
+
+                                                <h5 class="" style="color: white">Contáctenos:</h5>
+                                                <p style="color: white">Phone: <strong>+53 53969643</strong><br/>
+                                                    Email: <strong><a href="emailto:hseldon@trantor.com">cubaGPS@gmail.com</a></strong></p>
+
+                                            </td>
+                                        </tr>
+                                    </table><!-- /column 2 -->
+                                </div>
+
+                                <div class="clear"></div>
+
+                            </td>
+                        </tr>
+                    </table><!-- /social & contact -->
+
+                </td>
+            </tr>
+        </table>
+    </div><!-- /content -->
+
+
+    <table class="footer-wrap">
+        <tr>
+            <td></td>
+            <td class="container">
+
+                <!-- content -->
+                <div class="content">
+                    <table>
+                        <tr>
+                            <td align="center">
+                                <p>
+                                    <a href="#">Terms</a> |
+                                    <a href="#">Privacy</a> |
+                                    <a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div><!-- /content -->
+
+            </td>
+            <td></td>
+        </tr>
+    </table><!-- /FOOTER -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
+
+</body>
+</html>

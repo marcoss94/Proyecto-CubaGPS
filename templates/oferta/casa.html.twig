@@ -695,18 +695,18 @@
                                                    required>
                                         </div>
                                     </div>
-                                    {% if app.user.email == 'none' %}
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Email</label>
-                                            <input type="email" class="form-control" id="inputEail1"
-                                                   aria-describedby="emailHelp" required="required" placeholder="Enter email">
-                                            <small id="emailHelp"
-                                                   class="form-text text-muted">{{ app.session.get('language') == 'es'?
-                                                'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
-                                        </div>
-                                    </div>
-                                    {% endif %}
+                                    {#{% if app.user.email == 'none' %}#}
+                                    {#<div class="form-row">#}
+                                        {#<div class="form-group">#}
+                                            {#<label for="exampleInputEmail1">Email</label>#}
+                                            {#<input type="email" class="form-control" id="inputEail1"#}
+                                                   {#aria-describedby="emailHelp" required="required" placeholder="Enter email">#}
+                                            {#<small id="emailHelp"#}
+                                                   {#class="form-text text-muted">{{ app.session.get('language') == 'es'?#}
+                                                {#'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                    {#{% endif %}#}
                                 </div>
                                 <div id="errorBox"></div>
                                 <div class="modal-footer">
