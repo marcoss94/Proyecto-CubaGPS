@@ -6014,17 +6014,17 @@
     },
     {
         "name": "symfony/swiftmailer-bundle",
-        "version": "v3.2.1",
-        "version_normalized": "3.2.1.0",
+        "version": "v3.2.4",
+        "version_normalized": "3.2.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/swiftmailer-bundle.git",
-            "reference": "20e71c247a5a43ceb655db9712394d08c09b33ef"
+            "reference": "bd47db86d0b8415f6317c2be149bbacfab11a9cf"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/20e71c247a5a43ceb655db9712394d08c09b33ef",
-            "reference": "20e71c247a5a43ceb655db9712394d08c09b33ef",
+            "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/bd47db86d0b8415f6317c2be149bbacfab11a9cf",
+            "reference": "bd47db86d0b8415f6317c2be149bbacfab11a9cf",
             "shasum": ""
         },
         "require": {
@@ -6043,7 +6043,7 @@
         "suggest": {
             "psr/log": "Allows logging"
         },
-        "time": "2018-03-08T16:39:26+00:00",
+        "time": "2018-10-27T16:17:38+00:00",
         "type": "symfony-bundle",
         "extra": {
             "branch-alias": {

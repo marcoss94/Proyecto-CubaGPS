@@ -93,7 +93,7 @@ final class Versions
   'symfony/routing' => 'v4.0.6@9c6268c1970c7e507bedc8946bece32a7db23515',
   'symfony/security' => 'v4.0.6@a0a161c5b28a4436d955dd6385c2ebbeca1852c3',
   'symfony/security-bundle' => 'v4.0.6@5cbcf5d33261aaa0b5895a253161c6ba32754efd',
-  'symfony/swiftmailer-bundle' => 'v3.2.1@20e71c247a5a43ceb655db9712394d08c09b33ef',
+  'symfony/swiftmailer-bundle' => 'v3.2.4@bd47db86d0b8415f6317c2be149bbacfab11a9cf',
   'symfony/templating' => 'v4.1.4@411b8c324ee3e8b36e71d938e8d043d6e16582d2',
   'symfony/translation' => 'v4.0.6@e20a9b7f9f62cb33a11638b345c248e7d510c938',
   'symfony/twig-bridge' => 'v4.0.6@575004ae3bcfb7d909a34db20edb7c349defb092',

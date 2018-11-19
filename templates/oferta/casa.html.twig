@@ -522,17 +522,18 @@
                                                    required>
                                         </div>
                                     </div>
-                                    {% if app.user.email == 'none' %}
-                                    <div class="form-row">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Email</label>
-                                            <input type="email" class="form-control" id="inputEail1"
-                                                   aria-describedby="emailHelp" required="required" placeholder="Enter email">
-                                            <small id="emailHelp"
-                                                   class="form-text text-muted">{{ app.session.get('language') == 'es'?
-                                                'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
-                                        </div>
-                                    </div>
+                                    {% if app.user %}
+                                            <div class="form-row">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <input type="email" class="form-control" id="inputEail1"
+                                                           aria-describedby="emailHelp" name="email" required="required"
+                                                           placeholder="Enter email" value="{{ app.user.email }}">
+                                                    <small id="emailHelp"
+                                                           class="form-text text-muted">{{ app.session.get('language') == 'es'?
+                                                        'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
+                                                </div>
+                                            </div>
                                     {% endif %}
                                 </div>
                                 <div id="errorBox"></div>
@@ -782,12 +783,12 @@
             var cantA = new Number($('#cantA').val());
             var cantN = new Number($('#cantN').val());
             var capacidad = 0;
-            var emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
             var email = $('#inputEail1').val();
             $('input:checkbox').filter(':checked').each(function () {
                 capacidad += parseInt($(this).val());
             })
-            if(!emailRegex.test(email)){
+            var emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+            if (!emailRegex.test(email)) {
                 var text = ($('#lang').val() == 'es') ? 'Introduce una dirección de correo'
                     : 'Enter an email address';
                 tpl = '<div class="alert alert-danger">' + text + '</div>';

@@ -63,7 +63,8 @@
                         <form class="form-inline nav-link" action="{{ path('generic_search') }}">
                             <div class="col-auto">
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" name="searchText" required id="inlineFormInputGroup"
+                                    <input type="text" class="form-control" name="searchText" required
+                                           id="inlineFormInputGroup"
                                            aria-label="Search"
                                            placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
                                     <div class="input-group-prepend" style="display: inline">
@@ -233,7 +234,8 @@
                         <form class="form-inline nav-link" action="{{ path('generic_search') }}">
                             <div class="col-auto">
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" name="searchText" required id="inlineFormInputGroup"
+                                    <input type="text" class="form-control" name="searchText" required
+                                           id="inlineFormInputGroup"
                                            aria-label="Search"
                                            placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
                                     <div class="input-group-prepend" style="display: inline">
@@ -569,8 +571,9 @@ border-color: #f9b501">
                                     <label class="text-muted"> {{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</label>
 
                                     <select class="custom-select" name="cantidadP">
-                                        {% for number in 1..30  %}
-                                        <option value="{{ number }}" {% if number == 1 %}selected{% endif %} >{{ number }}</option>
+                                        {% for number in 1..30 %}
+                                            <option value="{{ number }}"
+                                                    {% if number == 1 %}selected{% endif %} >{{ number }}</option>
                                         {% endfor %}
                                     </select>
 
@@ -594,13 +597,15 @@ border-color: #f9b501">
                                     <div class="form-group col-md-6">
                                         <label class="text-muted"
                                                for="inputEmail4">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</label>
-                                        <input type="number" name="precio" step="any" class="form-control" placeholder="0$">
+                                        <input type="number" name="precio" step="any" class="form-control"
+                                               placeholder="0$">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="text-muted"
                                                for="inputEmail4">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</label>
                                         <select id="inputServicios" name="servicios" class="form-control">
-                                            <option value="servicio" selected>{{ app.session.get('language') == 'es'? 'Todos':'All' }}</option>
+                                            <option value="servicio"
+                                                    selected>{{ app.session.get('language') == 'es'? 'Todos':'All' }}</option>
                                             <option value="paquete">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</option>
                                             <option value="casa">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</option>
                                             <option value="carro">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</option>
@@ -653,6 +658,12 @@ border-color: #f9b501">
         })
     </script>
     <script type="text/javascript">
+        $(document).ready(function () {
+            $('#inputEntrada').attr('min', yyyymmdd());
+            $('#inputSalida').attr('min', yyyymmdd_salida());
+            $('#inputEntrada').val(yyyymmdd());
+            $('#inputSalida').val(yyyymmdd_salida());
+        })
         $('#createContact').click(function () {
             var telPattern = "^[0-9]{4,30}$";
             var namePattern = "^[a-z A-Z]{4,30}$";
@@ -690,24 +701,24 @@ border-color: #f9b501">
         function yyyymmdd() {
             var today = new Date();
             var now = new Date();
-            now.setDate(today.getDate()+4);
+            now.setDate(today.getDate() + 4);
             var y = now.getFullYear();
             var m = now.getMonth() + 1;
             var d = now.getDate();
             var mm = m < 10 ? '0' + m : m;
             var dd = d < 10 ? '0' + d : d;
-            return '' + y +'-'+ mm +'-'+ dd;
+            return '' + y + '-' + mm + '-' + dd;
         }
         function yyyymmdd_salida() {
             var today = new Date();
             var now = new Date();
-            now.setDate(today.getDate()+5);
+            now.setDate(today.getDate() + 5);
             var y = now.getFullYear();
             var m = now.getMonth() + 1;
             var d = now.getDate();
             var mm = m < 10 ? '0' + m : m;
             var dd = d < 10 ? '0' + d : d;
-            return '' + y +'-'+ mm +'-'+ dd;
+            return '' + y + '-' + mm + '-' + dd;
         }
     </script>
 {% endblock %}

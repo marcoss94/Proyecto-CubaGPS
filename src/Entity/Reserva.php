@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservaRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Reserva
 {
@@ -41,11 +42,33 @@ class Reserva
      *
      * @ORM\Column(type="json")
      */
-    private $habitaciones=[];
-
+    private $habitaciones = [];
 
     /**
-     *
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @return mixed
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /**
+     *  Prereserva -- pre
+     *  Confirmada -- confirmed
+     *  Pagada     -- payed
      *
      * @ORM\Column(type="string",length=10)
      */
@@ -80,7 +103,7 @@ class Reserva
     /**
      * @ORM\Column(type="integer")
      */
-    private $children=0;
+    private $children = 0;
 
     public function getId(): ?int
     {

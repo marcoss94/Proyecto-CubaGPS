@@ -61,7 +61,7 @@
                     </tfoot>
                     <tbody>
                     {% for c in contactos %}
-                        <tr {% if loop.index <= count %} class="table-success" {% endif %}>
+                        <tr>
                             <td>{{ c.createdAt|date }}</td>
                             <td>{{ c.nombre }}</td>
                             <td>{{ c.email }}</td>
