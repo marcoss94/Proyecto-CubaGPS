@@ -16,6 +16,11 @@
      <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
      <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
      <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
+
+     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+
+     <link rel="stylesheet" href="{{ asset('build/css/carousel.css') }}">
  {% endblock %}
 
 {% block menubase %}
@@ -87,177 +92,69 @@
         {#</div>#}
 
 
-        <div id="gallery" style="display:none;">
+        <div class="main">
 
-            <a href="http://unitegallery.net">
-                <img alt="Lemon Slice"
-                     src="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}"
-                     data-image="images/big/tile1.jpg"
-                     data-description="This is a Lemon Slice"
-                     style="display:none">
-            </a>
+            <div id="carousel">
 
-            <a href="http://unitegallery.net">
-                <img alt="Peppers"
-                     src="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}"
-                     data-image="images/big/tile2.jpg"
-                     data-description="Those are peppers"
-                     style="display:none">
-            </a>
+                <div class="hideLeft">
+                    <img src="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}">
+                </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Keys"
-                     src="{{ asset('build/img/portfolio/07-thumbnail.jpg') }}"
-                     data-image="images/big/tile3.jpg"
-                     data-description="Those are keys"
-                     style="display:none">
-            </a>
+                <div class="prevLeftSecond">
+                    <img src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Friuts in cup"
-                     src="{{ asset('build/img/portfolio/08-thumbnail.jpg') }}"
-                     data-image="images/big/tile4.jpg"
-                     data-description="Those are friuts in a cup"
-                     style="display:none">
-            </a>
+                <div class="prevCarousel">
+                    <img src="{{ asset('build/img/portfolio/02-thumbnail.jpg') }}">
+                </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Yellow Flowers"
-                     src="{{ asset('build/img/portfolio/09-thumbnail.jpg') }}"
-                     data-image="images/big/tile5.jpg"
-                     data-description="Those are yellow flowers"
-                     style="display:none">
-            </a>
+                <div class="selected">
+                    <img src="{{ asset('build/img/portfolio/03-thumbnail.jpg') }}">
+                </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Butterfly"
-                     src="images/thumbs/tile6.jpg"
-                     data-image="images/big/tile6.jpg"
-                     data-description="This is butterfly"
-                     style="display:none">
-            </a>
+                <div class="nextCarousel">
+                    <img src="{{ asset('build/img/portfolio/04-thumbnail.jpg') }}">
+                </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Boat"
-                     src="images/thumbs/tile7.jpg"
-                     data-image="images/big/tile7.jpg"
-                     data-description="This is a boat"
-                     style="display:none">
-            </a>
+                <div class="nextRightSecond">
+                    <img src="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}">
+                </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Woman"
-                     src="images/thumbs/tile8.jpg"
-                     data-image="images/big/tile8.jpg"
-                     data-description="This is a woman"
-                     style="display:none">
-            </a>
+                <div class="hideRight">
+                    <img src="{{ asset('build/img/portfolio/07-thumbnail.jpg') }}">
+                </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Cup Of Coffee"
-                     src="images/thumbs/tile9.jpg"
-                     data-image="images/big/tile9.jpg"
-                     data-description="This is cup of coffee"
-                     style="display:none">
-            </a>
+            </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Iphone Back"
-                     src="images/thumbs/tile10.jpg"
-                     data-image="images/big/tile10.jpg"
-                     data-description="This is iphone back"
-                     style="display:none">
-            </a>
-            <a href="http://unitegallery.net">
-                <img alt="Lemon Slice"
-                     src="images/thumbs/tile1.jpg"
-                     data-image="images/big/tile1.jpg"
-                     data-description="This is a Lemon Slice"
-                     style="display:none">
-            </a>
+            {#<div class="buttons">#}
+                {#<button id="prevCarousel">Prev</button>#}
+                {#<button id="nextCarousel">Next</button>#}
+            {#</div>#}
 
-            <a href="http://unitegallery.net">
-                <img alt="Peppers"
-                     src="images/thumbs/tile2.jpg"
-                     data-image="images/big/tile2.jpg"
-                     data-description="Those are peppers"
-                     style="display:none">
-            </a>
+            <div class="slider__pagination">
+                <a href="#a" id="prevCarousel" class="button prevCarousel"><i class="fa fa-long-arrow-left"></i></a>
+                <a href="#a" id="nextCarousel" class="button nextCarousel"><i class="fa fa-long-arrow-right"></i></a>
+            </div>
 
-            <a href="http://unitegallery.net">
-                <img alt="Keys"
-                     src="images/thumbs/tile3.jpg"
-                     data-image="images/big/tile3.jpg"
-                     data-description="Those are keys"
-                     style="display:none">
-            </a>
 
-            <a href="http://unitegallery.net">
-                <img alt="Friuts in cup"
-                     src="images/thumbs/tile4.jpg"
-                     data-image="images/big/tile4.jpg"
-                     data-description="Those are friuts in a cup"
-                     style="display:none">
-            </a>
+            {#<div class="col-12">#}
+                {#<div class="customer-feedback">#}
+                    {#<div class="owl-nav">#}
+                        {#<div class="owl-prev" style=""><i class="fa fa-long-arrow-left"></i></div>#}
+                        {#<div class="owl-next" style=""><i class="fa fa-long-arrow-right"></i></div>#}
+                    {#</div>#}
+                    {#<div style="display: none;" class="owl-dots"></div>#}
+                {#</div>#}
 
-            <a href="http://unitegallery.net">
-                <img alt="Yellow Flowers"
-                     src="images/thumbs/tile5.jpg"
-                     data-image="images/big/tile5.jpg"
-                     data-description="Those are yellow flowers"
-                     style="display:none">
-            </a>
+            {#</div>#}
 
-            <a href="http://unitegallery.net">
-                <img alt="Butterfly"
-                     src="images/thumbs/tile6.jpg"
-                     data-image="images/big/tile6.jpg"
-                     data-description="This is butterfly"
-                     style="display:none">
-            </a>
-
-            <a href="http://unitegallery.net">
-                <img alt="Boat"
-                     src="images/thumbs/tile7.jpg"
-                     data-image="images/big/tile7.jpg"
-                     data-description="This is a boat"
-                     style="display:none">
-            </a>
-
-            <a href="http://unitegallery.net">
-                <img alt="Woman"
-                     src="images/thumbs/tile8.jpg"
-                     data-image="images/big/tile8.jpg"
-                     data-description="This is a woman"
-                     style="display:none">
-            </a>
-
-            <a href="http://unitegallery.net">
-                <img alt="Butterfly"
-                     src="images/thumbs/tile6.jpg"
-                     data-image="images/big/tile6.jpg"
-                     data-description="This is butterfly"
-                     style="display:none">
-            </a>
-
-            <a href="http://unitegallery.net">
-                <img alt="Boat"
-                     src="images/thumbs/tile7.jpg"
-                     data-image="images/big/tile7.jpg"
-                     data-description="This is a boat"
-                     style="display:none">
-            </a>
-
-            <a href="http://unitegallery.net">
-                <img alt="Woman"
-                     src="images/thumbs/tile8.jpg"
-                     data-image="images/big/tile8.jpg"
-                     data-description="This is a woman"
-                     style="display:none">
-            </a>
 
 
         </div>
+
+
+
+
 
         {#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#}
 
@@ -895,6 +792,7 @@
     <script src="{{ asset('build/js/popper.min.js') }}"></script>
 
     <script src="{{ asset('build/js/baguetteBox.min.js') }}"></script>
+    <script src="{{ asset('build/js/carousel.js') }}"></script>
 
     <script>
         baguetteBox.run('.grid-gallery', {animation: 'slideIn'});
@@ -1094,14 +992,7 @@
 
     </script>
 
-    <script type="text/javascript">
-        jQuery(document).ready(function() {
-            jQuery("#gallery").unitegallery({
-                grid_num_rows: 2
-            });
-        });
 
-    </script>
 
 
 {% endblock %}
