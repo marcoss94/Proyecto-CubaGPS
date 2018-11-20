@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -601,9 +600,15 @@ border-color: #f9b501">
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label class="text-muted"
-                                               for="inputEmail4">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</label>
-                                        <input type="number" name="precio" step="any" class="form-control"
-                                               placeholder="0$">
+                                               for="inputEmail4">{{ app.session.get('language') == 'es'? 'Precio Máximo':'Max Price' }}</label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">€</div>
+                                            </div>
+                                            <input type="number" min="200" name="precio" step="200" class="form-control"
+                                                   placeholder="50000">
+                                        </div>
+
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label class="text-muted"

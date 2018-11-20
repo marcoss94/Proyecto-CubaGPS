@@ -20,31 +20,41 @@ class PaqueteRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Paquete[] Returns an array of Paquete objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+//    * @return Paquete[] Returns an array of Paquete objects
+//    */
+//    public function findByAdvancedSearch($lugar,$precio,$cant,$selectorP)
+//    {
+//        return $this->createQueryBuilder('p')
+//            ->andWhere('p.municipio LIKE :lugar OR
+//            p.provincia LIKE :lugar OR
+//            p.nombre LIKE :lugar OR
+//            p.name LIKE :lugar OR
+//            p.descripcion LIKE :lugar OR
+//            p.description LIKE :lugar OR'
+//            )->andWhere('p.:selectorP*:cant <= :precio')
+//            ->orderBy('p.id', 'ASC')
+//            ->setMaxResults(10)
+//            ->setParameters([
+//                'selectorP'=>$selectorP,
+//                'lugar'=>$lugar,
+//                'precio'=>$precio,
+//                'cant' =>$cant
+//            ])
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 
-    /*
-    public function findOneBySomeField($value): ?Paquete
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+
+
+//    public function findOneBySomeField($value): ?Paquete
+//    {
+//        return $this->createQueryBuilder('p')
+//            ->andWhere('p.exampleField = :val')
+//            ->setParameter('val', $value)
+//            ->getQuery()
+//            ->getOneOrNullResult()
+//        ;
+//    }
+
 }
