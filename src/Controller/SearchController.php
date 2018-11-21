@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Excursion;
+use App\Entity\Paquete;
 use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
 use App\Repository\ExcursionRepository;
@@ -38,17 +40,47 @@ class SearchController extends Controller
     public function advancedSearch(Request $request, DataService $query)
     {
         if ($request->get('status')) {
-            $results = $query->returnAdvancedSearchData($request);
-            $this->get('session')->set('search_results', $results);
-        }else {
-            $results=$this->get('session')->get('search_results');
+            if ($request->get('servicios') == 'servicio'){
+                $type = ['Casa', 'Carro', 'Excursion', 'Paquete'];
+            }else{
+                $type=[$request->get('servicios')];
+            }
+            $precio = $request->get('precio') == ''?100000:(int)$request->get('precio');
+            $cant = $request->get('cantidadP');
+            $results = $query->returnAdvancedSearchData($request,$type);
+            $postResults = [];
+            foreach ($results as $object) {
+                if (!in_array($object->getType(),$type)){
+                    continue;
+                }
+                if ($object instanceof Paquete || $object instanceof Excursion) {
+                    if ($cant == 1) {
+                        $precioTotal = $object->getPrecio1() * $cant;
+                    } elseif ($cant == 2) {
+                        $precioTotal = $object->getPrecio2() * $cant;
+                    } elseif ($cant == 3) {
+                        $precioTotal = $object->getPrecio3() * $cant;
+                    } else {
+                        $precioTotal = $object->getPrecio4() * $cant;
+                    }
+                    if ($precioTotal <= $precio) {
+                        $postResults[] = $object;
+                    }
+                } else {
+                    $postResults[] = $object;
+                }
+            }
+            $this->get('session')->set('search_results', $postResults);
+            $results = $postResults;
+        } else {
+            $results = $this->get('session')->get('search_results');
         }
         $paginator = $this->get('knp_paginator');
         $advancedData = $paginator->paginate($results, $request->query->getInt('page', 1), 6);
-        /*$cant = $request->get('cantidadP');
+        /*
         $entrada = new \DateTime($request->get('fechaEntrada'));
         $salida = new \DateTime($request->get('fechaSalida'));
-        $precio = $request->get('precio');
+
         $servicio = $request->get('servicios');
         $dias = $entrada->diff($salida)->days;
         if ($cant == 1) {
