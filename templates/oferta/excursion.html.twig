@@ -14,6 +14,19 @@
      <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
      <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
 
+     <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+             type="text/javascript" charset="utf-8"></script>
+     <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+             type="text/javascript" charset="utf-8"></script>
+     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059"/>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
+
+     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+     <link rel="stylesheet" href="{{ asset('build/css/carousel.css') }}">
 
 
  {% endblock %}
@@ -30,60 +43,87 @@
 {% block body %}
     <header class="bannerOferta">
 
-        <div class="bodyCarucel gallery-block grid-gallery">
-            <div class="containerCarucel">
-                <div class="carouselCarucel">
-                    <div class="itemCarucel a item">
-                        <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                            <img class="imgOfertaGaleria image scale-on-hover"
-                                 src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        </a>
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/13-thumbnail grand.jpg') }}" alt="First slide">#}
-                    </div>
-                    <div class="itemCarucel b item">
-                        <a class="lightbox" href="{{ asset('build/img/portfolio/03-thumbnail.jpg') }}">
-                            <img class="imgOfertaGaleria image scale-on-hover"
-                                 src="{{ asset('build/img/portfolio/03-thumbnail.jpg') }}">
-                        </a>
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/12-thumbnail grand.jpg') }}"#}
-                        {#alt="First slide">#}
-                    </div>
-                    <div class="itemCarucel c item">
-                        <a class="lightbox" href="{{ asset('build/img/portfolio/04-thumbnail.jpg') }}">
-                            <img class="imgOfertaGaleria image scale-on-hover"
-                                 src="{{ asset('build/img/portfolio/04-thumbnail.jpg') }}">
-                        </a>
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/11-thumbnail grand.jpg') }}"#}
-                        {#alt="First slide">#}
-                    </div>
-                    <div class="itemCarucel d item">
-                        <a class="lightbox" href="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}">
-                            <img class="imgOfertaGaleria image scale-on-hover"
-                                 src="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}">
-                        </a>
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/02-thumbnail.jpg') }}"#}
-                        {#alt="First slide">#}
-                    </div>
-                    <div class="itemCarucel e item">
-                        <a class="lightbox" href="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}">
-                            <img class="imgOfertaGaleria image scale-on-hover"
-                                 src="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}">
-                        </a>
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}"#}
-                        {#alt="First slide">#}
-                    </div>
-                    <div class="itemCarucel f item">
-                        <a class="lightbox" href="{{ asset('build/img/portfolio/07-thumbnail.jpg') }}">
-                            <img class="imgOfertaGaleria image scale-on-hover"
-                                 src="{{ asset('build/img/portfolio/07-thumbnail.jpg') }}">
-                        </a>
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}"#}
-                        {#alt="First slide">#}
-                    </div>
+        <div class="main gallery-block grid-gallery">
+
+            <div id="carousel">
+
+
+                <div class="hideLeft itemCarucel">
+                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                    <img class=" image "
+                    src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                    </a>
+                    {#<img class="imgOferta " src="{{ asset('build/img/portfolio/13-thumbnail grand.jpg') }}" alt="First slide">#}
+                    {#<img src="{{ asset('build/img/portfolio/13-thumbnail.jpg') }}">#}
                 </div>
+
+                <div class="prevLeftSecond">
+                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                        <img class=" image "
+                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                    </a>
+                </div>
+
+                <div class="prevCarousel">
+                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                        <img class=" image "
+                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                    </a>
+                </div>
+
+                <div class="selected">
+                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                        <img class=" image "
+                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                    </a>
+                </div>
+
+                <div class="nextCarousel">
+                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                        <img class=" image "
+                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                    </a>
+                </div>
+
+                <div class="nextRightSecond">
+                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                        <img class=" image "
+                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                    </a>
+                </div>
+
+                <div class="hideRight">
+                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                        <img class=" image "
+                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                    </a>
+                </div>
+
             </div>
-            <div class="nextCarucel"><i class="fas fa-arrow-circle-right fa-2x"></i></div>
-            <div class="prevCarucel"><i class="fas fa-arrow-circle-left fa-2x"></i></div>
+
+            {#<div class="buttons">#}
+            {#<button id="prevCarousel">Prev</button>#}
+            {#<button id="nextCarousel">Next</button>#}
+            {#</div>#}
+
+            <div class="slider__pagination">
+                <a href="#a" id="prevCarousel" class="button prevCarousel"><i class="fa fa-long-arrow-left"></i></a>
+                <a href="#a" id="nextCarousel" class="button nextCarousel"><i class="fa fa-long-arrow-right"></i></a>
+            </div>
+
+
+            {#<div class="col-12">#}
+            {#<div class="customer-feedback">#}
+            {#<div class="owl-nav">#}
+            {#<div class="owl-prev" style=""><i class="fa fa-long-arrow-left"></i></div>#}
+            {#<div class="owl-next" style=""><i class="fa fa-long-arrow-right"></i></div>#}
+            {#</div>#}
+            {#<div style="display: none;" class="owl-dots"></div>#}
+            {#</div>#}
+
+            {#</div>#}
+
+
 
         </div>
 
@@ -115,7 +155,7 @@
                                     <div class="iconoServ">
                                         <h6>
                                             <span><i class="far fa-clock"></i></span>
-                                            {{ object.duracion }}
+                                            {{ object.duracion }} h
                                         </h6>
                                     </div>
                                 </div>
@@ -164,30 +204,52 @@
                         <p class="text-muted">{{ app.session.get('language')== 'es' ?
                             object.descripcion:
                             object.description }}</p>
-                        <div class="separador"></div>
-                        <div class="row">
-                            <div class="col-6 col-md-4">
-                                <div class="" style="margin-right: 10px">
-                                    <div class="iconogeneral">
-                                        <div class="iconoServ">
-                                            <div style="margin-right: 8px">
-                                                <span><i class="far fa-calendar-alt"></i></span>
-                                            </div>
-                                        </div>
-                                        <div class="iconoServ">
+
+                        <div class="" style="margin-right: 10px">
+                            <div class="iconogeneral">
+                                <div class="iconoServ">
+                                    <div style="margin-right: 8px">
+                                        <span><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                </div>
+                                <div class="iconoServ" style="padding-right: 8px">
                                             <span>{{ app.session.get('language')== 'es' ?
-                                                'Días disponibles :':
+                                                'Días disponibles:':
                                                 'Available days' }}</span>
-                                        </div>
-                                        {% for dia in object.diasDisponibles %}
-                                            <div class="iconoServ">
+                                </div>
+                                {% for dia in object.diasDisponibles %}
+                                    <div class="iconoServ" style="padding-right: 8px">
                                             <span>{{ app.session.get('language')== 'es' ?
                                                 dia :
                                                 days[dia] }}</span>
-                                            </div>
-                                        {% endfor %}
                                     </div>
-                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="separador"></div>
+                        <div class="row">
+                            <div class="col-6 col-md-4">
+                                {#<div class="" style="margin-right: 10px">#}
+                                    {#<div class="iconogeneral">#}
+                                        {#<div class="iconoServ">#}
+                                            {#<div style="margin-right: 8px">#}
+                                                {#<span><i class="far fa-calendar-alt"></i></span>#}
+                                            {#</div>#}
+                                        {#</div>#}
+                                        {#<div class="iconoServ">#}
+                                            {#<span>{{ app.session.get('language')== 'es' ?#}
+                                                {#'Días disponibles :':#}
+                                                {#'Available days' }}</span>#}
+                                        {#</div>#}
+                                        {#{% for dia in object.diasDisponibles %}#}
+                                            {#<div class="iconoServ">#}
+                                            {#<span>{{ app.session.get('language')== 'es' ?#}
+                                                {#dia :#}
+                                                {#days[dia] }}</span>#}
+                                            {#</div>#}
+                                        {#{% endfor %}#}
+                                    {#</div>#}
+                                {#</div>#}
                                 {% if object.desayuno %}
                                     <div class="" style="margin-right: 10px">
                                         <div class="iconogeneral">
@@ -204,6 +266,21 @@
                                         </div>
                                     </div>
                                 {% endif %}
+                                <div class="" style="margin-right: 10px">
+                                    <div class="iconogeneral">
+                                        <div class="iconoServ">
+                                            <div style="margin-right: 8px">
+                                                <span><i class="fas fa-stopwatch"></i></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="iconoServ">
+                                            <span>{{ app.session.get('language')== 'es' ?
+                                                'Inicia: ' :
+                                                'Start at: ' }}{{ object.horaInicio }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="col-6 col-md-4">
@@ -224,6 +301,9 @@
                                         </div>
                                     </div>
                                 {% endif %}
+
+                            </div>
+                            <div class="col-6 col-md-4">
                                 {% if object.comida %}
                                     <div class="" style="margin-right: 10px">
                                         <div class="iconogeneral">
@@ -241,23 +321,7 @@
                                         </div>
                                     </div>
                                 {% endif %}
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <div class="" style="margin-right: 10px">
-                                    <div class="iconogeneral">
-                                        <div class="iconoServ">
-                                            <div style="margin-right: 8px">
-                                                <span><i class="fas fa-stopwatch"></i></span>
-                                            </div>
-                                        </div>
 
-                                        <div class="iconoServ">
-                                            <span>{{ app.session.get('language')== 'es' ?
-                                                'Inicia: ' :
-                                                'Start at: ' }}{{ object.horaInicio }}</span>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="separador"></div>
@@ -268,6 +332,15 @@
                                 object.reglamento:
                                 object.description }}</p>
                         </ul>
+
+                        <div class="separador"></div>
+
+
+
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Ubicación':'Location' }}</h4>
+                        <div id="map" style="width: 100%; height: 400px; background: grey"></div>
+
+
 
                         <div class="separador"></div>
 
@@ -469,6 +542,8 @@
 
     <script src="{{ asset('build/js/baguetteBox.min.js') }}"></script>
 
+    <script src="{{ asset('build/js/carousel.js') }}"></script>
+
     <script>
         baguetteBox.run('.grid-gallery', {animation: 'slideIn'});
     </script>
@@ -604,6 +679,65 @@
     {#</script>#}
 
     {#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////#}
+
+
+    <script type="text/javascript" charset="UTF-8">
+
+        /**
+         * Moves the map to display over Berlin
+         *
+         * @param  {H.Map} map      A HERE Map instance within the application
+         */
+        function moveMapToBerlin(map) {
+            map.setCenter({lat:{{ object.longitud }}, lng:{{ object.latitud }}});
+            map.setZoom(14);
+        }
+
+        /**
+         * Boilerplate map initialization code starts below:
+         */
+
+//Step 1: initialize communication with the platform
+        var platform = new H.service.Platform({
+            app_id: '7VARLWGWjcyx17kl69FF',
+            app_code: '-ckNaOYECuBDGxvEIdKXQ',
+            useHTTPS: true
+        });
+        var pixelRatio = window.devicePixelRatio || 1;
+        var defaultLayers = platform.createDefaultLayers({
+            tileSize: pixelRatio === 1 ? 256 : 512,
+            ppi: pixelRatio === 1 ? undefined : 320
+        });
+
+        //Step 2: initialize a map  - not specificing a location will give a whole world view.
+        var map = new H.Map(document.getElementById('map'),
+            defaultLayers.normal.map, {pixelRatio: pixelRatio});
+
+        //Step 3: make the map interactive
+        // MapEvents enables the event system
+        // Behavior implements default interactions for pan/zoom (also on mobile touch environments)
+        var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+        // Create the default UI components
+        var ui = H.ui.UI.createDefault(map, defaultLayers);
+
+        {#var marker=new H.Map.Marker({#}
+        {#lat:{{ object.longitud }},#}
+        {#lng:{{ object.latitud }}#}
+        {#});#}
+
+        {#map.addObject(marker);#}
+
+        var marker = new H.map.Marker({lat:{{ object.longitud }}, lng:{{ object.latitud }}});
+
+        // Add the marker to the map:
+        map.addObject(marker);
+
+        // Now use the map as required...
+        moveMapToBerlin(map);
+
+
+    </script>
 
 
 
