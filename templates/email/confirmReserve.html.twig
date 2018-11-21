@@ -1,19 +1,124 @@
-<!DOCTYPE HTML>
-<html lang="es">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Enviar correos con Swiftmailer</title>
-</head>
-<body>
-<h2>Contacto</h2>
-<form action="enviar.php" method="post">
-    Correo electronico: <br/>
-    <input type="email" name="email" /><br/>
-    Asunto: <br/>
-    <input type="text" name="asunto" /><br/>
-    Mensaje:<br/>
-    <textarea name="mensaje"></textarea><br/>
-    <input type="submit" name="submit" value="Enviar"/>
-</form>
-</body>
-</html>
+{% extends 'emailbase.html.twig' %}
+
+{% block title %}Email de Confirmación{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+
+ {% endblock %}
+
+
+{% block body %}
+    {{ parent() }}
+
+
+
+
+    <table class="body-wrap" bgcolor="">
+        <tr>
+            <td></td>
+            <td class="container" align="" bgcolor="#FFFFFF">
+
+                <!-- content -->
+                <div class="content">
+                    <table>
+                        <tr>
+                            <td>
+
+                                <h1>Enunciado!</h1>
+                                <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et.</p>
+
+                                <!-- A Real Hero (and a real human being) -->
+                                <p><img src="http://placehold.it/600x300" /></p><!-- /hero -->
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            </td>
+                        </tr>
+                    </table>
+                </div><!-- /content -->
+
+                <!-- content -->
+                <div class="content">
+
+                    <table bgcolor="">
+                        <tr>
+                            <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
+                            <td>
+                                <h4>Title Ipsum <small>This is a note.</small></h4>
+                                <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <a class="btn">Clickity Click &raquo;</a>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div><!-- /content -->
+
+                <!-- content -->
+                <div class="content"><table bgcolor="">
+                        <tr>
+                            <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
+                            <td>
+                                <h4>Title Ipsum <small>This is a note.</small></h4>
+                                <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <a class="btn">Clickity Click &raquo;</a>
+                            </td>
+                        </tr>
+                    </table></div><!-- /content -->
+
+                <!-- content -->
+                <div class="content"><table bgcolor="">
+                        <tr>
+                            <td>
+
+                                <!-- Callout Panel -->
+                                <p class="callout">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt. <a href="#">Do it Now! &raquo;</a>	</p><!-- /callout panel -->
+
+                            </td>
+                        </tr>
+                    </table></div><!-- /content -->
+
+                <!-- content -->
+                <div class="content"><table bgcolor="">
+                        <tr>
+                            <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
+                            <td>
+                                <h4>Title Ipsum <small>This is a note.</small></h4>
+                                <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <a class="btn">Clickity Click &raquo;</a>
+                            </td>
+                        </tr>
+                    </table></div><!-- /content -->
+
+                <!-- content -->
+                <div class="content"><table bgcolor="">
+                        <tr>
+                            <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
+                            <td>
+                                <h4>Title Ipsum <small>This is a note.</small></h4>
+                                <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                                <a class="btn">Clickity Click &raquo;</a>
+
+                            </td>
+                        </tr>
+                    </table></div><!-- /content -->
+
+                <!-- content -->
+
+
+
+            </td>
+            <td></td>
+        </tr>
+    </table><!-- /BODY -->
+
+
+
+{% endblock %}
+
+   {% block footer %}
+       {{ parent() }}
+   {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

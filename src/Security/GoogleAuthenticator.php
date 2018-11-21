@@ -64,6 +64,9 @@ class GoogleAuthenticator extends SocialAuthenticator
                     ->find($_SESSION['redirectedBy']);
                 $user->setRedirectedBy($publisher);
             }
+            if(isset($_SESSION['language'])){
+                $user->setIdioma($_SESSION['language']);
+            }
             $this->em->persist($user);
             $this->em->flush();
         }

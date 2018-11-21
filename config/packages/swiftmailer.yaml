@@ -1,4 +1,5 @@
 swiftmailer:
-        transport:        gmail
-        username:         cubagps@gmail.com
-        password:         cubaGPS*-
+        transport:   gmail
+        username:    "cubagps"
+        password:    "cubaGPS*-"
+        spool:       { type: memory }

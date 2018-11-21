@@ -35,7 +35,7 @@ class FacebookController extends Controller
         return $clientRegistry
             ->getClient('facebook_main')
             ->redirect([
-                'public_profile', 'email'
+                'public_profile', 'email', 'user_location'
             ]);
     }
 

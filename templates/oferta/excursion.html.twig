@@ -475,9 +475,13 @@
 
     {#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////#}
     <script>
+        var diasDisponibles = [];
+        {% for d in object.diasDisponibles %}
+        diasDisponibles[{{ loop.index0 }}] = '{{ d }}';
+        {% endfor %}
+        var diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
         var carousel = $(".carouselCarucel"),
             currdeg = 0;
-
         $(".nextCarucel").on("click", {d: "n"}, rotate);
         $(".prevCarucel").on("click", {d: "p"}, rotate);
 
@@ -495,34 +499,43 @@
                 "transform": "rotateY(" + currdeg + "deg)"
             });
         }
-        $(document).ready( function() {
-            $('#inputEntrada').attr('min',yyyymmdd());
+        $(document).ready(function () {
+            $('#inputEntrada').attr('min', yyyymmdd());
             document.getElementById('precio').innerHTML = setPrice($('#cantA').val());
         });
         function setPrice(cant) {
             var precio;
-            if(cant == 1){
-                precio=parseInt({{ object.precio1 }});
-            }else if(cant==2){
-                precio=parseInt({{ object.precio2 }}) * 2;
+            if (cant == 1) {
+                precio = parseInt({{ object.precio1 }});
+            } else if (cant == 2) {
+                precio = parseInt({{ object.precio2 }}) * 2;
             }
-            else if(cant==3){
-                precio=parseInt({{ object.precio3 }}) * 3;
-            }else{
-                precio=parseInt({{ object.precio4 }}) * parseInt(cant);
+            else if (cant == 3) {
+                precio = parseInt({{ object.precio3 }}) * 3;
+            } else {
+                precio = parseInt({{ object.precio4 }}) * parseInt(cant);
             }
-            return '€'+precio;
+            return '€' + precio;
         }
-        $('#cantA').on('change', function() {
+        $('#cantA').on('change', function () {
             document.getElementById('precio').innerHTML = setPrice(this.value);
         });
         $('#reserveButton').click(function () {
             var entrada = new Date($('#inputEntrada').val());
             var cantA = new Number($('#cantA').val());
             var emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+            {% if app.user %}
             if (!emailRegex.test(email)) {
                 var text = ($('#lang').val() == 'es') ? 'Introduce una dirección de correo'
                     : 'Enter an email address';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+            {% endif %}
+            if (!diasDisponibles.includes(diasSemana[entrada.getDay()])) {
+                var text = ($('#lang').val() == 'es') ? 'Esta actividad no está disponible para ese día de la semana'
+                    : 'This activity is not available for that day of the week';
                 tpl = '<div class="alert alert-danger">' + text + '</div>';
                 $('#errorBox').html(tpl)
                 return;
