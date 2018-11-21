@@ -42,9 +42,11 @@
                         {% else %}
                             {{ app.session.get('language') == 'es'? 'Resultados':'Results' }}
                         {% endif %}
+
                     </h2>
-                    <div class="count">
-                        {{ data.getTotalItemCount }}
+
+                    <div class="text-muted" style="color: #f9b501 !important;">
+                        <h5>Resultados: <span class="cont">{{ data.getTotalItemCount }}</span></h5>
                     </div>
                 </div>
                 {% for i in data %}
@@ -168,7 +170,7 @@
                     </div>
                 {% else %}
                     <h3>{{ app.session.get('language') == 'es'?
-                        'No se han enontrado resultados':
+                        'No se han encontrado resultados':
                         'No results have been found' }}</h3>
                 {% endfor %}
                 {#boton de ver mas#}

@@ -132,6 +132,13 @@
     height: 200px;
 }
 
+.cont{
+    padding: 6px 10px;
+    border: 2px solid #f9b501;
+    box-shadow: 5px 4px 10px 0px;
+    border-radius: 10px;
+}
+
 .imgOferta {
     animation-name: blue-fade-in-out !important;
 
