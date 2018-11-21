@@ -12,6 +12,7 @@
     top: 50%;
     transform: translateY(-50%);
     overflow: hidden;
+
 }
 #carousel div {
     position: absolute;
@@ -19,9 +20,12 @@
     opacity: 1;
 }
 #carousel div img {
+
     width: 400px;
     transition: width 1s;
+
 }
+
 #carousel div.hideLeft {
     left: 0%;
     opacity: 0;
