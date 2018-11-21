@@ -97,7 +97,7 @@ border-color: #f9b501;"
                                         </a>
                                         <div class=" infoOferta text-left">
                                             <a class="nav-item nombreO"
-                                               href="{{ path('oferta',{'id':i.id,'type':'casa'}) }}">
+                                               href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                                 <h4>{{ i.nombre }}</h4></a>
                                             <h4>{{ i.municipio~', '~i.provincia }}</h4></a>
                                             {% if i.valoracionArray[0]!=0 %}
@@ -275,7 +275,7 @@ border-color: #f9b501;"
                                     </a>
                                     <div class=" infoOferta text-left">
                                         <a class="nav-item nombreO"
-                                           href="{{ path('oferta',{'id':i.id,'type':'paquete'}) }}">
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                             <h4>{{ app.session.get('language') == 'es'?
                                                 i.nombre:
                                                 i.name }}</h4></a>
@@ -390,7 +390,7 @@ border-color: #f9b501;"
                                     </a>
                                     <div class=" infoOferta text-left">
                                         <a class="nav-item nombreO"
-                                           href="{{ path('oferta',{'id':i.id,'type':'carro'}) }}">
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                             <h4>{{ i.nombre }}</h4></a>
                                         {% if i.valoracionArray[0]!=0 %}
                                             {% for j in 1..i.valoracionArray[0] %}
@@ -475,7 +475,7 @@ border-color: #f9b501;"
                                     </a>
                                     <div class=" infoOferta text-left">
                                         <a class="nav-item nombreO"
-                                           href="{{ path('oferta',{'id':i.id,'type':'excursion'}) }}">
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                             <h4>{{ i.nombre }}</h4></a>
                                         <h4>{{ i.provincia }}</h4></a>
                                         {% if i.valoracionArray[0]!=0 %}

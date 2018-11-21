@@ -37,7 +37,12 @@ class SearchController extends Controller
      */
     public function advancedSearch(Request $request, DataService $query)
     {
-        $results = $query->returnAdvancedSearchData($request);
+        if ($request->get('status')) {
+            $results = $query->returnAdvancedSearchData($request);
+            $this->get('session')->set('search_results', $results);
+        }else {
+            $results=$this->get('session')->get('search_results');
+        }
         $paginator = $this->get('knp_paginator');
         $advancedData = $paginator->paginate($results, $request->query->getInt('page', 1), 6);
         /*$cant = $request->get('cantidadP');
@@ -55,7 +60,7 @@ class SearchController extends Controller
         } else {
             $selectorPrecio = 'precio4';
         }*/
-        return $this->render('lista/advancedSearchResults.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $advancedData]);
+        return $this->render('lista/index.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $advancedData]);
     }
 
     public function findCasa(Request $request, CasaRepository $casaRepository)

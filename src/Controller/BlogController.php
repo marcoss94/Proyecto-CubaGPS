@@ -57,18 +57,20 @@ class BlogController extends AbstractController
      */
     public function index(Request $request,CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository,PaqueteRepository $paqueteRepository,ComentarioRepository $comentarioRepository)
     {
-        $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-        switch ($lang){
-            case "es":
-                $this->get('session')->set('language', 'es');
-                break;
-            case "en":
-                ($this->get('session')->get('language') != 'en');
-                break;
-            default:
-                //echo "PAGE EN - Configuración por defecto";
-                ($this->get('session')->get('language') != 'en');
-                break;
+        if(!$this->get('session')->get('language')){
+            $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+            switch ($lang){
+                case "es":
+                    $this->get('session')->set('language', 'es');
+                    break;
+                case "en":
+                    ($this->get('session')->get('language') != 'en');
+                    break;
+                default:
+                    //echo "PAGE EN - Configuración por defecto";
+                    ($this->get('session')->get('language') != 'en');
+                    break;
+            }
         }
         $carros = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
         $casas = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
@@ -97,8 +99,15 @@ class BlogController extends AbstractController
      */
     public function changeLanguaje(Request $request)
     {
+        $em=$this->getDoctrine()->getManager();
         $language = ($this->get('session')->get('language') == 'es') ? 'en' : 'es';
         $this->get('session')->set('language', $language);
+        if($this->getUser()){
+            $user=$this->getUser();
+            $user->setIdioma($language);
+            $em->persist($user);
+            $em->flush();
+        }
         return $this->redirect($request->server->get('HTTP_REFERER'));
     }
 

@@ -46,7 +46,12 @@ class ReserveController extends Controller
             ->setSubject('Reservation')
             ->setTo($user->getEmail())
             ->setFrom('cubagps@gmail.com')
-            ->setBody($text, 'text/html');
+            ->setBody($this->renderView(
+            // templates/emails/registration.html.twig
+                'email/confirmReserve.html.twig',
+                array('name' => $preReservas)
+            ),
+                'text/html');
 //        $message = (new \Swift_Message('Reservation'))
 //            ->setFrom('cubagps@gmail.com')
 //            ->setTo($reserva->getUsuario()->getEmail())
