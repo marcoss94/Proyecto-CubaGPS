@@ -42,100 +42,38 @@
 
 {% block body %}
     <header class="bannerOferta">
-
+        {#-----------------------------Carrusel---------------------------------#}
         <div class="main gallery-block grid-gallery">
 
             <div id="carousel">
-
-
-                <div class="hideLeft itemCarucel">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    <img class=" image "
-                    src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                    {#<img class="imgOferta " src="{{ asset('build/img/portfolio/13-thumbnail grand.jpg') }}" alt="First slide">#}
-                    {#<img src="{{ asset('build/img/portfolio/13-thumbnail.jpg') }}">#}
-                </div>
-
-                <div class="prevLeftSecond">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="prevCarousel">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="selected">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="nextCarousel">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="nextRightSecond">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="hideRight">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
+                {% set clases=[
+                'hideLeft',
+                'prevLeftSecond',
+                'prevCarousel',
+                'selected',
+                'nextCarousel',
+                'nextRightSecond',
+                'hideRight'
+                ] %}
+                {% set cant = (object.images|length > 6)? 0 : (7-object.images|length)/2 %}
+                {% for i in object.images %}
+                    {% if loop.index0 < 7 %}
+                        <div class="{{ clases[loop.index0+(cant) ] }}">
+                            <a class="lightbox" href="{{ asset(i.full) }}">
+                                <img class=" image "
+                                     src="{{ asset(i.half) }}">
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-
-            {#<div class="buttons">#}
-            {#<button id="prevCarousel">Prev</button>#}
-            {#<button id="nextCarousel">Next</button>#}
-            {#</div>#}
-
             <div class="slider__pagination">
                 <a href="#a" id="prevCarousel" class="button prevCarousel"><i class="fa fa-fw fa-angle-left"></i></a>
                 <a href="#a" id="nextCarousel" class="button nextCarousel"><i class="fa fa-fw fa-angle-right"></i></a>
             </div>
-
-
-            {#<div class="col-12">#}
-            {#<div class="customer-feedback">#}
-            {#<div class="owl-nav">#}
-            {#<div class="owl-prev" style=""><i class="fa fa-long-arrow-left"></i></div>#}
-            {#<div class="owl-next" style=""><i class="fa fa-long-arrow-right"></i></div>#}
-            {#</div>#}
-            {#<div style="display: none;" class="owl-dots"></div>#}
-            {#</div>#}
-
-            {#</div>#}
-
-
-
         </div>
-
-        {#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#}
-
-
-
-        {#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#}
-
-
+        {#-----------------------------/Carrusel---------------------------------#}
     </header>
-
 
     <section class="bg-light" id="portfolio" style="padding: 44px 0;">
         <div class="container">
@@ -230,25 +168,25 @@
                         <div class="row">
                             <div class="col-6 col-md-4">
                                 {#<div class="" style="margin-right: 10px">#}
-                                    {#<div class="iconogeneral">#}
-                                        {#<div class="iconoServ">#}
-                                            {#<div style="margin-right: 8px">#}
-                                                {#<span><i class="far fa-calendar-alt"></i></span>#}
-                                            {#</div>#}
-                                        {#</div>#}
-                                        {#<div class="iconoServ">#}
-                                            {#<span>{{ app.session.get('language')== 'es' ?#}
-                                                {#'Días disponibles :':#}
-                                                {#'Available days' }}</span>#}
-                                        {#</div>#}
-                                        {#{% for dia in object.diasDisponibles %}#}
-                                            {#<div class="iconoServ">#}
-                                            {#<span>{{ app.session.get('language')== 'es' ?#}
-                                                {#dia :#}
-                                                {#days[dia] }}</span>#}
-                                            {#</div>#}
-                                        {#{% endfor %}#}
-                                    {#</div>#}
+                                {#<div class="iconogeneral">#}
+                                {#<div class="iconoServ">#}
+                                {#<div style="margin-right: 8px">#}
+                                {#<span><i class="far fa-calendar-alt"></i></span>#}
+                                {#</div>#}
+                                {#</div>#}
+                                {#<div class="iconoServ">#}
+                                {#<span>{{ app.session.get('language')== 'es' ?#}
+                                {#'Días disponibles :':#}
+                                {#'Available days' }}</span>#}
+                                {#</div>#}
+                                {#{% for dia in object.diasDisponibles %}#}
+                                {#<div class="iconoServ">#}
+                                {#<span>{{ app.session.get('language')== 'es' ?#}
+                                {#dia :#}
+                                {#days[dia] }}</span>#}
+                                {#</div>#}
+                                {#{% endfor %}#}
+                                {#</div>#}
                                 {#</div>#}
                                 {% if object.desayuno %}
                                     <div class="" style="margin-right: 10px">
@@ -336,10 +274,8 @@
                         <div class="separador"></div>
 
 
-
                         <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Ubicación':'Location' }}</h4>
                         <div id="map" style="width: 100%; height: 400px; background: grey"></div>
-
 
 
                         <div class="separador"></div>

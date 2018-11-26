@@ -288,15 +288,15 @@
 
 
                                 <a class="nav-link js-scroll-trigger "
-                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
+                                   href="{{ path('lista',{'type':'casa'}) }}">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
                                 <a class="nav-link js-scroll-trigger "
-                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
+                                   href="{{ path('lista',{'type':'casa'}) }}">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
                                 <a class="nav-link js-scroll-trigger "
-                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
+                                   href="{{ path('lista',{'type':'paquete'}) }}">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
                                 <a class="nav-link js-scroll-trigger "
-                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
+                                   href="{{ path('lista',{'type':'carro'}) }}">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
                                 <a class="nav-link js-scroll-trigger "
-                                   href="{{ path('lista') }}">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
+                                   href="{{ path('lista',{'type':'excursion'}) }}">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
 
 
                             </div>

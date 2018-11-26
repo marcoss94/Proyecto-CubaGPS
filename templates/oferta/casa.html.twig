@@ -34,127 +34,32 @@
 
 {% block body %}
     <header class="bannerOferta">
-        {#<div class="bodyCarucel gallery-block grid-gallery">#}
-            {#<div class="containerCarucel">#}
-                {#<div class="carouselCarucel">#}
-                    {#<div class="itemCarucel a item">#}
-                        {#<a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">#}
-                            {#<img class="imgOfertaGaleria image scale-on-hover"#}
-                                 {#src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">#}
-                        {#</a>#}
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/13-thumbnail grand.jpg') }}" alt="First slide">#}
-                    {#</div>#}
-                    {#<div class="itemCarucel b item">#}
-                        {#<a class="lightbox" href="{{ asset('build/img/portfolio/03-thumbnail.jpg') }}">#}
-                            {#<img class="imgOfertaGaleria image scale-on-hover"#}
-                                 {#src="{{ asset('build/img/portfolio/03-thumbnail.jpg') }}">#}
-                        {#</a>#}
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/12-thumbnail grand.jpg') }}"#}
-                        {#alt="First slide">#}
-                    {#</div>#}
-                    {#<div class="itemCarucel c item">#}
-                        {#<a class="lightbox" href="{{ asset('build/img/portfolio/04-thumbnail.jpg') }}">#}
-                            {#<img class="imgOfertaGaleria image scale-on-hover"#}
-                                 {#src="{{ asset('build/img/portfolio/04-thumbnail.jpg') }}">#}
-                        {#</a>#}
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/11-thumbnail grand.jpg') }}"#}
-                        {#alt="First slide">#}
-                    {#</div>#}
-                    {#<div class="itemCarucel d item">#}
-                        {#<a class="lightbox" href="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}">#}
-                            {#<img class="imgOfertaGaleria image scale-on-hover"#}
-                                 {#src="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}">#}
-                        {#</a>#}
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/02-thumbnail.jpg') }}"#}
-                        {#alt="First slide">#}
-                    {#</div>#}
-                    {#<div class="itemCarucel e item">#}
-                        {#<a class="lightbox" href="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}">#}
-                            {#<img class="imgOfertaGaleria image scale-on-hover"#}
-                                 {#src="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}">#}
-                        {#</a>#}
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/05-thumbnail.jpg') }}"#}
-                        {#alt="First slide">#}
-                    {#</div>#}
-                    {#<div class="itemCarucel f item">#}
-                        {#<a class="lightbox" href="{{ asset('build/img/portfolio/07-thumbnail.jpg') }}">#}
-                            {#<img class="imgOfertaGaleria image scale-on-hover"#}
-                                 {#src="{{ asset('build/img/portfolio/07-thumbnail.jpg') }}">#}
-                        {#</a>#}
-                        {#<img class="imgOferta " src="{{ asset('build/img/portfolio/06-thumbnail.jpg') }}"#}
-                        {#alt="First slide">#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#<div class="nextCarucel"><i class="fas fa-arrow-circle-right fa-2x"></i></div>#}
-            {#<div class="prevCarucel"><i class="fas fa-arrow-circle-left fa-2x"></i></div>#}
 
-        {#</div>#}
-
-
+        {#-----------------------------Carrusel---------------------------------#}
         <div class="main gallery-block grid-gallery">
 
             <div id="carousel">
-
-
-                <div class="hideLeft itemCarucel">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                    {#<img class="imgOferta " src="{{ asset('build/img/portfolio/13-thumbnail grand.jpg') }}" alt="First slide">#}
-                    {#<img src="{{ asset('build/img/portfolio/13-thumbnail.jpg') }}">#}
-                </div>
-
-                <div class="prevLeftSecond">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="prevCarousel">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="selected">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="nextCarousel">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="nextRightSecond">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
-                <div class="hideRight">
-                    <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                        <img class=" image "
-                             src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
-                    </a>
-                </div>
-
+                {% set clases=[
+                'hideLeft',
+                'prevLeftSecond',
+                'prevCarousel',
+                'selected',
+                'nextCarousel',
+                'nextRightSecond',
+                'hideRight'
+                ] %}
+                {% set cant = (object.images|length > 6)? 0 : (7-object.images|length)/2 %}
+                {% for i in object.images %}
+                    {% if loop.index0 < 7 %}
+                        <div class="{{ clases[loop.index0+(cant) ] }}">
+                            <a class="lightbox" href="{{ asset(i.full) }}">
+                                <img class=" image "
+                                     src="{{ asset(i.half) }}">
+                            </a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
             </div>
-
-            {#<div class="buttons">#}
-            {#<button id="prevCarousel">Prev</button>#}
-            {#<button id="nextCarousel">Next</button>#}
-            {#</div>#}
-
             <div class="slider__pagination">
 
                 <a href="#a" id="prevCarousel" class="button prevCarousel"><i class="fa fa-fw fa-angle-left"></i></a>
@@ -176,47 +81,9 @@
                     {#<a href="#">CSS Hover</a>#}
                 {#</div>#}
             </div>
-
-
-            {#<section class="row1">#}
-                {#<div class="seccion">#}
-
-
-
-                {#</div>#}
-            {#</section>#}
-
-
-            {#<div class="col-12">#}
-            {#<div class="customer-feedback">#}
-            {#<div class="owl-nav">#}
-            {#<div class="owl-prev" style=""><i class="fa fa-long-arrow-left"></i></div>#}
-            {#<div class="owl-next" style=""><i class="fa fa-long-arrow-right"></i></div>#}
-            {#</div>#}
-            {#<div style="display: none;" class="owl-dots"></div>#}
-            {#</div>#}
-
-            {#</div>#}
-
-
-
         </div>
-
-
-
-
-
-        {#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#}
-
-
-
-        {#aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa#}
-
-
+        {#-----------------------------/Carrusel---------------------------------#}
     </header>
-
-
-
     <section class="bg-light" id="portfolio" style="padding: 44px 0;">
         <div class="container">
             <div class="row">
@@ -643,17 +510,17 @@
                                         </div>
                                     </div>
                                     {% if app.user %}
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email</label>
-                                                    <input type="email" class="form-control" id="inputEail1"
-                                                           aria-describedby="emailHelp" name="email" required="required"
-                                                           placeholder="Enter email" value="{{ app.user.email }}">
-                                                    <small id="emailHelp"
-                                                           class="form-text text-muted">{{ app.session.get('language') == 'es'?
-                                                        'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
-                                                </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" id="inputEail1"
+                                                       aria-describedby="emailHelp" name="email" required="required"
+                                                       placeholder="Enter email" value="{{ app.user.email }}">
+                                                <small id="emailHelp"
+                                                       class="form-text text-muted">{{ app.session.get('language') == 'es'?
+                                                    'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
                                             </div>
+                                        </div>
                                     {% endif %}
                                 </div>
                                 <div id="errorBox"></div>
