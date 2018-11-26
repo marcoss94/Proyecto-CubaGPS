@@ -210,7 +210,6 @@ class BlogController extends AbstractController
         $query = $request->query->get('q', '');
         $limit = $request->query->get('l', 10);
         $foundPosts = $posts->findBySearchQuery($query, $limit);
-
         $results = [];
         foreach ($foundPosts as $post) {
             $results[] = [

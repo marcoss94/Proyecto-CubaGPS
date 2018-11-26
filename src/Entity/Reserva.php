@@ -28,6 +28,11 @@ class Reserva
     private $endAt;
 
     /**
+     * @ORM\Column(type="string", length=500)
+     */
+    private $descripcion;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\DisplayableComponent", inversedBy="reservas")
      */
     private $commponent;
@@ -75,9 +80,75 @@ class Reserva
     private $status = 'pre';
 
     /**
+     *  Solo para los carros
+     *
+     *  trans
+     *  exc
+     *  esp
+     *
+     *
+     * @ORM\Column(type="string",length=10,nullable=true)
+     */
+    private $type;
+
+    /**
+     * @return mixed
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * @param mixed $descripcion
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+    }
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $horas;
+
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $costo;
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHoras()
+    {
+        return $this->horas;
+    }
+
+    /**
+     * @param mixed $horas
+     */
+    public function setHoras($horas)
+    {
+        $this->horas = $horas;
+    }
 
     /**
      * @ORM\Column(type="integer")
@@ -104,6 +175,16 @@ class Reserva
      * @ORM\Column(type="integer")
      */
     private $children = 0;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Lugar")
+     */
+    private $desde;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Lugar")
+     */
+    private $hasta;
 
     public function getId(): ?int
     {
@@ -206,6 +287,11 @@ class Reserva
         return $this;
     }
 
+    public function getDias()
+    {
+        return $this->startAt->diff($this->endAt)->days;
+    }
+
     /**
      * @return mixed
      */
@@ -220,6 +306,30 @@ class Reserva
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    public function getDesde(): ?Lugar
+    {
+        return $this->desde;
+    }
+
+    public function setDesde(?Lugar $desde): self
+    {
+        $this->desde = $desde;
+
+        return $this;
+    }
+
+    public function getHasta(): ?Lugar
+    {
+        return $this->hasta;
+    }
+
+    public function setHasta(?Lugar $hasta): self
+    {
+        $this->hasta = $hasta;
+
+        return $this;
     }
 
 

@@ -1,7 +1,7 @@
 {% extends 'backendBase.html.twig' %}
 
 
-{% block title %}Administración | Carros{% endblock %}
+{% block title %}Administración | Usuarios{% endblock %}
 
 
 {% block stylesheets %}
@@ -58,6 +58,7 @@
                         <th scope="col">Redireccionado por:</th>
                         <th scope="col">Usuario de:</th>
                         <th scope="col">Registrado</th>
+                        <th scope="col">Crear Reserva</th>
                     </tr>
                     </thead>
                     <tfoot>
@@ -69,6 +70,7 @@
                         <th scope="col">Redireccionado por:</th>
                         <th scope="col">Usuario de:</th>
                         <th scope="col">Registrado</th>
+                        <th scope="col">Crear Reserva</th>
                     </tr>
                     </tfoot>
                     <tbody>
@@ -92,6 +94,7 @@
                             <td>{{ c.redirectedBy }}</td>
                             <td>{{ c.userOf }}</td>
                             <td>{{ c.registeredAt|date }}</td>
+                            <td><a type="button" class="btn btn-secondary" href="{{ path('reserva_especial',{'id':c.id}) }}">Reserva</a></td>
                         </tr>
                     {% else %}
                         <th colspan="5">No hay usuarios registrados</th>

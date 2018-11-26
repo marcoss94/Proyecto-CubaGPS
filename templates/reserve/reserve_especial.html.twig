@@ -1,0 +1,153 @@
+{% extends 'backendBase.html.twig' %}
+
+
+{% block title %}Administración | Album {% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item active">Reserva Especial</li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-home"></i>
+                    Reserva Especial
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="row" style="margin-left: 15px">
+                <img src="{{ asset(user.picture) }}"
+                     class="img-fluid rounded-circle avat"
+                     style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
+                {{ user }}
+            </div>
+            <h3></h3>
+            <form action="{{ path('crear_reserva_especial') }}" style="max-width: 600px">
+                <div class="form-row" >
+                    <div class="col">
+                        <label for="commponentId">Id del servicio</label>
+                        <input id="commponentId" type="number" name="commponentId" class="form-control" placeholder="Servicio">
+                    </div>
+                    <div class="col">
+                        <label for="price">Precio</label>
+                        <div id="price"  class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">€</div>
+                            </div>
+                            <input type="number" min="50" step="200" required name="price" class="form-control" placeholder="Precio">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="inputEntrada">Entrada</label>
+                        <input type="date" name="fechaEntrada" required class="form-control" id="inputEntrada">
+                    </div>
+                    <div class="col">
+                        <label for="inputSalida">Salida</label>
+                        <input type="date" name="fechaSalida" required class="form-control" id="inputSalida">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Descripción</label>
+                            <textarea class="form-control" required id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="cant">Cantidad de Personas</label>
+                        <input id="cant" type="number" min="1" step="1" name="cantP" required class="form-control" placeholder="Precio">
+                    </div>
+                </div>
+                <h2></h2>
+                <input type="hidden" name="userId" value="{{ user.id }}">
+                <button type="submit" class="btn btn-primary">Crear</button>
+            </form>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-home"></i>
+                    Reserva Especial
+                </div>
+                <div class="col-auto">
+                    {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+                    {#Agregar#}
+                    {#</button>#}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function yyyymmdd() {
+            var today = new Date();
+            var now = new Date();
+            now.setDate(today.getDate() + 4);
+            var y = now.getFullYear();
+            var m = now.getMonth() + 1;
+            var d = now.getDate();
+            var mm = m < 10 ? '0' + m : m;
+            var dd = d < 10 ? '0' + d : d;
+            return '' + y + '-' + mm + '-' + dd;
+        }
+        function yyyymmdd_salida() {
+            var today = new Date();
+            var now = new Date();
+            now.setDate(today.getDate() + 5);
+            var y = now.getFullYear();
+            var m = now.getMonth() + 1;
+            var d = now.getDate();
+            var mm = m < 10 ? '0' + m : m;
+            var dd = d < 10 ? '0' + d : d;
+            return '' + y + '-' + mm + '-' + dd;
+        }
+        $(document).ready(function () {
+            var message = '{{ message }}';
+            if(message != 'none' ){
+                alert(message);
+            }
+            $('#inputEntrada').attr('min', yyyymmdd());
+            $('#inputSalida').attr('min', yyyymmdd_salida());
+            $('#inputEntrada').val(yyyymmdd());
+            $('#inputSalida').val(yyyymmdd_salida());
+        })
+
+    </script>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,100 @@
+
+
+{% extends 'backendBase.html.twig' %}
+
+
+{% block title %}Administración | Lugares{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="{{ path('admin') }}">Administración</a>
+    </li>
+    <li class="breadcrumb-item active">Lugares</li>
+</ol>
+
+<div class="card mb-3">
+    <div class="card-header">
+
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <i class="fas fa-map-signs"></i>
+                Lugares
+            </div>
+            <div class="col-auto">
+                <div class="col-auto">
+                    <a type="button" class="btn btn-outline-primary" href="{{ path('lugar_new') }}">Nuevo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Provincia</th>
+                    <th>Nombre</th>
+                    <th>Longitud</th>
+                    <th>Latitud</th>
+                    <th>actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for lugar in lugars %}
+                    <tr>
+                        <td>{{ lugar.id }}</td>
+                        <td>{{ lugar.provincia }}</td>
+                        <td>{{ lugar.nombre }}</td>
+                        <td>{{ lugar.longitud }}</td>
+                        <td>{{ lugar.latitud }}</td>
+                        <td>
+                            <a href="{{ path('lugar_show', {'id': lugar.id}) }}">show</a>
+                            <a href="{{ path('lugar_edit', {'id': lugar.id}) }}"><i
+                                        class="fa fa-edit" aria-hidden="true"></i><span
+                                        class="caret"></span></a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <i class="fas fa-map-signs  "></i>
+                Lugares
+            </div>
+            <div class="col-auto">
+                <div class="col-auto">
+                    <a type="button" class="btn btn-outline-primary" href="{{ path('lugar_new') }}">Nuevo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
