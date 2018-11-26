@@ -1,0 +1,68 @@
+{% extends 'emailbase.html.twig' %}
+
+{% block title %}Email de Pagos{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+
+ {% endblock %}
+
+
+{% block body %}
+    {{ parent() }}
+
+
+
+
+    <table class="body-wrap" bgcolor="">
+        <tr>
+            <td></td>
+            <td class="container" align="" bgcolor="#FFFFFF">
+
+                <!-- content -->
+
+
+                {#Cuando toido esta confirmado#}
+                <div class="content">
+                    <table>
+                        <tr>
+                            <td>
+
+                                <h2>Estimad@ *Nombre Usuario*:</h2>
+                                <p class="lead">Hemos recibido su cotización del 20%. Por favor lea nuestras <a
+                                            href="#">Políticas de Cancelación</a> y <a href="#">Aviso Legal</a> para que
+                                    esté correctamente informado de como trabajamos y de sus derechos.
+                                    Muchas gracias por usar nuestros sitios, esperamos leer pronto sus comentarios y
+                                    disculpe las molestias causadas, tengan unas lindas Vacaciones.
+
+                                </p>
+
+                                <!-- A Real Hero (and a real human being) -->
+                                {#<p><img src="http://placehold.it/600x300" /></p><!-- /hero -->#}
+                                <p>Atentamente, <a href="#">Equipo Cuba GPS! &raquo;</a></p>
+                            </td>
+                        </tr>
+                    </table>
+                </div><!-- /content -->
+
+
+                {#Aki se adjunta el Baucher#}
+
+
+            </td>
+            <td></td>
+        </tr>
+    </table><!-- /BODY -->
+
+
+
+{% endblock %}
+
+   {% block footer %}
+       {{ parent() }}
+   {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
