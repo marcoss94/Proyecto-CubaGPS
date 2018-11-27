@@ -19,22 +19,17 @@ class LugarRepository extends ServiceEntityRepository
         parent::__construct($registry, Lugar::class);
     }
 
-//    /**
-//     * @return Lugar[] Returns an array of Lugar objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+
+
+    /**
+     * @return Lugar[] Returns an array of Lugar objects
     */
+    public function findAllPlaceNames($em)
+    {
+        $query = $em->createQuery('SELECT l.nombre FROM App\Entity\Lugar l');
+        return $query->getResult();
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Lugar

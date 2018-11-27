@@ -2,11 +2,36 @@
 
 namespace App\Controller;
 
+use App\Entity\Lugar;
+use App\Repository\LugarRepository;
+use App\Service\DataService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TransferController extends Controller
 {
+
+    private $provincias =
+        ['Pinar del Rio' => 0,
+            'Artemisa' => 1,
+            'La Habana' => 2,
+            'Mayabeque' => 3,
+            'Matanzas' => 4,
+            'Villa Clara' => 5,
+            'Cienfuegos' => 6,
+            'Sancti Spiritus' => 7,
+            'Ciego de Ávila' => 8,
+            'Camaguey' => 9,
+            'Las Tunas' => 10,
+            'Holguín' => 11,
+            'Granma' => 12,
+            'Santiago de Cuba' => 13,
+            'Guantánamo' => 14,
+            'Isla de la Juventud' => -1,
+        ];
+
     /**
      * @Route("/transfer", name="transfer")
      */
@@ -18,7 +43,8 @@ class TransferController extends Controller
     }
 
     //Distancia en km a partir de latitud longitud.
-    function harvestine($lat1, $long1, $lat2, $long2){
+    function harvestine($lat1, $long1, $lat2, $long2)
+    {
         //Distancia en kilometros en 1 grado distancia.
         //Distancia en millas nauticas en 1 grado distancia: $mn = 60.098;
         //Distancia en millas en 1 grado distancia: 69.174;
@@ -37,4 +63,39 @@ class TransferController extends Controller
         $dd = acos($dvalue) * $radtodeg;
         return round(($dd * $km), 2);
     }
+
+
+    /**
+     * @Route("/ajax_get_lugares", name="ajax_get_lugares")
+     */
+    public function ajax_get_lugares(Request $request, LugarRepository $lugarRepository)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lugares = $lugarRepository->findAllPlaceNames($em);
+        $response = new JsonResponse();
+        $response->setData(['result' => $lugares]);
+        return $response;
+    }
+
+    /**
+     * @Route("/transfer_search", name="transfer_search")
+     */
+    public function transfer_search(Request $request, LugarRepository $lugarRepository, DataService $query)
+    {
+        $desde = $lugarRepository->findOneBy(['nombre'=>$request->get('desde')]);
+        $hasta = $lugarRepository->findOneBy(['nombre'=>$request->get('hasta')]);
+        $cantidadP = (int)$request->get('cantidadP');
+        $min = $this->provincias[$desde->getProvincia()]>$this->provincias[$hasta->getProvincia()]? $this->provincias[$hasta->getProvincia()] :$this->provincias[$desde->getProvincia()];
+        $max = $this->provincias[$desde->getProvincia()]<=$this->provincias[$hasta->getProvincia()]? $this->provincias[$hasta->getProvincia()] :$this->provincias[$desde->getProvincia()];
+        $prov=[];
+        foreach ($this->provincias as $key=>$val){
+            if($val >= $min && $val <= $max){
+                $prov[]=$key;
+            }
+        }
+        $data = $query->returnTransferSearchData($request,$prov);
+        return $this->render('lista/index.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $data]);
+    }
+
+
 }

@@ -34,8 +34,9 @@ class LugarType extends AbstractType
                 'Guantánamo' => 'Guantánamo',
                 'Isla de la Juventud' => 'Isla de la Juventud',
             ),])
-            ->add('longitud', NumberType::class, ['label' => 'Longitud'])
             ->add('latitud', NumberType::class, ['label' => 'Latitud'])
+            ->add('longitud', NumberType::class, ['label' => 'Longitud'])
+
             ;
     }
 

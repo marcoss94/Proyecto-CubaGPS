@@ -52,7 +52,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 6)
+            $request->query->getInt('limit', 9)
         );
         return ($results);
     }
@@ -68,7 +68,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 6)
+            $request->query->getInt('limit', 9)
         );
         return ($results);
     }
@@ -84,7 +84,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 6)
+            $request->query->getInt('limit', 9)
         );
         return ($results);
     }
@@ -111,7 +111,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 6)
+            $request->query->getInt('limit', 9)
         );
         return ($results);
     }
@@ -142,6 +142,27 @@ class DataService
             'dias' => $dias,
         ]);
         return $query->getResult();
+    }
+
+    public function returnTransferSearchData(Request $request,$prov)
+    {
+        $em = $this->em;
+        $container = $this->container;
+        $query = $em->createQuery(
+            'SELECT u ,p FROM App\Entity\Carro u JOIN u.images  p 
+                      WHERE u.capacidad >= :cantP 
+                      AND u.capacidad/3-5 < :cantP 
+                      AND u.provincia IN (:prov)
+                      AND u.transfer = TRUE                                           
+                      ORDER BY u.valoracion DESC'
+        )->setParameters(['cantP'=>(int)$request->get('cantidadP'),'prov'=>$prov]);
+        $paginator = $container->get('knp_paginator');
+        $results = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 2)
+        );
+        return ($results);
     }
 
 
