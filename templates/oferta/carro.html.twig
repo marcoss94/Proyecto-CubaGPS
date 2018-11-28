@@ -522,6 +522,9 @@
             var userId= $('#userId').val();
             if(comment == ''){
                 alert('debe escribir un comentario');
+                $("#textoWarningGrande").text('Algo acaba de suceder');
+                $("#textoWarning").text('Debe escribir un comentario');
+                $('.Alertwarning').animate({top:"0"}, 500);
             }else{
                 var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
                 $.ajax({
@@ -531,6 +534,9 @@
                     success: function (response) {
                         if (response.result) {
                             alert('Su comentario ha sido recivido correctamente');
+                            $("#textoSuccessGrande").text('Algo acaba de suceder');
+                            $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
+                            $('.Alertsuccess').animate({top:"0"}, 500);
                             $('#commentArea').val('');
                         }
                     }
