@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\DisplayableComponent;
 use App\Entity\Reserva;
 use App\Repository\CasaRepository;
+use App\Repository\DisplayableComponentRepository;
 use App\Repository\ExcursionRepository;
 use App\Repository\PaqueteRepository;
 use App\Repository\ReservaRepository;
@@ -225,6 +227,20 @@ class ReserveController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/reserve/show_confirmed_reserves", name="show_confirmed_reserves")
+     */
+    public function showReserve(Request $request, ReservaRepository $reservaRepository)
+    {
+        $user = $this->getUser();
+        $preReserves = $reservaRepository->findBy(['usuario' => $user, 'status' => 'confirmed']);
+        if (count($preReserves)) {
+            return $this->render('reserve/show_confirmed_reserve.html.twig', ['reserves' => $preReserves]);
+        } else {
+            return $this->redirectToRoute('blog_index');
+        }
+    }
+
 
     /**
      * @Route("/admin/reservasconfirmadas", name="reservasconfirmadas")
@@ -246,6 +262,73 @@ class ReserveController extends Controller
 
         ]);
     }
+
+    /**
+     * @Route("/admin/reserva_especial", name="reserva_especial")
+     */
+    public function reserva_especial(Request $request, UserRepository $userRepository)
+    {
+        $user=$userRepository->find($request->get('id'));
+        return $this->render('reserve/reserve_especial.html.twig', [
+            'user'=>$user,
+            'message'=> 'none'
+        ]);
+    }
+
+    /**
+     * @Route("/admin/crear_reserva_especial", name="crear_reserva_especial")
+     */
+    public function crear_reserva_especial(Request $request, UserRepository $userRepository, DisplayableComponentRepository $displayableComponentRepository)
+    {
+        $next='admin/index.html.twig';
+        $b=true;
+        $message='La confirmación de prereserva se ha enviado al usuario';
+        $user=$userRepository->find($request->get('userId'));
+        if($displayableComponentRepository->find($request->get('commponentId'))){
+            $commponent=$displayableComponentRepository->find($request->get('commponentId'));
+            $price=$request->get('price');
+            $fechaInicial = new \DateTime($request->get('fechaEntrada'));
+            $fechaFinal = new \DateTime($request->get('fechaSalida'));
+            $description=$request->get('description');
+            $cantP=$request->get('cantP');
+            if($fechaInicial>$fechaFinal){
+                $message='La fecha de salida no puede ser después de la fecha de entrada';
+                $next='reserve/reserve_especial.html.twig';
+                $b=false;
+            }
+            $reserve=new Reserva();
+            $reserve->setStatus('confirmed');
+            $reserve->setType('esp');
+            $reserve->setCantPersonas($cantP);
+            $reserve->setCommponent($commponent);
+            $reserve->setCosto($price);
+            $reserve->setCreatedAt();
+            $reserve->setDescripcion($description);
+            $reserve->setStartAt($fechaInicial);
+            $reserve->setEndAt($fechaFinal);
+            $reserve->setUsuario($user);
+            $em=$this->getDoctrine()->getManager();
+            $em->persist($reserve);
+            $em->flush();
+        }else{
+            $next='reserve/reserve_especial.html.twig';
+            $message='El id del servicio no coincide con ninguno de los existentes';
+            $b=false;
+        }
+        if($b){
+            return $this->redirectToRoute('admin');
+        }
+        return $this->render($next, [
+            'user'=>$user,
+            'message'=>$message,
+        ]);
+
+    }
+
+
+
+
+
 
 
 }

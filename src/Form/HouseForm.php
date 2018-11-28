@@ -85,8 +85,8 @@ class HouseForm extends AbstractType
                 'Limpieza' => 'limpieza',
                 'Peluquería'=> 'peluqueria'
             ), 'expanded' => true, 'multiple' => true])
-            ->add('longitud', NumberType::class, ['label' => 'Longitud'])
             ->add('latitud', NumberType::class, ['label' => 'Latitud'])
+            ->add('longitud', NumberType::class, ['label' => 'Longitud'])
             ->add('active', ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'si' => true,
                 'no' => false,

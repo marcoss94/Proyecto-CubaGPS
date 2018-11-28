@@ -712,7 +712,8 @@ class AdminController extends Controller
     /**
      * @Route("/admin/delete_room", name="delete_room")
      */
-    public function deleteHabitacion(Request $request,HabitacionRepository $habitacionRepository){
+    public function deleteHabitacion(Request $request,HabitacionRepository $habitacionRepository)
+    {
         $hab=$habitacionRepository->find($request->get('id'));
         $em=$this->getDoctrine()->getManager();
         $em->remove($hab);

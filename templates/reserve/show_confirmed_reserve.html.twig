@@ -1,0 +1,253 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta':'Offer' }}{% endblock %}
+
+ {% block stylesheets %}
+
+     {{ parent() }}
+
+     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}"/>
+
+     <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
+     <script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+
+     <link rel="stylesheet" href="{{ asset('build/css/carousel.css') }}">
+
+
+ {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+    <section class="bg-light" id="portfolio">
+        <div class="container">
+
+            {% for r in reserves %}
+                {% if r.type == 'esp' %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'Since' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Descripcion':'Description' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Confirmar':'Confirm' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
+                            <td>{{ r.startAt|date("m/d/Y")  }}</td>
+                            <td>{{ r.endAt|date("m/d/Y")  }}</td>
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ r.descripcion }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><input type="checkbox" name="{{ r.id }}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="separador"></div>
+                {% elseif r.commponent.getType == 'Excursion' %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Confirmar':'Confirm' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
+                            <td>{{ r.startAt|date("m/d/Y")  }}</td>
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><input type="checkbox" name="{{ r.id }}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="separador"></div>
+                {% elseif r.commponent.getType == 'Paquete' %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Inicia':'Start At' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Termina':'End At' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Confirmar':'Confirm' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
+                            <td>{{ r.startAt|date("m/d/Y")  }}</td>
+                            <td>{{ r.endAt|date("m/d/Y")  }}</td>
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><input type="checkbox" name="{{ r.id }}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="separador"></div>
+                {% elseif r.commponent.getType == 'Casa' %}
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Salida':'Departure' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Confirmar':'Confirm' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
+                            <td>{{ r.startAt|date("m/d/Y") }}</td>
+                            <td>{{ r.endAt|date("m/d/Y") }}</td>
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><input type="checkbox" name="{{ r.id }}"></td>
+                        </tr>
+                        </tbody>
+                        <thead>
+                        <tr>
+                            <th colspan="6">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</th>
+                        </tr>
+                        {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
+                            <tr>
+                                <td colspan="4">{{ h }}</td>
+                                <td colspan="2">{{ '€'~h.precio * r.getDias }}</td>
+                            </tr>
+                        {% endfor %}
+                        </thead>
+                    </table>
+                    <div class="separador"></div>
+                {% else %}
+                    {% if r.type == 'trans' %}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Confirmar':'Confirm' }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+
+                                        <img
+                                                src="{{ asset(r.commponent.getMainImage.min) }}"
+                                                class="img-fluid avat"
+                                                style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;"
+                                                alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
+                                </th>
+                                <td>{{ r.desde }}</td>
+                                <td>{{ r.hasta }}</td>
+                                <td>{{ r.cantPersonas }}</td>
+                                <td>{{ '€'~r.costo }}</td>
+                                <td><input type="checkbox" name="{{ r.id }}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="separador"></div>
+                    {% else %}
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Lugar':'Place' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Horas':'Hours' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Confirmar':'Confirm' }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+
+                                        <img
+                                                src="{{ asset(r.commponent.getMainImage.min) }}"
+                                                class="img-fluid avat"
+                                                style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;"
+                                                alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
+                                </th>
+                                <td>{{ r.startAt|date("m/d/Y") }}</td>
+                                <td>{{ r.commponent.municipio }}</td>
+                                <td>{{ r.horas }}</td>
+                                <td>{{ r.cantPersonas }}</td>
+                                <td>{{ '€'~r.costo }}</td>
+                                <td><input type="checkbox" name="{{ r.id }}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="separador"></div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block footer %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+{% endblock %}
+
+
+
+

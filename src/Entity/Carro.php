@@ -56,6 +56,15 @@ class Carro extends DisplayableComponent
      */
     private $idiomas=['Español'];
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $transfer=false;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $precio;
 
     /**
      * @return mixed
@@ -71,6 +80,38 @@ class Carro extends DisplayableComponent
     public function setMainPhoto($mainPhoto)
     {
         $this->mainPhoto = $mainPhoto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTransfer()
+    {
+        return $this->transfer;
+    }
+
+    /**
+     * @param mixed $transfer
+     */
+    public function setTransfer($transfer)
+    {
+        $this->transfer = $transfer;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrecioHora()
+    {
+        return $this->precioHora;
+    }
+
+    /**
+     * @param mixed $precioHora
+     */
+    public function setPrecioHora($precioHora)
+    {
+        $this->precioHora = $precioHora;
     }
 
     /**

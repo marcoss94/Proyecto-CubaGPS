@@ -61,6 +61,7 @@ class CarForm extends AbstractType
                 'No' => false,
             ),])
             ->add('capacidad',null, ['label' => 'Cantidad de Asientos'])
+            ->add('precio',null, ['label' => 'Precio x Hora'])
             ->add('idiomas',ChoiceType::class, ['label' => 'Idiomas','choices'  => array(
                 'English' => 'English',
                 'Español' => 'Español',
@@ -72,6 +73,10 @@ class CarForm extends AbstractType
                 '中国' => '中国',
             ),'multiple'=>true
             ])
+            ->add('transfer', ChoiceType::class, ['label' => 'Transfer','choices'  => array(
+                'Si' => true,
+                'No' => false,
+            ),])
             ->add('active', ChoiceType::class, ['label' => 'Activo','choices'  => array(
                 'Si' => true,
                 'No' => false,

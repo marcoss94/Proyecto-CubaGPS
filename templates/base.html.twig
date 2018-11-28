@@ -33,7 +33,7 @@
               crossorigin="anonymous">
         <link rel="icon" type="image/png" href="{{ asset('build/img/favicon.png') }}">
 
-        <link rel='stylesheet' href="{{ asset('build/unitegallery/css/unite-gallery.css') }}" type='text/css' />
+        <link rel='stylesheet' href="{{ asset('build/unitegallery/css/unite-gallery.css') }}" type='text/css'/>
 
         {#<link rel='stylesheet' href="{{ asset('build/unitegallery/themes/default/ug-theme-default.css') }}" type='text/css' />#}
 
@@ -602,36 +602,36 @@ border-color: #f9b501">
                     </div>
 
                     {#..........................................................#}
-                    <form method="post" action="{{ path('advanced_search') }}">
 
 
-                        <input type="hidden" name="status" value="search">
-                        <div class="modal-body">
+                    <input type="hidden" name="status" value="search">
+                    <div class="modal-body">
 
-                            <div class="tabs">
-                                <div class="tab-button-outer">
-                                    <ul id="tab-button">
-                                        <li><a href="#tab01">General</a></li>
-                                        <li><a href="#tab02">Transfer</a></li>
+                        <div class="tabs">
+                            <div class="tab-button-outer">
+                                <ul id="tab-button">
+                                    <li><a href="#tab01">General</a></li>
+                                    <li><a href="#tab02">Transfer</a></li>
 
-                                    </ul>
-                                </div>
-                                <div class="tab-select-outer">
-                                    <select id="tab-select">
-                                        <option value="#tab01">General</option>
-                                        <option value="#tab02">Transfer</option>
+                                </ul>
+                            </div>
+                            <div class="tab-select-outer">
+                                <select id="tab-select">
+                                    <option value="#tab01">General</option>
+                                    <option value="#tab02">Transfer</option>
 
-                                    </select>
-                                </div>
+                                </select>
+                            </div>
 
-                                <div id="tab01" class="tab-contents">
-                                    {#<h2>Tab 1</h2>#}
-
+                            <div id="tab01" class="tab-contents">
+                                {#<h2>Tab 1</h2>#}
+                                <form method="post" action="{{ path('advanced_search') }}">
                                     <div class="form-row">
                                         <div class="form-group col-md-7">
                                             <label class="text-muted"
                                                    for="inputEmail4">{{ app.session.get('language') == 'es'? 'Lugar':'Place' }}</label>
-                                            <input list="lugares" type="text" name="lugar" class="form-control" placeholder="Cuba">
+                                            <input list="lugares" type="text" name="lugar" class="form-control"
+                                                   placeholder="Cuba">
                                         </div>
                                         <div class="form-group col-md-5">
                                             <label class="text-muted"> {{ app.session.get('language') == 'es'? '# de Personas':'Amount of People' }}</label>
@@ -645,11 +645,13 @@ border-color: #f9b501">
 
                                         </div>
                                     </div>
+
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label class="text-muted"
                                                    for="inputEntrada">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</label>
-                                            <input type="date" name="fechaEntrada" class="form-control" id="inputEntrada">
+                                            <input type="date" name="fechaEntrada" class="form-control"
+                                                   id="inputEntrada">
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label class="text-muted"
@@ -667,7 +669,8 @@ border-color: #f9b501">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">€</div>
                                                     </div>
-                                                    <input type="number" min="200" name="precio" step="200" class="form-control"
+                                                    <input type="number" min="200" name="precio" step="200"
+                                                           class="form-control"
                                                            placeholder="50000">
                                                 </div>
 
@@ -685,17 +688,18 @@ border-color: #f9b501">
                                                 </select>
                                             </div>
                                         </div>
-
+                                        <div class="modal-footer">
+                                            <button type="submit"
+                                                    class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div id="tab02" class="tab-contents">
-                                    {#<h2>Tab 2</h2>#}
-
-
-
-
+                                </form>
+                            </div>
+                            <div id="tab02" class="tab-contents">
+                                {#<h2>Tab 2</h2>#}
+                                <form action="{{ path('transfer_search') }}">
                                     <div class="form-group col-md-12">
-                                        <label class="text-muted"> {{ app.session.get('language') == 'es'? '# de Personas':'Amount of People' }}</label>
+                                        <label class="text-muted"> {{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</label>
 
                                         <select class="custom-select" name="cantidadP">
                                             {% for number in 1..30 %}
@@ -703,47 +707,39 @@ border-color: #f9b501">
                                                         {% if number == 1 %}selected{% endif %} >{{ number }}</option>
                                             {% endfor %}
                                         </select>
-
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label class="text-muted"
                                                for="inputEmail4">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</label>
-                                        <input list="lugares" type="text" name="lugar" class="form-control" placeholder="Cuba">
+                                        <select id="desdeInput" name="desde" class="form-control"
+                                                placeholder="Cuba"></select>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label class="text-muted"
                                                for="inputEmail4">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</label>
-                                        <input list="lugares" type="text" name="lugar" class="form-control" placeholder="Cuba">
+                                        <select id="hastaInput" name="hasta" class="form-control"
+                                                placeholder="Cuba"></select>
                                     </div>
-
-                                </div>
-
+                                    <div class="modal-footer">
+                                        <button type="submit"
+                                                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}</button>
+                                    </div>
+                                </form>
                             </div>
 
-
-                            <div class="modal-footer">
-                                <button type="submit"
-                                        class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}</button>
-                            </div>
                         </div>
-                    </form>
+                    </div>
                     {#..................................................#}
 
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div>
         <input type="hidden" id="lang" value="{{ app.session.get('language') }}">
-        <datalist id="lugares">
-            <option value="Azul"></option>
-            <option value="Amarillo"></option>
-            <option value="Burdeos"></option>
-            <option value="Caoba"></option>
-            <option value="Marrón"></option>
-            <option value="Naranja"></option>
-            <option value="Verde"></option>
-        </datalist>
+
+        <datalist id="lugares"></datalist>
+
     </footer>
 {% endblock %}
 
@@ -767,7 +763,8 @@ border-color: #f9b501">
 
     <script type='text/javascript' src="{{ asset('build/unitegallery/js/unitegallery.min.js') }}"></script>
 
-    <script type='text/javascript' src="{{ asset('build/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
+    <script type='text/javascript'
+            src="{{ asset('build/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
 
     <script type="text/javascript">
         var lang ={{ app.session.get('languaje') }};
@@ -826,6 +823,33 @@ border-color: #f9b501">
             $('#inputSalida').attr('min', yyyymmdd_salida());
             $('#inputEntrada').val(yyyymmdd());
             $('#inputSalida').val(yyyymmdd_salida());
+            $.ajax({
+                type: "POST",
+                url: "{{ path('ajax_get_lugares') }}",
+                success: function (response) {
+                    var lugares = response.result;
+                    var list = document.getElementById('lugares');
+                    var desde = document.getElementById('desdeInput');
+                    var hasta = document.getElementById('hastaInput');
+                    lugares.forEach(function (item) {
+                        var placeOption = document.createElement('option');
+                        placeOption.value = item['nombre'];
+                        list.appendChild(placeOption);
+
+                        var desdeOption = document.createElement('option');
+                        desdeOption.value = item['nombre'];
+                        desdeOption.innerHTML = item['nombre'];
+                        desde.appendChild(desdeOption);
+
+                        var hastaOption = document.createElement('option');
+                        desdeOption.value = item['nombre'];
+                        hastaOption.innerHTML = item['nombre'];
+                        hasta.appendChild(hastaOption);
+                    })
+                }
+            })
+            ;
+
         })
         $('#createContact').click(function () {
             var telPattern = "^[0-9]{4,30}$";

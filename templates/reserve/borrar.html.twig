@@ -1,0 +1,73 @@
+{% extends 'backendBase.html.twig' %}
+
+
+{% block title %}Administración | Reservas no Confirmadas{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+
+
+{% endblock %}
+
+{% block script %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/js/popper.min.js') }}"></script>
+
+    <script src="{{ asset('build/js/baguetteBox.min.js') }}"></script>
+
+    <script type="text/javascript">
+        function yyyymmdd() {
+            var today = new Date();
+            var now = new Date();
+            now.setDate(today.getDate() + 4);
+            var y = now.getFullYear();
+            var m = now.getMonth() + 1;
+            var d = now.getDate();
+            var mm = m < 10 ? '0' + m : m;
+            var dd = d < 10 ? '0' + d : d;
+            return '' + y + '-' + mm + '-' + dd;
+        }
+        function yyyymmdd_salida() {
+            var today = new Date();
+            var now = new Date();
+            now.setDate(today.getDate() + 5);
+            var y = now.getFullYear();
+            var m = now.getMonth() + 1;
+            var d = now.getDate();
+            var mm = m < 10 ? '0' + m : m;
+            var dd = d < 10 ? '0' + d : d;
+            return '' + y + '-' + mm + '-' + dd;
+        }
+        alert('asasas');
+        $(document).ready(function () {
+            alert('asasas');
+            var message = {{ message }};
+            if(message != 'none' ){
+                alert({{ message }});
+            }
+            $('#inputEntrada').attr('min', yyyymmdd());
+            $('#inputSalida').attr('min', yyyymmdd_salida());
+            $('#inputEntrada').val(yyyymmdd());
+            $('#inputSalida').val(yyyymmdd_salida());
+        })
+
+    </script>
+
+
+{% endblock %}
