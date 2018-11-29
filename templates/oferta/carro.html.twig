@@ -198,215 +198,221 @@
 
                 <div class="col-12 col-md-4 portfolio-item" id="reserva">
                     <div class="container">
-                        <div class="modal-content">
-                            <form action="" method="post">
-                                <div class="modal-body">
-                                    <div class="form-row">
-
-                                        {#//////////////////////////////////////////////SI tranfer///////////////////////////////////////////////#}
-
-                                        <div class="form-group col-md-8">
-                                            <h6 class="text-muted">
-                                                56€ {{ app.session.get('language') == 'es'? 'por habitación':'per room' }}  </h6>
-                                            {#si tiene 3 estrellas de valoracion hay que hacer un for para que ponga tres fas(estrella rellena) y 2 far(estrella sin relleno)#}
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star star"></i>
-                                            <i class="fas fa-star-half-alt star"></i>
-                                            <i class="far fa-star star"></i>
-                                        </div>
-
-                                        {#<div class="form-row">#}
+                        {#-------------Formulario de reserva para transfer--------------------#}
+                        {% if object.transfer %}
+                            <div class="modal-content">
+                                <form action="" method="post">
+                                    <div class="modal-body">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-8">
+                                                {% if object.valoracionArray[0]!=0 %}
+                                                    {% for j in 1..object.valoracionArray[0] %}
+                                                        <i class="fas fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                {% if object.valoracionArray[1] %}
+                                                    <i class="fas fa-star-half-alt star"></i>
+                                                {% endif %}
+                                                {% if object.valoracionArray[2]!=0 %}
+                                                    {% for j in 1..object.valoracionArray[2] %}
+                                                        <i class="far fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
                                             <div class="form-group col-md-12">
                                                 <label class="text-muted"
                                                        for="inputEntrada">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</label>
                                                 <input type="date" class="form-control" id="inputEntrada">
                                             </div>
+                                            {#</div>#}
+                                            <div class="form-group col-md-12">
+                                                <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Adults' }}</label>
+                                                <select class="custom-select" name="cantP">
+                                                    {% for number in 1..object.capacidad %}
+                                                        <option value="{{ number }}">{{ number }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
 
+                                            <div class="form-group col-md-12">
+                                                <label class="text-muted"
+                                                       for="inputEmail4">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</label>
+                                                <select id="desdeReserveInput" required name="desde"
+                                                        class="form-control">
+                                                    <option value="lugar" disabled>Lugar</option>
+                                                </select>
+                                            </div>
 
-                                        {#</div>#}
-
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Adults' }}</label>
-                                            <select class="custom-select">
-                                                <option selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
-                                            </select>
+                                            <div class="form-group col-md-12">
+                                                <label class="text-muted"
+                                                       for="inputEmail4">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</label>
+                                                <select id="hastaReserveInput" required name="hasta" disabled
+                                                        class="form-control disabled">
+                                                </select>
+                                            </div>
                                         </div>
 
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted"
-                                                   for="inputEmail4">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</label>
-                                            <input list="lugares" type="text" name="lugar" class="form-control" placeholder="Cuba">
+                                        <div class="modal-footer">
+                                            <div class="row">
+                                                <label id="precioTransfer"></label>
+                                                <button type="submit" id="transSubmitButton"
+                                                        class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                            </div>
+                                            <a href="" data-toggle="modal"
+                                               data-target="#reservaEspecialModal">{{ app.session.get('language') == 'es'? 'Más':'More' }}</a>
                                         </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted"
-                                                   for="inputEmail4">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</label>
-                                            <input list="lugares" type="text" name="lugar" class="form-control" placeholder="Cuba">
-                                        </div>
-                 {#//////////////////////////////////////////////SI tranfer///////////////////////////////////////////////#}
-
-                 {#//////////////////////////////////////////////NO tranfer///////////////////////////////////////////////#}
-
-                                        <h6 class="text-muted">
-                                            {{ app.session.get('language') == 'es'? 'Servicio por hora':'Service per hour' }}  </h6>
-
-
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted"
-                                                   for="inputEntrada">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</label>
-                                            <input type="date" class="form-control" id="inputEntrada">
-                                        </div>
-
-
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Adults' }}</label>
-                                            <select class="custom-select">
-                                                <option selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label for="example-time-input" class="text-muted">{{ app.session.get('language') == 'es'? 'Hora inicial':'Start Time' }}</label>
-
-                                                <input class="form-control" type="time" value="13:45:00" id="example-time-input">
-
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label for="example-time-input" class="text-muted">{{ app.session.get('language') == 'es'? 'Hora final':'Final Time' }}</label>
-
-                                            <input class="form-control" type="time" value="13:45:00" id="example-time-input">
-
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted"
-                                                   for="inputEmail4">{{ app.session.get('language') == 'es'? 'Lugar':'Place' }}</label>
-                                            <input list="lugares" type="text" name="lugar" class="form-control" placeholder="Cuba">
-                                        </div>
-
-
-                                        {#//////////////////////////////////////////////NO tranfer///////////////////////////////////////////////#}
-
-                                        {#//////////////////////////////////////////////Todossad ///////////////////////////////////////////////#}
-
-                                        <h6 class="text-muted">
-                                            {{ app.session.get('language') == 'es'? 'Reserva personalizada':'Service per hour' }}  </h6>
-
-
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Adults' }}</label>
-                                            <select class="custom-select">
-                                                <option selected>0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
-                                                <option value="21">21</option>
-                                                <option value="22">22</option>
-                                                <option value="23">23</option>
-                                                <option value="24">24</option>
-                                                <option value="25">25</option>
-                                                <option value="26">26</option>
-                                                <option value="27">27</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="form-group col-md-12">
-                                            <label class="text-muted"
-                                                   for="inputEmail4">{{ app.session.get('language') == 'es'? 'Lugar':'Place' }}</label>
-                                            <textarea list="lugares" type="text" name="lugar" class="form-control" placeholder="Cuba"></textarea>
-                                        </div>
-
-                                        {#//////////////////////////////////////////////Todossad ///////////////////////////////////////////////#}
                                     </div>
+                                </form>
+                            </div>
+                        {% else %}
+                            {#-------------Formulario de reserva para excursion--------------------#}
+                            <div class="modal-content">
+                                <form action="" method="post" id="excForm">
+                                    <div class="modal-body">
+                                        <div class="form-row">
+                                            <div class="form-group col-md-8">
+                                                {% if object.valoracionArray[0]!=0 %}
+                                                    {% for j in 1..object.valoracionArray[0] %}
+                                                        <i class="fas fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                {% if object.valoracionArray[1] %}
+                                                    <i class="fas fa-star-half-alt star"></i>
+                                                {% endif %}
+                                                {% if object.valoracionArray[2]!=0 %}
+                                                    {% for j in 1..object.valoracionArray[2] %}
+                                                        <i class="far fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label class="text-muted"
+                                                       for="inputEntrada">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</label>
+                                                <input type="date" name="fecha" class="form-control" id="inputEntrada">
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Adults' }}</label>
+                                                <select class="custom-select" name="cantP">
+                                                    {% for number in 1..object.capacidad %}
+                                                        <option value="{{ number }}">{{ number }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="desdeReserveInput"
+                                                       class="text-muted">{{ app.session.get('language') == 'es'? 'Hora inicial':'Start Time' }}</label>
 
+                                                <select class="custom-select" id="desdeReserveInput" name="desde">
+                                                    {% for number in 6..23 %}
+                                                        <option value="{{ number }}">
+                                                            {% if number <12 %}{{ number~' am' }}
+                                                            {% elseif number == 12 %}
+                                                                {{ number~'pm' }}
+                                                            {% else %}
+                                                                {{ (number-12)~' pm' }}
+                                                            {% endif %}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="hastaReserveInput"
+                                                       class="text-muted">{{ app.session.get('language') == 'es'? 'Hora final':'Final Time' }}</label>
 
-
-
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="submit"
-                                            class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
-                                </div>
-
-                            </form>
-                        </div>
+                                                <select class="custom-select" id="hastaReserveInput" name="hasta">
+                                                    {% for number in 7..24 %}
+                                                        <option value="{{ number }}">
+                                                            {% if number <12 %}{{ number~' am' }}
+                                                            {% elseif number == 12 %}
+                                                                {{ number~'pm' }}
+                                                            {% else %}
+                                                                {{ (number-12)~' pm' }}
+                                                            {% endif %}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="errorBox"></div>
+                                    <div class="modal-footer">
+                                        <div class="row">
+                                            <label id="precioTransfer"></label>
+                                            <button type="button" id="excSubmitButton"
+                                                    class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                        </div>
+                                        <a href="" data-toggle="modal"
+                                           data-target="#reservaEspecialModal">{{ app.session.get('language') == 'es'? 'Más':'More' }}</a>
+                                    </div>
+                                </form>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
 
+            </div>
+        </div>
+        <h2></h2>
+        <div class="col-12 col-md-4 portfolio-item" id="reserva">
+            <div class="container">
+                <div class="modal-content">
+                    <form action="" method="post">
+                        <div class="modal-body">
+                            <div class="form-row">
+                                <h6 class="text-muted">
+                                    {{ app.session.get('language') == 'es'? 'Reserva personalizada':'Service per hour' }}  </h6>
+                                <div class="form-group col-md-12">
+                                    <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Adults' }}</label>
+                                    <select class="custom-select">
+                                        <option selected>0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
+                                        <option value="27">27</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label class="text-muted"
+                                           for="inputEmail4">{{ app.session.get('language') == 'es'? 'Lugar':'Place' }}</label>
+                                    <textarea list="lugares" type="text" name="lugar" class="form-control"
+                                              placeholder="Cuba"></textarea>
+                                </div>
+                                {#//////////////////////////////////////////////Todossad ///////////////////////////////////////////////#}
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit"
+                                    class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Enviar':'Send' }}</button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -436,31 +442,22 @@
 
 
 
-    <div class="portfolio-modal-sm modal fade" id="servicehModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="portfolio-modal-sm modal fade" id="reservaEspecialModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title"
-                        style="float: left">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</h4>
+                        style="float: left">{{ app.session.get('language') == 'es'? 'Reserva':'Reserve' }}</h4>
                     <button type="button" class="close" style="float: right" data-dismiss="modal"><span
                                 aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 </div>
 
-                {#..........................................................#}
-
                 <div class="modal-body">
-
                     <div class="text-muted">
-                        Todos los servicios que puedas existir y se quieran poner
                     </div>
-
                     <div class="modal-footer">
-
                     </div>
                 </div>
-
-                {#..................................................#}
-
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
@@ -493,8 +490,121 @@
         baguetteBox.run('.grid-gallery', {animation: 'slideIn'});
     </script>
 
-    {#/////////////////////////////////////////////////////////////////////////////////////////////////////////////////#}
+    {#----------------Script para transfer----------------------- #}
+    {% if object.transfer %}
+        <script>
+            $(document).ready(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('ajax_get_lugares') }}",
+                    success: function (response) {
+                        var lugares = response.result;
+                        var desde = document.getElementById('desdeReserveInput');
+                        lugares.forEach(function (item) {
+                            var desdeOption = document.createElement('option');
+                            desdeOption.value = item['nombre'];
+                            desdeOption.innerHTML = item['nombre'];
+                            desde.appendChild(desdeOption);
+                        });
+                        desde.value = "lugar";
+                    }
+                })
+                ;
+                $('#hastaReserveInput').prop('disabled', true);
+                $('#desdeReserveInput').change(function () {
+                    var carId = {{ object.id }};
+                    var desde = $('#desdeReserveInput').val();
+                    $('#hastaReserveInput').prop('disabled', false);
+                    var data = {carId: carId, desde: desde};
+                    $.ajax({
+                        type: "POST",
+                        url: "{{ path('ajax_get_possible_destinations') }}",
+                        data: data,
+                        success: function (response) {
+                            $('#hastaReserveInput')
+                                .find('option')
+                                .remove()
+                                .end();
+                            var lugares = response.result;
+                            var hasta = document.getElementById('hastaReserveInput');
+                            lugares.forEach(function (item) {
+                                var hastaOption = document.createElement('option');
+                                hastaOption.value = item;
+                                hastaOption.innerHTML = item;
+                                hasta.appendChild(hastaOption);
+                                calculateTransferPrice();
+                            });
+
+                        }
+                    })
+                    ;
+                });
+                $('#hastaReserveInput').change(function () {
+                    calculateTransferPrice()
+                })
+            });
+            function calculateTransferPrice() {
+                var desde = $('#desdeReserveInput').val();
+                var hasta = $('#hastaReserveInput').val();
+                if (hasta == null) {
+                    return;
+                }
+                var precio ={{ object.precio }};
+                var type ={{ object.transfer }};
+                var data = {desde: desde, hasta: hasta, precio: precio, type: type};
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('ajax_calculate_price') }}",
+                    data: data,
+                    success: function (response) {
+                        var price = response.result;
+                        document.getElementById('precioTransfer').innerHTML = '€' + price;
+                    }
+                })
+                ;
+            }
+        </script>
+    {% else %}
+        {#------------------Script para excursion---------------------------#}
+        <script>
+            $(document).ready(function () {
+                calculatePrice();
+                $('#hastaReserveInput').change(function () {
+                    calculatePrice();
+                })
+                $('#desdeReserveInput').change(function () {
+                    calculatePrice();
+                })
+            });
+            function calculatePrice() {
+                var desde = parseInt($('#desdeReserveInput').val());
+                var hasta = parseInt($('#hastaReserveInput').val());
+                var price = parseInt({{ object.precio }});
+                var totalPrice = (hasta - desde) * price;
+                totalPrice = (totalPrice < 0) ? 0 : totalPrice;
+                document.getElementById('precioTransfer').innerHTML = '€' + totalPrice;
+            }
+        </script>
+    {% endif %}
+
+    {#------------------------Script vlidar formulario de rerva--------------------#}
     <script>
+        $('#excSubmitButton').click(function () {
+            var desde = parseInt($('#desdeReserveInput').val());
+            var hasta = parseInt($('#hastaReserveInput').val());
+            if (desde >= hasta) {
+                var text = ($('#lang').val() == 'es') ? 'La hora inicial no puede ser despues de la hora final'
+                    : 'The amount of people exceeds the capacity of the selected rooms';
+                tpl = '<div class="alert alert-danger">' + text + '</div>';
+                $('#errorBox').html(tpl)
+                return;
+            }
+            $('#excForm').submit();
+        })
+    </script>
+
+
+    <script type="text/javascript">
         var carousel = $(".carouselCarucel"),
             currdeg = 0;
 
@@ -516,14 +626,14 @@
             });
         }
         $('#createCommentButton').click(function () {
-            var objectId= $('#objectId').val();
-            var objectType= $('#objectType').val();
-            var comment= $('#commentArea').val();
-            var userId= $('#userId').val();
-            if(comment == ''){
+            var objectId = $('#objectId').val();
+            var objectType = $('#objectType').val();
+            var comment = $('#commentArea').val();
+            var userId = $('#userId').val();
+            if (comment == '') {
                 alert('debe escribir un comentario');
-            }else{
-                var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
+            } else {
+                var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                 $.ajax({
                     type: "POST",
                     url: "{{ path('ajax_create_comment') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)

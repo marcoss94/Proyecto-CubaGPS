@@ -61,7 +61,7 @@ class CarForm extends AbstractType
                 'No' => false,
             ),])
             ->add('capacidad',null, ['label' => 'Cantidad de Asientos'])
-            ->add('precio',null, ['label' => 'Precio x Hora'])
+            ->add('precio',null, ['label' => 'Precio x Hora/Km'])
             ->add('idiomas',ChoiceType::class, ['label' => 'Idiomas','choices'  => array(
                 'English' => 'English',
                 'Español' => 'Español',

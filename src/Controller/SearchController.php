@@ -76,42 +76,8 @@ class SearchController extends Controller
             $results = $this->get('session')->get('search_results');
         }
         $paginator = $this->get('knp_paginator');
-        $advancedData = $paginator->paginate($results, $request->query->getInt('page', 1), 6);
-        /*
-        $entrada = new \DateTime($request->get('fechaEntrada'));
-        $salida = new \DateTime($request->get('fechaSalida'));
-
-        $servicio = $request->get('servicios');
-        $dias = $entrada->diff($salida)->days;
-        if ($cant == 1) {
-            $selectorPrecio = 'precio1';
-        } elseif ($cant == 2) {
-            $selectorPrecio = 'precio2';
-        } elseif ($cant == 3) {
-            $selectorPrecio = 'precio3';
-        } else {
-            $selectorPrecio = 'precio4';
-        }*/
+        $advancedData = $paginator->paginate($results, $request->query->getInt('page', 1), 9);
         return $this->render('lista/index.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $advancedData]);
     }
 
-    public function findCasa(Request $request, CasaRepository $casaRepository)
-    {
-
-    }
-
-    public function findCarro(Request $request, CarroRepository $carroRepository)
-    {
-
-    }
-
-    public function findExcursion(Request $request, ExcursionRepository $excursionRepository)
-    {
-
-    }
-
-    public function findPaquete(Request $request, PaqueteRepository $paqueteRepository)
-    {
-
-    }
 }

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Lugar;
+use App\Repository\CarroRepository;
 use App\Repository\LugarRepository;
 use App\Service\DataService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -61,7 +62,7 @@ class TransferController extends Controller
         $dlong = ($long1 - $long2);
         $dvalue = (sin($lat1 * $degtorad) * sin($lat2 * $degtorad)) + (cos($lat1 * $degtorad) * cos($lat2 * $degtorad) * cos($dlong * $degtorad));
         $dd = acos($dvalue) * $radtodeg;
-        return round(($dd * $km), 2);
+        return round(($dd * $km), 0);
     }
 
 
@@ -82,20 +83,70 @@ class TransferController extends Controller
      */
     public function transfer_search(Request $request, LugarRepository $lugarRepository, DataService $query)
     {
-        $desde = $lugarRepository->findOneBy(['nombre'=>$request->get('desde')]);
-        $hasta = $lugarRepository->findOneBy(['nombre'=>$request->get('hasta')]);
+        $desde = $lugarRepository->findOneBy(['nombre' => $request->get('desde')]);
+        $hasta = $lugarRepository->findOneBy(['nombre' => $request->get('hasta')]);
         $cantidadP = (int)$request->get('cantidadP');
-        $min = $this->provincias[$desde->getProvincia()]>$this->provincias[$hasta->getProvincia()]? $this->provincias[$hasta->getProvincia()] :$this->provincias[$desde->getProvincia()];
-        $max = $this->provincias[$desde->getProvincia()]<=$this->provincias[$hasta->getProvincia()]? $this->provincias[$hasta->getProvincia()] :$this->provincias[$desde->getProvincia()];
-        $prov=[];
-        foreach ($this->provincias as $key=>$val){
-            if($val >= $min && $val <= $max){
-                $prov[]=$key;
+        $min = $this->provincias[$desde->getProvincia()] > $this->provincias[$hasta->getProvincia()] ? $this->provincias[$hasta->getProvincia()] : $this->provincias[$desde->getProvincia()];
+        $max = $this->provincias[$desde->getProvincia()] <= $this->provincias[$hasta->getProvincia()] ? $this->provincias[$hasta->getProvincia()] : $this->provincias[$desde->getProvincia()];
+        $prov = [];
+        foreach ($this->provincias as $key => $val) {
+            if ($val >= $min && $val <= $max) {
+                $prov[] = $key;
             }
         }
-        $data = $query->returnTransferSearchData($request,$prov);
+        $data = $query->returnTransferSearchData($request, $prov);
         return $this->render('lista/index.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $data]);
     }
+
+    /**
+     * @Route("/ajax_get_possible_destinations", name="ajax_get_possible_destinations")
+     */
+    public function ajax_get_possible_destinations(Request $request, LugarRepository $lugarRepository, CarroRepository $carroRepository)
+    {
+        $carro = $carroRepository->find($request->get('carId'));
+        $lugar = $lugarRepository->findOneBy(['nombre' => $request->get('desde')]);
+        $index1 = $this->provincias[$carro->getProvincia()];
+        $index2 = $this->provincias[$lugar->getProvincia()];
+        $min = $index1 > $index2 ? $index2 : $index1;
+        $max = $index1 <= $index2 ? $index2 : $index1;
+        $prov = [];
+        foreach ($this->provincias as $key => $val) {
+            if ($val >= $min && $val <= $max) {
+                $prov[] = $key;
+            }
+        }
+        $places = [];
+        foreach ($prov as $p) {
+            $places = array_merge($places, $lugarRepository->findBy(['provincia' => $p]));
+        }
+        $response = new JsonResponse();
+        $placeNames = [];
+        foreach ($places as $place) {
+            $placeNames[] = $place->getNombre();
+        }
+        $response->setData(['result' => $placeNames]);
+        return $response;
+    }
+
+    /**
+     * @Route("/ajax_calculate_price", name="ajax_calculate_price")
+     */
+    public function ajax_calculate_price(Request $request, LugarRepository $lugarRepository, CarroRepository $carroRepository)
+    {
+        if($request->get('type')) {
+            $desde = $lugarRepository->findOneBy(['nombre' => $request->get('desde')]);
+            $hasta = $lugarRepository->findOneBy(['nombre' => $request->get('hasta')]);
+            $distancia = $this->harvestine($desde->getLatitud(), $desde->getLongitud(), $hasta->getLatitud(), $hasta->getLongitud());
+            $precio = $distancia * (int)$request->get('precio');
+        }else{
+            $precio = 'precioExc';
+        }
+        $response = new JsonResponse();
+        $response->setData(['result' => $precio]);
+        return $response;
+    }
+
+
 
 
 }

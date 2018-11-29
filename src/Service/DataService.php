@@ -160,7 +160,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 2)
+            $request->query->getInt('limit', 9)
         );
         return ($results);
     }
