@@ -201,8 +201,8 @@
                         {#-------------Formulario de reserva para transfer--------------------#}
                         {% if object.transfer %}
                             <div class="modal-content">
-                                <form action="" method="post">
-                                    <div class="modal-body">
+                                <div class="modal-body">
+                                    <form action="" method="post">
                                         <div class="form-row">
                                             <div class="form-group col-md-8">
                                                 {% if object.valoracionArray[0]!=0 %}
@@ -250,25 +250,91 @@
                                                         class="form-control disabled">
                                                 </select>
                                             </div>
+                                            {% if app.user %}
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <input type="email" class="form-control" id="inputEail1"
+                                                           aria-describedby="emailHelp" name="email" required="required"
+                                                           placeholder="Enter email" value="{{ app.user.email }}">
+                                                    <small id="emailHelp"
+                                                           class="form-text text-muted">{{ app.session.get('language') == 'es'?
+                                                        'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
+                                                </div>
+                                            {% endif %}
                                         </div>
-
                                         <div class="modal-footer">
                                             <div class="row">
                                                 <label id="precioTransfer"></label>
                                                 <button type="submit" id="transSubmitButton"
                                                         class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                             </div>
-                                            <a href="" data-toggle="modal"
-                                               data-target="#reservaEspecialModal">{{ app.session.get('language') == 'es'? 'Más':'More' }}</a>
+                                        </div>
+                                    </form>
+                                    {#--------------------------Reserva Especial-----------------------------------------------#}
+                                    <a data-toggle="collapse" href="#collapseReserve" role="button"
+                                       aria-expanded="false" aria-controls="collapseReserve">
+                                        {{ app.session.get('language') == 'es'? '¿No encuentras lo que buscas?':'Special Reserve' }}
+                                    </a>
+                                    <div class="collapse" id="collapseReserve">
+                                        <div class="card card-body">
+                                            {% if app.user %}
+                                                <label class="text-muted">{{ app.session.get('language') == 'es'?
+                                                    'En caso de que desee reservar esta oferta de una
+                                            manera diferente podemos crear una oferta especial para ti,
+                                            contáctanos y en breve te daremos respueta:
+                                            ':
+                                                    'Reserve' }}</label>
+                                                <form action="{{ path('contact_special_reserve') }}">
+                                                    <div class="form-group col-md-12">
+                                                        <label class="text-muted"
+                                                               for="inputEmail4">{{ app.session.get('language') == 'es'? '¿Como te gustaría reservar esta oferta?':'Place' }}</label>
+                                                        {% if app.user %}
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Email</label>
+                                                                <input type="email" class="form-control" id="inputEail1"
+                                                                       aria-describedby="emailHelp" name="email"
+                                                                       required="required"
+                                                                       placeholder="Enter email"
+                                                                       value="{{ app.user.email }}">
+                                                                <small id="emailHelp"
+                                                                       class="form-text text-muted">{{ app.session.get('language') == 'es'?
+                                                                    'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
+                                                            </div>
+                                                        {% endif %}
+                                                        <textarea rows="5" type="text" name="descriptionRE"
+                                                                  class="form-control"
+                                                                  required></textarea>
+                                                        <label for="cantPersRE">{{ app.session.get('language') == 'es'?
+                                                            '# de Personas': 'Amount of People' }}</label>
+                                                        <select class="custom-select" name="cantPersRE" id="cantPersRE">
+                                                            {% for number in 1..30 %}
+                                                                <option value="{{ number }}">{{ number }}</option>
+                                                            {% endfor %}
+                                                        </select>
+                                                        <h3></h3>
+                                                        <button type="submit"
+                                                                class="btn btn-success">{{ app.session.get('language') == 'es'? 'Enviar':'Send' }}</button>
+                                                    </div>
+                                                </form>
+                                            {% else %}
+                                                <a class="nav-link js-scroll-trigger" href="" data-toggle="modal"
+                                                   data-target="#loginModal">
+                                                    {{ app.session.get('language') == 'es'? 'Primero inicia una sesión':'Login' }}
+                                                </a>
+                                            {% endif %}
+
                                         </div>
                                     </div>
-                                </form>
+                                    {#---------------------------------------------------------------------------------------#}
+                                </div>
+
                             </div>
                         {% else %}
                             {#-------------Formulario de reserva para excursion--------------------#}
                             <div class="modal-content">
                                 <form action="" method="post" id="excForm">
                                     <div class="modal-body">
+
                                         <div class="form-row">
                                             <div class="form-group col-md-8">
                                                 {% if object.valoracionArray[0]!=0 %}
@@ -332,6 +398,17 @@
                                                     {% endfor %}
                                                 </select>
                                             </div>
+                                            {% if app.user %}
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Email</label>
+                                                    <input type="email" class="form-control" id="inputEail1"
+                                                           aria-describedby="emailHelp" name="email" required="required"
+                                                           placeholder="Enter email" value="{{ app.user.email }}">
+                                                    <small id="emailHelp"
+                                                           class="form-text text-muted">{{ app.session.get('language') == 'es'?
+                                                        'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div id="errorBox"></div>
@@ -341,10 +418,59 @@
                                             <button type="button" id="excSubmitButton"
                                                     class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                         </div>
-                                        <a href="" data-toggle="modal"
-                                           data-target="#reservaEspecialModal">{{ app.session.get('language') == 'es'? 'Más':'More' }}</a>
                                     </div>
                                 </form>
+                                <div class="collapse" id="collapseReserve">
+                                    <div class="card card-body">
+                                        {% if app.user %}
+                                            <label class="text-muted">{{ app.session.get('language') == 'es'?
+                                                'En caso de que desee reservar esta oferta de una
+                                            manera diferente podemos crear una oferta especial para ti,
+                                            contáctanos y en breve te daremos respueta:
+                                            ':
+                                                'Reserve' }}</label>
+                                            <form action="{{ path('contact_special_reserve') }}">
+                                                <div class="form-group col-md-12">
+                                                    <label class="text-muted"
+                                                           for="inputEmail4">{{ app.session.get('language') == 'es'? '¿Como te gustaría reservar esta oferta?':'Place' }}</label>
+                                                    {% if app.user %}
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Email</label>
+                                                            <input type="email" class="form-control" id="inputEail1"
+                                                                   aria-describedby="emailHelp" name="email"
+                                                                   required="required"
+                                                                   placeholder="Enter email"
+                                                                   value="{{ app.user.email }}">
+                                                            <small id="emailHelp"
+                                                                   class="form-text text-muted">{{ app.session.get('language') == 'es'?
+                                                                'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
+                                                        </div>
+                                                    {% endif %}
+                                                    <textarea rows="5" type="text" name="descriptionRE"
+                                                              class="form-control"
+                                                              required></textarea>
+                                                    <label for="cantPersRE">{{ app.session.get('language') == 'es'?
+                                                        '# de Personas': 'Amount of People' }}</label>
+                                                    <select class="custom-select" name="cantPersRE" id="cantPersRE">
+                                                        {% for number in 1..30 %}
+                                                            <option value="{{ number }}">{{ number }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                    <h3></h3>
+                                                    <button type="submit"
+                                                            class="btn btn-success">{{ app.session.get('language') == 'es'? 'Enviar':'Send' }}</button>
+                                                </div>
+                                            </form>
+                                        {% else %}
+                                            <a class="nav-link js-scroll-trigger" href="" data-toggle="modal"
+                                               data-target="#loginModal">
+                                                {{ app.session.get('language') == 'es'? 'Primero inicia una sesión':'Login' }}
+                                            </a>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                                {#---------------------------------------------------------------------------------------#}
                             </div>
                         {% endif %}
                     </div>
@@ -353,77 +479,11 @@
             </div>
         </div>
         <h2></h2>
-        <div class="col-12 col-md-4 portfolio-item" id="reserva">
-            <div class="container">
-                <div class="modal-content">
-                    <form action="" method="post">
-                        <div class="modal-body">
-                            <div class="form-row">
-                                <h6 class="text-muted">
-                                    {{ app.session.get('language') == 'es'? 'Reserva personalizada':'Service per hour' }}  </h6>
-                                <div class="form-group col-md-12">
-                                    <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Adults' }}</label>
-                                    <select class="custom-select">
-                                        <option selected>0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
-                                        <option value="27">27</option>
-                                    </select>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label class="text-muted"
-                                           for="inputEmail4">{{ app.session.get('language') == 'es'? 'Lugar':'Place' }}</label>
-                                    <textarea list="lugares" type="text" name="lugar" class="form-control"
-                                              placeholder="Cuba"></textarea>
-                                </div>
-                                {#//////////////////////////////////////////////Todossad ///////////////////////////////////////////////#}
-                            </div>
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit"
-                                    class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Enviar':'Send' }}</button>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-
-
     </section>
 
     <a class="botonReserva js-scroll-trigger "
        href="#reserva">
-
         <button class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
-
     </a>
 
 
@@ -433,15 +493,7 @@
 
 {% block footer %}
     {{ parent() }}
-
-
-
     {#Modal ver servicios------------------------------------------------------------------------------------------#}
-
-
-
-
-
     <div class="portfolio-modal-sm modal fade" id="reservaEspecialModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -647,7 +699,6 @@
                 })
                 ;
             }
-
         })
     </script>
 

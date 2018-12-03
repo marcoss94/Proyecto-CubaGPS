@@ -93,7 +93,6 @@ class UserController extends AbstractController
      */
     public function ajax_contact(Request $request)
     {
-
         $em = $this->getDoctrine()->getManager();
         $contacto = new Contacto();
         $contacto->setEmail($request->get('email'));
@@ -114,10 +113,6 @@ class UserController extends AbstractController
     public function view_contacts(ContactoRepository $contactoRepository)
     {
         $em = $this->getDoctrine()->getManager();
-
-
-        $em->persist($contador);
-        $em->flush();
         $contactos = $contactoRepository->findBy(array(), ['createdAt' => 'DESC']);
         return $this->render('admin/contactos.html.twig', [
             'contactos' => $contactos,
