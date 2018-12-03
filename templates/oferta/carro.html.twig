@@ -678,14 +678,17 @@
             });
         }
         $('#createCommentButton').click(function () {
-            var objectId = $('#objectId').val();
-            var objectType = $('#objectType').val();
-            var comment = $('#commentArea').val();
-            var userId = $('#userId').val();
-            if (comment == '') {
+            var objectId= $('#objectId').val();
+            var objectType= $('#objectType').val();
+            var comment= $('#commentArea').val();
+            var userId= $('#userId').val();
+            if(comment == ''){
                 alert('debe escribir un comentario');
-            } else {
-                var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
+                $("#textoWarningGrande").text('Algo acaba de suceder');
+                $("#textoWarning").text('Debe escribir un comentario');
+                $('.Alertwarning').animate({top:"0"}, 500);
+            }else{
+                var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
                 $.ajax({
                     type: "POST",
                     url: "{{ path('ajax_create_comment') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
@@ -693,6 +696,9 @@
                     success: function (response) {
                         if (response.result) {
                             alert('Su comentario ha sido recivido correctamente');
+                            $("#textoSuccessGrande").text('Algo acaba de suceder');
+                            $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
+                            $('.Alertsuccess').animate({top:"0"}, 500);
                             $('#commentArea').val('');
                         }
                     }

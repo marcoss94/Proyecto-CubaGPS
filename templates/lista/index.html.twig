@@ -43,11 +43,10 @@
                             {{ app.session.get('language') == 'es'? 'Resultados':'Results' }}
                         {% endif %}
 
+                        <span class="cont">{{ data.getTotalItemCount }}</span>
                     </h2>
 
-                    <div class="text-muted" style="color: #f9b501 !important;">
-                        <h5>Resultados: <span class="cont">{{ data.getTotalItemCount }}</span></h5>
-                    </div>
+
                 </div>
                 {% for i in data %}
                     <div class="col-md-4 col-sm-6 portfolio-item">

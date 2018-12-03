@@ -15,7 +15,11 @@
 {% endblock %}
 
 {% block menu %}
-
+    {#<div class="popupunder alert alert-success fade in">#}
+        {#<button type="button" class="close close-sm" data-dismiss="alert"><i#}
+                    {#class="glyphicon glyphicon-remove"></i></button>#}
+        {#<strong>Success : </strong> The update process has been completed successfull!#}
+    {#</div>#}
 {% endblock %}
 
 {% block body %}
@@ -26,18 +30,17 @@
         <div class="container">
             <div class="intro-text">
                 <div class="intro-lead-in">{{ app.session.get('language') == 'es'? 'Bienvenido':'Welcome' }}</div>
-                {#<div class="intro-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</div>#}
+                <div class="intro-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</div>
 
 
-
-<div class="bodyLetra">
-                <div id="table">
-                    <div id="centeralign">
-                        <h1 class="h1Letra">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</h1>
-                        {#<p class="pLetra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ante arcu, dignissim non risus id, posuere efficitur felis. Vestibulum arcu diam, semper non ipsum quis, dictum ultricies diam. Suspendisse vel luctus sapien. Mauris tristique condimentum velit tincidunt pharetra. Curabitur ut lectus eleifend, malesuada lorem eget, consectetur augue. Nunc scelerisque nisi in lacus eleifend eleifend. Praesent blandit ex at nunc maximus, ut sodales ante auctor. Nunc elementum eros sit amet malesuada facilisis. Morbi eget elit consequat, sodales urna in, lobortis nisi. Morbi dapibus velit eu mattis bibendum. Nulla et nisi eget turpis vulputate suscipit eu nec nunc. Pellentesque ut pulvinar quam.</p>#}
-                    </div>
-                </div>
-</div>
+                {#<div class="bodyLetra">#}
+                    {#<div id="table">#}
+                        {#<div id="centeralign">#}
+                            {#<h1 class="h1Letra">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</h1>#}
+                            {#<p class="pLetra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ante arcu, dignissim non risus id, posuere efficitur felis. Vestibulum arcu diam, semper non ipsum quis, dictum ultricies diam. Suspendisse vel luctus sapien. Mauris tristique condimentum velit tincidunt pharetra. Curabitur ut lectus eleifend, malesuada lorem eget, consectetur augue. Nunc scelerisque nisi in lacus eleifend eleifend. Praesent blandit ex at nunc maximus, ut sodales ante auctor. Nunc elementum eros sit amet malesuada facilisis. Morbi eget elit consequat, sodales urna in, lobortis nisi. Morbi dapibus velit eu mattis bibendum. Nulla et nisi eget turpis vulputate suscipit eu nec nunc. Pellentesque ut pulvinar quam.</p>#}
+                        {#</div>#}
+                    {#</div>#}
+                {#</div>#}
 
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" style="background-color: #f9b501;
 border-color: #f9b501;"
@@ -60,6 +63,20 @@ border-color: #f9b501;"
                         class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</h2>
 
                 </div>
+
+
+                {#<div class="pull-alert">#}
+                    {#<div class="alert alert-success pull-right alert-dismissible fade show" role="alert">#}
+                        {#<strong>Holy guacamole!</strong> You should check in on some of those fields below.#}
+                        {#<button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+                            {#<span aria-hidden="true">&times;</span>#}
+                        {#</button>#}
+                    {#</div>#}
+                {#</div>#}
+
+
+
+
                 <div class="col-md-12 ">
                     <div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">
                         <div class="resCarousel-inner">
@@ -67,7 +84,8 @@ border-color: #f9b501;"
                                 <div class="item">
                                     <div class="col-xs-12 col-sm-12 col-lg-12">
                                         {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                        <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                                        <a class="portfolio-link"
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                             <div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide"
                                                  data-ride="carousel "
                                                  data-interval="false">
@@ -555,7 +573,8 @@ border-color: #f9b501;"
                                 <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
                                     maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.</h7>
+                                    architecto quo inventore harum ex magni, dicta impedit.
+                                </h7>
                             </div>
                             <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -566,7 +585,8 @@ border-color: #f9b501;"
                                 <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
                                     maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.</h7>
+                                    architecto quo inventore harum ex magni, dicta impedit.
+                                </h7>
                             </div>
                             <div class="col-md-4">
         <span class="fa-stack fa-4x">
@@ -577,7 +597,8 @@ border-color: #f9b501;"
                                 <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
                                     maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.</h7>
+                                    architecto quo inventore harum ex magni, dicta impedit.
+                                </h7>
                             </div>
                         </div>
                         {#///////////////////////////comentarios./////////////////////////////////////////////#}
@@ -695,7 +716,8 @@ border-color: #f9b501;"
                                     elit. Aut
                                     eaque,
                                     laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut
-                                    unde.</h7>
+                                    unde.
+                                </h7>
                             </div>
                         </div>
                     </div>
@@ -841,6 +863,10 @@ border-color: #f9b501;"
                     var userId = $('#userId').val();
                     if (comment == '') {
                         alert('debe escribir un comentario');
+                        $("#textoWarningGrande").text('Algo acaba de suceder');
+                        $("#textoWarning").text('Debe escribir un comentario');
+                        $('.Alertwarning').animate({top:"0"}, 500);
+
                     } else {
                         var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                         $.ajax({
@@ -850,6 +876,9 @@ border-color: #f9b501;"
                             success: function (response) {
                                 if (response.result) {
                                     alert('Su comentario ha sido recibido correctamente');
+                                    $("#textoSuccessGrande").text('Algo acaba de suceder');
+                                    $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
+                                    $('.Alertsuccess').animate({top:"0"}, 500);
                                     $('#commentArea').val('');
                                 }
                             }
@@ -865,33 +894,6 @@ border-color: #f9b501;"
 
 
 
-            <script>
-
-                function typeEffect(element, speed) {
-                    var text = $(element).text();
-                    $(element).html('');
-
-                    var i = 0;
-                    var timer = setInterval(function() {
-                        if (i < text.length) {
-                            $(element).append(text.charAt(i));
-                            i++;
-                        } else {
-                            clearInterval(timer);
-                        }
-                    }, speed);
-                }
-
-                $( document ).ready(function() {
-                    var speed = 75;
-                    var delay = $('h1').text().length * speed + speed;
-                    typeEffect($('h1'), speed);
-                    setTimeout(function(){
-                        $('p').css('display', 'inline-block');
-                        typeEffect($('p'), speed);
-                    }, delay);
-                });
-            </script>
 
 
         {% endblock %}
