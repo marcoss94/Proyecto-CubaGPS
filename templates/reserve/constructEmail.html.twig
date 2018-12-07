@@ -1,0 +1,269 @@
+{% extends 'backendBase.html.twig' %}
+
+
+{% block title %}Administración | Reservas no Confirmadas{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('reservasnoconfirmadas') }}">Prereservas</a>
+        </li>
+        <li class="breadcrumb-item active">Enviar Confirmación</li>
+    </ol>
+
+    <div class="card mb-3">
+        <div class="card-header">
+
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-mail-forward"></i>
+                    Email
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <form id="adjForm" action="{{ path('send_email') }}">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="text">Texto Adicional del Email</label>
+                            <textarea class="form-control" id="text" rows="6"></textarea>
+                        </div>
+                        <div id="adjuntos" style="height: 160px"></div>
+                        <input type="hidden" name="userId" value="{{ user.id }}" >
+
+                        <button type="button" onclick="submitForm()" class="btn btn-dark"><i class="fa fa-paper-plane"></i>Enviar</button>
+                    </div>
+                    <div class="col" style="max-width: 400px">
+                        <div class="form-group">
+                            <label for="prov">Buscar</label>
+                            <select class="form-control" id="prov">
+                                <option value="default" selected disabled>Provincia</option>
+                                <option value="Pinar del Rio">Pinar del Rio</option>
+                                <option value="Artemisa">Artemisa</option>
+                                <option value="La Habana">La Habana</option>
+                                <option value="Mayabeque">Mayabeque</option>
+                                <option value="Matanzas">Matanzas</option>
+                                <option value="Villa Clara">Villa Clara</option>
+                                <option value="Cienfuegos">Cienfuegos</option>
+                                <option value="Sancti Spiritus">Sancti Spiritus</option>
+                                <option value="Ciego de Ávila">Ciego de Ávila</option>
+                                <option value="Camaguey">Camaguey</option>
+                                <option value="Las Tunas">Las Tunas</option>
+                                <option value="Holguín">Holguín</option>
+                                <option value="Granma">Granma</option>
+                                <option value="Santiago de Cuba">Santiago de Cuba</option>
+                                <option value="Guantánamo">Guantánamo</option>
+                                <option value="Isla de la Juventud">Isla de la Juventud</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="car">Carros</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <button type="button" id="carB" disabled onclick="agregarCarro()"
+                                            class="btn btn-primary">Agregar
+                                    </button>
+                                </div>
+                                <select class="form-control" id="car"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cas">Casas</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <button type="button" id="casB" disabled onclick="agregarCasa()"
+                                            class="btn btn-success">Agregar
+                                    </button>
+                                </div>
+                                <select class="form-control" id="cas"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="exc">Excursiones</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <button type="button" id="excB" disabled onclick="agregarExcur()"
+                                            class="btn btn-warning">Agregar
+                                    </button>
+                                </div>
+                                <select class="form-control" id="exc"></select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="paq">Paquetes</label>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <button type="button" id="paqB" onclick="agregarPaquete()"
+                                            class="btn btn-info">Agregar
+                                    </button>
+                                </div>
+                                <select class="form-control" id="paq">
+                                    {% for p in paquetes %}
+                                        <option value="{{ p.id }}" name="{{ p }}">{{ p.id~'. '~p }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="adjuntos" value="">
+            </form>
+
+        </div>
+
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-auto mr-auto">
+                    <i class="fas fa-mail-forward"></i>
+                    Email
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+{% block script %}
+    {{ parent() }}
+
+    <script src="{{ asset('build/js/popper.min.js') }}"></script>
+
+    <script src="{{ asset('build/js/baguetteBox.min.js') }}"></script>
+
+    <script type="text/javascript">
+        var adj = new Array();
+        $(document).ready(function () {
+            $('#carB').attr('disabled','disabled');
+            $('#casB').attr('disabled','disabled');
+            $('#excB').attr('disabled','disabled');
+            var prov = document.getElementById('prov');
+            prov.value = "default";
+            $('#prov').change(function () {
+                search();
+            });
+        });
+
+
+        function search() {
+            var prov = $('#prov').val();
+            var data = {prov: prov};
+            $.ajax({
+                type: "POST",
+                url: "{{ path('ajax_find_offers') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
+                data: data,
+                success: function (response) {
+                    $('#car')
+                        .find('option')
+                        .remove()
+                        .end();
+                    $('#cas')
+                        .find('option')
+                        .remove()
+                        .end();
+                    $('#exc')
+                        .find('option')
+                        .remove()
+                        .end();
+                    var carroSelect = document.getElementById('car');
+                    var casaSelect = document.getElementById('cas');
+                    var excSelect = document.getElementById('exc');
+                    var carros = response.result[0];
+                    var casas = response.result[1];
+                    var excursiones = response.result[2];
+                    $('#carB').attr('disabled','disabled');
+                    $('#casB').attr('disabled','disabled');
+                    $('#excB').attr('disabled','disabled');
+                    carros.forEach(function (item) {
+                        var carroOption = document.createElement('option');
+                        carroOption.value = item['id'];
+                        carroOption.innerHTML = item['id'] + '. ' + item['nombre'];
+                        carroSelect.appendChild(carroOption);
+                        $('#carB').removeAttr('disabled');
+                    });
+                    casas.forEach(function (item) {
+                        var casaOption = document.createElement('option');
+                        casaOption.value = item['id'];
+                        casaOption.innerHTML = item['id'] + '. ' + item['nombre'];
+                        casaSelect.appendChild(casaOption);
+                        $('#casB').removeAttr('disabled');
+                    });
+                    excursiones.forEach(function (item) {
+                        var excOption = document.createElement('option');
+                        excOption.value = item['id'];
+                        excOption.innerHTML = item['id'] + '. ' + item['nombre'];
+                        excSelect.appendChild(excOption);
+                        $('#excB').removeAttr('disabled');
+                    });
+
+                }
+            })
+            ;
+        }
+        function agregarCarro() {
+            var id = $('#car').val();
+            var colorClass = "btn btn-primary";
+            adjuntar(id, colorClass);
+        }
+        function agregarCasa() {
+            var id = $('#cas').val();
+            var colorClass = "btn btn-success";
+            adjuntar(id, colorClass);
+        }
+        function agregarExcur() {
+            var id = $('#exc').val();
+            var colorClass = "btn btn-warning";
+            adjuntar(id, colorClass);
+        }
+        function agregarPaquete() {
+            var id = $('#paq').val();
+            var colorClass = "btn btn-info";
+            adjuntar(id, colorClass);
+        }
+        function adjuntar(id, color) {
+            var d = document.getElementById('adjuntos');
+            var but = document.createElement('button');
+            but.innerHTML = id;
+            $(but).addClass(color);
+            d.appendChild(but);
+            adj.push(id);
+        }
+
+        function submitForm() {
+            $('[name="adjuntos"]').val(adj);
+            $('#adjForm').submit();
+        }
+
+    </script>
+
+{% endblock %}

@@ -95,11 +95,32 @@ class Excursion extends DisplayableComponent
      */
     private $latitud;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $infoContacto;
+
 
 
     public function getDiasDisponibles(): ?array
     {
         return $this->diasDisponibles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInfoContacto()
+    {
+        return $this->infoContacto;
+    }
+
+    /**
+     * @param mixed $infoContacto
+     */
+    public function setInfoContacto($infoContacto)
+    {
+        $this->infoContacto = $infoContacto;
     }
 
     /**

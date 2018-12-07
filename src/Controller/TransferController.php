@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Lugar;
+use App\Entity\Reserva;
 use App\Repository\CarroRepository;
 use App\Repository\LugarRepository;
 use App\Service\DataService;
@@ -44,7 +45,7 @@ class TransferController extends Controller
     }
 
     //Distancia en km a partir de latitud longitud.
-    function harvestine($lat1, $long1, $lat2, $long2)
+    public function harvestine($lat1, $long1, $lat2, $long2)
     {
         //Distancia en kilometros en 1 grado distancia.
         //Distancia en millas nauticas en 1 grado distancia: $mn = 60.098;
@@ -122,8 +123,10 @@ class TransferController extends Controller
         $response = new JsonResponse();
         $placeNames = [];
         foreach ($places as $place) {
+            if ($place->getNombre()==$lugar->getNombre())continue;
             $placeNames[] = $place->getNombre();
         }
+
         $response->setData(['result' => $placeNames]);
         return $response;
     }
@@ -144,6 +147,42 @@ class TransferController extends Controller
         $response = new JsonResponse();
         $response->setData(['result' => $precio]);
         return $response;
+    }
+
+    /**
+     * @Route("/reserve/reserve_car_trans", name="reserve_car_trans")
+     */
+    public function reserve_car_trans(Request $request, CarroRepository $carroRepository,LugarRepository $lugarRepository)
+    {
+        $car= $carroRepository->find($request->get('id'));
+        $reserve=new Reserva();
+        $reserve->setCreatedAt();
+        $user=$this->getUser();
+        $this->changeEmailTo($request->get('email'),$user);
+        $reserve->setUsuario($user);
+        $reserve->setCantPersonas($request->get('cantP'));
+        $reserve->setCommponent($car);
+        $desde=$lugarRepository->findOneBy(['nombre'=>$request->get('desde')]);
+        $hasta=$lugarRepository->findOneBy(['nombre'=>$request->get('hasta')]);
+        $reserve->setDesde($desde);
+        $reserve->setHasta($hasta);
+        $distancia = $this->harvestine($desde->getLatitud(), $desde->getLongitud(), $hasta->getLatitud(), $hasta->getLongitud());
+        $precio = $distancia * (int)$car->getPrecio();
+        $reserve->setCosto($precio);
+        $reserve->setStartAt(new \DateTime($request->get('fecha')));
+        $reserve->setType('trans');
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($reserve);
+        $em->flush();
+        return $this->redirectToRoute('blog_index');
+    }
+
+    public function changeEmailTo($email, $user)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user->setEmail($email);
+        $em->persist($user);
+        $em->flush();
     }
 
 

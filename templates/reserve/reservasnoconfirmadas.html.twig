@@ -92,25 +92,27 @@
                                     </td>
                                     <td>{% if r.commponent.getType() == 'Casa' %}
                                             {{ 'Desde '~r.startAt|date("d/m/Y")~' hasta '~r.endAt|date("d/m/Y") }}
+                                        {% elseif r.commponent.getType() == 'Carro' %}
+                                            {% if r.type=='exc' %}
+                                                {{ r.startAt|date("d/m/Y")~' desde '~hora[r.horaInicial]~' hasta '~ hora[r.horaFinal] }}
+                                            {% else %}
+                                                {{ r.startAt|date("d/m/Y")~' desde '~r.desde~' hasta '~ r.hasta }}
+                                            {% endif %}
                                         {% else %}
                                             {{ r.startAt|date("d/m/Y") }}
                                         {% endif %}
                                     </td>
                                     <td>{{ r.cantPersonas }}</td>
                                     <td>{{ '€'~r.costo }}</td>
-                                    <td><input type="checkbox" name="{{ r.id }}"></td>
+                                    <td><input type="checkbox" name="{{ r.id }}" {% if r.status == 'confirmed' %} checked {% endif %}></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Texto adicional para el e-mail</label>
-                        <textarea name="text" type="text" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-                    </div>
                     <div class="col-auto">
                         <div class="row">
-                            <button type="submit" class="btn btn-success">Enviar</button>
+                            <button type="submit" class="btn btn-success">Siguiente</button>
                         </div>
                     </div>
                 </div>
@@ -133,7 +135,7 @@
     {% endfor %}
     </div>
     {% for user in users %}
-        {% for r in user['reserve'] if r.commponent.getType == 'Casa' or r.commponent.getType == 'Carro' %}
+        {% for r in user['reserve'] %}
             <div class="modal fade" id="{{ 'contactInfoModal'~r.id }}" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -164,7 +166,7 @@
                                     <div class="row"><strong>Dirección:</strong></div>
                                     <div class="row" style="margin-left: 10px">{{ r.commponent.direccion }}</div>
                                 </div>
-                            {% elseif e.commponent == 'Carro' %}
+                            {% elseif r.commponent.getType == 'Carro' %}
                                 <div class="col">
                                     <div class="row"><strong>Chofer:</strong></div>
                                     <div class="row" style="margin-left: 10px">{{ r.commponent.nombreChofer }}</div>
@@ -178,6 +180,28 @@
                                     <div class="row" style="margin-left: 10px">{{ r.commponent.licencia }}</div>
                                     <div class="row"><strong>Provincia:</strong></div>
                                     <div class="row" style="margin-left: 10px">{{ r.commponent.provincia }}</div>
+                                </div>
+                            {% elseif r.commponent.getType == 'Excursion' %}
+                                <div class="col">
+                                    <div class="row"><strong>Nombre:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.nombre }}</div>
+                                    <div class="row"><strong>Información de Contacto</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.infoContacto }}</div>
+                                    <div class="row"><strong>Provincia:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.provincia }}</div>
+                                </div>
+                            {% else %}
+                                <div class="col">
+                                    <div class="row"><strong>Nombre:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.nombre }}</div>
+                                    <div class="row"><strong>Id:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.id }}</div>
+                                    <div class="row"><strong>Dias de Duración:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.duracion }}</div>
+                                    <div class="row"><strong>Noches:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.nochesDuracion }}</div>
+                                    <div class="row"><strong>Descripción:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.descripcion }}</div>
                                 </div>
                             {% endif %}
                         </div>

@@ -2,15 +2,19 @@
 
 namespace App\Controller;
 
+use App\Entity\Contacto;
 use App\Entity\DisplayableComponent;
 use App\Entity\Reserva;
+use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\ExcursionRepository;
+use App\Repository\LugarRepository;
 use App\Repository\PaqueteRepository;
 use App\Repository\ReservaRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -29,10 +33,46 @@ class ReserveController extends Controller
     /**
      * @Route("/admin/confirm_reserve", name="confirm_reserve")
      */
-    public function confirm_reserve(Request $request, ReservaRepository $reservaRepository, UserRepository $userRepository, \Swift_Mailer $mailer)
+    public function confirm_reserve(Request $request, ReservaRepository $reservaRepository, UserRepository $userRepository, PaqueteRepository $paqueteRepository)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $userRepository->find($request->get('user'));
+        $preReservas = $reservaRepository->findBy(['usuario' => $user, 'status' => ['pre','confirmed']]);
+        foreach ($preReservas as $preReserva) {
+            if ($request->get($preReserva->getId())) {
+                $preReserva->setStatus('confirmed');
+                $em->persist($preReserva);
+            }else{
+                $preReserva->setStatus('pre');
+            }
+        }
+        $paquetes = $paqueteRepository->findAll();
+        $em->flush();
+        return $this->render('reserve/constructEmail.html.twig', ['user' => $user, 'paquetes' => $paquetes]);
+    }
+
+    /**
+     * @Route("/admin/send_email", name="send_email")
+     */
+    public function send_email(Request $request, ReservaRepository $reservaRepository, UserRepository $userRepository, \Swift_Mailer $mailer, DisplayableComponentRepository $componentRepository)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $userRepository->find($request->get('userId'));
+        $adjArray = explode(',', $request->get('adjuntos'));
+        $reserves=$reservaRepository->findBy(['usuario'=>$user,'status'=>['pre','confirmed']]);
+        $adj=[];
+        foreach ($adjArray as $id){
+            $adj[]=$componentRepository->find($id);
+        }
+        foreach ($reserves as $reserve){
+            if($reserve->getStatus()=='pre'){
+                $em->remove($reserve);
+            }else{
+                $reserve->setStatus('pending');
+                $em->persist($reserve);
+            }
+        }
+        $em->flush();
         $preReservas = $reservaRepository->findBy(['usuario' => $user, 'status' => 'pre']);
         $text = $request->get('text');
         foreach ($preReservas as $preReserva) {
@@ -54,18 +94,7 @@ class ReserveController extends Controller
                 array('name' => $preReservas)
             ),
                 'text/html');
-//        $message = (new \Swift_Message('Reservation'))
-//            ->setFrom('cubagps@gmail.com')
-//            ->setTo($reserva->getUsuario()->getEmail())
-//            ->setBody(
-//                $this->renderView(
-//                // templates/emails/registration.html.twig
-//                    'email/confirmReserve.html.twig',
-//                    array('name' => $name)
-//                ),
-//                'text/html'
-//            )
-//        ;
+
         $mailer->send($message);
         return $this->redirectToRoute('reservasnoconfirmadas');
     }
@@ -187,6 +216,8 @@ class ReserveController extends Controller
         $reserve->setCommponent($paquete);
         $reserve->setCosto($costo);
         $reserve->setStartAt($entrada);
+        $salida = $entrada->add($paquete->getDias());
+        $reserve->setEndAt($salida);
         $reserve->setUsuario($this->getUser());
         $user = $userRepository->find($this->getUser()->getId());
         $this->changeEmailTo($request->get('email'), $user);
@@ -212,8 +243,8 @@ class ReserveController extends Controller
         $users = $userRepository->findAll();
         $usersList = [];
         foreach ($users as $user) {
-            if (count($reservaRepository->findBy(['status' => 'pre', 'usuario' => $user]))) {
-                $usersList[$user->getId()]['reserve'] = $reservaRepository->findBy(['status' => 'pre', 'usuario' => $user]);
+            if (count($reservaRepository->findBy(['status' => ['pre', 'confirmed'], 'usuario' => $user]))) {
+                $usersList[$user->getId()]['reserve'] = $reservaRepository->findBy(['status' => ['pre', 'confirmed'], 'usuario' => $user]);
                 $usersList[$user->getId()]['user'] = $user;
                 $totalCost = 0;
                 foreach ($usersList[$user->getId()]['reserve'] as $item) {
@@ -230,12 +261,12 @@ class ReserveController extends Controller
     /**
      * @Route("/reserve/show_confirmed_reserves", name="show_confirmed_reserves")
      */
-    public function showReserve(Request $request, ReservaRepository $reservaRepository)
+    public function showReserve(ReservaRepository $reservaRepository)
     {
         $user = $this->getUser();
-        $preReserves = $reservaRepository->findBy(['usuario' => $user, 'status' => 'confirmed']);
+        $preReserves = $reservaRepository->findBy(['usuario' => $user, 'status' => ['confirmed', 'pending']]);
         if (count($preReserves)) {
-            return $this->render('reserve/show_confirmed_reserve.html.twig', ['reserves' => $preReserves]);
+            return $this->render('reserve/show_confirmed_reserve.html.twig', ['reserves' => $preReserves, 'base' => 'false']);
         } else {
             return $this->redirectToRoute('blog_index');
         }
@@ -245,10 +276,24 @@ class ReserveController extends Controller
     /**
      * @Route("/admin/reservasconfirmadas", name="reservasconfirmadas")
      */
-    public function reservasconfirmadas()
+    public function reservasconfirmadas(UserRepository $userRepository, ReservaRepository $reservaRepository)
     {
-        return $this->render('reserve/reservasconfirmadas.html.twig', [
 
+        $users = $userRepository->findAll();
+        $usersList = [];
+        foreach ($users as $user) {
+            if (count($reservaRepository->findBy(['status' => 'pending', 'usuario' => $user]))) {
+                $usersList[$user->getId()]['reserve'] = $reservaRepository->findBy(['status' => 'pending', 'usuario' => $user]);
+                $usersList[$user->getId()]['user'] = $user;
+                $totalCost = 0;
+                foreach ($usersList[$user->getId()]['reserve'] as $item) {
+                    $totalCost += $item->getCosto();
+                }
+                $usersList[$user->getId()]['price'] = $totalCost;
+            }
+        }
+        return $this->render('reserve/reservasconfirmadas.html.twig', [
+            'users' => $usersList
         ]);
     }
 
@@ -268,10 +313,10 @@ class ReserveController extends Controller
      */
     public function reserva_especial(Request $request, UserRepository $userRepository)
     {
-        $user=$userRepository->find($request->get('id'));
+        $user = $userRepository->find($request->get('id'));
         return $this->render('reserve/reserve_especial.html.twig', [
-            'user'=>$user,
-            'message'=> 'none'
+            'user' => $user,
+            'message' => 'none'
         ]);
     }
 
@@ -280,23 +325,23 @@ class ReserveController extends Controller
      */
     public function crear_reserva_especial(Request $request, UserRepository $userRepository, DisplayableComponentRepository $displayableComponentRepository)
     {
-        $next='admin/index.html.twig';
-        $b=true;
-        $message='La confirmación de prereserva se ha enviado al usuario';
-        $user=$userRepository->find($request->get('userId'));
-        if($displayableComponentRepository->find($request->get('commponentId'))){
-            $commponent=$displayableComponentRepository->find($request->get('commponentId'));
-            $price=$request->get('price');
+        $next = 'admin/index.html.twig';
+        $b = true;
+        $message = 'La confirmación de prereserva se ha enviado al usuario';
+        $user = $userRepository->find($request->get('userId'));
+        if ($displayableComponentRepository->find($request->get('commponentId'))) {
+            $commponent = $displayableComponentRepository->find($request->get('commponentId'));
+            $price = $request->get('price');
             $fechaInicial = new \DateTime($request->get('fechaEntrada'));
             $fechaFinal = new \DateTime($request->get('fechaSalida'));
-            $description=$request->get('description');
-            $cantP=$request->get('cantP');
-            if($fechaInicial>$fechaFinal){
-                $message='La fecha de salida no puede ser después de la fecha de entrada';
-                $next='reserve/reserve_especial.html.twig';
-                $b=false;
+            $description = $request->get('description');
+            $cantP = $request->get('cantP');
+            if ($fechaInicial > $fechaFinal) {
+                $message = 'La fecha de salida no puede ser después de la fecha de entrada';
+                $next = 'reserve/reserve_especial.html.twig';
+                $b = false;
             }
-            $reserve=new Reserva();
+            $reserve = new Reserva();
             $reserve->setStatus('confirmed');
             $reserve->setType('esp');
             $reserve->setCantPersonas($cantP);
@@ -307,20 +352,20 @@ class ReserveController extends Controller
             $reserve->setStartAt($fechaInicial);
             $reserve->setEndAt($fechaFinal);
             $reserve->setUsuario($user);
-            $em=$this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($reserve);
             $em->flush();
-        }else{
-            $next='reserve/reserve_especial.html.twig';
-            $message='El id del servicio no coincide con ninguno de los existentes';
-            $b=false;
+        } else {
+            $next = 'reserve/reserve_especial.html.twig';
+            $message = 'El id del servicio no coincide con ninguno de los existentes';
+            $b = false;
         }
-        if($b){
+        if ($b) {
             return $this->redirectToRoute('admin');
         }
         return $this->render($next, [
-            'user'=>$user,
-            'message'=>$message,
+            'user' => $user,
+            'message' => $message,
         ]);
 
     }
@@ -328,11 +373,74 @@ class ReserveController extends Controller
     /**
      * @Route("/reserve/contact_special_reserve", name="contact_special_reserve")
      */
-    public function contact_special_reserve(Request $request, ReservaRepository $reservaRepository)
+    public function contact_special_reserve(Request $request)
     {
-
+        $contacto = new Contacto();
+        $contacto->setCreatedAt();
+        $contacto->setEmail($request->get('email'));
+        $contacto->setNombre($this->getUser());
+        $text = 'Solivitud de reserva especial, cantidad de personas: ' . $request->get('cantPersRE') . ', Descripción: ' . $request->get('descriptionRE');
+        $contacto->setTexto($text);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($contacto);
+        $em->flush();
+        return $this->redirectToRoute('blog_index');
     }
 
+    /**
+     * @Route("/reserve/reserve_car_exc", name="reserve_car_exc")
+     */
+    public function reserve_car_exc(Request $request, CarroRepository $carroRepository)
+    {
+        $car = $carroRepository->find($request->get('id'));
+        $reserve = new Reserva();
+        $reserve->setCreatedAt();
+        $user = $this->getUser();
+        $this->changeEmailTo($request->get('email'), $user);
+        $reserve->setUsuario($user);
+        $reserve->setCantPersonas($request->get('cantP'));
+        $reserve->setCommponent($car);
+        $reserve->setHoraInicial($request->get('desde'));
+        $reserve->setHoraFinal($request->get('hasta'));
+        $costo = ($request->get('hasta') - $request->get('desde')) * $car->getPrecio();
+        $reserve->setCosto($costo);
+        $reserve->setStartAt(new \DateTime($request->get('fecha')));
+        $reserve->setType('exc');
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($reserve);
+        $em->flush();
+        return $this->redirectToRoute('blog_index');
+    }
+
+    /**
+     * @Route("/admin/ajax_find_offers", name="ajax_find_offers")
+     */
+    public function ajax_find_offers(Request $request, CasaRepository $casaRepository, CarroRepository $carroRepository, ExcursionRepository $excursionRepository)
+    {
+        $prov = $request->get('prov');
+        $carros = $carroRepository->findBy(['provincia' => $prov], ['valoracion' => 'DESC']);
+        $carrosArray=[];
+        foreach ($carros as $item){
+            $carrosArray[]=['nombre'=>$item->getNombre(),'id'=>$item->getId()];
+
+        }
+        $casas = $casaRepository->findBy(['provincia' => $prov], ['valoracion' => 'DESC']);
+        $casasArray=[];
+        foreach ($casas as $item){
+            $casasArray[]=['nombre'=>$item->getNombre(),'id'=>$item->getId()];
+
+        }
+        $excursiones = $excursionRepository->findBy(['provincia' => $prov], ['valoracion' => 'DESC']);
+        $excursionArray=[];
+        foreach ($excursiones as $item){
+            $excursionArray[]=['nombre'=>$item->getNombre(),'id'=>$item->getId()];
+
+        }
+        $result = [$carrosArray, $casasArray, $excursionArray];
+        $response = new JsonResponse();
+        $response->setData(['result' => $result]);
+        return $response;
+    }
 
 
 

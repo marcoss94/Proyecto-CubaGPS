@@ -202,7 +202,8 @@
                         {% if object.transfer %}
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <form action="" method="post">
+                                    <form action="{{ path('reserve_car_trans') }}" method="post">
+                                        <input type="hidden" name="id" value="{{ object.id }}">
                                         <div class="form-row">
                                             <div class="form-group col-md-8">
                                                 {% if object.valoracionArray[0]!=0 %}
@@ -222,11 +223,11 @@
                                             <div class="form-group col-md-12">
                                                 <label class="text-muted"
                                                        for="inputEntrada">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</label>
-                                                <input type="date" class="form-control" id="inputEntrada">
+                                                <input type="date" class="form-control" name="fecha" id="inputEntrada">
                                             </div>
                                             {#</div>#}
                                             <div class="form-group col-md-12">
-                                                <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Adults' }}</label>
+                                                <label class="text-muted">{{ app.session.get('language') == 'es'? 'Cantidad de personas':'Amount of People' }}</label>
                                                 <select class="custom-select" name="cantP">
                                                     {% for number in 1..object.capacidad %}
                                                         <option value="{{ number }}">{{ number }}</option>
@@ -265,6 +266,7 @@
                                         <div class="modal-footer">
                                             <div class="row">
                                                 <label id="precioTransfer"></label>
+                                                <input type="hidden" id="costoTransInput" name="costo">
                                                 <button type="submit" id="transSubmitButton"
                                                         class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                             </div>
@@ -273,7 +275,7 @@
                                     {#--------------------------Reserva Especial-----------------------------------------------#}
                                     <a data-toggle="collapse" href="#collapseReserve" role="button"
                                        aria-expanded="false" aria-controls="collapseReserve">
-                                        {{ app.session.get('language') == 'es'? '¿No encuentras lo que buscas?':'Special Reserve' }}
+                                        {{ app.session.get('language') == 'es'? '¿No encuentras lo que buscas?':'Do not you find what you are looking for?' }}
                                     </a>
                                     <div class="collapse" id="collapseReserve">
                                         <div class="card card-body">
@@ -282,12 +284,13 @@
                                                     'En caso de que desee reservar esta oferta de una
                                             manera diferente podemos crear una oferta especial para ti,
                                             contáctanos y en breve te daremos respueta:
-                                            ':
-                                                    'Reserve' }}</label>
+                                            ':'In case you want to book this offer a
+                                             different way we can create a special offer for you,
+                                             contact us and we will give you a reply shortly:' }}</label>
                                                 <form action="{{ path('contact_special_reserve') }}">
                                                     <div class="form-group col-md-12">
                                                         <label class="text-muted"
-                                                               for="inputEmail4">{{ app.session.get('language') == 'es'? '¿Como te gustaría reservar esta oferta?':'Place' }}</label>
+                                                               for="inputEmail4">{{ app.session.get('language') == 'es'? '¿Como te gustaría reservar esta oferta?':'How would you like to book this offer?' }}</label>
                                                         {% if app.user %}
                                                             <div class="form-group">
                                                                 <label for="exampleInputEmail1">Email</label>
@@ -332,9 +335,9 @@
                         {% else %}
                             {#-------------Formulario de reserva para excursion--------------------#}
                             <div class="modal-content">
-                                <form action="" method="post" id="excForm">
+                                <form action="{{ path('reserve_car_exc') }}" method="post" id="excForm">
                                     <div class="modal-body">
-
+                                        <input type="hidden" name="id" value="{{ object.id }}">
                                         <div class="form-row">
                                             <div class="form-group col-md-8">
                                                 {% if object.valoracionArray[0]!=0 %}
@@ -383,7 +386,7 @@
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label for="hastaReserveInput"
-                                                       class="text-muted">{{ app.session.get('language') == 'es'? 'Hora final':'Final Time' }}</label>
+                                                       class="text-muted">{{ app.session.get('language') == 'es'? 'Hora final':'End Time' }}</label>
 
                                                 <select class="custom-select" id="hastaReserveInput" name="hasta">
                                                     {% for number in 7..24 %}
@@ -414,12 +417,18 @@
                                     <div id="errorBox"></div>
                                     <div class="modal-footer">
                                         <div class="row">
+                                            <input type="hidden" id="costoExcInput" name="costo">
                                             <label id="precioTransfer"></label>
                                             <button type="button" id="excSubmitButton"
                                                     class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                         </div>
                                     </div>
                                 </form>
+                                {#--------------------------Reserva Especial-----------------------------------------------#}
+                                <a data-toggle="collapse" href="#collapseReserve" role="button"
+                                   aria-expanded="false" aria-controls="collapseReserve">
+                                    {{ app.session.get('language') == 'es'? '¿No encuentras lo que buscas?':'Do not you find what you are looking for?' }}
+                                </a>
                                 <div class="collapse" id="collapseReserve">
                                     <div class="card card-body">
                                         {% if app.user %}
@@ -427,12 +436,13 @@
                                                 'En caso de que desee reservar esta oferta de una
                                             manera diferente podemos crear una oferta especial para ti,
                                             contáctanos y en breve te daremos respueta:
-                                            ':
-                                                'Reserve' }}</label>
+                                            ':'In case you want to book this offer a
+                                             different way we can create a special offer for you,
+                                             contact us and we will give you a reply shortly:' }}</label>
                                             <form action="{{ path('contact_special_reserve') }}">
                                                 <div class="form-group col-md-12">
                                                     <label class="text-muted"
-                                                           for="inputEmail4">{{ app.session.get('language') == 'es'? '¿Como te gustaría reservar esta oferta?':'Place' }}</label>
+                                                           for="inputEmail4">{{ app.session.get('language') == 'es'? '¿Como te gustaría reservar esta oferta?':'How would you like to book this offer?' }}</label>
                                                     {% if app.user %}
                                                         <div class="form-group">
                                                             <label for="exampleInputEmail1">Email</label>
@@ -610,6 +620,7 @@
                     data: data,
                     success: function (response) {
                         var price = response.result;
+                        $('#costoTransInput').val(price);
                         document.getElementById('precioTransfer').innerHTML = '€' + price;
                     }
                 })
@@ -634,6 +645,7 @@
                 var price = parseInt({{ object.precio }});
                 var totalPrice = (hasta - desde) * price;
                 totalPrice = (totalPrice < 0) ? 0 : totalPrice;
+                $('#costoExcInput').val(totalPrice);
                 document.getElementById('precioTransfer').innerHTML = '€' + totalPrice;
             }
         </script>
@@ -646,9 +658,12 @@
             var hasta = parseInt($('#hastaReserveInput').val());
             if (desde >= hasta) {
                 var text = ($('#lang').val() == 'es') ? 'La hora inicial no puede ser despues de la hora final'
-                    : 'The amount of people exceeds the capacity of the selected rooms';
-                tpl = '<div class="alert alert-danger">' + text + '</div>';
-                $('#errorBox').html(tpl)
+                    : 'The initial time can not be after the end time';
+                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                    : 'Information Missing';
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(text);
+                $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
             $('#excForm').submit();
@@ -683,9 +698,9 @@
             var comment= $('#commentArea').val();
             var userId= $('#userId').val();
             if(comment == ''){
-                alert('debe escribir un comentario');
-                $("#textoWarningGrande").text('Algo acaba de suceder');
-                $("#textoWarning").text('Debe escribir un comentario');
+                $("#textoWarningGrande").text('Error');
+                var text= '{{ app.session.get('language')=='es' ? 'Debe escribir un comentario': 'You must write a comment' }}';
+                $("#textoWarning").text(text);
                 $('.Alertwarning').animate({top:"0"}, 500);
             }else{
                 var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
@@ -695,7 +710,6 @@
                     data: data,
                     success: function (response) {
                         if (response.result) {
-                            alert('Su comentario ha sido recivido correctamente');
                             $("#textoSuccessGrande").text('Algo acaba de suceder');
                             $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
                             $('.Alertsuccess').animate({top:"0"}, 500);
