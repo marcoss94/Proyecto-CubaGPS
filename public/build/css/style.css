@@ -75,9 +75,17 @@
 }
 .nombreO{
     margin-top: 0px;
-    text-align: left;
+    text-align: center;
     color: #2b506b;
-}.infoOferta{
+
+}
+
+.provinciaO {
+    margin-top: 0px;
+    text-align: center;
+    /*color: #2b506b;*/
+}
+.infoOferta{
      margin-bottom: 0px;
  }
 .masExcur{
