@@ -1,7 +1,7 @@
 {% extends 'backendBase.html.twig' %}
 
 
-{% block title %}Administración | Reservas Confirmadas{% endblock %}
+{% block title %}Administración | Reservas no Confirmadas{% endblock %}
 
 
 {% block stylesheets %}
@@ -24,138 +24,184 @@
         <li class="breadcrumb-item">
             <a href="{{ path('admin') }}">Administración</a>
         </li>
-        <li class="breadcrumb-item active">Reservas Confirmadas</li>
+        <li class="breadcrumb-item active">Reservas no Confirmadas</li>
     </ol>
 
-    <div class="card mb-3">
-        <div class="card-header">
-
-            <div class="row">
-                <div class="col-auto mr-auto">
-                    <i class="fas fa-home"></i>
-                    Reservas Confirmadas
-                </div>
-                <div class="col-auto">
-                    {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
-                    {#Agregar#}
-                    {#</button>#}
-                </div>
-            </div>
-
-        </div>
-
-        <div class="card-body">
-
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Enviado por</th>
-                        <th>Servicios</th>
-                        <th>Cant de servicios</th>
-                        <th>Cant de personas</th>
-                        <th>Email</th>
-                        <th>Provincia</th>
-                        <th>Precio de cada servicio</th>
-                        <th>Precio Total</th>
-                        <th>Télefonos por servicios</th>
-                        <th>Entrada</th>
-                        <th>Salida</th>
-                        <th>estado</th>
-                        <th>Más</th>
-
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Enviado por</th>
-                        <th>Servicios</th>
-                        <th>Cant de servicios</th>
-                        <th>Cant de personas</th>
-                        <th>Email</th>
-                        <th>Provincia</th>
-                        <th>Precio de cada servicio</th>
-                        <th>Precio Total</th>
-                        <th>Télefonos por servicios</th>
-                        <th>Entrada</th>
-                        <th>Salida</th>
-                        <th>estado</th>
-                        <th>Más</th>
-
-                    </tr>
-                    </tfoot>
-                    <tbody>
-
-                    <tr>
-                        <td>4</td>
-                        <td>Reyner Baily</td>
-                        <td>Marcos Alvarez</td>
-                        <td>Casa</td>
-                        <td>3</td>
-                        <td>10</td>
-                        <td>ricardocorazondeleon2018@gmail.com</td>
-                        <td>La Habana</td>
-                        <td>$23 $34 $56</td>
-                        <td>$1500</td>
-                        <td>Maria 54209491 Carro 52225857</td>
-                        <td>2018-01-16</td>
-                        <td>2018-01-25</td>
-                        <td>Not Conform</td>
-
-                        <td><a href="roombook.php?rid=4 " class="btn btn-primary">Action</a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Manuel Arrieta</td>
-                        <td>Marcos Alvarez</td>
-                        <td>Excurcion</td>
-                        <td>2</td>
-                        <td>11</td>
-                        <td>zondeleon2018@gmail.com</td>
-                        <td>Matanzas</td>
-                        <td>$23 $34 </td>
-                        <td>$1100</td>
-                        <td>Maria 54209491 Carro 52225857</td>
-                        <td>2018-01-16</td>
-                        <td>2018-01-25</td>
-                        <td>Not Conform</td>
-
-                        <td><a href="roombook.php?rid=4 " class="btn btn-primary">Action</a></td>
-                    </tr>
-
-                    </tbody>
-                </table>
-
-            </div>
-
-
-        </div>
-
-        <div class="card-footer">
-
-            <div class="row">
-                <div class="col-auto mr-auto">
-                    <i class="fas fa-home"></i>
-                    Reservas Confirmadas
-                </div>
-                <div class="col-auto">
-                    {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
-                    {#Agregar#}
-                    {#</button>#}
+    {% for user in users %}
+        <div class="card mb-3">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-auto mr-auto">
+                        <img src="{{ asset(user['user'].picture) }}"
+                             class="img-fluid rounded-circle avat"
+                             style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
+                        {{ user['user'] }}
+                        <label style="margin-left: 50px">{{ 'Costo total: €'~user['price']~' ' }}</label>
+                    </div>
                 </div>
             </div>
 
+            <div class="card-body">
+                <div class="row" style="margin-left: 15px">
+                    <h5>Email: {{ ' '~user['user'].email }}</h5>
+                    {% if user['user'].getRedirectedBy %}
+                        <h5>Redireccionado por: {{ ' '~ user['user'].getRedirectedBy }}</h5>
+                    {% endif %}
+                </div>
+                <div>
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Fecha</th>
+                            <th>Cantidad de Personas</th>
+                            <th>Costo</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Servicio</th>
+                            <th>Fecha</th>
+                            <th>Cantidad de Personas</th>
+                            <th>Costo</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+                        {% for r in user['reserve'] %}
+
+                            <tr>
+                                <td><a data-toggle="modal"
+                                       data-target="#{{ 'contactInfoModal'~r.id }}">{{ r.commponent }}</a>
+                                    {% if r.commponent.getType()== 'Casa' %}
+                                        <button id="btnGroupDrop1" type="button"
+                                                class="btn btn-outline-secondary dropdown-toggle"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-door-open"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
+                                                <a class="dropdown-item">{{ h }}</a>
+                                            {% endfor %}
+                                        </div>
+                                    {% endif %}
+                                </td>
+                                <td>{% if r.commponent.getType() == 'Casa' %}
+                                        {{ 'Desde '~r.startAt|date("d/m/Y")~' hasta '~r.endAt|date("d/m/Y") }}
+                                    {% elseif r.commponent.getType() == 'Carro' %}
+                                        {% if r.type=='exc' %}
+                                            {{ r.startAt|date("d/m/Y")~' desde '~hora[r.horaInicial]~' hasta '~ hora[r.horaFinal] }}
+                                        {% else %}
+                                            {{ r.startAt|date("d/m/Y")~' desde '~r.desde~' hasta '~ r.hasta }}
+                                        {% endif %}
+                                    {% else %}
+                                        {{ r.startAt|date("d/m/Y") }}
+                                    {% endif %}
+                                </td>
+                                <td>{{ r.cantPersonas }}</td>
+                                <td>{{ '€'~r.costo }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-auto mr-auto">
+                        <i class="fas fa-home"></i>
+                        Reservas no Confirmadas
+                    </div>
+                    <div class="col-auto">
+                        {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+                        {#Agregar#}
+                        {#</button>#}
+                    </div>
+                </div>
+            </div>
         </div>
+    {% endfor %}
 
-        </form>
-
-
-    </div>
-
+    {% for user in users %}
+        {% for r in user['reserve'] %}
+            <div class="modal fade" id="{{ 'contactInfoModal'~r.id }}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">{{ r.commponent }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            {% if r.commponent.getType == 'Casa' %}
+                                <div class="col">
+                                    <div class="row"><strong>Manager:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.manager }}</div>
+                                    <div class="row"><strong>Teléfono Móvil:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.cel }}</div>
+                                    <div class="row"><strong>Teléfono Fijo:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.tel }}</div>
+                                    {% if r.commponent.email != '' %}
+                                        <div class="row"><strong>Email:</strong></div>
+                                        <div class="row" style="margin-left: 10px">{{ r.commponent.email }}</div>
+                                    {% endif %}
+                                    <div class="row"><strong>Provincia:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.provincia }}</div>
+                                    <div class="row"><strong>Municipio:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.municipio }}</div>
+                                    <div class="row"><strong>Dirección:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.direccion }}</div>
+                                </div>
+                            {% elseif r.commponent.getType == 'Carro' %}
+                                <div class="col">
+                                    <div class="row"><strong>Chofer:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.nombreChofer }}</div>
+                                    <div class="row"><strong>Teléfono Móvil:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.cel }}</div>
+                                    <div class="row"><strong>Teléfono Fijo:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.tel }}</div>
+                                    <div class="row"><strong>Chapa:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.chapa }}</div>
+                                    <div class="row"><strong>Licencia:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.licencia }}</div>
+                                    <div class="row"><strong>Provincia:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.provincia }}</div>
+                                </div>
+                            {% elseif r.commponent.getType == 'Excursion' %}
+                                <div class="col">
+                                    <div class="row"><strong>Nombre:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.nombre }}</div>
+                                    <div class="row"><strong>Información de Contacto</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.infoContacto }}</div>
+                                    <div class="row"><strong>Provincia:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.provincia }}</div>
+                                </div>
+                            {% else %}
+                                <div class="col">
+                                    <div class="row"><strong>Nombre:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.nombre }}</div>
+                                    <div class="row"><strong>Id:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.id }}</div>
+                                    <div class="row"><strong>Dias de Duración:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.duracion }}</div>
+                                    <div class="row"><strong>Noches:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.nochesDuracion }}</div>
+                                    <div class="row"><strong>Descripción:</strong></div>
+                                    <div class="row" style="margin-left: 10px">{{ r.commponent.descripcion }}</div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
 {% endblock %}
 
 {% block footer %}
@@ -167,8 +213,7 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script src="{{ asset('build/js/popper.min.js')}}"></script>
-
+    <script src="{{ asset('build/js/popper.min.js') }}"></script>
     <script src="{{ asset('build/js/baguetteBox.min.js') }}"></script>
 
 

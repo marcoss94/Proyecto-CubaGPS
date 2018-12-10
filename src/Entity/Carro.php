@@ -69,22 +69,6 @@ class Carro extends DisplayableComponent
     /**
      * @return mixed
      */
-    public function getMainPhoto()
-    {
-        return $this->mainPhoto;
-    }
-
-    /**
-     * @param mixed $mainPhoto
-     */
-    public function setMainPhoto($mainPhoto)
-    {
-        $this->mainPhoto = $mainPhoto;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getTransfer()
     {
         return $this->transfer;
@@ -101,17 +85,17 @@ class Carro extends DisplayableComponent
     /**
      * @return mixed
      */
-    public function getPrecioHora()
+    public function getPrecio()
     {
-        return $this->precioHora;
+        return $this->precio;
     }
 
     /**
-     * @param mixed $precioHora
+     * @param mixed $precio
      */
-    public function setPrecioHora($precioHora)
+    public function setPrecio($precio)
     {
-        $this->precioHora = $precioHora;
+        $this->precio = $precio;
     }
 
     /**

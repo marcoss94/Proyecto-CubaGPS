@@ -374,21 +374,20 @@
                                         </div>
                                     </div>
                                     {% if app.user %}
-                                        {% if app.user.email == 'none' %}
-                                            <div class="form-row">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Email</label>
-                                                    <input type="email" class="form-control" id="inputEail1"
-                                                           aria-describedby="emailHelp" name="email" required="required"
-                                                           placeholder="Enter email">
-                                                    <small id="emailHelp"
-                                                           class="form-text text-muted">{{ app.session.get('language') == 'es'?
-                                                        'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
-                                                </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Email</label>
+                                                <input type="email" class="form-control" id="inputEail1"
+                                                       aria-describedby="emailHelp" name="email" required="required"
+                                                       placeholder="Enter email" value="{{ app.user.email }}">
+                                                <small id="emailHelp"
+                                                       class="form-text text-muted">{{ app.session.get('language') == 'es'?
+                                                    'Te contactaremos a travéz de esta dirección de correo': 'We will contact you through this email address' }}</small>
                                             </div>
-                                        {% endif %}
+                                        </div>
                                     {% endif %}
                                 </div>
+
                                 <div id="errorBox"></div>
                                 <div class="modal-footer">
                                     <label id="precio"></label>
@@ -533,29 +532,39 @@
         });
         $('#reserveButton').click(function () {
             var entrada = new Date($('#inputEntrada').val());
+            var email = $('#inputEail1').val();
             var cantA = new Number($('#cantA').val());
             var emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
             {% if app.user %}
             if (!emailRegex.test(email)) {
                 var text = ($('#lang').val() == 'es') ? 'Introduce una dirección de correo'
                     : 'Enter an email address';
-                tpl = '<div class="alert alert-danger">' + text + '</div>';
-                $('#errorBox').html(tpl)
+                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                    : 'Information Missing';
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(text);
+                $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
             {% endif %}
             if (!diasDisponibles.includes(diasSemana[entrada.getDay()])) {
                 var text = ($('#lang').val() == 'es') ? 'Esta actividad no está disponible para ese día de la semana'
                     : 'This activity is not available for that day of the week';
-                tpl = '<div class="alert alert-danger">' + text + '</div>';
-                $('#errorBox').html(tpl)
+                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                    : 'Information Missing';
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(text);
+                $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
             if (entrada.toTimeString() == 'Invalid Date') {
                 var text = ($('#lang').val() == 'es') ? 'Debe seleccionar una Fecha'
                     : 'You must select a Date';
-                tpl = '<div class="alert alert-danger">' + text + '</div>';
-                $('#errorBox').html(tpl)
+                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                    : 'Information Missing';
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(text);
+                $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
             $('#reserveForm').submit();

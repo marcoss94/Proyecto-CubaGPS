@@ -28,7 +28,18 @@ class Reserva
     private $endAt;
 
     /**
-     * @ORM\Column(type="string", length=500)
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $horaInicial;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $horaFinal;
+
+
+    /**
+     * @ORM\Column(type="string", length=500,nullable=true)
      */
     private $descripcion;
 
@@ -71,6 +82,38 @@ class Reserva
     }
 
     /**
+     * @return mixed
+     */
+    public function getHoraInicial()
+    {
+        return $this->horaInicial;
+    }
+
+    /**
+     * @param mixed $horaInicial
+     */
+    public function setHoraInicial($horaInicial)
+    {
+        $this->horaInicial = $horaInicial;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHoraFinal()
+    {
+        return $this->horaFinal;
+    }
+
+    /**
+     * @param mixed $horaFinal
+     */
+    public function setHoraFinal($horaFinal)
+    {
+        $this->horaFinal = $horaFinal;
+    }
+
+    /**
      *  Prereserva -- pre
      *  Confirmada -- confirmed
      *  Pagada     -- payed
@@ -110,12 +153,6 @@ class Reserva
     /**
      * @ORM\Column(type="integer")
      */
-    private $horas;
-
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $costo;
 
     /**
@@ -132,22 +169,6 @@ class Reserva
     public function setType($type)
     {
         $this->type = $type;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getHoras()
-    {
-        return $this->horas;
-    }
-
-    /**
-     * @param mixed $horas
-     */
-    public function setHoras($horas)
-    {
-        $this->horas = $horas;
     }
 
     /**
@@ -243,7 +264,6 @@ class Reserva
     public function setEndAt(?\DateTimeInterface $endAt): self
     {
         $this->endAt = $endAt;
-
         return $this;
     }
 

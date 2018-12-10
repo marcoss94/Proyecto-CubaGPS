@@ -26,6 +26,7 @@ class ExcursionForm extends AbstractType
             ->add('name', TextType::class, ['label' => 'Name'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
             ->add('description',TextareaType::class,['label' => 'Description'])
+            ->add('infoContacto',TextareaType::class,['label' => 'Información de Contacto'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
                 'Pinar del Rio' => 'Pinar del Rio',
                 'Artemisa' => 'Artemisa',

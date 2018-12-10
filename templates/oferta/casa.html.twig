@@ -779,8 +779,11 @@
             if (!emailRegex.test(email)) {
                 var text = ($('#lang').val() == 'es') ? 'Introduce una dirección de correo'
                     : 'Enter an email address';
-                tpl = '<div class="alert alert-danger">' + text + '</div>';
-                $('#errorBox').html(tpl)
+                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                    : 'Information Missing';
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(text);
+                $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
             if (salida < entrada) {
@@ -789,30 +792,42 @@
                 if (salida < entrada) {
                     var text = ($('#lang').val() == 'es') ? 'La fecha de salida no puede ser antes que la fecha de entrada'
                         : 'The departure date can not be before the date of entry';
-                    tpl = '<div class="alert alert-danger">' + text + '</div>';
-                    $('#errorBox').html(tpl)
+                    var head= ($('#lang').val() == 'es') ? 'Falta información'
+                        : 'Information Missing';
+                    $("#textoErrorGrande").text(head);
+                    $("#textoError").text(text);
+                    $('.Alerterror').animate({top:"0"}, 500);
                     return;
                 }
             }
             if ($('input:checkbox').filter(':checked').length < 1) {
                 var text = ($('#lang').val() == 'es') ? 'Debe seleccionar al menos una habitacion'
                     : 'You must select at least one room';
-                tpl = '<div class="alert alert-danger">' + text + '</div>';
-                $('#errorBox').html(tpl)
+                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                    : 'Information Missing';
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(text);
+                $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
             if (salida.toTimeString() == 'Invalid Date' || entrada.toTimeString() == 'Invalid Date') {
                 var text = ($('#lang').val() == 'es') ? 'Debe seleccionar las fechas de entrada y salida'
                     : 'You must select the entry and departure dates';
-                tpl = '<div class="alert alert-danger">' + text + '</div>';
-                $('#errorBox').html(tpl)
+                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                    : 'Information Missing';
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(text);
+                $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
             if (capacidad < cantN + cantA) {
                 var text = ($('#lang').val() == 'es') ? 'La cantidad de personas excede la capacidad de las habitaciones seleccionadas'
                     : 'The amount of people exceeds the capacity of the selected rooms';
-                tpl = '<div class="alert alert-danger">' + text + '</div>';
-                $('#errorBox').html(tpl)
+                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                    : 'Information Missing';
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(text);
+                $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
 
@@ -826,7 +841,6 @@
             var comment = $('#commentArea').val();
             var userId = $('#userId').val();
             if (comment == '') {
-                alert('debe escribir un comentario');
                 $("#textoWarningGrande").text('Algo acaba de suceder');
                 $("#textoWarning").text('Debe escribir un comentario');
                 $('.Alertwarning').animate({top:"0"}, 500);
@@ -838,7 +852,6 @@
                     data: data,
                     success: function (response) {
                         if (response.result) {
-                            alert('Su comentario ha sido recivido correctamente');
                             $("#textoSuccessGrande").text('Algo acaba de suceder');
                             $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
                             $('.Alertsuccess').animate({top:"0"}, 500);

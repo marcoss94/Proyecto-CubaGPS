@@ -26,7 +26,7 @@ class LugarRepository extends ServiceEntityRepository
     */
     public function findAllPlaceNames($em)
     {
-        $query = $em->createQuery('SELECT l.nombre FROM App\Entity\Lugar l');
+        $query = $em->createQuery('SELECT l.nombre FROM App\Entity\Lugar l ORDER BY l.nombre ASC');
         return $query->getResult();
     }
 
