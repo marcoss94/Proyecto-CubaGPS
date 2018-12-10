@@ -318,6 +318,7 @@
                                                         <button type="submit"
                                                                 class="btn btn-success">{{ app.session.get('language') == 'es'? 'Enviar':'Send' }}</button>
                                                     </div>
+                                                    <input type="hidden" name="objectId" value="{{ object.id }}">
                                                 </form>
                                             {% else %}
                                                 <a class="nav-link js-scroll-trigger" href="" data-toggle="modal"
@@ -440,6 +441,7 @@
                                              different way we can create a special offer for you,
                                              contact us and we will give you a reply shortly:' }}</label>
                                             <form action="{{ path('contact_special_reserve') }}">
+
                                                 <div class="form-group col-md-12">
                                                     <label class="text-muted"
                                                            for="inputEmail4">{{ app.session.get('language') == 'es'? '¿Como te gustaría reservar esta oferta?':'How would you like to book this offer?' }}</label>
@@ -467,8 +469,10 @@
                                                         {% endfor %}
                                                     </select>
                                                     <h3></h3>
+                                                    <input type="hidden" name="objectId" value="{{ object.id }}">
                                                     <button type="submit"
                                                             class="btn btn-success">{{ app.session.get('language') == 'es'? 'Enviar':'Send' }}</button>
+
                                                 </div>
                                             </form>
                                         {% else %}
@@ -659,11 +663,11 @@
             if (desde >= hasta) {
                 var text = ($('#lang').val() == 'es') ? 'La hora inicial no puede ser despues de la hora final'
                     : 'The initial time can not be after the end time';
-                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                var head = ($('#lang').val() == 'es') ? 'Falta información'
                     : 'Information Missing';
                 $("#textoErrorGrande").text(head);
                 $("#textoError").text(text);
-                $('.Alerterror').animate({top:"0"}, 500);
+                $('.Alerterror').animate({top: "0"}, 500);
                 return;
             }
             $('#excForm').submit();
@@ -693,17 +697,17 @@
             });
         }
         $('#createCommentButton').click(function () {
-            var objectId= $('#objectId').val();
-            var objectType= $('#objectType').val();
-            var comment= $('#commentArea').val();
-            var userId= $('#userId').val();
-            if(comment == ''){
+            var objectId = $('#objectId').val();
+            var objectType = $('#objectType').val();
+            var comment = $('#commentArea').val();
+            var userId = $('#userId').val();
+            if (comment == '') {
                 $("#textoWarningGrande").text('Error');
-                var text= '{{ app.session.get('language')=='es' ? 'Debe escribir un comentario': 'You must write a comment' }}';
+                var text = '{{ app.session.get('language')=='es' ? 'Debe escribir un comentario': 'You must write a comment' }}';
                 $("#textoWarning").text(text);
-                $('.Alertwarning').animate({top:"0"}, 500);
-            }else{
-                var data= {targetId:objectId,type:objectType,text:comment,userId:userId}
+                $('.Alertwarning').animate({top: "0"}, 500);
+            } else {
+                var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                 $.ajax({
                     type: "POST",
                     url: "{{ path('ajax_create_comment') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
@@ -712,7 +716,7 @@
                         if (response.result) {
                             $("#textoSuccessGrande").text('Algo acaba de suceder');
                             $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
-                            $('.Alertsuccess').animate({top:"0"}, 500);
+                            $('.Alertsuccess').animate({top: "0"}, 500);
                             $('#commentArea').val('');
                         }
                     }

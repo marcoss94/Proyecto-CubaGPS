@@ -379,9 +379,10 @@ class ReserveController extends Controller
     {
         $contacto = new Contacto();
         $contacto->setCreatedAt();
+        $id=$request->get('objectId');
         $contacto->setEmail($request->get('email'));
         $contacto->setNombre($this->getUser());
-        $text = 'Solivitud de reserva especial, cantidad de personas: ' . $request->get('cantPersRE') . ', Descripción: ' . $request->get('descriptionRE');
+        $text = 'Solivitud de reserva especial, id del servicio solicitado: '.$id.'. Cantidad de personas: ' . $request->get('cantPersRE') . ', Descripción: ' . $request->get('descriptionRE');
         $contacto->setTexto($text);
         $em = $this->getDoctrine()->getManager();
         $em->persist($contacto);

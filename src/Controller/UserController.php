@@ -97,7 +97,7 @@ class UserController extends AbstractController
         $contacto = new Contacto();
         $contacto->setEmail($request->get('email'));
         $contacto->setNombre($request->get('nombre'));
-        $contacto->setTel($request->get('tel'));
+        $contacto->setTel((int)$request->get('tel'));
         $contacto->setTexto($request->get('text'));
         $contacto->setCreatedAt();
         $em->persist($contacto);

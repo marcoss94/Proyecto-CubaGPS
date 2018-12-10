@@ -450,14 +450,14 @@
                             <div class="form-group">
                                 <input class="form-control" id="name" type="text"
                                        placeholder="{{ app.session.get('language') == 'es'? 'Tu Nombre':'Your Name' }}*"
-                                       required="required"
+                                       required="required" value="{% if app.user %}{{ app.user }}{% endif %}"
                                        data-validation-required-message="{{ app.session.get('language') == 'es'? 'Por favor entre su nombre.':'Please enter your name.' }}">
                                 <p class="help-block text-danger"></p>
                             </div>
                             <div class="form-group">
                                 <input class="form-control" id="email" type="email"
                                        placeholder="{{ app.session.get('language') == 'es'? 'Tu Correo':'Your Email' }} *"
-                                       required="required"
+                                       required="required" value="{% if app.user %}{{ app.user.email }}{% endif %}"
                                        data-validation-required-message="{{ app.session.get('language') == 'es'? 'Por favor entre su correo.':'Please enter your email address.' }}">
                                 <p class="help-block text-danger"></p>
                             </div>
@@ -576,7 +576,7 @@ border-color: #f9b501">
                         </div>
                         <div class="modal-body">
                             <p>{{ app.session.get('language') == 'es'?
-                                'Comparte este link único para que otros usuarios entren a travéz de tí'
+                                'Comparte este link único para que otros usuarios accedan a travéz de tí'
                                 :
                                 'Share this unic link for other users login through you' }}</p>
                             <h4>localhost/zxccxz/public/blog?redirectId={{ app.user.id }}</h4>
@@ -859,24 +859,30 @@ border-color: #f9b501">
             var tel = $('#phone').val();
             var email = $('#email').val();
             var texto = $('#messageArea').val();
-            if (!nombre.match(namePattern)) {
-//                alert('Para contactarnos es necesario que insertes tu nombre');
-                $("#textoWarningGrande").text('Algo acaba de suceder');
-                $("#textoWarning").text('Para contactarnos es necesario que insertes tu nombre');
-                $('.Alertwarning').animate({top:"0"}, 500);
-
-
-//
+            if (nombre.length<4) {
+                var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
+                var body='{{ app.session.get('language') == 'es'?
+                'Para contactarnos es necesario que insertes tu nombre'
+                :'To contact us you need to insert your name' }}';
+                show_alert_box("error",head,body);
             } else if (!email.match(emailPattern)) {
-//                alert('Para contactarnos es necesario que insertes tu correo electrónico');
-                $("#textoWarningGrande").text('Algo acaba de suceder');
-                $("#textoWarning").text('Para contactarnos es necesario que insertes tu correo electrónico');
-                $('.Alertwarning').animate({top:"0"}, 500);
-            } else if (isNaN(tel)) {
-//                alert('Para contactarnos es necesario que insertes tu número de telefono');
-                $("#textoWarningGrande").text('Algo acaba de suceder');
-                $("#textoWarning").text('Para contactarnos es necesario que insertes tu número de telefono');
-                $('.Alertwarning').animate({top:"0"}, 500);
+                var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
+                var body='{{ app.session.get('language') == 'es'?
+                'Para contactarnos es necesario que insertes tu número de correo electrónico'
+                :'To contact us you need to insert your email' }}';
+                show_alert_box("error",head,body);
+            } else if (!tel.match(telPattern)) {//
+                var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
+                var body='{{ app.session.get('language') == 'es'?
+                'Para contactarnos es necesario que insertes tu número de teléfono'
+                :'To contact us you need to insert your phone number' }}';
+                show_alert_box("error",head,body);
+            }else if(texto.length<60){
+                var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
+                var body='{{ app.session.get('language') == 'es'?
+                'Para contactarnos es necesario que insertes un mensage de al menos 60 caractéres'
+                :'To contact us it is necessary that you insert a message of at least 60 characters' }}';
+                show_alert_box("error",head,body);
             } else {
                 var data = {nombre: nombre, tel: tel, email: email, text: texto}
                 $.ajax({
@@ -884,12 +890,11 @@ border-color: #f9b501">
                     url: "{{ path('ajax_contact') }}", // call the php file ajax/tuto-autocomplete.php (check the routine we defined)
                     data: data,
                     success: function (response) {
-                        if (response.result) {
-//                            alert('Su mensaje ha sido recibido correctamente');
-                            $("#textoSuccessGrande").text('Felicidades');
-                            $("#textoSuccess").text('Su mensaje ha sido recibido correctamente');
-                            $('.Alertsuccess').animate({top:"0"}, 500);
-                            $('#messageArea').val('');
+                        if (response.result) {//
+                            var head='{{ app.session.get('language') == 'es'? 'Gracias':'Thanks' }}';
+                            var body='{{ app.session.get('language') == 'es'? 'Su mensaje ha sido recibido correctamente':'Your message has been received correctly' }}';
+                            show_alert_box("success",head,body);
+//
                         }
                     }
                 })
@@ -956,7 +961,27 @@ border-color: #f9b501">
             });
         });
 
+        function show_alert_box(type,head,body){
+            if(type=="warning"){
+                $("#textoWarningGrande").text(head);
+                $("#textoWarning").text(body);
+                $('.Alertwarning').animate({top:"0"}, 500);
+                $('#messageArea').val('');
+            }else if(type=="error"){
+                $("#textoErrorGrande").text(head);
+                $("#textoError").text(body);
+                $('.Alerterror').animate({top:"0"}, 500);
+                $('#messageArea').val('');
+            }else {
+                $("#textoSuccessGrande").text(head);
+                $("#textoSuccess").text(body);
+                $('.Alertsuccess').animate({top:"0"}, 500);
+                $('#messageArea').val('');
+            }
+        }
+
     </script>
+
 
 
 

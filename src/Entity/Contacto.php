@@ -22,7 +22,7 @@ class Contacto
     private $email;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="string", length=30)
      */
     private $tel;
 
@@ -58,12 +58,12 @@ class Contacto
         return $this;
     }
 
-    public function getTel(): ?int
+    public function getTel(): ?string
     {
         return $this->tel;
     }
 
-    public function setTel(?int $tel): self
+    public function setTel(?string $tel): self
     {
         $this->tel = $tel;
 
