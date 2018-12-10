@@ -58,19 +58,22 @@ class BlogController extends AbstractController
     public function index(Request $request,CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository,PaqueteRepository $paqueteRepository,ComentarioRepository $comentarioRepository)
     {
         if(!$this->get('session')->get('language')){
-            $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-            switch ($lang){
-                case "es":
+            $langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            $b=true;
+            foreach ($langs as $l){
+                $head=explode('-',$l);
+                if ($head[0] == 'es'){
                     $this->get('session')->set('language', 'es');
+                    $b=false;
                     break;
-                case "en":
-                    ($this->get('session')->get('language') != 'en');
+                }
+                elseif($head[0]=='en'){
+                    $this->get('session')->set('language', 'en');
+                    $b=false;
                     break;
-                default:
-                    //echo "PAGE EN - Configuración por defecto";
-                    ($this->get('session')->get('language') != 'en');
-                    break;
+                }
             }
+            if($b) $this->get('session')->set('language', 'en');
         }
         $carros = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
         $casas = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);

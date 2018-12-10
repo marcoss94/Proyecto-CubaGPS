@@ -216,7 +216,10 @@ class ReserveController extends Controller
         $reserve->setCommponent($paquete);
         $reserve->setCosto($costo);
         $reserve->setStartAt($entrada);
-        $salida = $entrada->add($paquete->getDias());
+        $em->persist($reserve);
+        $agregarDias = $paquete->getDuracion();
+        $salida=new \DateTime($request->get('entrada'));
+        $salida->add(new \DateInterval("P{$agregarDias}D"));
         $reserve->setEndAt($salida);
         $reserve->setUsuario($this->getUser());
         $user = $userRepository->find($this->getUser()->getId());
@@ -278,7 +281,6 @@ class ReserveController extends Controller
      */
     public function reservasconfirmadas(UserRepository $userRepository, ReservaRepository $reservaRepository)
     {
-
         $users = $userRepository->findAll();
         $usersList = [];
         foreach ($users as $user) {
