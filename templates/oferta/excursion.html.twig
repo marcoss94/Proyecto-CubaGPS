@@ -143,8 +143,10 @@
                             object.descripcion:
                             object.description }}</p>
 
+
                         <div class="" style="margin-right: 10px">
                             <div class="iconogeneral">
+                                <div class="col-6">
                                 <div class="iconoServ">
                                     <div style="margin-right: 8px">
                                         <span><i class="far fa-calendar-alt"></i></span>
@@ -155,6 +157,8 @@
                                                 'Días disponibles:':
                                                 'Available days' }}</span>
                                 </div>
+                                </div>
+                                <div class="col-6">
                                 {% for dia in object.diasDisponibles %}
                                     <div class="iconoServ" style="padding-right: 8px">
                                             <span>{{ app.session.get('language')== 'es' ?
@@ -162,7 +166,9 @@
                                                 days[dia] }}</span>
                                     </div>
                                 {% endfor %}
+                                </div>
                             </div>
+
                         </div>
                         <div class="separador"></div>
                         <div class="row">
