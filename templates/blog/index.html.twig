@@ -16,9 +16,9 @@
 
 {% block menu %}
     {#<div class="popupunder alert alert-success fade in">#}
-        {#<button type="button" class="close close-sm" data-dismiss="alert"><i#}
-                    {#class="glyphicon glyphicon-remove"></i></button>#}
-        {#<strong>Success : </strong> The update process has been completed successfull!#}
+    {#<button type="button" class="close close-sm" data-dismiss="alert"><i#}
+    {#class="glyphicon glyphicon-remove"></i></button>#}
+    {#<strong>Success : </strong> The update process has been completed successfull!#}
     {#</div>#}
 {% endblock %}
 
@@ -34,12 +34,12 @@
 
 
                 {#<div class="bodyLetra">#}
-                    {#<div id="table">#}
-                        {#<div id="centeralign">#}
-                            {#<h1 class="h1Letra">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</h1>#}
-                            {#<p class="pLetra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ante arcu, dignissim non risus id, posuere efficitur felis. Vestibulum arcu diam, semper non ipsum quis, dictum ultricies diam. Suspendisse vel luctus sapien. Mauris tristique condimentum velit tincidunt pharetra. Curabitur ut lectus eleifend, malesuada lorem eget, consectetur augue. Nunc scelerisque nisi in lacus eleifend eleifend. Praesent blandit ex at nunc maximus, ut sodales ante auctor. Nunc elementum eros sit amet malesuada facilisis. Morbi eget elit consequat, sodales urna in, lobortis nisi. Morbi dapibus velit eu mattis bibendum. Nulla et nisi eget turpis vulputate suscipit eu nec nunc. Pellentesque ut pulvinar quam.</p>#}
-                        {#</div>#}
-                    {#</div>#}
+                {#<div id="table">#}
+                {#<div id="centeralign">#}
+                {#<h1 class="h1Letra">{{ app.session.get('language') == 'es'? 'Le invitamos a descubrir Cuba':'We invite you to discover Cuba' }}</h1>#}
+                {#<p class="pLetra">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ante arcu, dignissim non risus id, posuere efficitur felis. Vestibulum arcu diam, semper non ipsum quis, dictum ultricies diam. Suspendisse vel luctus sapien. Mauris tristique condimentum velit tincidunt pharetra. Curabitur ut lectus eleifend, malesuada lorem eget, consectetur augue. Nunc scelerisque nisi in lacus eleifend eleifend. Praesent blandit ex at nunc maximus, ut sodales ante auctor. Nunc elementum eros sit amet malesuada facilisis. Morbi eget elit consequat, sodales urna in, lobortis nisi. Morbi dapibus velit eu mattis bibendum. Nulla et nisi eget turpis vulputate suscipit eu nec nunc. Pellentesque ut pulvinar quam.</p>#}
+                {#</div>#}
+                {#</div>#}
                 {#</div>#}
 
                 <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" style="background-color: #f9b501;
@@ -66,15 +66,13 @@ border-color: #f9b501;"
 
 
                 {#<div class="pull-alert">#}
-                    {#<div class="alert alert-success pull-right alert-dismissible fade show" role="alert">#}
-                        {#<strong>Holy guacamole!</strong> You should check in on some of those fields below.#}
-                        {#<button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
-                            {#<span aria-hidden="true">&times;</span>#}
-                        {#</button>#}
-                    {#</div>#}
+                {#<div class="alert alert-success pull-right alert-dismissible fade show" role="alert">#}
+                {#<strong>Holy guacamole!</strong> You should check in on some of those fields below.#}
+                {#<button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+                {#<span aria-hidden="true">&times;</span>#}
+                {#</button>#}
                 {#</div>#}
-
-
+                {#</div>#}
 
 
                 <div class="col-md-12 ">
@@ -167,161 +165,255 @@ border-color: #f9b501;"
 
                 {################Seccion de Hoteles#####################################################}
                 {#<div class="col-lg-12 text-center">#}
-                    {#<h2 id="hoteles"#}
-                        {#class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</h2>#}
+                {#<h2 id="hoteles"#}
+                {#class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</h2>#}
 
                 {#</div>#}
                 {#<div class="col-md-12 ">#}
-                    {#<div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">#}
-                        {#<div class="resCarousel-inner">#}
-                            {#{% for i in casas %}#}
-                                {#<div class="item">#}
-                                    {#<div class="col-xs-12 col-sm-12 col-lg-12">#}
-                                        {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                        {#<a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">#}
-                                            {#<div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide"#}
-                                                 {#data-ride="carousel "#}
-                                                 {#data-interval="false">#}
-                                                {#<div class="carousel-inner">#}
-                                                    {#{% for image in i.images %}#}
-                                                        {#<div {% if loop.index==1 %}class="carousel-item active"#}
-                                                             {#{% else %}class="carousel-item"{% endif %}>#}
-                                                            {#<img class="img-fluid fotosOferta"#}
-                                                                 {#src="{{ asset(image.half) }}"#}
-                                                                 {#alt="{{ image.altName }}">#}
-                                                        {#</div>#}
-                                                    {#{% endfor %}#}
-                                                {#</div>#}
-                                                {#<a class="carousel-control-prev" href="{{ '#carouselcasa'~loop.index }}"#}
-                                                   {#role="button"#}
-                                                   {#data-slide="prev">#}
-                                                    {#<span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-                                                    {#<span class="sr-only">Previous</span>#}
-                                                {#</a>#}
-                                                {#<a class="carousel-control-next" href="{{ '#carouselcasa'~loop.index }}"#}
-                                                   {#role="button"#}
-                                                   {#data-slide="next">#}
-                                                    {#<span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-                                                    {#<span class="sr-only">Next</span>#}
-                                                {#</a>#}
-                                            {#</div>#}
-                                        {#</a>#}
-                                        {#<div class=" infoOferta text-left">#}
-                                            {#<a class="nav-item nombreO" href="">#}
-                                                {#<h4>{{ i.nombre }}</h4></a>#}
-                                            {#<h4>{{ i.municipio~', '~i.provincia }}</h4>#}
-                                            {#{% if i.valoracionArray[0]!=0 %}#}
-                                                {#{% for j in 1..i.valoracionArray[0] %}#}
-                                                    {#<i class="fas fa-star star"></i>#}
-                                                {#{% endfor %}#}
-                                            {#{% endif %}#}
-                                            {#{% if i.valoracionArray[1] %}#}
-                                                {#<i class="fas fa-star-half-alt star"></i>#}
-                                            {#{% endif %}#}
-                                            {#{% if i.valoracionArray[2]!=0 %}#}
-                                                {#{% for j in 1..i.valoracionArray[2] %}#}
-                                                    {#<i class="far fa-star star"></i>#}
-                                                {#{% endfor %}#}
-                                            {#{% endif %}#}
-                                            {#<div class="timeline-body">#}
-                                                {#<h7 class="text-muted">#}
-                                                    {#{{ app.session.get('language') == 'es'?#}
-                                                    {#i.descripcion:#}
-                                                    {#i.description }}#}
-                                                {#</h7>#}
-                                                {#<h6 class="text-muted">#}
-                                                    {#56$ {{ app.session.get('language') == 'es'? 'por noche':'per night' }}  </h6>#}
-                                            {#</div>#}
-                                        {#</div>#}
-                                    {#</div>#}
-                                {#</div>#}
-                            {#{% endfor %}#}
-                        {#</div>#}
-                    {#</div>#}
-                    {#<button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>#}
-                    {#<button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>#}
+                {#<div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">#}
+                {#<div class="resCarousel-inner">#}
+                {#{% for i in casas %}#}
+                {#<div class="item">#}
+                {#<div class="col-xs-12 col-sm-12 col-lg-12">#}
+                {#primer oferta///////////////////////////////////////////////////////////////////////#}
+                {#<a class="portfolio-link" data-toggle="modal" href="#portfolioModal1">#}
+                {#<div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide"#}
+                {#data-ride="carousel "#}
+                {#data-interval="false">#}
+                {#<div class="carousel-inner">#}
+                {#{% for image in i.images %}#}
+                {#<div {% if loop.index==1 %}class="carousel-item active"#}
+                {#{% else %}class="carousel-item"{% endif %}>#}
+                {#<img class="img-fluid fotosOferta"#}
+                {#src="{{ asset(image.half) }}"#}
+                {#alt="{{ image.altName }}">#}
                 {#</div>#}
-            {#</div>#}
-            {#<div class="container">#}
+                {#{% endfor %}#}
+                {#</div>#}
+                {#<a class="carousel-control-prev" href="{{ '#carouselcasa'~loop.index }}"#}
+                {#role="button"#}
+                {#data-slide="prev">#}
+                {#<span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
+                {#<span class="sr-only">Previous</span>#}
+                {#</a>#}
+                {#<a class="carousel-control-next" href="{{ '#carouselcasa'~loop.index }}"#}
+                {#role="button"#}
+                {#data-slide="next">#}
+                {#<span class="carousel-control-next-icon" aria-hidden="true"></span>#}
+                {#<span class="sr-only">Next</span>#}
+                {#</a>#}
+                {#</div>#}
+                {#</a>#}
+                {#<div class=" infoOferta text-left">#}
+                {#<a class="nav-item nombreO" href="">#}
+                {#<h4>{{ i.nombre }}</h4></a>#}
+                {#<h4>{{ i.municipio~', '~i.provincia }}</h4>#}
+                {#{% if i.valoracionArray[0]!=0 %}#}
+                {#{% for j in 1..i.valoracionArray[0] %}#}
+                {#<i class="fas fa-star star"></i>#}
+                {#{% endfor %}#}
+                {#{% endif %}#}
+                {#{% if i.valoracionArray[1] %}#}
+                {#<i class="fas fa-star-half-alt star"></i>#}
+                {#{% endif %}#}
+                {#{% if i.valoracionArray[2]!=0 %}#}
+                {#{% for j in 1..i.valoracionArray[2] %}#}
+                {#<i class="far fa-star star"></i>#}
+                {#{% endfor %}#}
+                {#{% endif %}#}
+                {#<div class="timeline-body">#}
+                {#<h7 class="text-muted">#}
+                {#{{ app.session.get('language') == 'es'?#}
+                {#i.descripcion:#}
+                {#i.description }}#}
+                {#</h7>#}
+                {#<h6 class="text-muted">#}
+                {#56$ {{ app.session.get('language') == 'es'? 'por noche':'per night' }}  </h6>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {#</div>#}
+                {#{% endfor %}#}
+                {#</div>#}
+                {#</div>#}
+                {#<button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>#}
+                {#<button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>#}
+                {#</div>#}
+                {#</div>#}
+                {#<div class="container">#}
                 {#<div class="row text-center ">#}
-                    {#<div class="col-12 botonMas portfolio-item md-auto">#}
-                        {#<a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;#}
-{#border-color: #f9b501;"#}
-                           {#href="#services">{{ app.session.get('language') == 'es'? 'Mostrar todo (2000)>':'Show all (2000)' }}</a>#}
-                    {#</div>#}
+                {#<div class="col-12 botonMas portfolio-item md-auto">#}
+                {#<a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;#}
+                {#border-color: #f9b501;"#}
+                {#href="#services">{{ app.session.get('language') == 'es'? 'Mostrar todo (2000)>':'Show all (2000)' }}</a>#}
                 {#</div>#}
-            {#</div>#}
-            {################Seccion de Paquetes#####################################################}
-            <div class="col-lg-12 text-center">
-                <h2 id="paquetes"
-                    class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</h2>
-            </div>
-            <div class="col-md-12 ">
-                <div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">
-                    <div class="resCarousel-inner">
-                        {% for i in paquetes %}
-                            <div class="item">
-                                <div class="col-xs-12 col-sm-12 col-lg-12">
-                                    <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
-                                        <div id="{{ 'carouselpaquete'~loop.index }}" class="carousel slide"
-                                             data-ride="carousel "
-                                             data-interval="false">
-                                            <div class="carousel-inner">
-                                                {% for image in i.images %}
-                                                    <div {% if loop.index==1 %}class="carousel-item active"
-                                                         {% else %}class="carousel-item"{% endif %}>
-                                                        <img class="img-fluid fotosOferta"
-                                                             src="{{ asset(image.half) }}"
-                                                             alt="{{ image.altName }}">
-                                                    </div>
-                                                {% endfor %}
-                                            </div>
-                                            <a class="carousel-control-prev" href="{{ '#carouselpaquete'~loop.index }}"
-                                               role="button"
-                                               data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="{{ '#carouselpaquete'~loop.index }}"
-                                               role="button"
-                                               data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-
-                                    </a>
-                                    <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO"
+                {#</div>#}
+                {#</div>#}
+                {################Seccion de Paquetes#####################################################}
+                <div class="col-lg-12 text-center">
+                    <h2 id="paquetes"
+                        class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</h2>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">
+                        <div class="resCarousel-inner">
+                            {% for i in paquetes %}
+                                <div class="item">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        <a class="portfolio-link"
                                            href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
-                                            <h4>{{ app.session.get('language') == 'es'?
-                                                i.nombre:
-                                                i.name }}</h4></a>
-                                        <div class="serviciosOfertas provinciaO" style="margin-right: 10px">
-                                            <div class="iconogeneral">
+                                            <div id="{{ 'carouselpaquete'~loop.index }}" class="carousel slide"
+                                                 data-ride="carousel "
+                                                 data-interval="false">
+                                                <div class="carousel-inner">
+                                                    {% for image in i.images %}
+                                                        <div {% if loop.index==1 %}class="carousel-item active"
+                                                             {% else %}class="carousel-item"{% endif %}>
+                                                            <img class="img-fluid fotosOferta"
+                                                                 src="{{ asset(image.half) }}"
+                                                                 alt="{{ image.altName }}">
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <a class="carousel-control-prev"
+                                                   href="{{ '#carouselpaquete'~loop.index }}"
+                                                   role="button"
+                                                   data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next"
+                                                   href="{{ '#carouselpaquete'~loop.index }}"
+                                                   role="button"
+                                                   data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
 
-                                                <div class="iconoServ">
-                                                    <h6>
-                                                        <span><i class="far fa-sun"></i></span>
-                                                        {#Cantidad de dias#}
-                                                        {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
-                                                    </h6>
+                                        </a>
+                                        <div class=" infoOferta text-left">
+                                            <a class="nav-item nombreO"
+                                               href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                                                <h4>{{ app.session.get('language') == 'es'?
+                                                    i.nombre:
+                                                    i.name }}</h4></a>
+                                            <div class="serviciosOfertas provinciaO" style="margin-right: 10px">
+                                                <div class="iconogeneral">
+
+                                                    <div class="iconoServ">
+                                                        <h6>
+                                                            <span><i class="far fa-sun"></i></span>
+                                                            {#Cantidad de dias#}
+                                                            {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
+                                                        </h6>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="serviciosOfertas provinciaO" style="margin-right: 10px">
-                                            <div class="iconogeneral">
+                                            <div class="serviciosOfertas provinciaO" style="margin-right: 10px">
+                                                <div class="iconogeneral">
 
-                                                <div class="iconoServ">
-                                                    <h6>
-                                                        <span><i class="far fa-moon"></i></span>
-                                                        {#Cantidad de noches#}
-                                                        {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
-                                                    </h6>
+                                                    <div class="iconoServ">
+                                                        <h6>
+                                                            <span><i class="far fa-moon"></i></span>
+                                                            {#Cantidad de noches#}
+                                                            {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
+                                                        </h6>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="timeline-body">
+                                                {% if i.valoracionArray[0]!=0 %}
+                                                    {% for j in 1..i.valoracionArray[0] %}
+                                                        <i class="fas fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                {% if i.valoracionArray[1] %}
+                                                    <i class="fas fa-star-half-alt star"></i>
+                                                {% endif %}
+                                                {% if i.valoracionArray[2]!=0 %}
+                                                    {% for j in 1..i.valoracionArray[2] %}
+                                                        <i class="far fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
+                                            <div class="timeline-body">
+                                                <h7 class="text-muted">
+                                                    {{ app.session.get('language') == 'es'?
+                                                    i.descripcion:
+                                                    i.description }}
+                                                </h7>
+                                                <h6 class="text-muted">
+                                                    {{ '€ '~i.precio1 }}</h6>
+
+                                            </div>
                                         </div>
-                                        <div class="timeline-body">
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
+                    <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
+                </div>
+                <div class="container">
+                    <div class="row text-center ">
+                        <div class="col-12 botonMas portfolio-item md-auto">
+                            <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
+border-color: #f9b501;"
+                               href="{{ path('lista',{'type':'paquete'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1000)>':'Show all (1000)' }}</a>
+                        </div>
+                    </div>
+                </div>
+                {################Seccion de Carros#####################################################}
+                <div class="col-lg-12 text-center">
+                    <h2 id="carros"
+                        class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</h2>
+
+                </div>
+                <div class="col-md-12 ">
+                    <div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">
+                        <div class="resCarousel-inner">
+                            {% for i in carros %}
+                                <div class="item">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        {#primer oferta///////////////////////////////////////////////////////////////////////#}
+                                        <a class="portfolio-link"
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                                            <div id="{{ 'carouselcarro'~loop.index }}" class="carousel slide"
+                                                 data-ride="carousel "
+                                                 data-interval="false">
+                                                <div class="carousel-inner">
+                                                    {% for image in i.images %}
+                                                        <div {% if loop.index==1 %}class="carousel-item active"
+                                                             {% else %}class="carousel-item"{% endif %}>
+                                                            <img class="img-fluid fotosOferta"
+                                                                 src="{{ asset(image.half) }}"
+                                                                 alt="{{ image.altName }}">
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <a class="carousel-control-prev"
+                                                   href="{{ '#carouselcarro'~loop.index }}"
+                                                   role="button"
+                                                   data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next"
+                                                   href="{{ '#carouselcarro'~loop.index }}"
+                                                   role="button"
+                                                   data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </div>
+
+                                        </a>
+                                        <div class=" infoOferta text-left">
+                                            <a class="nav-item nombreO"
+                                               href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                                                <h4>{{ i.nombre }}</h4></a>
                                             {% if i.valoracionArray[0]!=0 %}
                                                 {% for j in 1..i.valoracionArray[0] %}
                                                     <i class="fas fa-star star"></i>
@@ -335,213 +427,125 @@ border-color: #f9b501;"
                                                     <i class="far fa-star star"></i>
                                                 {% endfor %}
                                             {% endif %}
-                                        </div>
-                                        <div class="timeline-body">
-                                            <h7 class="text-muted">
-                                                {{ app.session.get('language') == 'es'?
-                                                i.descripcion:
-                                                i.description }}
-                                            </h7>
-                                            <h6 class="text-muted">
-                                                {{ '€ '~i.precio1 }}</h6>
+                                            <div class="timeline-body">
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
-                <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
-            </div>
-            <div class="container">
-                <div class="row text-center ">
-                    <div class="col-12 botonMas portfolio-item md-auto">
-                        <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
-border-color: #f9b501;"
-                           href="{{ path('lista',{'type':'paquete'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (1000)>':'Show all (1000)' }}</a>
-                    </div>
-                </div>
-            </div>
-            {################Seccion de Carros#####################################################}
-            <div class="col-lg-12 text-center">
-                <h2 id="carros"
-                    class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</h2>
-
-            </div>
-            <div class="col-md-12 ">
-                <div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">
-                    <div class="resCarousel-inner">
-                        {% for i in carros %}
-                            <div class="item">
-                                <div class="col-xs-12 col-sm-12 col-lg-12">
-                                    {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                    <a class="portfolio-link" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
-                                        <div id="{{ 'carouselcarro'~loop.index }}" class="carousel slide"
-                                             data-ride="carousel "
-                                             data-interval="false">
-                                            <div class="carousel-inner">
-                                                {% for image in i.images %}
-                                                    <div {% if loop.index==1 %}class="carousel-item active"
-                                                         {% else %}class="carousel-item"{% endif %}>
-                                                        <img class="img-fluid fotosOferta"
-                                                             src="{{ asset(image.half) }}"
-                                                             alt="{{ image.altName }}">
-                                                    </div>
-                                                {% endfor %}
+                                                <h7 class="text-muted">
+                                                    {{ app.session.get('language') == 'es'? i.descripcion:i.description }}  </h7>
                                             </div>
-                                            <a class="carousel-control-prev" href="{{ '#carouselcarro'~loop.index }}"
-                                               role="button"
-                                               data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next" href="{{ '#carouselcarro'~loop.index }}"
-                                               role="button"
-                                               data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
-
-                                    </a>
-                                    <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO"
-                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
-                                            <h4>{{ i.nombre }}</h4></a>
-                                        {% if i.valoracionArray[0]!=0 %}
-                                            {% for j in 1..i.valoracionArray[0] %}
-                                                <i class="fas fa-star star"></i>
-                                            {% endfor %}
-                                        {% endif %}
-                                        {% if i.valoracionArray[1] %}
-                                            <i class="fas fa-star-half-alt star"></i>
-                                        {% endif %}
-                                        {% if i.valoracionArray[2]!=0 %}
-                                            {% for j in 1..i.valoracionArray[2] %}
-                                                <i class="far fa-star star"></i>
-                                            {% endfor %}
-                                        {% endif %}
-                                        <div class="timeline-body">
-
-                                            <h7 class="text-muted">
-                                                {{ app.session.get('language') == 'es'? i.descripcion:i.description }}  </h7>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
+                    <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
+                    <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
                 </div>
-                <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
-                <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
-            </div>
-            <div class="container">
-                <div class="row text-center ">
-                    <div class="col-12 botonMas portfolio-item md-auto">
-                        <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
+                <div class="container">
+                    <div class="row text-center ">
+                        <div class="col-12 botonMas portfolio-item md-auto">
+                            <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                           href="{{ path('lista',{'type':'carro'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
+                               href="{{ path('lista',{'type':'carro'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            {################Seccion de excursiones#####################################################}
-            <div class="col-lg-12 text-center">
-                <h2 id="excursiones"
-                    class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</h2>
-            </div>
-            <div class="col-md-12 ">
-                <div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">
-                    <div class="resCarousel-inner">
-                        {% for i in excursiones %}
-                            <div class="item">
-                                <div class="col-xs-12 col-sm-12 col-lg-12">
-                                    {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                    <a class="portfolio-link"
-                                       href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
-                                        <div id="{{ 'carouselexcursion'~loop.index }}" class="carousel slide"
-                                             data-ride="carousel "
-                                             data-interval="false">
-                                            <div class="carousel-inner">
-                                                {% for image in i.images %}
-                                                    <div {% if loop.index==1 %}class="carousel-item active"
-                                                         {% else %}class="carousel-item"{% endif %}>
-                                                        <img class="img-fluid fotosOferta"
-                                                             src="{{ asset(image.half) }}"
-                                                             alt="{{ image.altName }}">
-                                                    </div>
-                                                {% endfor %}
+                {################Seccion de excursiones#####################################################}
+                <div class="col-lg-12 text-center">
+                    <h2 id="excursiones"
+                        class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</h2>
+                </div>
+                <div class="col-md-12 ">
+                    <div class="resCarousel" data-items="1-2-3-3" data-slide="3" data-speed="900" data-animator="lazy">
+                        <div class="resCarousel-inner">
+                            {% for i in excursiones %}
+                                <div class="item">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                        {#primer oferta///////////////////////////////////////////////////////////////////////#}
+                                        <a class="portfolio-link"
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                                            <div id="{{ 'carouselexcursion'~loop.index }}" class="carousel slide"
+                                                 data-ride="carousel "
+                                                 data-interval="false">
+                                                <div class="carousel-inner">
+                                                    {% for image in i.images %}
+                                                        <div {% if loop.index==1 %}class="carousel-item active"
+                                                             {% else %}class="carousel-item"{% endif %}>
+                                                            <img class="img-fluid fotosOferta"
+                                                                 src="{{ asset(image.half) }}"
+                                                                 alt="{{ image.altName }}">
+                                                        </div>
+                                                    {% endfor %}
+                                                </div>
+                                                <a class="carousel-control-prev"
+                                                   href="{{ '#carouselexcursion'~loop.index }}"
+                                                   role="button"
+                                                   data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                                <a class="carousel-control-next"
+                                                   href="{{ '#carouselexcursion'~loop.index }}"
+                                                   role="button"
+                                                   data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
                                             </div>
-                                            <a class="carousel-control-prev"
-                                               href="{{ '#carouselexcursion'~loop.index }}"
-                                               role="button"
-                                               data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                            <a class="carousel-control-next"
-                                               href="{{ '#carouselexcursion'~loop.index }}"
-                                               role="button"
-                                               data-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </div>
 
-                                    </a>
-                                    <div class=" infoOferta text-left">
-                                        <a class="nav-item nombreO"
-                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
-                                            <h4>{{ i.nombre }}</h4></a>
-                                        <h4 class="provinciaO">{{ i.provincia }}</h4>
-                                        {% if i.valoracionArray[0]!=0 %}
-                                            {% for j in 1..i.valoracionArray[0] %}
-                                                <i class="fas fa-star star"></i>
-                                            {% endfor %}
-                                        {% endif %}
-                                        {% if i.valoracionArray[1] %}
-                                            <i class="fas fa-star-half-alt star"></i>
-                                        {% endif %}
-                                        {% if i.valoracionArray[2]!=0 %}
-                                            {% for j in 1..i.valoracionArray[2] %}
-                                                <i class="far fa-star star"></i>
-                                            {% endfor %}
-                                        {% endif %}
-                                        <div class="timeline-body">
-                                            <h6 class="text-muted">
-                                                {{ '€ '~i.precio1 }}  </h6>
-                                            <h7 class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</h7>
+                                        </a>
+                                        <div class=" infoOferta text-left">
+                                            <a class="nav-item nombreO"
+                                               href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
+                                                <h4>{{ i.nombre }}</h4></a>
+                                            <h4 class="provinciaO">{{ i.provincia }}</h4>
+                                            {% if i.valoracionArray[0]!=0 %}
+                                                {% for j in 1..i.valoracionArray[0] %}
+                                                    <i class="fas fa-star star"></i>
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% if i.valoracionArray[1] %}
+                                                <i class="fas fa-star-half-alt star"></i>
+                                            {% endif %}
+                                            {% if i.valoracionArray[2]!=0 %}
+                                                {% for j in 1..i.valoracionArray[2] %}
+                                                    <i class="far fa-star star"></i>
+                                                {% endfor %}
+                                            {% endif %}
+                                            <div class="timeline-body">
+                                                <h6 class="text-muted">
+                                                    {{ '€ '~i.precio1 }}  </h6>
+                                                <h7 class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</h7>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        </div>
                     </div>
+                    <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
+                    <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
                 </div>
-                <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i></button>
-                <button class='btn btn-default rightRs'><i class="fa fa-fw fa-angle-right"></i></button>
-            </div>
 
 
-            <div class="container">
+                <div class="container">
 
 
-                <div class="row text-center ">
-                    <div class="col-12 botonMas portfolio-item md-auto">
+                    <div class="row text-center ">
+                        <div class="col-12 botonMas portfolio-item md-auto">
 
-                        <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
+                            <a class="btn btn-primary btn-sm text-uppercase " style="background-color: #f9b501;
 border-color: #f9b501;"
-                           href="{{ path('lista',{'type':'excursion'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
+                               href="{{ path('lista',{'type':'excursion'}) }}">{{ app.session.get('language') == 'es'? 'Mostrar todo (800)>':'Show all (800)' }}</a>
 
+                        </div>
                     </div>
                 </div>
+                {#//////////////////////////////////////////////////////////////////////////////////////////////////#}
+
+
             </div>
-            {#//////////////////////////////////////////////////////////////////////////////////////////////////#}
-
-
-        </div>
         </div>
     </section>
     <!-- Informacion -->
@@ -840,35 +844,35 @@ border-color: #f9b501;"
 
     <!-- Clients -->
     {#<section class="py-5">#}
-        {#<div class="container">#}
-            {#<div class="row">#}
-                {#<div class="col-md-3 col-sm-6">#}
-                    {#<a href="#">#}
-                        {#<img class="img-fluid d-block mx-auto" src="{{ asset('build/img/logos/envato.jpg') }}"#}
-                             {#alt="">#}
-                    {#</a>#}
-                {#</div>#}
-                {#<div class="col-md-3 col-sm-6">#}
-                    {#<a href="#">#}
-                        {#<img class="img-fluid d-block mx-auto" src="{{ asset('build/img/logos/designmodo.jpg') }}"#}
-                             {#alt="">#}
-                    {#</a>#}
-                {#</div>#}
-                {#<div class="col-md-3 col-sm-6">#}
-                    {#<a href="#">#}
-                        {#<img class="img-fluid d-block mx-auto" src="{{ asset('build/img/logos/themeforest.jpg') }}"#}
-                             {#alt="">#}
-                    {#</a>#}
-                {#</div>#}
-                {#<div class="col-md-3 col-sm-6">#}
-                    {#<a href="#">#}
-                        {#<img class="img-fluid d-block mx-auto"#}
-                             {#src="{{ asset('build/img/logos/creative-market.jpg') }}"#}
-                             {#alt="">#}
-                    {#</a>#}
-                {#</div>#}
-            {#</div>#}
-        {#</div>#}
+    {#<div class="container">#}
+    {#<div class="row">#}
+    {#<div class="col-md-3 col-sm-6">#}
+    {#<a href="#">#}
+    {#<img class="img-fluid d-block mx-auto" src="{{ asset('build/img/logos/envato.jpg') }}"#}
+    {#alt="">#}
+    {#</a>#}
+    {#</div>#}
+    {#<div class="col-md-3 col-sm-6">#}
+    {#<a href="#">#}
+    {#<img class="img-fluid d-block mx-auto" src="{{ asset('build/img/logos/designmodo.jpg') }}"#}
+    {#alt="">#}
+    {#</a>#}
+    {#</div>#}
+    {#<div class="col-md-3 col-sm-6">#}
+    {#<a href="#">#}
+    {#<img class="img-fluid d-block mx-auto" src="{{ asset('build/img/logos/themeforest.jpg') }}"#}
+    {#alt="">#}
+    {#</a>#}
+    {#</div>#}
+    {#<div class="col-md-3 col-sm-6">#}
+    {#<a href="#">#}
+    {#<img class="img-fluid d-block mx-auto"#}
+    {#src="{{ asset('build/img/logos/creative-market.jpg') }}"#}
+    {#alt="">#}
+    {#</a>#}
+    {#</div>#}
+    {#</div>#}
+    {#</div>#}
     {#</section>#}
 
 {% endblock %}
@@ -886,12 +890,10 @@ border-color: #f9b501;"
                     var objectType = $('#objectType').val();
                     var comment = $('#commentArea').val();
                     var userId = $('#userId').val();
-                    if (comment == '') {
-                        alert('debe escribir un comentario');
-                        $("#textoWarningGrande").text('Algo acaba de suceder');
-                        $("#textoWarning").text('Debe escribir un comentario');
-                        $('.Alertwarning').animate({top:"0"}, 500);
-
+                    if (comment.length < 5) {
+                        var head = '{{ app.session.get('language') == 'es'? 'Falta información':'Information is missing' }}';
+                        var body = '{{ app.session.get('language') == 'es'? 'Debe escribir un comentario de al menos 6 caractéres':'You must write a comment of at least 6 characters' }}';
+                        show_alert_box("warning", head, body);
                     } else {
                         var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                         $.ajax({
@@ -900,11 +902,11 @@ border-color: #f9b501;"
                             data: data,
                             success: function (response) {
                                 if (response.result) {
-                                    alert('Su comentario ha sido recibido correctamente');
-                                    $("#textoSuccessGrande").text('Algo acaba de suceder');
-                                    $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
-                                    $('.Alertsuccess').animate({top:"0"}, 500);
-                                    $('#commentArea').val('');
+                                    alert('asasasa');
+                                    var head = '{{ app.session.get('language') == 'es'? 'Gracias':'Thanks' }}';
+                                    var body = '{{ app.session.get('language') == 'es'? 'Su comentario ha sido recibido correctamente':'You must write a comment of at least 6 characters' }}';
+                                    show_alert_box("success", head, body);
+                                    //este código no se está ejecutando, no se porque.
                                 }
                             }
                         })

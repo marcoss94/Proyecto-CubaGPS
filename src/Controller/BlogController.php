@@ -61,8 +61,8 @@ class BlogController extends AbstractController
             $langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
             $b=true;
             foreach ($langs as $l){
-                $head=explode('-',$l);
-                if ($head[0] == 'es'){
+                $head=substr($l,0,2);
+                if ($head == 'es'){
                     $this->get('session')->set('language', 'es');
                     $b=false;
                     break;
