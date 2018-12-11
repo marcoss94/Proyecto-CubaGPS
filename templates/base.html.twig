@@ -35,7 +35,7 @@
 
         <link rel='stylesheet' href="{{ asset('build/unitegallery/css/unite-gallery.css') }}" type='text/css'/>
 
-        <link rel='stylesheet' href="{{ asset('build/unitegallery/themes/default/ug-theme-default.css') }}" type='text/css' />
+        {#<link rel='stylesheet' href="{{ asset('build/unitegallery/themes/default/ug-theme-default.css') }}" type='text/css' />#}
 
 
     {% endblock %}
@@ -113,16 +113,16 @@
                                    href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
 
 
-                                <a class="nav-link js-scroll-trigger "
-                                href="">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                href="">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                href="">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                href="">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                href="">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>#}
 
                             </div>
                         </div>
@@ -171,7 +171,7 @@
                         </li>
                     {% endif %}
 
-
+                    <li class="nav-item">
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -187,8 +187,12 @@
 
                             </div>
                         </div>
-
                     </li>
+
+
+
+
+
                 </ul>
             </div>
         </div>
@@ -258,16 +262,16 @@
 
 
 
-                                <a class="nav-link js-scroll-trigger "
-                                href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                href="#carros">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
-                                <a class="nav-link js-scroll-trigger "
-                                href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#carros">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>#}
+                                {#<a class="nav-link js-scroll-trigger "#}
+                                {#href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>#}
 
 
                                 <a class="nav-link js-scroll-trigger "
@@ -331,21 +335,21 @@
                     {% endif %}
                     <li class="nav-item">
 
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="caret"></span>
-                            </a>
+                        {#<div class="dropdown">#}
+                            {#<a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"#}
+                               {#data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+                                {#<i class="fa fa-globe" aria-hidden="true"></i>#}
+                                {#<span class="caret"></span>#}
+                            {#</a>#}
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                                 style="background-color: #212529;">
+                            {#<div class="dropdown-menu" aria-labelledby="dropdownMenuLink"#}
+                                 {#style="background-color: #212529;">#}
 
-                                <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
-                                <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
+                                {#<a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>#}
+                                {#<a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>#}
 
-                            </div>
-                        </div>
+                            {#</div>#}
+                        {#</div>#}
 
                     </li>
                 </ul>
@@ -364,11 +368,11 @@
 {% block footer %}
     <!-- Contact -->
 
-    <div class="popupunder alert alert-success fade in">
-        <button type="button" class="close close-sm" data-dismiss="alert"><i
-                    class="glyphicon glyphicon-remove"></i></button>
-        <strong>Success : </strong> The update process has been completed successfull!
-    </div>
+    {#<div class="popupunder alert alert-success fade in">#}
+        {#<button type="button" class="close close-sm" data-dismiss="alert"><i#}
+                    {#class="glyphicon glyphicon-remove"></i></button>#}
+        {#<strong>Success : </strong> The update process has been completed successfull!#}
+    {#</div>#}
 
     <section id="contact">
         <div class="container">
@@ -400,12 +404,12 @@
 
                     </div>
 
-                    <ul id="trigger-list">
-                        <li><a href="#b" class="trigger Alertinfo-trigger">Info</a></li>
-                        <li><a href="#b" class="trigger Alerterror-trigger">Error</a></li>
-                        <li><a href="#b" class="trigger Alertwarning-trigger">Warning</a></li>
-                        <li><a href="#b" class="trigger Alertsuccess-trigger">Success</a></li>
-                    </ul>
+                    {#<ul id="trigger-list">#}
+                        {#<li><a href="#b" class="trigger Alertinfo-trigger">Info</a></li>#}
+                        {#<li><a href="#b" class="trigger Alerterror-trigger">Error</a></li>#}
+                        {#<li><a href="#b" class="trigger Alertwarning-trigger">Warning</a></li>#}
+                        {#<li><a href="#b" class="trigger Alertsuccess-trigger">Success</a></li>#}
+                    {#</ul>#}
 
 
                 </div>
@@ -517,7 +521,7 @@ border-color: #f9b501">
                     <div class="modal-body">
                         <a class="btn btn-info btn-xl botonFace botonInicioSesion"
                            href="{{ path('connect_facebook_start') }}">{{ app.session.get('language') == 'es'? 'Ingresa con Facebook':'Log in with Facebook' }}</a>
-                        <a href="{{ path('connect_facebook_start') }}">{{ app.session.get('language') == 'es'? 'Inicia Sesión con Facebook':'Log in with Facebook' }}</a>
+                        {#<a href="{{ path('connect_facebook_start') }}">{{ app.session.get('language') == 'es'? 'Inicia Sesión con Facebook':'Log in with Facebook' }}</a>#}
                     </div>
                     <div class="modal-body">
                         <a class="btn btn-danger btn-xl botonGoogle botonInicioSesion"
@@ -557,7 +561,7 @@ border-color: #f9b501">
                 </div><!-- /.modal-dialog -->
             </div>
         {% endif %}
-        --Modal de Busqueda--
+        {#--Modal de Busqueda--#}
         <div class="portfolio-modal-sm modal fade" id="searchModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
