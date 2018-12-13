@@ -29,7 +29,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-auto mr-auto">
-                    <i class="fas fa-home"></i>
+                    <i class="fas fa-fw fa-map-marked-alt"></i>
                     Excursiones
                 </div>
                 <div class="col-auto">
@@ -118,8 +118,8 @@
                             <td>{{ c.id}}</td>
                             <td>{{ c.nombre }}</td>
                             <td>{{ c.name }}</td>
-                            <td>{{ c.descripcion }}</td>
-                            <td>{{ c.description }}</td>
+                            <td class="expandable"><p>{{ c.descripcion }}</p></td>
+                            <td class="expandable"><p>{{ c.description }}</p></td>
                             <td>{{ c.infoContacto }}</td>
                             <td>{{ c.provincia }}</td>
                             <td>
@@ -144,8 +144,8 @@
                             <td>{{ c.desayuno?'si':'no' }}</td>
                             <td>{{ c.almuerzo?'si':'no' }}</td>
                             <td>{{ c.comida?'si':'no' }}</td>
-                            <td>{{ c.reglamento }}</td>
-                            <td>{{ c.reglament }}</td>
+                            <td class="expandable"><p>{{ c.reglamento }}</p></td>
+                            <td class="expandable"><p>{{ c.reglament }}</p></td>
                             <td>{{ c.precio1 }}</td>
                             <td>{{ c.precio2 }}</td>
                             <td>{{ c.precio3 }}</td>

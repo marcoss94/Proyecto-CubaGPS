@@ -720,4 +720,14 @@ class AdminController extends Controller
         $em->flush();
         return $this->redirectToRoute('habitaciones',['id'=>$hab->getCasa()->getId(),'status'=>'create']);
     }
+
+    /**
+     * @Route("/construction", name="construction")
+     */
+    public function construction()
+    {
+        return $this->render('admin/construction.html.twig', [
+
+        ]);
+    }
 }

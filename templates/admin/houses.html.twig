@@ -126,8 +126,8 @@
                         <td>{{ c.direccion }}</td>
                         <td>{{ c.municipio }}</td>
                         <td>{{ c.provincia }}</td>
-                        <td>{{ c.descripcion }}</td>
-                        <td>{{ c.description }}</td>
+                        <td class="expandable"><p>{{ c.descripcion }}</p></td>
+                        <td class="expandable"><p>{{ c.description }}</p></td>
                         <td>{{ c.tel }}</td>
                         <td>{{ c.cel }}</td>
                         <td>{{ c.email }}</td>
@@ -293,4 +293,9 @@
         $('#editModal').modal('show')
         {% endif %}
     </script>
+
+
+
+
+
 {% endblock %}

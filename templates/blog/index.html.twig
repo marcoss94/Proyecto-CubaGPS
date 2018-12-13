@@ -80,18 +80,18 @@ border-color: #f9b501;"
                         <div class="resCarousel-inner">
                             {% for i in casas %}
                                 <div class="item">
-                                    <div class="col-xs-12 col-sm-12 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-lg-12 ">
                                         {#primer oferta///////////////////////////////////////////////////////////////////////#}
-                                        <a class="portfolio-link"
+                                        <a class=" portfolio-link"
                                            href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
-                                            <div id="{{ 'carouselcasa'~loop.index }}" class="carousel slide"
+                                            <div id="{{ 'carouselcasa'~loop.index }}" class=" carousel slide "
                                                  data-ride="carousel "
                                                  data-interval="false">
-                                                <div class="carousel-inner">
+                                                <div class="  carousel-inner">
                                                     {% for image in i.images %}
-                                                        <div {% if loop.index==1 %}class="carousel-item active"
+                                                        <div {% if loop.index==1 %}class="  carousel-item active"
                                                              {% else %}class="carousel-item"{% endif %}>
-                                                            <img class="img-fluid fotosOferta"
+                                                            <img class=" img-fluid fotosOferta"
                                                                  src="{{ asset(image.half) }}"
                                                                  alt="{{ image.altName }}">
                                                         </div>
@@ -109,7 +109,8 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-                                            </div>
+                                                <div class="texto-encima"><h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
+                                                </div>
                                         </a>
                                         <div class=" infoOferta text-left">
                                             <a class="nav-item nombreO"
@@ -130,13 +131,12 @@ border-color: #f9b501;"
                                                 {% endfor %}
                                             {% endif %}
                                             <div class="timeline-body">
-                                                <h7 class="text-muted">
+                                                <h7 class="descr text-muted" >
                                                     {{ app.session.get('language') == 'es'?
                                                     i.descripcion:
                                                     i.description }}
                                                 </h7>
-                                                <h6 class="text-muted">
-                                                    {{ '€ '~i.precio }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>
+
 
                                             </div>
                                         </div>
@@ -289,6 +289,7 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
+                                                <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
                                             </div>
 
                                         </a>
@@ -338,7 +339,7 @@ border-color: #f9b501;"
                                                 {% endif %}
                                             </div>
                                             <div class="timeline-body">
-                                                <h7 class="text-muted">
+                                                <h7 class="descr text-muted">
                                                     {{ app.session.get('language') == 'es'?
                                                     i.descripcion:
                                                     i.description }}
@@ -407,7 +408,7 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-                                            </div>
+                                                </div>
 
                                         </a>
                                         <div class=" infoOferta text-left">
@@ -429,7 +430,7 @@ border-color: #f9b501;"
                                             {% endif %}
                                             <div class="timeline-body">
 
-                                                <h7 class="text-muted">
+                                                <h7 class="descr text-muted">
                                                     {{ app.session.get('language') == 'es'? i.descripcion:i.description }}  </h7>
                                             </div>
                                         </div>
@@ -492,6 +493,7 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
+                                                <div class="texto-encima"><h6>{{ '€ '~i.precio1 }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
                                             </div>
 
                                         </a>
@@ -515,8 +517,8 @@ border-color: #f9b501;"
                                             {% endif %}
                                             <div class="timeline-body">
                                                 <h6 class="text-muted">
-                                                    {{ '€ '~i.precio1 }}  </h6>
-                                                <h7 class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</h7>
+                                                    {{ i.precio1~ ' € ' }}  </h6>
+                                                <h7 class="descr text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</h7>
                                             </div>
                                         </div>
                                     </div>
@@ -919,7 +921,18 @@ border-color: #f9b501;"
 
             <script src="{{ asset('build/js/resCarousel.js') }}"></script>
 
+<script>
+    $(document).ready(function () {
+        var caracteresAMostrar = 300;
+        var contenido = $(".descr").html();
 
+        if (contenido.length > caracteresAMostrar) {
+            var resumen = contenido.substr(0, caracteresAMostrar);
+            var todo = contenido.substr(caracteresAMostrar, contenido.length - caracteresAMostrar);
+        }
+        $(".descr").html(resumen);
+    })
+</script>
 
 
 

@@ -417,19 +417,28 @@
                                     </div>
                                     <div id="errorBox"></div>
                                     <div class="modal-footer">
-                                        <div class="row">
-                                            <input type="hidden" id="costoExcInput" name="costo">
-                                            <label id="precioTransfer"></label>
-                                            <button type="button" id="excSubmitButton"
-                                                    class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
-                                        </div>
+
+                                            <div class="col-6">
+                                                <input type="hidden" id="costoExcInput" name="costo">
+                                                <label id="precioTransfer" class="precioReserva"></label>
+                                            </div>
+                                            <div class="col-6">
+                                                <button type="button" id="reserveButton"
+                                                        class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                            </div>
+
+
+
                                     </div>
                                 </form>
                                 {#--------------------------Reserva Especial-----------------------------------------------#}
-                                <a data-toggle="collapse" href="#collapseReserve" role="button"
+                                <div class="modal-body">
+                                <div>
+                                    <a data-toggle="collapse" href="#collapseReserve" role="button"
                                    aria-expanded="false" aria-controls="collapseReserve">
                                     {{ app.session.get('language') == 'es'? '¿No encuentras lo que buscas?':'Do not you find what you are looking for?' }}
                                 </a>
+                                </div>
                                 <div class="collapse" id="collapseReserve">
                                     <div class="card card-body">
                                         {% if app.user %}
@@ -483,6 +492,7 @@
                                         {% endif %}
 
                                     </div>
+                                </div>
                                 </div>
                                 {#---------------------------------------------------------------------------------------#}
                             </div>
@@ -625,7 +635,7 @@
                     success: function (response) {
                         var price = response.result;
                         $('#costoTransInput').val(price);
-                        document.getElementById('precioTransfer').innerHTML = '€' + price;
+                        document.getElementById('precioTransfer').innerHTML = price + '€' ;
                     }
                 })
                 ;

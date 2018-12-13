@@ -335,21 +335,21 @@
                     {% endif %}
                     <li class="nav-item">
 
-                        {#<div class="dropdown">#}
-                            {#<a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"#}
-                               {#data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                                {#<i class="fa fa-globe" aria-hidden="true"></i>#}
-                                {#<span class="caret"></span>#}
-                            {#</a>#}
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                            </a>
 
-                            {#<div class="dropdown-menu" aria-labelledby="dropdownMenuLink"#}
-                                 {#style="background-color: #212529;">#}
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                 style="background-color: #212529;">
 
-                                {#<a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>#}
-                                {#<a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>#}
+                                <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
+                                <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
 
-                            {#</div>#}
-                        {#</div>#}
+                            </div>
+                        </div>
 
                     </li>
                 </ul>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta':'Offer' }}{% endblock %}
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta de Casas':'Offers of Houses' }}{% endblock %}
 
  {% block stylesheets %}
      {{ parent() }}
@@ -217,6 +217,7 @@
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
+                                                <div class="texto-encima"><h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
                                             </div>
                                         </div>
                                     </a>
@@ -241,11 +242,12 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-6 col-md-6">
-                                                    <div class="iconoServ">
-                                                        <span class="text-success">{{ i.precio~'€' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</span>
-                                                    </div>
-                                                </div>
+                                                {#<div class="col-6 col-md-6">#}
+                                                    {#<div class="iconoServ">#}
+                                                        {##}
+                                                        {#<span class="text-success">{{ i.precio~'€' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</span>#}
+                                                    {#</div>#}
+                                                {#</div>#}
                                             </div>
 
                                             {#servicios#}
@@ -525,11 +527,15 @@
                                 </div>
                                 <div id="errorBox"></div>
                                 <div class="modal-footer">
-                                    <a href="{{ path('reservacion') }}">Reservacion </a>
-                                    <label id="precio"></label>
-                                    <button type="button" id="reserveButton"
-                                            class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
-                                </div>
+                                    {#<a href="{{ path('reservacion') }}">Reservacion </a>#}
+                                    <div class="col-6">
+                                        <label id="precio" class="precioReserva"></label>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" id="reserveButton"
+                                                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                    </div>
+                                    </div>
                             </form>
                         </div>
                     </div>

@@ -109,8 +109,9 @@
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.id }}</td>
                             <td>{{ c.nombreChofer }}</td>
-                            <td>{{ c.descripcion }}</td>
-                            <td>{{ c.description }}</td>
+
+                            <td class="expandable"><p>{{ c.descripcion }}</p></td>
+                            <td class="expandable"><p>{{ c.description }}</p></td>
                             <td>
                                 {{ c.valoracion }}
                             </td>
