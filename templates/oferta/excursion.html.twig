@@ -136,6 +136,54 @@
                             {% endif %}
                         </div>
 
+                        <div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <h6>
+
+                                            <div class="precio">1<i class="fas fa-user"></i>   <span>€{{ object.precio1 }}</span></div>
+
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <h6>
+
+
+                                            <div class="precio"> 2<i class="fas fa-users"></i>   <span>€{{ object.precio2 }}</span></div>
+
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <h6>
+
+
+                                            <div class="precio"> 3<i class="fas fa-users"></i>   <span>€{{ object.precio3 }}</span></div>
+
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <h6>
+
+                                           <div class="precio"> +4<i class="fas fa-users"></i> <span> €{{ object.precio4 }}  </span></div>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="separador"></div>
                         {#Descripcion --------------------------------------------------------------------------------------#}
                         {#descripcion#}
@@ -146,7 +194,7 @@
 
                         <div class="" style="margin-right: 10px">
                             <div class="iconogeneral">
-                                <div class="col-6">
+                                <div class="col-12">
                                 <div class="iconoServ">
                                     <div style="margin-right: 8px">
                                         <span><i class="far fa-calendar-alt"></i></span>
@@ -158,15 +206,17 @@
                                                 'Available days' }}</span>
                                 </div>
                                 </div>
-                                <div class="col-6">
+
                                 {% for dia in object.diasDisponibles %}
+                                <div class="col-12">
                                     <div class="iconoServ" style="padding-right: 8px">
                                             <span>{{ app.session.get('language')== 'es' ?
                                                 dia :
                                                 days[dia] }}</span>
                                     </div>
-                                {% endfor %}
                                 </div>
+                                {% endfor %}
+
                             </div>
 
                         </div>
@@ -396,9 +446,13 @@
 
                                 <div id="errorBox"></div>
                                 <div class="modal-footer">
-                                    <label id="precio"></label>
-                                    <button type="button" id="reserveButton"
-                                            class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                    <div class="col-6">
+                                        <label id="precio" class="precioReserva"></label>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" id="reserveButton"
+                                                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -531,7 +585,7 @@
             } else {
                 precio = parseInt({{ object.precio4 }}) * parseInt(cant);
             }
-            return '€' + precio;
+            return precio+ '€' ;
         }
         $('#cantA').on('change', function () {
             document.getElementById('precio').innerHTML = setPrice(this.value);

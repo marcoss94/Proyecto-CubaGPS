@@ -104,6 +104,53 @@
                             </div>
 
                         </div>
+                        <div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <h6>
+
+                                            <div class="precio">1<i class="fas fa-user"></i>   <span>€{{ object.precio1 }}</span></div>
+
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <h6>
+
+
+                                            <div class="precio"> 2<i class="fas fa-users"></i>   <span>€{{ object.precio2 }}</span></div>
+
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <h6>
+
+
+                                            <div class="precio"> 3<i class="fas fa-users"></i>   <span>€{{ object.precio3 }}</span></div>
+
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+                                    <div class="iconoServ">
+                                        <h6>
+
+                                            <div class="precio"> +4<i class="fas fa-users"></i> <span> €{{ object.precio4 }}  </span></div>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <div class="separador"></div>
                         {#Descripcion --------------------------------------------------------------------------------------#}
@@ -123,7 +170,8 @@
                                 <div class="col-lg-12">
                                     <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Dia ':'Day ' }}
                                         {{ d.orden~' ' }}
-                                        {{ app.session.get('language') == 'es'? d.nombre:d.name }}</h4>
+                                        {#{{ app.session.get('language') == 'es'? d.nombre:d.name }}#}
+                                    </h4>
                                     <div class="resCarousel" data-items="1-1-1-1" data-slide="1" data-speed="900"
                                          data-animator="lazy">
                                         <div class="resCarousel-inner" style="font-size: 30px">
@@ -132,12 +180,12 @@
                                                 <ul class="timelineGPS">
                                                     <li>
                                                         <div class="timeline-imageGPS">
-                                                            <a href="" class="lightbox" data-toggle="modal"
-                                                               data-target="#PruebaModal" style="cursor: pointer;">
+                                                            {#<a href="" class="lightbox" data-toggle="modal"#}
+                                                               {#data-target="#PruebaModal" style="cursor: pointer;">#}
                                                                 <img class="rounded-circle fotoExcurc img-fluid"
                                                                      src="{{ asset(a.getMainImage().half) }}"
                                                                      alt="{{ a.getMainImage().altName }}">
-                                                            </a>
+                                                            {#</a>#}
                                                         </div>
                                                         <div class="timeline-panelGPS">
                                                             <div class="timeline-headingGPS">
@@ -276,9 +324,13 @@
                                 </div>
                                 <div id="errorBox"></div>
                                 <div class="modal-footer">
-                                    <label id="precio"></label>
-                                    <button type="button" id="reserveButton"
-                                            class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                    <div class="col-6">
+                                        <label id="precio" class="precioReserva"></label>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" id="reserveButton"
+                                                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -404,7 +456,7 @@
             } else {
                 precio = parseInt({{ object.precio4 }}) * parseInt(cant);
             }
-            return '€' + precio;
+            return precio + '€';
         }
         $('#cantA').on('change', function () {
             document.getElementById('precio').innerHTML = setPrice(this.value);

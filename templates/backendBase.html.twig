@@ -303,6 +303,22 @@
 <!-- Demo scripts for this page-->
 <script src="{{ asset('build/backend/sb-admin/js/demo/datatables-demo.js')}}"></script>
 <script src="{{ asset('build/backend/sb-admin/js/demo/chart-area-demo.js')}}"></script>
+<script src="{{ asset('build/backend/js/jquery.expander.js')}}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // use esta configuracion simple para valores por defecto
+            //$('div.expandable p').expander();
+            // *** O ***
+            // configure de la siguiente manera
+            $('td.expandable p').expander({
+                slicePoint: 30, // si eliminamos por defecto es 100 caracteres
+                expandText: 'Leer mas', // por defecto es 'read more...'
+                collapseTimer: 5000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
+                userCollapseText: 'Leer menos' // por defecto es 'read less...'
+            });
+        });
+    </script>
 
 {% endblock %}
 </body>
