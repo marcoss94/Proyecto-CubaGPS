@@ -902,7 +902,6 @@ border-color: #f9b501;"
                             data: data,
                             success: function (response) {
                                 if (response.result) {
-                                    alert('asasasa');
                                     var head = '{{ app.session.get('language') == 'es'? 'Gracias':'Thanks' }}';
                                     var body = '{{ app.session.get('language') == 'es'? 'Su comentario ha sido recibido correctamente':'You must write a comment of at least 6 characters' }}';
                                     show_alert_box("success", head, body);
@@ -914,6 +913,12 @@ border-color: #f9b501;"
                     }
 
                 })
+                {% if message!='' %}
+                var head = '{{ message['head'] }}';
+                var body = '{{ message['body'] }}';
+                var type = '{{ message['type'] }}';
+                show_alert_box(type, head, body);
+                {% endif %}
             </script>
 
 

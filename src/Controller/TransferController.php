@@ -174,7 +174,13 @@ class TransferController extends Controller
         $em=$this->getDoctrine()->getManager();
         $em->persist($reserve);
         $em->flush();
-        return $this->redirectToRoute('blog_index');
+        $message['type'] = 'success';
+        $message['head'] = ($user->getIdioma()=='es')?
+            'Gracias':'Thanks';
+        $message['body'] = ($user->getIdioma()=='es')?
+            'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
+            :'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
+        return $this->redirectToRoute('blog_index',['message'=>$message]);
     }
 
     public function changeEmailTo($email, $user)

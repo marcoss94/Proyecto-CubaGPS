@@ -37,12 +37,12 @@ class ReserveController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $userRepository->find($request->get('user'));
-        $preReservas = $reservaRepository->findBy(['usuario' => $user, 'status' => ['pre','confirmed']]);
+        $preReservas = $reservaRepository->findBy(['usuario' => $user, 'status' => ['pre', 'confirmed']]);
         foreach ($preReservas as $preReserva) {
             if ($request->get($preReserva->getId())) {
                 $preReserva->setStatus('confirmed');
                 $em->persist($preReserva);
-            }else{
+            } else {
                 $preReserva->setStatus('pre');
             }
         }
@@ -59,28 +59,21 @@ class ReserveController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $userRepository->find($request->get('userId'));
         $adjArray = explode(',', $request->get('adjuntos'));
-        $reserves=$reservaRepository->findBy(['usuario'=>$user,'status'=>['pre','confirmed']]);
-        $adj=[];
-        foreach ($adjArray as $id){
-            $adj[]=$componentRepository->find($id);
+        $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => ['pre', 'confirmed']]);
+        $adj = [];
+        $rechazos = [];
+        $confirmedReserves=[];
+        foreach ($adjArray as $id) {
+            $adj[] = $componentRepository->find($id);
         }
-        foreach ($reserves as $reserve){
-            if($reserve->getStatus()=='pre'){
+        foreach ($reserves as $reserve) {
+            if ($reserve->getStatus() == 'pre') {
+                $rechazos[] = $reserve;
                 $em->remove($reserve);
-            }else{
+            } else {
                 $reserve->setStatus('pending');
                 $em->persist($reserve);
-            }
-        }
-        $em->flush();
-        $preReservas = $reservaRepository->findBy(['usuario' => $user, 'status' => 'pre']);
-        $text = $request->get('text');
-        foreach ($preReservas as $preReserva) {
-            if ($request->get($preReserva->getId())) {
-                $preReserva->setStatus('confirmed');
-                $em->persist($preReserva);
-            } else {
-                $em->remove($preReserva);
+                $confirmedReserves[]= $reserve;
             }
         }
         $em->flush();
@@ -89,9 +82,13 @@ class ReserveController extends Controller
             ->setTo($user->getEmail())
             ->setFrom('cubagps@gmail.com')
             ->setBody($this->renderView(
-            // templates/emails/registration.html.twig
-                'email/confirmReserve.html.twig',
-                array('name' => $preReservas)
+                'email_confirmacion/index.html.twig',
+                ['user' => $user,
+                    'adjuntos' => $adj,
+                    'rechazos' => $rechazos,
+                    'textoAdicional'=>$request->get('textoAdicional'),
+                    'reservas' => $confirmedReserves
+                ]
             ),
                 'text/html');
 
@@ -142,15 +139,13 @@ class ReserveController extends Controller
         $em->persist($reserve);
         $em->flush();
         $message = [];
-        $error = [];
-        $message[0] = 'true';
-        $message[1] = 'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta';
-        $message[2] = 'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
-        return $this->render('oferta/casa.html.twig', [
-            'object' => $casa,
-            'message' => $message,
-            'error' => $error
-        ]);
+        $message['type'] = 'success';
+        $message['head'] = ($user->getIdioma()=='es')?
+        'Gracias':'Thanks';
+        $message['body'] = ($user->getIdioma()=='es')?
+            'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
+        :'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
+        return $this->redirectToRoute('blog_index',['message'=>$message]);
     }
 
     /**
@@ -182,15 +177,13 @@ class ReserveController extends Controller
         $em->persist($reserve);
         $em->flush();
         $message = [];
-        $error = [];
-        $message[0] = 'true';
-        $message[1] = 'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta';
-        $message[2] = 'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
-        return $this->render('oferta/excursion.html.twig', [
-            'object' => $excursion,
-            'message' => $message,
-            'error' => $error
-        ]);
+        $message['type'] = 'success';
+        $message['head'] = ($user->getIdioma()=='es')?
+            'Gracias':'Thanks';
+        $message['body'] = ($user->getIdioma()=='es')?
+            'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
+            :'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
+        return $this->redirectToRoute('blog_index',['message'=>$message]);
     }
 
     /**
@@ -218,7 +211,7 @@ class ReserveController extends Controller
         $reserve->setStartAt($entrada);
         $em->persist($reserve);
         $agregarDias = $paquete->getDuracion();
-        $salida=new \DateTime($request->get('entrada'));
+        $salida = new \DateTime($request->get('entrada'));
         $salida->add(new \DateInterval("P{$agregarDias}D"));
         $reserve->setEndAt($salida);
         $reserve->setUsuario($this->getUser());
@@ -227,15 +220,13 @@ class ReserveController extends Controller
         $em->persist($reserve);
         $em->flush();
         $message = [];
-        $error = [];
-        $message[0] = 'true';
-        $message[1] = 'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta';
-        $message[2] = 'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
-        return $this->render('oferta/paquete.html.twig', [
-            'object' => $paquete,
-            'message' => $message,
-            'error' => $error
-        ]);
+        $message['type'] = 'success';
+        $message['head'] = ($user->getIdioma()=='es')?
+            'Gracias':'Thanks';
+        $message['body'] = ($user->getIdioma()=='es')?
+            'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
+            :'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
+        return $this->redirectToRoute('blog_index',['message'=>$message]);
     }
 
     /**
@@ -268,8 +259,12 @@ class ReserveController extends Controller
     {
         $user = $this->getUser();
         $preReserves = $reservaRepository->findBy(['usuario' => $user, 'status' => ['confirmed', 'pending']]);
+        $price=0;
+        foreach ($preReserves as $p){
+            $price+=$p->getCosto();
+        }
         if (count($preReserves)) {
-            return $this->render('reserve/show_confirmed_reserve.html.twig', ['reserves' => $preReserves, 'base' => 'false']);
+            return $this->render('reserve/show_confirmed_reserve.html.twig', ['reserves' => $preReserves, 'base' => 'false','precio'=>$price]);
         } else {
             return $this->redirectToRoute('blog_index');
         }
@@ -379,10 +374,10 @@ class ReserveController extends Controller
     {
         $contacto = new Contacto();
         $contacto->setCreatedAt();
-        $id=$request->get('objectId');
+        $id = $request->get('objectId');
         $contacto->setEmail($request->get('email'));
         $contacto->setNombre($this->getUser());
-        $text = 'Solivitud de reserva especial, id del servicio solicitado: '.$id.'. Cantidad de personas: ' . $request->get('cantPersRE') . ', Descripción: ' . $request->get('descriptionRE');
+        $text = 'Solivitud de reserva especial, id del servicio solicitado: ' . $id . '. Cantidad de personas: ' . $request->get('cantPersRE') . ', Descripción: ' . $request->get('descriptionRE');
         $contacto->setTexto($text);
         $em = $this->getDoctrine()->getManager();
         $em->persist($contacto);
@@ -412,7 +407,13 @@ class ReserveController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($reserve);
         $em->flush();
-        return $this->redirectToRoute('blog_index');
+        $message['type'] = 'success';
+        $message['head'] = ($user->getIdioma()=='es')?
+            'Gracias':'Thanks';
+        $message['body'] = ($user->getIdioma()=='es')?
+            'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
+            :'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
+        return $this->redirectToRoute('blog_index',['message'=>$message]);
     }
 
     /**
@@ -422,21 +423,21 @@ class ReserveController extends Controller
     {
         $prov = $request->get('prov');
         $carros = $carroRepository->findBy(['provincia' => $prov], ['valoracion' => 'DESC']);
-        $carrosArray=[];
-        foreach ($carros as $item){
-            $carrosArray[]=['nombre'=>$item->getNombre(),'id'=>$item->getId()];
+        $carrosArray = [];
+        foreach ($carros as $item) {
+            $carrosArray[] = ['nombre' => $item->getNombre(), 'id' => $item->getId()];
 
         }
         $casas = $casaRepository->findBy(['provincia' => $prov], ['valoracion' => 'DESC']);
-        $casasArray=[];
-        foreach ($casas as $item){
-            $casasArray[]=['nombre'=>$item->getNombre(),'id'=>$item->getId()];
+        $casasArray = [];
+        foreach ($casas as $item) {
+            $casasArray[] = ['nombre' => $item->getNombre(), 'id' => $item->getId()];
 
         }
         $excursiones = $excursionRepository->findBy(['provincia' => $prov], ['valoracion' => 'DESC']);
-        $excursionArray=[];
-        foreach ($excursiones as $item){
-            $excursionArray[]=['nombre'=>$item->getNombre(),'id'=>$item->getId()];
+        $excursionArray = [];
+        foreach ($excursiones as $item) {
+            $excursionArray[] = ['nombre' => $item->getNombre(), 'id' => $item->getId()];
 
         }
         $result = [$carrosArray, $casasArray, $excursionArray];
@@ -445,6 +446,17 @@ class ReserveController extends Controller
         return $response;
     }
 
+    /**
+     * @Route("/reserve/cancel_pre_reserve", name="cancel_pre_reserve")
+     */
+    public function cancel_pre_reserve(Request $request,ReservaRepository $reservaRepository)
+    {
+        $reserve=$reservaRepository->find($request->get('id'));
+        $em=$this->getDoctrine()->getManager();
+        $em->remove($reserve);
+        $em->flush();
+        return $this->redirectToRoute('show_confirmed_reserves');
+    }
 
 
 

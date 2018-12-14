@@ -597,6 +597,7 @@ border-color: #f9b501">
                             <div id="tab01" class="tab-contents">
                                 <h2>Tab 1</h2>
                                 <form method="post" action="{{ path('advanced_search') }}">
+                                    <input type="hidden" name="status" value="search">
                                     <div class="form-row">
                                         <div class="form-group col-md-7">
                                             <label class="text-muted"
@@ -931,7 +932,6 @@ border-color: #f9b501">
                 $(target).show();
             });
         });
-
         function show_alert_box(type,head,body){
             if(type=="warning"){
                 $("#textoWarningGrande").text(head);

@@ -75,7 +75,7 @@
                             {% for r in user['reserve'] %}
 
                                 <tr>
-                                    <td><a data-toggle="modal"
+                                    <td><a data-toggle="modal" href="#"
                                            data-target="#{{ 'contactInfoModal'~r.id }}">{{ r.commponent }}</a>
                                         {% if r.commponent.getType()== 'Casa' %}
                                             <button id="btnGroupDrop1" type="button"
@@ -102,7 +102,11 @@
                                             {{ r.startAt|date("d/m/Y") }}
                                         {% endif %}
                                     </td>
-                                    <td>{{ r.cantPersonas }}</td>
+                                    <td>{{ r.cantPersonas }}
+                                        {% if r.commponent.getType() == 'Casa' %}
+                                              {{ '- '~r.children~' niños' }}
+                                        {% endif %}
+                                    </td>
                                     <td>{{ '€'~r.costo }}</td>
                                     <td><input type="checkbox" name="{{ r.id }}" {% if r.status == 'confirmed' %} checked {% endif %}></td>
                                 </tr>

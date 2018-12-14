@@ -5,209 +5,207 @@
  {% block stylesheets %}
      {{ parent() }}
 
-{% endblock %}
+ {% endblock %}
 
 
 {% block body %}
     {{ parent() }}
 
 
+    <table class="body-wrap" bgcolor="">
+        <tr>
+            <td></td>
+            <td class="container" align="" bgcolor="#FFFFFF">
+
+                <!-- content -->
 
 
-<table class="body-wrap" bgcolor="">
-    <tr>
-        <td></td>
-        <td class="container" align="" bgcolor="#FFFFFF">
+                {#Cuando toido esta confirmado#}
+                {% if rechazos|length == 0 %}
+                    <div class="content">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h2>Estimad@ {{ user }}</h2>
+                                    <p class="lead">Enhorabuena le comunicamos que si hay disponibilidad para los
+                                        servicios en las fechas que ha solicitado.
+                                        Ha hecho usted una excelente elección.
+                                        ¡Tenga una feliz estancia!
+                                    </p>
+                                    <!-- A Real Hero (and a real human being) -->
+                                    {#<p><img src="http://placehold.it/600x300" /></p><!-- /hero -->#}
+                                    <p>Atentamente, <a href="#">Equipo Cuba GPS! &raquo;</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    {% for r in reservas %}
+                        <div class="content">
+                            <table bgcolor="">
+                                <tr>
+                                    <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img
+                                                src="{{ r.commponent.mainImage.min }}"/></td>
+                                    <td>
+                                        <h4>{{ r.commponent }}
+                                        </h4>
+                                        <p class="">{{ r.commponent.descripcion }}</p>
+                                        <a class="btn">Clickity Click &raquo;</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div><!-- /content -->
+                    {% endfor %}
+                    {#Boton de pago cuando esta disponible#}
+                    <div class="content">
+                        <table bgcolor="">
+                            <tr>
+                                <td align="center">
+                                    <!-- Callout Panel -->
+                                    <h3><a class="btn">Efectuar Pago </a></h3>
 
-            <!-- content -->
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                {% elseif  reservas|length == 0 %}
+                    {#Cuando no esta cpnfirmado#}
+                    <div class="content">
+                        <table>
+                            <tr>
+                                <td>
 
+                                    <h2>Estimad@ {{ user }}</h2>
+                                    <p class="lead">Gracias por elegirnos. Hemos revisado su solicitud y lamentamos
+                                        informarles que
+                                        no se encuentra disponible para estas fechas.
+                                        Pero no se preocupe, podemos ofertarle otros servicio muy similares al anterior,
+                                        esperamos sean de su agrado.
+                                    </p>
+                                    <!-- A Real Hero (and a real human being) -->
+                                    {#<p><img src="http://placehold.it/600x300" /></p><!-- /hero -->#}
+                                    <p>Cordialmente <a href="#">Equipo Cuba GPS! &raquo;</a></p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    {#Cuando no esta cpnfirmado#}
 
-            {#Cuando toido esta confirmado#}
-            <div class="content">
-                <table>
-                    <tr>
-                        <td>
+                {% else %}
+                    {#Cuando hay algunos disponibles y otros no#}
+                    <div class="content">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h2>Estimad@ {{ user }}:</h2>
+                                    <p class="lead">Todo el equipo de CubaGPS agradece sus peticiones de servicios.
+                                        Le informamos que los siguientes servicios están disponibles para usted, ha
+                                        hecho usted una excelente elección.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    {% for r in reservas %}
+                        <div class="content">
+                            <table bgcolor="">
+                                <tr>
+                                    <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img
+                                                src="{{ r.commponent.mainImage.min }}"/></td>
+                                    <td>
+                                        <h4>{{ r.commponent }}
+                                        </h4>
+                                        <p class="">{{ r.commponent.descripcion }}</p>
+                                        <a class="btn">Clickity Click &raquo;</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div><!-- /content -->
+                    {% endfor %}
+                    {#Cuando hay algunos disponibles y otros no#}
+                    <div class="content">
+                        <table>
+                            <tr>
+                                <td>
+                                    <p class="lead">Lamentamos la felicidad no sea completa, ya que los siguientes
+                                        servicios no están disponible para las fechas solicitadas.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    {% for r in rechazos %}
+                        <div class="content">
+                            <table bgcolor="">
+                                <tr>
+                                    <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img
+                                                src="{{ r.commponent.mainImage.min }}"/></td>
+                                    <td>
+                                        <h4>{{ r.commponent }}
 
-                            <h2>Estimad@ *Nombre Usuario*:</h2>
-                            <p class="lead">Enhorabuena le comunicamos que si hay disponibilidad para los servicios en las fechas que ha solicitado.
-                                Ha hecho usted una excelente elección.
-                                ¡Tenga una feliz estancia!
-                            </p>
+                                        </h4>
+                                        <p class="">{{ r.commponent.descripcion }}</p>
+                                        <a class="btn">Clickity Click &raquo;</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    {% endfor %}
+                    {#Boton de pago cuando esta disponible#}
+                    <div class="content">
+                        <table bgcolor="">
+                            <tr>
+                                <td align="center">
+                                    <!-- Callout Panel -->
+                                    <h3><a class="btn">Efectuar Pago </a></h3>
 
-                            <!-- A Real Hero (and a real human being) -->
-                            {#<p><img src="http://placehold.it/600x300" /></p><!-- /hero -->#}
-                            <p>Atentamente, <a href="#">Equipo Cuba GPS! &raquo;</a></p>
-                        </td>
-                    </tr>
-                </table>
-            </div><!-- /content -->
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                {% endif %}
+                {#--------------------recomendacines------------------#}
+                {% if adjuntos|length > 0 %}
+                    <div class="content">
+                        <table bgcolor="">
+                            <tr>
+                                <td>
 
+                                    <!-- Callout Panel -->
+                                    <p class="callout">Nuestro equipo quisiera hacerle la recomendación de los
+                                        siguientes
+                                        servicios disponibles para la fecha que nos solicita, para que usted escoja su
+                                        favorito y así poder hacer sus vacaciones más completas 🙂 <a href="#">Saber
+                                            mas!</a></p><!-- /callout panel -->
 
-            {#Cuando no esta cpnfirmado#}
-            <div class="content">
-                <table>
-                    <tr>
-                        <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    {% for adj in adjuntos %}
+                        <div class="content">
+                            <table bgcolor="">
+                                <tr>
+                                    <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img
+                                                src="{{ adj.mainImage.min }}"/></td>
+                                    <td>
+                                        <h4>{{ adj }}
 
-                            <h2>Estimad@ *Nombre Usuario*:</h2>
-                            <p class="lead">Gracias por elegirnos. Hemos revisado su solicitud y lamentamos informarles que
-                                no se encuentra disponible para estas fechas.
-                                Pero no se preocupe, podemos ofertarle otros servicio muy similares al anterior, esperamos sean de su agrado.
-
-                            </p>
-
-                            <!-- A Real Hero (and a real human being) -->
-                            {#<p><img src="http://placehold.it/600x300" /></p><!-- /hero -->#}
-                            <p>Cordialmente <a href="#">Equipo Cuba GPS! &raquo;</a></p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            {#Cuando no esta cpnfirmado#}
-
-
-            {#Cuando hay algunos disponibles y otros no#}
-            <div class="content">
-                <table>
-                    <tr>
-                        <td>
-
-                            <h2>Estimad@ *Nombre Usuario*:</h2>
-                            <p class="lead">Todo el equipo de CubaGPS agradece sus peticiones de servicios.
-                                Le informamos que los siguientes servicios están disponibles para usted, ha hecho usted una excelente elección.
-
-                            </p>
-
-
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            {#Cuando hay algunos disponibles y otros no#}
-            <div class="content">
-                <table>
-                    <tr>
-                        <td>
-
-                            <h2>Estimad@ *Nombre Usuario*:</h2>
-                            <p class="lead">Lamentamos la felicidad no sea completa, ya que los siguientes servicios no están disponible para las fechas solicitadas.
-                            </p>
-
-
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-            {#Cuando hay algunos disponibles y otros no#}
-
-            {#Boton de pago cuando esta disponible#}
-            <div class="content">
-                <table bgcolor="">
-                    <tr>
-                        <td align="center">
-
-                            <!-- Callout Panel -->
-                            <h3><a class="btn">Efectuar Pago </a></h3>
-
-                        </td>
-                    </tr>
-                </table>
-            </div>
-
-            {#Boton de pago cuando esta disponible#}
-
-
-            {#Boton de pago cuando no esta disponible#}
-            {#<div class="content">#}
-                {#<table bgcolor="">#}
-                    {#<tr>#}
-                        {#<td align="center">#}
-
-                            {#<!-- Callout Panel -->#}
-                            {#<h3><a class="btn">Ver mas Recomendaciones</a></h3>#}
-
-                        {#</td>#}
-                    {#</tr>#}
-                {#</table>#}
-            {#</div>#}
-
-            {#Boton de pago cuando no esta disponible#}
-
-            <!-- content -->
-            <div class="content">
-
-                <table bgcolor="">
-                    <tr>
-                        <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
-                        <td>
-                            <h4>Servicio 1 <small>nombre de servicio</small></h4>
-                            <p class="">Pequeña descripcion del servicio, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <a class="btn">Clickity Click &raquo;</a>
-                        </td>
-                    </tr>
-                </table>
-
-            </div><!-- /content -->
-
-            <!-- content -->
-            <div class="content"><table bgcolor="">
-                    <tr>
-                        <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
-                        <td>
-                            <h4>Servicio 2 <small>nombre de servicio</small></h4>
-                            <p class="">Pequeña descripcion del servicio, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <a class="btn">Clickity Click &raquo;</a>
-                        </td>
-                    </tr>
-                </table></div><!-- /content -->
-
-            <!-- content -->
-            <div class="content"><table bgcolor="">
-                    <tr>
-                        <td>
-
-                            <!-- Callout Panel -->
-                            <p class="callout">Nuestro equipo quisiera hacerle la recomendación de los siguientes servicios disponibles para la fecha que nos solicita, para que usted escoja su favorito y así poder hacer sus vacaciones más completas 🙂 <a href="#">Saber mas!</a>	</p><!-- /callout panel -->
-
-                        </td>
-                    </tr>
-                </table></div><!-- /content -->
-
-            <!-- content -->
-            <div class="content"><table bgcolor="">
-                    <tr>
-                        <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
-                        <td>
-                            <h4>Recomendacion 1 <small>This is a note.</small></h4>
-                            <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <a class="btn">Clickity Click &raquo;</a>
-                        </td>
-                    </tr>
-                </table></div><!-- /content -->
-
-            <!-- content -->
-            <div class="content"><table bgcolor="">
-                    <tr>
-                        <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><img src="http://placehold.it/75x75" /></td>
-                        <td>
-                            <h4>Recomendacion 2 <small>This is a note.</small></h4>
-                            <p class="">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                            <a class="btn">Clickity Click &raquo;</a>
-
-                        </td>
-                    </tr>
-                </table></div><!-- /content -->
-
-            <!-- content -->
-
-
-
-        </td>
-        <td></td>
-    </tr>
-</table><!-- /BODY -->
-
+                                        </h4>
+                                        <p class="">{{ adj.descripcion }} </p>
+                                        <a class="btn">Clickity Click &raquo;</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div><!-- /content -->
+                    {% endfor %}
+                {% endif %}
+                <div class="content">
+                    <p class="callout">{{ textoAdicional }}</p>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table><!-- /BODY -->
 
 
 {% endblock %}
