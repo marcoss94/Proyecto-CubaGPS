@@ -634,6 +634,7 @@ If the cancellation is made from day 6 before the start date, 100% of the deposi
                             <div id="tab01" class="tab-contents">
 
                                 <form method="post" action="{{ path('advanced_search') }}">
+                                    <input type="hidden" name="status" value="search">
                                     <div class="form-row">
                                         <div class="form-group col-md-7">
                                             <label class="text-muted"
@@ -968,7 +969,6 @@ If the cancellation is made from day 6 before the start date, 100% of the deposi
                 $(target).show();
             });
         });
-
         function show_alert_box(type,head,body){
             if(type=="warning"){
                 $("#textoWarningGrande").text(head);

@@ -17,7 +17,6 @@
      <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
      <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
 
-
      {#<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>#}
 
      <link rel="stylesheet" href="{{ asset('build/css/carousel.css') }}">
@@ -469,7 +468,7 @@
                                             <label class="text-muted"
                                                    for="inputAge">{{ app.session.get('language') == 'es'? 'Cantidad de Niños':'Number of children' }}</label>
                                             <label class="text-muted"
-                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Hasta 12':'up to 12' }}</label>
+                                                   for="inputAge">{{ app.session.get('language') == 'es'? 'Hasta 12 años':'up to 12 years' }}</label>
                                             <select class="custom-select" id="cantN" name="cantN">
                                                 {% for number in 0..(object.capacidad-1) %}
                                                     <option value="{{ number }}" {% if number==0 %} selected {% endif %}>{{ number }}</option>
@@ -659,6 +658,7 @@
                 capacidad += parseInt($(this).val());
             })
             var emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+            {% if app.user %}
             if (!emailRegex.test(email)) {
                 var text = ($('#lang').val() == 'es') ? 'Introduce una dirección de correo'
                     : 'Enter an email address';
@@ -669,6 +669,7 @@
                 $('.Alerterror').animate({top:"0"}, 500);
                 return;
             }
+            {% endif %}
             if (salida < entrada) {
                 var entrada = new Date($('#inputEntrada').val());
                 var salida = new Date($('#inputSalida').val());
