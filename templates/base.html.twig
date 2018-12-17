@@ -496,7 +496,9 @@ border-color: #f9b501">
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
                         <li class="list-inline-item">
-                            <a href="#">Privacy Policy</a>
+                            <a href="#" data-toggle="modal"
+                               data-target="#piliticaModal" >{{ app.session.get('language') == 'es'? 'Políticas':'Privacy Policy' }}</a>
+
                         </li>
                         <li class="list-inline-item">
                             <a href="#">Terms of Use</a>
@@ -508,6 +510,41 @@ border-color: #f9b501">
             <span class="copyright">Copyright &copy; CubaGPS 2018</span>
         </div>
 
+
+        <div class="portfolio-modal-sm modal fade" id="piliticaModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"
+                            style="float: left">{{ app.session.get('language') == 'es'? 'Políticas':'Politics' }}</h4>
+                        <button type="button" class="close" style="float: right" data-dismiss="modal"><span
+                                    aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>{{ app.session.get('language') == 'es'? 'Reserva':'Reservation' }}</h3>
+                        <p>
+                            {{ app.session.get('language') == 'es'? 'Sugerimos reservar al menos con un mes de antelación.
+                            La reserva queda confirmada con el pago por adelantado del 20% del precio de venta, un mes antes de la fecha de inicio del paquete.
+                            El pago del 100% del precio debe hacerse el primer día en el país de origen.':'We suggest booking at least one month in advance.
+                            The reservation is confirmed with the advance payment of 20% of the sale price, one month before the start date of the package.
+                            The payment of 100% of the price must be made the first day in the country of origin.' }}
+
+                        <h3>{{ app.session.get('language') == 'es'? 'Cancelación':'Cancellation' }}</h3>
+                        <p>
+                            {{ app.session.get('language') == 'es'? 'Puede cancelarse sin perjuicios económicos hasta 15 días antes de la fecha de inicio.
+Si la cancelación se realiza entre el día 14 y el día 7 antes de la fecha de inicio, se cobra por parte del prestatario el 50% del depósito realizado (20% del precio del paquete).
+Si la cancelación se realiza a partir del día 6 antes de la fecha de inicio, se cobra por parte del prestatario el 100% del depósito realizado (20% del paquete).
+':'It can be canceled without economic damages up to 15 days before the start date.
+If the cancellation is made between day 14 and day 7 before the start date, 50% of the deposit made (20% of the package price) is charged by the borrower.
+If the cancellation is made from day 6 before the start date, 100% of the deposit made (20% of the package) is charged by the borrower.' }}
+
+                        </p>
+                    </div>
+
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
 
         <div class="portfolio-modal-sm modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
@@ -595,7 +632,7 @@ border-color: #f9b501">
                             </div>
 
                             <div id="tab01" class="tab-contents">
-                                <h2>Tab 1</h2>
+
                                 <form method="post" action="{{ path('advanced_search') }}">
                                     <div class="form-row">
                                         <div class="form-group col-md-7">
@@ -605,7 +642,7 @@ border-color: #f9b501">
                                                    placeholder="Cuba">
                                         </div>
                                         <div class="form-group col-md-5">
-                                            <label class="text-muted"> {{ app.session.get('language') == 'es'? '# de Personas':'Amount of People' }}</label>
+                                            <label class="text-muted"> {{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</label>
 
                                             <select class="custom-select" name="cantidadP">
                                                 {% for number in 1..30 %}
@@ -667,7 +704,7 @@ border-color: #f9b501">
                                 </form>
                             </div>
                             <div id="tab02" class="tab-contents">
-                                <h2>Tab 2</h2>
+
                                 <form action="{{ path('transfer_search') }}">
                                     <div class="form-group col-md-12">
                                         <label class="text-muted"> {{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</label>

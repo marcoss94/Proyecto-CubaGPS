@@ -58,11 +58,13 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col">Actividades</th>
+                        <th scope="col" colspan="3">Acciones</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Dias</th>
                         <th scope="col">Noches</th>
-                        <th scope="col" colspan="4">Precio por persona para 1, 2, 3 y 4 o más personas</th>
+                        <th scope="col" colspan="4">Precio para 1, 2, 3 y 4 o más personas</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
                         <th scope="col">Incluye</th>
@@ -71,10 +73,8 @@
                         <th scope="col">Not included</th>
                         <th scope="col">Valoración</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Actividades</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+
+
                         <th scope="col">Creado</th>
                         <th scope="col">Última modificación</th>
                     </tr>
@@ -82,11 +82,13 @@
                     <tfoot>
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col">Actividades</th>
+                        <th scope="col" colspan="3">Acciones</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Dias</th>
                         <th scope="col">Noches</th>
-                        <th scope="col" colspan="4">Precio por persona para 1, 2, 3 y 4 o más personas</th>
+                        <th scope="col" colspan="4">Precio para 1, 2, 3 y 4 o más personas</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
                         <th scope="col">Incluye</th>
@@ -95,10 +97,7 @@
                         <th scope="col">Not included</th>
                         <th scope="col">Valoración</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Actividades</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+
                         <th scope="col">Creado</th>
                         <th scope="col">Última modificación</th>
                     </tr>
@@ -108,22 +107,6 @@
                     {% for c in paquetes %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.id }}</td>
-                            <td>{{ c.nombre }}</td>
-                            <td>{{ c.name }}</td>
-                            <td>{{ c.duracion }}</td>
-                            <td>{{ c.nochesDuracion }}</td>
-                            <td>{{ c.precio1 }}</td>
-                            <td>{{ c.precio2 }}</td>
-                            <td>{{ c.precio3 }}</td>
-                            <td>{{ c.precio4 }}</td>
-                            <td class="expandable"><p>{{ c.descripcion }}</p></td>
-                            <td class="expandable"><p>{{ c.description }}</p></td>
-                            <td>{{ c.incluye }}</td>
-                            <td>{{ c.included }}</td>
-                            <td>{{ c.noIncluye }}</td>
-                            <td>{{ c.notIncluded }}</td>
-                            <td>{{ c.valoracion }}</td>
-                            <td>{{ c.active ? 'si' : 'no' }}</td>
                             <td><a title="Actividades" class="btn btn-default"
                                    href="{{ path('activities',{'id':c.id}) }}"><i
                                             class="fa fa-calendar"
@@ -151,6 +134,23 @@
                                    href="{{ path('delete_paquete',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
+                            <td>{{ c.nombre }}</td>
+                            <td>{{ c.name }}</td>
+                            <td>{{ c.duracion }}</td>
+                            <td>{{ c.nochesDuracion }}</td>
+                            <td>{{ c.precio1 }}</td>
+                            <td>{{ c.precio2 }}</td>
+                            <td>{{ c.precio3 }}</td>
+                            <td>{{ c.precio4 }}</td>
+                            <td class="expandable"><p>{{ c.descripcion }}</p></td>
+                            <td class="expandable"><p>{{ c.description }}</p></td>
+                            <td>{{ c.incluye }}</td>
+                            <td>{{ c.included }}</td>
+                            <td>{{ c.noIncluye }}</td>
+                            <td>{{ c.notIncluded }}</td>
+                            <td>{{ c.valoracion }}</td>
+                            <td>{{ c.active ? 'si' : 'no' }}</td>
+
                             <td>{{ c.createdAt|date }}</td>
                             <td>{{ c.updatedAt|date }}</td>
                         </tr>

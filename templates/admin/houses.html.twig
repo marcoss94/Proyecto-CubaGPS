@@ -58,6 +58,9 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col">Habitaciones</th>
+                        <th scope="col" colspan="3">Acciones</th>
+
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Capacidad</th>
@@ -77,10 +80,7 @@
                         <th scope="col">Latitud</th>
                         <th scope="col">Valoración</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Habitaciones</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+
                         <th scope="col">Creado</th>
                         <th scope="col">Última modificación</th>
                     </tr>
@@ -88,6 +88,8 @@
                     <tfoot>
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col">Habitaciones</th>
+                        <th scope="col" colspan="3">Acciones</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Capacidad</th>
@@ -107,10 +109,8 @@
                         <th scope="col">Latitud</th>
                         <th scope="col">Valoración</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Habitaciones</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+
+
                         <th scope="col">Creado</th>
                         <th scope="col">Última modificación</th>
                     </tr>
@@ -119,6 +119,36 @@
                     {% for c in casas %}
                     <tr {% if c.active == false %} class="table-danger" {% endif %}>
                         <td>{{ c.id}}</td>
+                        <td>
+                            <a href="{{ path('habitaciones',{'id':c.id,'status':'create'}) }}"
+                               title="Habitaciones" class="btn btn-default">{{ c.habitaciones|length }}<i
+                                        class="fa fa-plus"
+                                        {% if c.habitaciones|length %}
+                                            style="color: saddlebrown"
+                                        {% else %}
+                                            style="color: gray"
+                                        {% endif %}
+                                        aria-hidden="true"></i><span
+                                        class="caret"></span></a>
+                        </td>
+                        <td><a title="Album de Imagenes" class="btn btn-default"
+                               href="{{ path('album',{'id':c.id}) }}"><i
+                                        class="fa fa-camera"
+                                        {% if c.images|length %}
+                                            style="color: green"
+                                        {% else %}
+                                            style="color: gray"
+                                        {% endif %}
+                                        aria-hidden="true"></i><span
+                                        class="caret"></span></a></td>
+                        <td><a title="Editar" class="btn btn-default" href="{{ path('edit_house',{'id':c.id}) }}"><i
+                                        class="fa fa-edit" aria-hidden="true"></i><span
+                                        class="caret"></span></a></td>
+                        <td><a title="Eliminar" class="btn btn-default"
+                               href="{{ path('delete_house',{'id':c.id}) }}"><i
+                                        class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
+                                        class="caret"></span></a></td>
+
                         <td>{{ c.nombre }}</td>
                         <td>{{ c.name }}</td>
                         <td>{{ c.capacidad }}</td>
@@ -169,35 +199,8 @@
                         <td>{{ c.latitud }}</td>
                         <td>{{ c.valoracion }}</td>
                         <td>{{ c.active?'si':'no' }}</td>
-                        <td>
-                            <a href="{{ path('habitaciones',{'id':c.id,'status':'create'}) }}"
-                               title="Habitaciones" class="btn btn-default">{{ c.habitaciones|length }}<i
-                                        class="fa fa-plus"
-                                        {% if c.habitaciones|length %}
-                                            style="color: saddlebrown"
-                                        {% else %}
-                                            style="color: gray"
-                                        {% endif %}
-                                        aria-hidden="true"></i><span
-                                        class="caret"></span></a>
-                        </td>
-                        <td><a title="Album de Imagenes" class="btn btn-default"
-                               href="{{ path('album',{'id':c.id}) }}"><i
-                                        class="fa fa-camera"
-                                        {% if c.images|length %}
-                                            style="color: green"
-                                        {% else %}
-                                            style="color: gray"
-                                        {% endif %}
-                                        aria-hidden="true"></i><span
-                                        class="caret"></span></a></td>
-                        <td><a title="Editar" class="btn btn-default" href="{{ path('edit_house',{'id':c.id}) }}"><i
-                                        class="fa fa-edit" aria-hidden="true"></i><span
-                                        class="caret"></span></a></td>
-                        <td><a title="Eliminar" class="btn btn-default"
-                               href="{{ path('delete_house',{'id':c.id}) }}"><i
-                                        class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
-                                        class="caret"></span></a></td>
+
+
                         <td>{{ c.createdAt|date }}</td>
                         <td>{{ c.updatedAt|date }}</td>
                         {% else %}
