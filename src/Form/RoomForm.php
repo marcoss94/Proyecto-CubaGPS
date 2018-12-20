@@ -44,7 +44,7 @@ class RoomForm extends AbstractType
                 'Caja de seguridad' => 'caja_fuerte',
                 'Plancha' => 'plancha',
             ), 'expanded' => true, 'multiple' => true])
-            ->add('vista', TextType::class, ['label' => 'Vistas a:'])
+            ->add('vista', TextType::class, ['label' => 'Vistas a:','required'=> false])
             ->add('privada', ChoiceType::class, ['label' => 'Privada', 'choices' => array(
                 'si' => true,
                 'no' => false,

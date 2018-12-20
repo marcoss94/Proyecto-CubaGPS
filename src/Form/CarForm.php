@@ -25,9 +25,9 @@ class CarForm extends AbstractType
         $builder
             ->add('codigo',TextType::class,['label' => 'Código'])
             ->add('nombreChofer',TextType::class,['label' => 'Nombre del Chofer'])
-            ->add('tel', TelType::class, ['label' => 'Teléfono fijo'])
-            ->add('cel', TelType::class, ['label' => 'Teléfono móvil'])
-            ->add('email', EmailType::class, ['label' => 'Email'])
+            ->add('tel', TelType::class, ['label' => 'Teléfono fijo','required'=> false])
+            ->add('cel', TelType::class, ['label' => 'Teléfono móvil','required'=> false])
+            ->add('email', EmailType::class, ['label' => 'Email','required'=> false])
             ->add('chapa', TextType::class, ['label' => 'Chapa'])
             ->add('nombre', TextType::class, ['label' => 'Modelo y Año'])
             ->add('color', TextType::class, ['label' => 'Color'])

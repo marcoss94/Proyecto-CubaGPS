@@ -49,9 +49,9 @@ class HouseForm extends AbstractType
                 'Guantánamo' => 'Guantánamo',
                 'Isla de la Juventud' => 'Isla de la Juventud',
             ),])
-            ->add('tel', TelType::class, ['label' => 'Teléfono fijo'])
-            ->add('email', EmailType::class, ['label' => 'Email'])
-            ->add('cel', TelType::class, ['label' => 'Teléfono móvil'])
+            ->add('tel', TelType::class, ['label' => 'Teléfono fijo','required'=> false])
+            ->add('email', EmailType::class, ['label' => 'Email','required'=> false])
+            ->add('cel', TelType::class, ['label' => 'Teléfono móvil','required'=> false])
             ->add('licencia', TextType::class, ['label' => '#Licencia'])
             ->add('tipoEstablecimiento', ChoiceType::class, ['label' => 'Tipo de Establecimiento', 'choices' => array(
                 'casa' => 'casa',
