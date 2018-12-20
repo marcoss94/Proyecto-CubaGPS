@@ -75,7 +75,7 @@ class CarForm extends AbstractType
                 'Português' => 'Português',
                 'Pусский' => 'Pусский',
                 '中国' => '中国',
-            ),'multiple'=>true
+            ),'multiple'=>true,'expanded'=>true
             ])
             ->add('transfer', ChoiceType::class, ['label' => 'Transfer','choices'  => array(
                 'Si' => true,

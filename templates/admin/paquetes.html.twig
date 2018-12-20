@@ -60,6 +60,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Actividades</th>
                         <th scope="col" colspan="3">Acciones</th>
+                        <th scope="col">Código</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Dias</th>
@@ -84,6 +85,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Actividades</th>
                         <th scope="col" colspan="3">Acciones</th>
+                        <th scope="col">Código</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Dias</th>
@@ -134,6 +136,7 @@
                                    href="{{ path('delete_paquete',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
+                            <td>{{ c.codigo }}</td>
                             <td>{{ c.nombre }}</td>
                             <td>{{ c.name }}</td>
                             <td>{{ c.duracion }}</td>

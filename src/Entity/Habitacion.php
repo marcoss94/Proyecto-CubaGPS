@@ -34,7 +34,7 @@ class Habitacion extends DisplayableComponent
     private $piso;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $vista;
 

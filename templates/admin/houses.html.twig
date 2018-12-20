@@ -60,7 +60,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Habitaciones</th>
                         <th scope="col" colspan="3">Acciones</th>
-
+                        <th scope="col">Código</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Capacidad</th>
@@ -90,6 +90,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Habitaciones</th>
                         <th scope="col" colspan="3">Acciones</th>
+                        <th scope="col">Código</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Capacidad</th>
@@ -148,7 +149,7 @@
                                href="{{ path('delete_house',{'id':c.id}) }}"><i
                                         class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                         class="caret"></span></a></td>
-
+                        <td>{{ c.codigo }}</td>
                         <td>{{ c.nombre }}</td>
                         <td>{{ c.name }}</td>
                         <td>{{ c.capacidad }}</td>

@@ -46,6 +46,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col" colspan="3">Acciones</th>
+                        <th scope="col">Código</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Descripción</th>
@@ -77,6 +78,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col" colspan="3">Acciones</th>
+                        <th scope="col">Código</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Name</th>
                         <th scope="col">Descripción</th>
@@ -126,7 +128,7 @@
                                    href="{{ path('delete_excursion',{'id':c.id}) }}"><i
                                             class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
                                             class="caret"></span></a></td>
-
+                            <td>{{ c.codigo }}</td>
                             <td>{{ c.nombre }}</td>
                             <td>{{ c.name }}</td>
                             <td class="expandable"><p>{{ c.descripcion }}</p></td>
