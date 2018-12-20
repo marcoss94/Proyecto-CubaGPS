@@ -48,6 +48,8 @@
                     <thead>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col" colspan="3">Acciones</th>
+
                         <th scope="col">Name</th>
                         <th scope="col">Camas Dobles</th>
                         <th scope="col">Camas Simples</th>
@@ -61,9 +63,7 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Servicios</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Album de Imagenes</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+
                         <th scope="col">Creación</th>
                         <th scope="col">Modificación</th>
                     </tr>
@@ -71,6 +71,7 @@
                     <tfoot>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col" colspan="3">Acciones</th>
                         <th scope="col">Name</th>
                         <th scope="col">Camas Dobles</th>
                         <th scope="col">Camas Simples</th>
@@ -84,9 +85,7 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Servicios</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Album de Imagenes</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+
                         <th scope="col">Creación</th>
                         <th scope="col">Modificación</th>
                     </tr>
@@ -95,6 +94,26 @@
                     {% for c in casa.habitaciones %}
                     <tr {% if c.active == false %} class="table-danger" {% endif %}>
                         <td>{{ c.nombre }}</td>
+
+                        <td><a title="Album de Imagenes" class="btn btn-default"
+                               href="{{ path('album',{'id':c.id}) }}"><i
+                                        class="fa fa-camera"
+                                        {% if c.images|length %}
+                                            style="color: green"
+                                        {% else %}
+                                            style="color: gray"
+                                        {% endif %}
+                                        aria-hidden="true"></i><span
+                                        class="caret"></span></a></td>
+                        <td><a title="Editar" class="btn btn-default"
+                               href="{{ path('habitaciones',{'roomId':c.id,'id':casa.id,'status':'edit'}) }}"><i
+                                        class="fa fa-edit" aria-hidden="true"></i><span
+                                        class="caret"></span></a></td>
+                        <td><a title="Eliminar" class="btn btn-default"
+                               href="{{ path('delete_room',{'id':c.id}) }}"><i
+                                        class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
+                                        class="caret"></span></a></td>
+
                         <td>{{ c.name }}</td>
                         <td>{{ c.camasDobles }}</td>
                         <td>{{ c.camasSimples }}</td>
@@ -123,24 +142,7 @@
                             </div>
                         </td>
                         <td>{{ c.active?'si':'no' }}</td>
-                        <td><a title="Album de Imagenes" class="btn btn-default"
-                               href="{{ path('album',{'id':c.id}) }}"><i
-                                        class="fa fa-camera"
-                                        {% if c.images|length %}
-                                            style="color: green"
-                                        {% else %}
-                                            style="color: gray"
-                                        {% endif %}
-                                        aria-hidden="true"></i><span
-                                        class="caret"></span></a></td>
-                        <td><a title="Editar" class="btn btn-default"
-                               href="{{ path('habitaciones',{'roomId':c.id,'id':casa.id,'status':'edit'}) }}"><i
-                                        class="fa fa-edit" aria-hidden="true"></i><span
-                                        class="caret"></span></a></td>
-                        <td><a title="Eliminar" class="btn btn-default"
-                               href="{{ path('delete_room',{'id':c.id}) }}"><i
-                                        class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
-                                        class="caret"></span></a></td>
+
                         <td>{{ c.createdAt|date }}</td>
                         <td>{{ c.updatedAt|date }}</td>
                         {% else %}

@@ -179,13 +179,25 @@
                                             <div class="item" style="vertical-align: super">
                                                 <ul class="timelineGPS">
                                                     <li>
-                                                        <div class="timeline-imageGPS">
-                                                            {#<a href="" class="lightbox" data-toggle="modal"#}
-                                                               {#data-target="#PruebaModal" style="cursor: pointer;">#}
-                                                                <img class="rounded-circle fotoExcurc img-fluid"
+                                                        <div class="timeline-bola timeline-imageGPS " style="z-index: 9999">
+
+                                                            <div class="main gallery-block grid-gallery" style="padding-bottom: 0px;
+padding-top: 0px;">
+                                                                {#<div id="carousel">#}
+                                                            <a class="lightbox" href="{{ asset(a.getMainImage().full) }}">
+                                                                {#<img class=" image "#}
+                                                                     {#src="{{ asset(i.half) }}">#}
+                                                                <img class="rounded-circle image fotoExcurc img-fluid"
                                                                      src="{{ asset(a.getMainImage().half) }}"
                                                                      alt="{{ a.getMainImage().altName }}">
-                                                            {#</a>#}
+
+                                                            </a>
+
+                                                            {#<img class="rounded-circle fotoExcurc img-fluid"#}
+                                                                     {#src="{{ asset(a.getMainImage().half) }}"#}
+                                                                     {#alt="{{ a.getMainImage().altName }}">#}
+                                                                </div>
+                                                            {#</div>#}
                                                         </div>
                                                         <div class="timeline-panelGPS">
                                                             <div class="timeline-headingGPS">
@@ -321,6 +333,11 @@
                                             </div>
                                         </div>
                                     {% endif %}
+
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#piliticaModal" >{{ app.session.get('language') == 'es'? ' Políticas de reserva y cancelación':' Reservation and cancellation policies' }}</a>
+
+
                                 </div>
                                 <div id="errorBox"></div>
                                 <div class="modal-footer">

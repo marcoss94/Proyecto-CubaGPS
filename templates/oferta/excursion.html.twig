@@ -442,6 +442,11 @@
                                             </div>
                                         </div>
                                     {% endif %}
+
+                                    <a href="#" data-toggle="modal"
+                                       data-target="#piliticaModal" >{{ app.session.get('language') == 'es'? ' Políticas de reserva y cancelación':' Reservation and cancellation policies' }}</a>
+
+
                                 </div>
 
                                 <div id="errorBox"></div>

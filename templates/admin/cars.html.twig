@@ -50,6 +50,7 @@
                     <thead>
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col" colspan="3">Acciones</th>
                         <th scope="col">Nombre del Chofer</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
@@ -68,9 +69,7 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Idiomas</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
+
                         <th scope="col">Creado</th>
                         <th scope="col">Última Modificación</th>
                     </tr>
@@ -78,6 +77,7 @@
                     <tfoot>
                     <tr>
                         <th scope="col">Id</th>
+                        <th scope="col" colspan="3">Acciones</th>
                         <th scope="col">Nombre del Chofer</th>
                         <th scope="col">Descripción</th>
                         <th scope="col">Description</th>
@@ -96,9 +96,6 @@
                         <th scope="col">Precio</th>
                         <th scope="col">Idiomas</th>
                         <th scope="col">Activo</th>
-                        <th scope="col">Album</th>
-                        <th scope="col">Editar</th>
-                        <th scope="col">Eliminar</th>
                         <th scope="col">Creado</th>
                         <th scope="col">Última Modificación</th>
 
@@ -108,6 +105,32 @@
                     {% for c in carros %}
                         <tr {% if c.active == false %} class="table-danger" {% endif %}>
                             <td>{{ c.id }}</td>
+                            <td>
+
+                            <a title="Album de Imagenes" class="btn btn-default"
+                                   href="{{ path('album',{'id':c.id}) }}"><i
+                                            class="fa fa-camera"
+                                            {% if c.images|length %}
+                                                style="color: green"
+                                            {% else %}
+                                                style="color: gray"
+                                            {% endif %}
+                                            aria-hidden="true"></i><span
+                                            class="caret"></span></a>
+                            </td>
+                            <td>
+                            <a title="Editar" class="btn btn-default" href="{{ path('edit_car',{'id':c.id}) }}"><i
+                                            class="fa fa-edit" aria-hidden="true"></i><span
+                                            class="caret"></span></a>
+                            </td>
+                            <td>
+                            <a title="Eliminar" class="btn btn-default" href="{{ path('delete_car',{'id':c.id}) }}"><i
+                                            class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
+                                            class="caret"></span></a>
+                            </td>
+
+
+
                             <td>{{ c.nombreChofer }}</td>
 
                             <td class="expandable"><p>{{ c.descripcion }}</p></td>
@@ -144,22 +167,7 @@
                                 </div>
                             </td>
                             <td>{{ c.active ? 'si' : 'no' }}</td>
-                            <td><a title="Album de Imagenes" class="btn btn-default"
-                                   href="{{ path('album',{'id':c.id}) }}"><i
-                                            class="fa fa-camera"
-                                            {% if c.images|length %}
-                                                style="color: green"
-                                            {% else %}
-                                                style="color: gray"
-                                            {% endif %}
-                                            aria-hidden="true"></i><span
-                                            class="caret"></span></a></td>
-                            <td><a title="Editar" class="btn btn-default" href="{{ path('edit_car',{'id':c.id}) }}"><i
-                                            class="fa fa-edit" aria-hidden="true"></i><span
-                                            class="caret"></span></a></td>
-                            <td><a title="Eliminar" class="btn btn-default" href="{{ path('delete_car',{'id':c.id}) }}"><i
-                                            class="fa fa-trash" style="color: red" aria-hidden="true"></i><span
-                                            class="caret"></span></a></td>
+
                             <td>{{ c.createdAt|date }}</td>
                             <td>{{ c.updatedAt|date }}</td>
                         </tr>
