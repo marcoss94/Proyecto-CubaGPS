@@ -45,14 +45,14 @@ class AdminController extends Controller
      */
     public function index(ComentarioRepository $comentarioRepository, ContactoRepository $contactoRepository, ReservaRepository $reservaRepository)
     {
-        $count=[];
-        $count[0]=$contactoRepository->count(array());
-        $count[1]=$comentarioRepository->count(['revisado'=>false]);
-        $count[2]=$reservaRepository->count(['status'=>'pre']);
-        $count[3]=$reservaRepository->count(['status'=>'payed']);
+        $count = [];
+        $count[0] = $contactoRepository->count(array());
+        $count[1] = $comentarioRepository->count(['revisado' => false]);
+        $count[2] = $reservaRepository->count(['status' => 'pre']);
+        $count[3] = $reservaRepository->count(['status' => 'payed']);
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
-            'count'=>$count,
+            'count' => $count,
         ]);
     }
 
@@ -704,6 +704,7 @@ class AdminController extends Controller
             $hab->setCasa($casa);
             $em->persist($hab);
             $em->flush();
+            $this->calculteHouseCapaity($casa);
             return $this->redirectToRoute('habitaciones', ['id' => $casa->getId(), 'status' => 'create']);
         }
         return $this->render('admin/rooms.html.twig', ['casa' => $casa, 'form' => $form->createView(), 'status' => $status]);
@@ -712,13 +713,14 @@ class AdminController extends Controller
     /**
      * @Route("/admin/delete_room", name="delete_room")
      */
-    public function deleteHabitacion(Request $request,HabitacionRepository $habitacionRepository)
+    public function deleteHabitacion(Request $request, HabitacionRepository $habitacionRepository)
     {
-        $hab=$habitacionRepository->find($request->get('id'));
-        $em=$this->getDoctrine()->getManager();
+        $hab = $habitacionRepository->find($request->get('id'));
+        $em = $this->getDoctrine()->getManager();
         $em->remove($hab);
         $em->flush();
-        return $this->redirectToRoute('habitaciones',['id'=>$hab->getCasa()->getId(),'status'=>'create']);
+        $this->calculteHouseCapaity($hab->getCasa());
+        return $this->redirectToRoute('habitaciones', ['id' => $hab->getCasa()->getId(), 'status' => 'create']);
     }
 
     /**
@@ -729,5 +731,18 @@ class AdminController extends Controller
         return $this->render('admin/construction.html.twig', [
 
         ]);
+    }
+
+    public function calculteHouseCapaity(Casa $casa)
+    {
+        $c=0;
+        $habs=$casa->getHabitaciones();
+        foreach ($habs as $h){
+            $c+=($h->getCamasDobles()*2)+($h->getLiteras()*2)+$h->getCamasSimples();
+        }
+        $casa->setCapacidad($c);
+        $em=$this->getDoctrine()->getManager();
+        $em->persist($casa);
+        $em->flush();
     }
 }
