@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}
+{% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}
 
 {% block stylesheets %}
 
@@ -644,8 +644,8 @@ border-color: #f9b501;"
                                 <div class="team-member">
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/5.jpg') }}" alt="">
-                                    <h4 class="info">Mama de lemuel </h4>
-                                    <h7 style="color: white">Administrador</h7>
+                                    <h4 class="info">Maribel Rivera </h4>
+                                    <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Administrador':'Manager' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
@@ -670,7 +670,7 @@ border-color: #f9b501;"
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/1.jpg') }}" alt="">
                                     <h4 class="info">Lemuel Díaz </h4>
-                                    <h7 style="color: white">Administrador</h7>
+                                    <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Administrador':'Manager' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
@@ -696,7 +696,7 @@ border-color: #f9b501;"
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/2.jpg') }}" alt="">
                                     <h4 class="info">Marcos Álavrez </h4>
-                                    <h7 style="color: white">Diseñador</h7>
+                                    <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Diseñador':'Designer' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
@@ -721,7 +721,7 @@ border-color: #f9b501;"
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/3.jpg') }}" alt="">
                                     <h4 class="info">Armando Rodriguez</h4>
-                                    <h7 style="color: white">Programador</h7>
+                                    <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Programador':'Programmer' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
@@ -746,7 +746,7 @@ border-color: #f9b501;"
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/6.jpg') }}" alt="">
                                     <h4 class="info">Marcos Evora </h4>
-                                    <h7 style="color: white">Fotógrafo</h7>
+                                    <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Fotógrafo':'Photographer' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
@@ -771,7 +771,7 @@ border-color: #f9b501;"
                                     <img class="mx-auto rounded-circle" style="border: 7px solid #f9b501;"
                                          src="{{ asset('build/img/team/4.jpg') }}" alt="">
                                     <h4 class="info">Freddy Pozo</h4>
-                                    <h7 style="color: white">Programador</h7>
+                                    <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Programador':'Programmer' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
                                             <a href="#">
