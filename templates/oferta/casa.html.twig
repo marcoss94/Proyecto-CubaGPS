@@ -583,11 +583,7 @@
 {% endblock %}
 {% block footer %}
 
-
-
     {{ parent() }}
-
-
 
     {#Modal ver servicios------------------------------------------------------------------------------------------#}
 
@@ -666,6 +662,24 @@
                 "transform": "rotateY(" + currdeg + "deg)"
             });
         }
+        $('#cantA').change(function () {
+            var cap= {{ object.capacidad }};
+            var adults= parseInt($('#cantA').val());
+            $('#cantN')
+                .find('option')
+                .remove()
+                .end();
+            var i=0;
+            var children=document.getElementById('cantN');
+            while(i<=cap-adults){
+                var option = document.createElement('option');
+                option.value = i;
+                option.innerHTML = i;
+                children.appendChild(option);
+                i++;
+            }
+        })
+
         $('#reserveButton').click(function () {
             var entrada = new Date($('#inputEntrada').val());
             var salida = new Date($('#inputSalida').val());

@@ -27,13 +27,18 @@ abstract class DisplayableComponent
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Image", mappedBy="displayableComponent",cascade={"remove"})
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $codigo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Image", mappedBy="displayableComponent",cascade={"remove","persist"})
      * @ORM\OrderBy({"main" = "DESC"})
      */
     private $images;
 
     /**
-     * @ORM\Column(type="string", length=255,nullable=true)
+     * @ORM\Column(type="string", length=1000,nullable=true)
      */
     private $descripcion;
 
@@ -44,7 +49,7 @@ abstract class DisplayableComponent
 
 
     /**
-     * @ORM\Column(type="string", length=255,nullable=true)
+     * @ORM\Column(type="string", length=1000,nullable=true)
      */
     private $description;
 
@@ -164,6 +169,22 @@ abstract class DisplayableComponent
     {
         $this->createdAt = new \DateTime();
         $this->updatedAt = $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCodigo()
+    {
+        return $this->codigo;
+    }
+
+    /**
+     * @param mixed $codigo
+     */
+    public function setCodigo($codigo)
+    {
+        $this->codigo = $codigo;
     }
 
     /**

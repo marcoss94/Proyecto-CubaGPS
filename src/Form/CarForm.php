@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 
 class CarForm extends AbstractType
@@ -22,18 +23,21 @@ class CarForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('codigo',TextType::class,['label' => 'Código'])
             ->add('nombreChofer',TextType::class,['label' => 'Nombre del Chofer'])
-            ->add('descripcion',TextareaType::class,['label' => 'Descripción'])
-            ->add('description',TextareaType::class,['label' => 'Description'])
-            ->add('tel', TelType::class, ['label' => 'Teléfono fijo'])
-            ->add('cel', TelType::class, ['label' => 'Teléfono móvil'])
+            ->add('tel', TelType::class, ['label' => 'Teléfono fijo','required'=> false])
+            ->add('cel', TelType::class, ['label' => 'Teléfono móvil','required'=> false])
+            ->add('email', EmailType::class, ['label' => 'Email','required'=> false])
             ->add('chapa', TextType::class, ['label' => 'Chapa'])
             ->add('nombre', TextType::class, ['label' => 'Modelo y Año'])
             ->add('color', TextType::class, ['label' => 'Color'])
+            ->add('descripcion',TextareaType::class,['label' => 'Descripción'])
+            ->add('description',TextareaType::class,['label' => 'Description'])
             ->add('licencia', ChoiceType::class, ['label' => 'Tipo de Licencia','choices'  => array(
                 'Asociado' => 'Asociado',
                 'Licencia operativa' => 'Licencia operativa',
             ),])
+            ->add('municipio', TextType::class, ['label' => 'Municipio'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia','choices'  => array(
                 'Pinar del Rio' => 'Pinar del Rio',
                 'Artemisa' => 'Artemisa',
@@ -71,7 +75,7 @@ class CarForm extends AbstractType
                 'Português' => 'Português',
                 'Pусский' => 'Pусский',
                 '中国' => '中国',
-            ),'multiple'=>true
+            ),'multiple'=>true,'expanded'=>true
             ])
             ->add('transfer', ChoiceType::class, ['label' => 'Transfer','choices'  => array(
                 'Si' => true,

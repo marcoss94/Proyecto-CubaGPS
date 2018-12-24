@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\HabitacionRepository")
- * @ORM\HasLifecycleCallbacks
+ *
  */
 class Habitacion extends DisplayableComponent
 {
@@ -34,7 +34,7 @@ class Habitacion extends DisplayableComponent
     private $piso;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $vista;
 
@@ -261,28 +261,6 @@ class Habitacion extends DisplayableComponent
         return 'Habitacion';
     }
 
-    /**
-     * @ORM\PostPersist()
-     */
-    public function agregarCapacidad(LifecycleEventArgs $args)
-    {
-        $casa=$this->casa;
-        $em=$args->getEntityManager();
-        $casa->setCapacidad($casa->getCapacidad()+($this->getCamasSimples())+($this->getCamasDobles()*2)+($this->getLiteras()*2));
-        $em->persist($casa);
-        $em->flush();
-    }
-
-    /**
-     * @ORM\PostRemove()
-     */
-    public function restarCapacidad(LifecycleEventArgs $args){
-        $casa=$this->casa;
-        $em=$args->getEntityManager();
-        $casa->setCapacidad($casa->getCapacidad()-($this->getCamasSimples()+($this->getCamasDobles()*2)+($this->getLiteras()*2)));
-        $em->persist($casa);
-        $em->flush();
-    }
 
 
 

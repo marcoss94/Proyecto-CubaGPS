@@ -110,7 +110,8 @@
                                     <div class="iconoServ">
                                         <h6>
 
-                                            <div class="precio">1<i class="fas fa-user"></i>   <span>€{{ object.precio1 }}</span></div>
+                                            <div class="precio">1<i class="fas fa-user"></i>
+                                                <span>€{{ object.precio1 }}</span></div>
 
                                         </h6>
                                     </div>
@@ -122,7 +123,8 @@
                                         <h6>
 
 
-                                            <div class="precio"> 2<i class="fas fa-users"></i>   <span>€{{ object.precio2 }}</span></div>
+                                            <div class="precio"> 2<i class="fas fa-users"></i>
+                                                <span>€{{ object.precio2 }}</span></div>
 
                                         </h6>
                                     </div>
@@ -134,7 +136,8 @@
                                         <h6>
 
 
-                                            <div class="precio"> 3<i class="fas fa-users"></i>   <span>€{{ object.precio3 }}</span></div>
+                                            <div class="precio"> 3<i class="fas fa-users"></i>
+                                                <span>€{{ object.precio3 }}</span></div>
 
                                         </h6>
                                     </div>
@@ -145,7 +148,8 @@
                                     <div class="iconoServ">
                                         <h6>
 
-                                            <div class="precio"> +4<i class="fas fa-users"></i> <span> €{{ object.precio4 }}  </span></div>
+                                            <div class="precio"> +4<i class="fas fa-users"></i>
+                                                <span> €{{ object.precio4 }}  </span></div>
                                         </h6>
                                     </div>
                                 </div>
@@ -176,48 +180,51 @@
                                          data-animator="lazy">
                                         <div class="resCarousel-inner" style="font-size: 30px">
                                             {% for a in d.activities %}
-                                            <div class="item" style="vertical-align: super">
-                                                <ul class="timelineGPS">
-                                                    <li>
-                                                        <div class="timeline-bola timeline-imageGPS " style="z-index: 9999">
+                                                <div class="item" style="vertical-align: super">
+                                                    <ul class="timelineGPS">
+                                                        <li>
+                                                            <div class="timeline-bola timeline-imageGPS "
+                                                                 style="z-index: 9999">
 
-                                                            <div class="main gallery-block grid-gallery" style="padding-bottom: 0px;
+                                                                <div class="main gallery-block grid-gallery" style="padding-bottom: 0px;
 padding-top: 0px;">
-                                                                {#<div id="carousel">#}
-                                                            <a class="lightbox" href="{{ asset(a.getMainImage().full) }}">
-                                                                {#<img class=" image "#}
-                                                                     {#src="{{ asset(i.half) }}">#}
-                                                                <img class="rounded-circle image fotoExcurc img-fluid"
-                                                                     src="{{ asset(a.getMainImage().half) }}"
-                                                                     alt="{{ a.getMainImage().altName }}">
+                                                                    {#<div id="carousel">#}
+                                                                    <a class="lightbox"
+                                                                       href="{{ asset(a.getMainImage().full) }}">
+                                                                        {#<img class=" image "#}
+                                                                        {#src="{{ asset(i.half) }}">#}
+                                                                        <img class="rounded-circle image fotoExcurc img-fluid"
+                                                                             src="{{ asset(a.getMainImage().half) }}"
+                                                                             alt="{{ a.getMainImage().altName }}">
 
-                                                            </a>
+                                                                    </a>
 
-                                                            {#<img class="rounded-circle fotoExcurc img-fluid"#}
-                                                                     {#src="{{ asset(a.getMainImage().half) }}"#}
-                                                                     {#alt="{{ a.getMainImage().altName }}">#}
+                                                                    {#<img class="rounded-circle fotoExcurc img-fluid"#}
+                                                                    {#src="{{ asset(a.getMainImage().half) }}"#}
+                                                                    {#alt="{{ a.getMainImage().altName }}">#}
                                                                 </div>
-                                                            {#</div>#}
-                                                        </div>
-                                                        <div class="timeline-panelGPS">
-                                                            <div class="timeline-headingGPS">
-                                                                <h4>{{ app.session.get('language') == 'es'? a.nombre:a.name }}</h4>
-                                                                <h4 class="subheadingGPS">{{ a.horario }}</h4>
+                                                                {#</div>#}
                                                             </div>
-                                                            <div class="timeline-bodyGPS">
-                                                                <p class="text-muted">
-                                                                    {{ app.session.get('language') == 'es'? a.descripcion:a.description }}</p>
+                                                            <div class="timeline-panelGPS">
+                                                                <div class="timeline-headingGPS">
+                                                                    <h4>{{ app.session.get('language') == 'es'? a.nombre:a.name }}</h4>
+                                                                    <h4 class="subheadingGPS">{{ a.horario }}</h4>
+                                                                </div>
+                                                                <div class="timeline-bodyGPS">
+                                                                    <p class="text-muted">
+                                                                        {{ app.session.get('language') == 'es'? a.descripcion:a.description }}</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             {% endfor %}
                                         </div>
                                     </div>
                                     <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i>
                                     </button>
-                                    <button class='btn btn-default rightRs' style="right: 0px"><i class="fa fa-fw fa-angle-right"></i>
+                                    <button class='btn btn-default rightRs' style="right: 0px"><i
+                                                class="fa fa-fw fa-angle-right"></i>
                                     </button>
                                 </div>
                                 <div class="separador"></div>
@@ -335,7 +342,7 @@ padding-top: 0px;">
                                     {% endif %}
 
                                     <a href="#" data-toggle="modal"
-                                       data-target="#piliticaModal" >{{ app.session.get('language') == 'es'? ' Políticas de reserva y cancelación':' Reservation and cancellation policies' }}</a>
+                                       data-target="#piliticaModal">{{ app.session.get('language') == 'es'? ' Políticas de reserva y cancelación':' Reservation and cancellation policies' }}</a>
 
 
                                 </div>
@@ -482,24 +489,26 @@ padding-top: 0px;">
             var entrada = new Date($('#inputEntrada').val());
             var email = $('#inputEail1').val();
             var emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+            {% if app.user %}
             if (!emailRegex.test(email)) {
                 var text = ($('#lang').val() == 'es') ? 'Introduce una dirección de correo'
                     : 'Enter an email address';
-                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                var head = ($('#lang').val() == 'es') ? 'Falta información'
                     : 'Information Missing';
                 $("#textoErrorGrande").text(head);
                 $("#textoError").text(text);
-                $('.Alerterror').animate({top:"0"}, 500);
+                $('.Alerterror').animate({top: "0"}, 500);
                 return;
             }
+            {% endif %}
             if (entrada.toTimeString() == 'Invalid Date') {
                 var text = ($('#lang').val() == 'es') ? 'Debe seleccionar una Fecha'
                     : 'You must select a Date';
-                var head= ($('#lang').val() == 'es') ? 'Falta información'
+                var head = ($('#lang').val() == 'es') ? 'Falta información'
                     : 'Information Missing';
                 $("#textoErrorGrande").text(head);
                 $("#textoError").text(text);
-                $('.Alerterror').animate({top:"0"}, 500);
+                $('.Alerterror').animate({top: "0"}, 500);
                 return;
             }
             $('#reserveForm').submit();
@@ -513,7 +522,7 @@ padding-top: 0px;">
                 alert('debe escribir un comentario');
                 $("#textoWarningGrande").text('Algo acaba de suceder');
                 $("#textoWarning").text('Debe escribir un comentario');
-                $('.Alertwarning').animate({top:"0"}, 500);
+                $('.Alertwarning').animate({top: "0"}, 500);
             } else {
                 var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                 $.ajax({
@@ -525,7 +534,7 @@ padding-top: 0px;">
                             alert('Su comentario ha sido recibido correctamente');
                             $("#textoSuccessGrande").text('Algo acaba de suceder');
                             $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
-                            $('.Alertsuccess').animate({top:"0"}, 500);
+                            $('.Alertsuccess').animate({top: "0"}, 500);
                             $('#commentArea').val('');
                         }
                     }
