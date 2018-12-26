@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block descripcion %}{{ app.session.get('language') == 'es'? 'Ofrecemos actividades dinámicas, divertidas y variadas que nos permiten descubrir y explorar los principales sitios culturales y turísticos de Cuba. Con nosotros podrás disfrutar de los bellos paisajes de la naturaleza cubana y a la vez experimentarás gran parte de la vida social de cada ciudad, ya que te acercarás a su gente y a su historia.':'We offer dynamic, fun and varied activities that allow us to discover and explore the main cultural and tourist sites of Cuba. With us you can enjoy the beautiful landscapes of Cuban nature and at the same time you will experience much of the social life of each city, as you will get closer to its people and its history.' }}{% endblock %}
+
 {% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta de Excursiones':'Offer of Trips' }}{% endblock %}
 
  {% block stylesheets %}

@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block descripcion %}{{ app.session.get('language') == 'es'? 'Tenemos más de 300 autos clásicos al servicio inmediato de nuestros clientes. Los modelos de más demanda son Chevrolet, Ford, Cadillac, Buick, Oldsmobile, Plymouth, Mercedes-Benz. Nuestros choferes y guías son bilingües, haciendo así de su viaje a Cuba una amena experiencia multicultural.':'We currently have more than 300 classic cars at the immediate service of our customers. The most popular models and brands are Chevrolet, Ford, Cadillac, Buick, Oldsmobile, Plymouth, Mercedes-Benz. Our drivers and guides are fully bilingual, thus making your trip to Cuba a pleasant-multicultural experience.' }}{% endblock %}
+
 {% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta de Carros':'Offer of Cars' }}{% endblock %}
 
  {% block stylesheets %}
