@@ -244,7 +244,8 @@
                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                         <div class=" infoOferta text-left">
                                             <a class="nav-item nombreO">
-                                                <h4>{{ i.nombre }}</h4>
+
+                                                <h4>{{ app.session.get('language') == 'es'? i.nombre : i.name  }}</h4>
                                             </a>
 
                                             <div class="row">
@@ -284,7 +285,7 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="iconoServ">
-                                                                        <span>{{ i.camasDobles }}{{ app.session.get('language') == 'es'? ' Cama doble':'Double bed' }}</span>
+                                                                        <span>{{ i.camasDobles }}{{ app.session.get('language') == 'es'? ' Cama doble':' Double bed' }}</span>
                                                                     </div>
                                                                 </div>
                                                             </div>
