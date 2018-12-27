@@ -22,6 +22,7 @@ class ExcursionForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('codigo',TextType::class,['label' => 'Código'])
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('name', TextType::class, ['label' => 'Name'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
