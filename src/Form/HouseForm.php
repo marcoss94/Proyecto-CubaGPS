@@ -24,6 +24,7 @@ class HouseForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('codigo',TextType::class,['label' => 'Código'])
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('name', TextType::class, ['label' => 'Name'])
             ->add('manager', TextType::class, ['label' => 'Manager'])
@@ -64,7 +65,6 @@ class HouseForm extends AbstractType
                 'Patio' => 'patio',
                 'Jacuzzi' => 'jacuzzi',
                 'Caja Fuerte' => 'caja_fuerte',
-                'Lavandería' => 'lavandería',
                 'Hamaca' => 'hamaca',
                 'Escritorio de Trabajo' => 'escritorio',
                 'Ducha de Playa' => 'ducha_playa',
