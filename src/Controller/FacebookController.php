@@ -23,7 +23,7 @@ class FacebookController extends Controller
         return $clientRegistry
             ->getClient('facebook_main')// key used in config/packages/knpu_oauth2_client.yaml
             ->redirect([
-                'public_profile', 'email', 'user_location' // the scopes you want to access
+                'public_profile', 'email' // the scopes you want to access
             ]);
     }
 
@@ -35,7 +35,7 @@ class FacebookController extends Controller
         return $clientRegistry
             ->getClient('facebook_main')
             ->redirect([
-                'public_profile', 'email', 'user_location'
+                'public_profile', 'email'
             ]);
     }
 
