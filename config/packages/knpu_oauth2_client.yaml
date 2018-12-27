@@ -11,7 +11,6 @@ knpu_oauth2_client:
               redirect_route: connect_facebook_check
               redirect_params: {}
               graph_api_version: v2.12
-
           google:
                # must be "google" - it activates that type!
                type: google
