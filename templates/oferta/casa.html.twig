@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block descripcion %} {{ app.session.get('language') == 'es'? 'Ofrecemos las mejores casas de renta en toda Cuba para los amantes de la naturaleza y la ciudad. Casas a su elección y disposición desde Varadero hasta La Habana, Trinidad, Viñales, Cienfuegos, Holguín, Baracoa, y más. Usted vivirá las mejores experiencias y disfrutará como nunca antes junto a la compañía de nuestros anfitriones cubanos. Todas nuestras casas están climatizadas y puede verlas detalladamente en fotos de alta calidad en nuestra página. Actualmente contamos con más de 600 casas a su plena disposición. ':'We offer the best rental homes in the country for both nature and city lovers. Houses for your selection and available to you all the way from Varadero, up to Havana, Trinidad, Viñales, Cienfuegos, Holguin, Baracoa, and more. We assure that you will live the best experiences with us and will enjoy Cuba like never before in the company of our charismatic Cuban hosts. All of our houses are fully climatized and you can see them in detail through high resolution photos posted on our website. We currently count with more than 600 houses at your full disposal.' }}  {% endblock %}
+{% block descripcion %} Ofrecemos las mejores casas de renta en toda Cuba para los amantes de la naturaleza y la ciudad. Usted vivirá las mejores experiencias y disfrutará como nunca.{% endblock %}
 
 {% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta de Casas':'Offers of Houses' }}{% endblock %}
 

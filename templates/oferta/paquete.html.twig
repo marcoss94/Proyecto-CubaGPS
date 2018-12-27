@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block descripcion %}{{ app.session.get('language') == 'es'? 'Contamos con más de 50 diferentes paquetes turísticos para conocer Cuba. Todos específicamente elaborados a la medida, economía y fechas que nuestros clientes deseen. Nuestros paquetes están particularmente preparados para sumergirnos en la historia de cada lugar, no dejando de velar por la comodidad de la familia visitante y logrando hacer de sus vacaciones unas nunca antes experimentadas. ':'We count with more than 50 different tourist packages to help you get to know Cuba better. All of them are specifically made to comply with the economic preferences and dates that our customers desire. Our packages are particularly prepared to immerse us in the history of each place, not forgetting the comfort of the visiting family and always pursuing to achieve with you the feeling of a never-before-experienced vacations.' }}{% endblock %}
+{% block descripcion %}Contamos con más de 50 diferentes paquetes turísticos para conocer Cuba. Todos específicamente elaborados a la medida, economía y fechas que nuestros clientes deseen. {% endblock %}
 
 {% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oferta de Paquetes':'Offer of Packages' }}{% endblock %}
 
