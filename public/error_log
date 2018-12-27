@@ -1,0 +1,2 @@
+[26-Dec-2018 21:03:35 Europe/London] PHP Fatal error:  Class 'Symfony\Component\Cache\DependencyInjection\CachePoolPass' not found in /home/travelcuba/travelcubagps/vendor/symfony/framework-bundle/DependencyInjection/Compiler/CachePoolPass.php on line 23
+[26-Dec-2018 21:03:57 Europe/London] PHP Fatal error:  Class 'Symfony\Component\Cache\DependencyInjection\CachePoolPass' not found in /home/travelcuba/travelcubagps/vendor/symfony/framework-bundle/DependencyInjection/Compiler/CachePoolPass.php on line 23
