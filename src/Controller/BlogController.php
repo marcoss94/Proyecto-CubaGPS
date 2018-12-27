@@ -105,7 +105,7 @@ class BlogController extends AbstractController
      */
     public function underConstruction()
     {
-        return $this->render('blog/contruction.jpg');
+        return $this->render('blog/default.html');
     }
 
     /**
