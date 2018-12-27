@@ -20,7 +20,6 @@ $debug = (bool) ($_SERVER['APP_DEBUG'] ?? ('prod' !== $env));
 
 if ($debug) {
     umask(0000);
-
     Debug::enable();
 }
 

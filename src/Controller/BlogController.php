@@ -98,6 +98,16 @@ class BlogController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/underConstruction", name="underConstruction")
+     * @Method("GET")
+     */
+    public function underConstruction()
+    {
+        return $this->render('blog/contruction.jpg');
+    }
+
     /**
      * @Route("/blog_languaje", name="change_language")
      * @Method("GET")

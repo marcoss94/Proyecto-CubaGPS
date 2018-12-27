@@ -4,8 +4,8 @@
 # See https://symfony.com/doc/current/cookbook/templating/render_without_controller.html
 
 blog:
-    path: /
-    controller: App\Controller\BlogController::index
+    path: /{_locale}
+    controller: App\Controller\BlogController::underConstruction
 
 homepage:
     path: /{_locale}
