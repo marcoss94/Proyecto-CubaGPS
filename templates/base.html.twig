@@ -4,10 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="{% block descripcion %}{{ app.session.get('language') == 'es'? 'Descropción General':'Official' }}{% endblock %}">
+    <meta name="author" content="Travel Cuba GPS">
+    <meta name=”google” content=”nositelinkssearchbox”>
+    <meta name=”generator” content="Symfony 4.0">
 
-    <title>{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}</title>
+    <title>Travel {% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}</title>
 
     {% block stylesheets %}
         <!-- Bootstrap core CSS -->

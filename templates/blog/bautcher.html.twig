@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Travel Cuba GPS">
+    <meta name=”google” content=”nositelinkssearchbox”>
+    <meta name=”generator” content="Symfony 4.0">
+
+
+    <title>Travel {% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}</title>
+
+
+
+</head>
+
+
+<body>
+
+<style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+    .tg .tg-88nc{font-weight:bold;border-color:inherit;text-align:center}
+    .tg .tg-v47y{font-weight:bold;border-color:#000000;text-align:left}
+    .tg .tg-fymr{font-weight:bold;border-color:inherit;text-align:left;vertical-align:top}
+    .tg .tg-xam4{font-weight:bold;font-size:100%;border-color:inherit;text-align:left;vertical-align:top}
+    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+    .tg .tg-0lax{text-align:left;vertical-align:top}
+    .tg .tg-6ic8{font-weight:bold;border-color:inherit;text-align:right;vertical-align:top}
+</style>
+<table class="tg">
+    <tr>
+        <th class="tg-v47y" rowspan="4"><img src="{{ asset('build/img/logooficial.png') }}"
+                                             width="130" height="50"
+                                             class="d-inline-block align-top" alt=""></th>
+        <th class="tg-88nc" rowspan="4">AGENCIA DE RESERVACIONES CONTRATO</th>
+        <th class="tg-fymr" colspan="2">Folio</th>
+        <th class="tg-fymr">#numero</th>
+    </tr>
+    <tr>
+        <td class="tg-88nc" colspan="3">Confeccionado</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr">DIA</td>
+        <td class="tg-fymr">MES</td>
+        <td class="tg-fymr">AÑO<br></td>
+    </tr>
+    <tr>
+        <td class="tg-0lax">#Dia</td>
+        <td class="tg-0lax">#Mes</td>
+        <td class="tg-0lax">#año</td>
+    </tr>
+    <tr>
+        <td class="tg-xam4" colspan="2">Nombre y Apellidos.</td>
+        <td class="tg-fymr" colspan="3">ID.<br></td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="2">#Nombre</td>
+        <td class="tg-0pky" colspan="3">#Id</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr" colspan="2">Dirección.</td>
+        <td class="tg-fymr" colspan="3">Teléfono.</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="2">#Direccion</td>
+        <td class="tg-0pky" colspan="3">#Telefono</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr" colspan="2">E-mail.</td>
+        <td class="tg-fymr" colspan="3">Servicios que solicita.</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="2">#Email</td>
+        <td class="tg-0pky" colspan="3">#Serevicios</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr">Instalación.                 <br></td>
+        <td class="tg-fymr" colspan="2">Categoria.</td>
+        <td class="tg-fymr" colspan="2">Cantidad de pax.</td>
+    </tr>
+    <tr>
+        <td class="tg-0lax">#Intalacion</td>
+        <td class="tg-0lax" colspan="2">#Categoria</td>
+        <td class="tg-0lax" colspan="2">#Cant</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr">Entrada.<br></td>
+        <td class="tg-fymr">Hora.</td>
+        <td class="tg-fymr">Salida.<br></td>
+        <td class="tg-fymr">Hora.<br></td>
+        <td class="tg-fymr">Provincia.   <br></td>
+    </tr>
+    <tr>
+        <td class="tg-0lax">#Entrada</td>
+        <td class="tg-0lax">#Hora</td>
+        <td class="tg-0lax">#Salida</td>
+        <td class="tg-0lax">#Hora</td>
+        <td class="tg-0lax">#Provincia</td>
+    </tr>
+    <tr>
+        <td class="tg-fymr">Concepto.</td>
+        <td class="tg-fymr">Capacidad.</td>
+        <td class="tg-fymr">Precio por persona.</td>
+        <td class="tg-fymr">Noches.</td>
+        <td class="tg-fymr">Importe.</td>
+    </tr>
+    <tr>
+        <td class="tg-0lax">#Concepto</td>
+        <td class="tg-0lax">#Capacidad</td>
+        <td class="tg-0lax">#Precio persona</td>
+        <td class="tg-0lax">#Noche</td>
+        <td class="tg-0lax">#Importe</td>
+    </tr>
+    <tr>
+        <td class="tg-6ic8" colspan="4">Total.</td>
+        <td class="tg-0lax">#Total</td>
+    </tr>
+</table>
+</body>
+
+
+<footer>
+
+
+</footer>
+
+
+</html>

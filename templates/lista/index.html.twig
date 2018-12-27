@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Lista':'List' }}!{% endblock %}
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Lista':'List' }}-{% if type == 'casa' %}{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}
+    {% elseif type == 'carro' %}{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}
+    {% elseif type == 'excursion' %}{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}
+    {% elseif type == 'paquete' %}{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}
+    {% else %}{{ app.session.get('language') == 'es'? 'Resultados':'Results' }}
+    {% endif %}
+
+    {% endblock %}
 
  {% block stylesheets %}
 

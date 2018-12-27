@@ -237,4 +237,12 @@ class BlogController extends AbstractController
         return $this->render('blog/index.html');
     }
 
+    /**
+     * @Route("/bautcher", name="bautcher")
+     */
+    public function bautcher()
+    {
+        return $this->render('blog/bautcher.html.twig');
+    }
+
 }
