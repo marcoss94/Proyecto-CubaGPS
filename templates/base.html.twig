@@ -114,7 +114,7 @@
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ app.session.get('language') == 'es'? 'Servicios':'Service' }}
+                                {{ app.session.get('language') == 'es'? 'Servicios':'Services' }}
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
@@ -130,7 +130,7 @@
                                 <a class="nav-link js-scroll-trigger "
                                    href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
                                 <a class="nav-link js-scroll-trigger "
-                                   href="#carros">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
+                                   href="#carros">{{ app.session.get('language') == 'es'? 'Coches':'Cars' }}</a>
                                 <a class="nav-link js-scroll-trigger "
                                    href="#excursiones">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
 
@@ -273,7 +273,7 @@
                         <div class="dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ app.session.get('language') == 'es'? 'Servicios':'Service' }}
+                                {{ app.session.get('language') == 'es'? 'Servicios':'Services' }}
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
@@ -303,7 +303,7 @@
                                 <a class="nav-link js-scroll-trigger "
                                    href="{{ path('lista',{'type':'paquete'}) }}">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
                                 <a class="nav-link js-scroll-trigger "
-                                   href="{{ path('lista',{'type':'carro'}) }}">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</a>
+                                   href="{{ path('lista',{'type':'carro'}) }}">{{ app.session.get('language') == 'es'? 'Coches':'Cars' }}</a>
                                 <a class="nav-link js-scroll-trigger "
                                    href="{{ path('lista',{'type':'excursion'}) }}">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</a>
 
@@ -714,7 +714,7 @@ If the cancellation is made from day 6 before the start date, 100% of the deposi
                                                             selected>{{ app.session.get('language') == 'es'? 'Todos':'All' }}</option>
                                                     <option value="Paquete">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</option>
                                                     <option value="Casa">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</option>
-                                                    <option value="Carro">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</option>
+                                                    <option value="Carro">{{ app.session.get('language') == 'es'? 'Coches':'Cars' }}</option>
                                                     <option value="Excursion">{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}</option>
                                                 </select>
                                             </div>

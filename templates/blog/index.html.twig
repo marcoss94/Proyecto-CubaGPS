@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block descripcion %}Cuba GPS es una agencia especializada en el Turismo la cual oferta diferentes servicios como Renta de Casas y Coches, Excursiones guiadas y Paquetes turísticos elaborados a la medida. {% endblock %}
+
 {% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}
 
 {% block stylesheets %}
@@ -116,25 +118,28 @@ border-color: #f9b501;"
                                             <a class="nav-item nombreO"
                                                href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                                 <h4>{{ i.nombre }}</h4></a>
-                                            <h4 class="provinciaO">{{ i.municipio~', '~i.provincia }}</h4>
-                                            {% if i.valoracionArray[0]!=0 %}
-                                                {% for j in 1..i.valoracionArray[0] %}
-                                                    <i class="fas fa-star star"></i>
-                                                {% endfor %}
-                                            {% endif %}
-                                            {% if i.valoracionArray[1] %}
-                                                <i class="fas fa-star-half-alt star"></i>
-                                            {% endif %}
-                                            {% if i.valoracionArray[2]!=0 %}
-                                                {% for j in 1..i.valoracionArray[2] %}
-                                                    <i class="far fa-star star"></i>
-                                                {% endfor %}
-                                            {% endif %}
+                                            <h6 class="provinciaO">{{ i.municipio~', '~i.provincia }}</h6>
+                                            <div class="provinciaO">
+                                                {% if i.valoracionArray[0]!=0 %}
+                                                    {% for j in 1..i.valoracionArray[0] %}
+                                                        <i class="fas fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                {% if i.valoracionArray[1] %}
+                                                    <i class="fas fa-star-half-alt star"></i>
+                                                {% endif %}
+                                                {% if i.valoracionArray[2]!=0 %}
+                                                    {% for j in 1..i.valoracionArray[2] %}
+                                                        <i class="far fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
                                             <div class="timeline-body">
-                                                <h7 class="descr text-muted" >
+                                                <h7 class="descr text-muted">
                                                     {{ app.session.get('language') == 'es'?
-                                                    i.descripcion:
+                                                    i.descripcion[:200]:
                                                     i.description }}
+                                                    <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
                                                 </h7>
 
 
@@ -289,7 +294,7 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-                                                <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
+                                                <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
                                             </div>
 
                                         </a>
@@ -299,53 +304,72 @@ border-color: #f9b501;"
                                                 <h4>{{ app.session.get('language') == 'es'?
                                                     i.nombre:
                                                     i.name }}</h4></a>
-                                            <div class="serviciosOfertas provinciaO" style="margin-right: 10px">
-                                                <div class="iconogeneral">
+                                            {#<div class="serviciosOfertas provinciaO" style="margin-right: 10px">#}
+                                                {#<div class="iconogeneral">#}
 
-                                                    <div class="iconoServ">
+                                                    {#<div class="iconoServ">#}
+                                                        {#<h6>#}
+                                                            {#<span><i class="far fa-sun"></i></span>#}
+                                                            {#Cantidad de dias#}
+                                                            {#{{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}#}
+                                                        {#</h6>#}
+                                                    {#</div>#}
+                                                {#</div>#}
+                                            {#</div>#}
+                                            {#<div class="serviciosOfertas provinciaO" style="margin-right: 10px">#}
+                                                {#<div class="iconogeneral">#}
+
+                                                    {#<div class="iconoServ">#}
+                                                        {#<h6>#}
+                                                            {#<span><i class="far fa-moon"></i></span>#}
+                                                            {#Cantidad de noches#}
+                                                            {#{{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}#}
+                                                        {#</h6>#}
+                                                    {#</div>#}
+                                                {#</div>#}
+                                            {#</div>#}
+
+                                            <div class="timeline-body">
+                                                <div class="provinciaO">
+                                                    <div class="serviciosOfertas">
                                                         <h6>
                                                             <span><i class="far fa-sun"></i></span>
                                                             {#Cantidad de dias#}
                                                             {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
                                                         </h6>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="serviciosOfertas provinciaO" style="margin-right: 10px">
-                                                <div class="iconogeneral">
-
-                                                    <div class="iconoServ">
+                                                    <div class="serviciosOfertas">
                                                         <h6>
                                                             <span><i class="far fa-moon"></i></span>
                                                             {#Cantidad de noches#}
                                                             {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
                                                         </h6>
                                                     </div>
+                                                    <div>
+
+                                                        {% if i.valoracionArray[0]!=0 %}
+                                                            {% for j in 1..i.valoracionArray[0] %}
+                                                                <i class="fas fa-star star"></i>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {% if i.valoracionArray[1] %}
+                                                            <i class="fas fa-star-half-alt star"></i>
+                                                        {% endif %}
+                                                        {% if i.valoracionArray[2]!=0 %}
+                                                            {% for j in 1..i.valoracionArray[2] %}
+                                                                <i class="far fa-star star"></i>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="timeline-body">
-                                                {% if i.valoracionArray[0]!=0 %}
-                                                    {% for j in 1..i.valoracionArray[0] %}
-                                                        <i class="fas fa-star star"></i>
-                                                    {% endfor %}
-                                                {% endif %}
-                                                {% if i.valoracionArray[1] %}
-                                                    <i class="fas fa-star-half-alt star"></i>
-                                                {% endif %}
-                                                {% if i.valoracionArray[2]!=0 %}
-                                                    {% for j in 1..i.valoracionArray[2] %}
-                                                        <i class="far fa-star star"></i>
-                                                    {% endfor %}
-                                                {% endif %}
                                             </div>
                                             <div class="timeline-body">
                                                 <h7 class="descr text-muted">
                                                     {{ app.session.get('language') == 'es'?
-                                                    i.descripcion:
+                                                    i.descripcion[:200]:
                                                     i.description }}
+                                                    <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
                                                 </h7>
-                                                <h6 class="text-muted">
-                                                    {{ '€ '~i.precio1 }}</h6>
 
                                             </div>
                                         </div>
@@ -369,7 +393,7 @@ border-color: #f9b501;"
                 {################Seccion de Carros#####################################################}
                 <div class="col-lg-12 text-center">
                     <h2 id="carros"
-                        class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}</h2>
+                        class="section-heading text-uppercase">{{ app.session.get('language') == 'es'? 'Coches':'Cars' }}</h2>
 
                 </div>
                 <div class="col-md-12 ">
@@ -415,22 +439,28 @@ border-color: #f9b501;"
                                             <a class="nav-item nombreO"
                                                href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                                 <h4>{{ i.nombre }}</h4></a>
-                                            {% if i.valoracionArray[0]!=0 %}
-                                                {% for j in 1..i.valoracionArray[0] %}
-                                                    <i class="fas fa-star star"></i>
-                                                {% endfor %}
-                                            {% endif %}
-                                            {% if i.valoracionArray[1] %}
-                                                <i class="fas fa-star-half-alt star"></i>
-                                            {% endif %}
-                                            {% if i.valoracionArray[2]!=0 %}
-                                                {% for j in 1..i.valoracionArray[2] %}
-                                                    <i class="far fa-star star"></i>
-                                                {% endfor %}
-                                            {% endif %}
+                                            <h6 class="provinciaO">{{i.provincia }}</h6>
+                                            <div class="provinciaO">
+                                                {% if i.valoracionArray[0]!=0 %}
+                                                    {% for j in 1..i.valoracionArray[0] %}
+                                                        <i class="fas fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                                {% if i.valoracionArray[1] %}
+                                                    <i class="fas fa-star-half-alt star"></i>
+                                                {% endif %}
+                                                {% if i.valoracionArray[2]!=0 %}
+                                                    {% for j in 1..i.valoracionArray[2] %}
+                                                        <i class="far fa-star star"></i>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </div>
                                             <div class="timeline-body">
                                                 <h7 class="descr text-muted">
-                                                    {{ app.session.get('language') == 'es'? i.descripcion:i.description }}  </h7>
+                                                    {{ app.session.get('language') == 'es'?
+                                                    i.descripcion[:200]:
+                                                    i.description }}
+                                                    <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>  </h7>
                                             </div>
                                         </div>
                                     </div>
@@ -500,7 +530,8 @@ border-color: #f9b501;"
                                             <a class="nav-item nombreO"
                                                href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                                 <h4>{{ i.nombre }}</h4></a>
-                                            <h4 class="provinciaO">{{ i.provincia }}</h4>
+                                            <h6 class="provinciaO">{{ i.provincia }}</h6>
+                                                <div class="provinciaO">
                                             {% if i.valoracionArray[0]!=0 %}
                                                 {% for j in 1..i.valoracionArray[0] %}
                                                     <i class="fas fa-star star"></i>
@@ -514,10 +545,14 @@ border-color: #f9b501;"
                                                     <i class="far fa-star star"></i>
                                                 {% endfor %}
                                             {% endif %}
+                                                </div>
+
                                             <div class="timeline-body">
-                                                <h6 class="text-muted">
-                                                    {{ i.precio1~ ' € ' }}  </h6>
-                                                <h7 class="descr text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</h7>
+
+                                                <h7 class="descr text-muted">{{ app.session.get('language') == 'es'?
+                                                    i.descripcion[:200]:
+                                                    i.description }}
+                                                    <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a></h7>
                                             </div>
                                         </div>
                                     </div>
@@ -977,18 +1012,7 @@ border-color: #f9b501;"
 
             <script src="{{ asset('build/js/resCarousel.js') }}"></script>
 
-<script>
-    $(document).ready(function () {
-        var caracteresAMostrar = 300;
-        var contenido = $(".descr").html();
 
-        if (contenido.length > caracteresAMostrar) {
-            var resumen = contenido.substr(0, caracteresAMostrar);
-            var todo = contenido.substr(caracteresAMostrar, contenido.length - caracteresAMostrar);
-        }
-        $(".descr").html(resumen);
-    })
-</script>
 
 
 
