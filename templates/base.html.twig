@@ -54,27 +54,6 @@
                                                                             width="140" height="50"
                                                                             class="d-inline-block align-top" alt="">
             </a>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-
-                <!-- Identify your business so that you can collect the payments. -->
-                <input type="hidden" name="business" value="cubagps@yahoo.com">
-
-                <!-- Specify a Buy Now button. -->
-                <input type="hidden" name="cmd" value="_xclick">
-
-                <!-- Specify details about the item that buyers will purchase. -->
-                <input type="hidden" name="item_name" value="Hot Sauce-12oz. Bottle">
-                <input type="hidden" name="amount" value="5.95">
-                <input type="hidden" name="currency_code" value="USD">
-
-                <!-- Display the payment button. -->
-                <input type="image" name="submit" border="0"
-                       src="https://www.paypalobjects.com/es_ES/i/btn/btn_buynow_LG.gif"
-                       alt="Buy Now">
-                <img alt="" border="0" width="1" height="1"
-                     src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" >
-
-            </form>
 
             <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
                     style="background-color: #f9b501" data-target="#navbarResponsive" aria-controls="navbarResponsive"
@@ -908,11 +887,11 @@ If the cancellation is made from day 6 before the start date, 100% of the deposi
                 'Para contactarnos es necesario que insertes tu número de teléfono'
                 :'To contact us you need to insert your phone number' }}';
                 show_alert_box("error",head,body);
-            }else if(texto.length<60){
+            }else if(texto.length<20){
                 var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
                 var body='{{ app.session.get('language') == 'es'?
-                'Para contactarnos es necesario que insertes un mensage de al menos 60 caractéres'
-                :'To contact us it is necessary that you insert a message of at least 60 characters' }}';
+                'Para contactarnos es necesario que insertes un mensage más extenso'
+                :'To contact us it is necessary that you insert a more extensive message' }}';
                 show_alert_box("error",head,body);
             } else {
                 var data = {nombre: nombre, tel: tel, email: email, text: texto}
