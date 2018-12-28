@@ -1,7 +1,7 @@
 {% extends 'backendBase.html.twig' %}
 
 
-{% block title %}Administración | Carros{% endblock %}
+{% block title %}Administración | Coches{% endblock %}
 
 
 {% block stylesheets %}
@@ -24,7 +24,7 @@
         <li class="breadcrumb-item">
             <a href="{{ path('admin') }}">Administración</a>
         </li>
-        <li class="breadcrumb-item active">Carros</li>
+        <li class="breadcrumb-item active">Coches</li>
     </ol>
 
     <div class="card mb-3">
@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-auto mr-auto">
                     <i class="fas fa-car"></i>
-                    Carros
+                    Coches
                 </div>
                 <div class="col-auto">
                     <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">
@@ -176,7 +176,7 @@
                             <td>{{ c.updatedAt|date }}</td>
                         </tr>
                     {% else %}
-                        <th colspan="5">No se han insertado carros</th>
+                        <th colspan="5">No se han insertado coches</th>
                     {% endfor %}
 
                     </tbody>
@@ -187,7 +187,7 @@
             <div class="row">
                 <div class="col-auto mr-auto">
                     <i class="fas fa-car"></i>
-                    Carros
+                    Coches
                 </div>
                 <div class="col-auto">
                     <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">
@@ -205,7 +205,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Carro</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Nuevo Coche</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

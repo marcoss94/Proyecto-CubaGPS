@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Lista':'List' }}-{% if type == 'casa' %}{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}
-    {% elseif type == 'carro' %}{{ app.session.get('language') == 'es'? 'Carros':'Cars' }}
+    {% elseif type == 'carro' %}{{ app.session.get('language') == 'es'? 'Coches':'Cars' }}
     {% elseif type == 'excursion' %}{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}
     {% elseif type == 'paquete' %}{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}
     {% else %}{{ app.session.get('language') == 'es'? 'Resultados':'Results' }}
@@ -41,7 +41,7 @@
                         {% if type == 'casa' %}
                             {{ app.session.get('language') == 'es'? 'Casas':'Houses' }}
                         {% elseif type == 'carro' %}
-                            {{ app.session.get('language') == 'es'? 'Carros':'Cars' }}
+                            {{ app.session.get('language') == 'es'? 'Coches':'Cars' }}
                         {% elseif type == 'excursion' %}
                             {{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}
                         {% elseif type == 'paquete' %}
@@ -83,41 +83,61 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
+                                {% if type == 'casa' %}
+                                    <div class="texto-encima"><h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
+                                {% elseif type == 'carro' %}
+
+                                {% elseif type == 'excursion' %}
+                                    <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
+                                {% else %}
+                                    <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
+                                {% endif %}
+
                             </div>
                         </a>
                         <div class=" infoOferta text-left">
                             <div class="timeline-body">
-                                {% if i.valoracionArray[0]!=0 %}
-                                    {% for j in 1..i.valoracionArray[0] %}
-                                        <i class="fas fa-star star"></i>
-                                    {% endfor %}
-                                {% endif %}
-                                {% if i.valoracionArray[1] %}
-                                    <i class="fas fa-star-half-alt star"></i>
-                                {% endif %}
-                                {% if i.valoracionArray[2]!=0 %}
-                                    {% for j in 1..i.valoracionArray[2] %}
-                                        <i class="far fa-star star"></i>
-                                    {% endfor %}
-                                {% endif %}
+                                <div class="provinciaO">
+                                    {% if i.valoracionArray[0]!=0 %}
+                                        {% for j in 1..i.valoracionArray[0] %}
+                                            <i class="fas fa-star star"></i>
+                                        {% endfor %}
+                                    {% endif %}
+                                    {% if i.valoracionArray[1] %}
+                                        <i class="fas fa-star-half-alt star"></i>
+                                    {% endif %}
+                                    {% if i.valoracionArray[2]!=0 %}
+                                        {% for j in 1..i.valoracionArray[2] %}
+                                            <i class="far fa-star star"></i>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
                             </div>
                             {% if i.getType=='Casa' %}
                                 <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                     <h4>{{ app.session.get('language') == 'es'?
                                         i.nombre:
                                         i.name }}</h4></a>
-                                <h4>{{ i.municipio~', '~i.provincia }}</h4></a>
-                                {#<div class="timeline-body">#}
-                                {#<h6 class="text-muted">#}
-                                {#{{ '€ '~i.precio }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}  </h6>#}
-                                {#</div>#}
+                                <h6 class="provinciaO">{{ i.municipio~', '~i.provincia }}</h6>
+                                <div class="timeline-body">
+                                    <h7 class="descr text-muted" >
+                                        {{ app.session.get('language') == 'es'?
+                                        i.descripcion[:200]:
+                                        i.description }}
+                                        <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
+                                    </h7>
+
+                                </div>
                             {% elseif i.getType == 'Carro' %}
                                 <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                     <h4>{{ i.nombre }}</h4></a>
-                                <h5>{{ i.provincia }}</h5>
+                                <h6 class="provinciaO">{{i.provincia }}</h6>
                                 <div class="timeline-body">
-                                    <h6 class="text-muted">
-                                        {{ app.session.get('language') == 'es'? i.descripcion:i.description }}  </h6>
+                                    <h7 class="descr text-muted">
+                                        {{ app.session.get('language') == 'es'?
+                                        i.descripcion[:200]:
+                                        i.description }}
+                                        <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>  </h7>
                                 </div>
                             {% elseif i.getType == 'Excursion' %}
                                 <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
@@ -125,50 +145,71 @@
                                         i.nombre:
                                         i.name }}</h4></a>
 
-                                <h5>{{ i.provincia }}</h5>
+                                <h6 class="provinciaO">{{ i.provincia }}</h6>
                                 <div class="timeline-body">
-                                    <h6 class="text-muted">
-                                        {{ '€ '~i.precio1 }}  </h6>
-                                    <p class="text-muted">{{ app.session.get('language') == 'es'? i.descripcion:i.description }}</p>
+                                    <h7 class="descr text-muted" >
+                                        {{ app.session.get('language') == 'es'?
+                                        i.descripcion[:200]:
+                                        i.description }}
+                                        <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
+                                    </h7>
+
                                 </div>
                             {% else %}
                                 <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                     <h4>{{ app.session.get('language') == 'es'?
                                         i.nombre:
                                         i.name }}</h4></a>
-                                <div class="serviciosOfertas" style="margin-right: 10px">
-                                    <div class="iconogeneral">
+                                {#<div class="serviciosOfertas" style="margin-right: 10px">#}
+                                    {#<div class="iconogeneral">#}
 
-                                        <div class="iconoServ">
-                                            <h6>
-                                                <span><i class="far fa-sun"></i></span>
+                                        {#<div class="iconoServ">#}
+                                            {#<h6>#}
+                                                {#<span><i class="far fa-sun"></i></span>#}
                                                 {#Cantidad de dias#}
-                                                {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="serviciosOfertas" style="margin-right: 10px">
-                                    <div class="iconogeneral">
+                                                {#{{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}#}
+                                            {#</h6>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                                {#<div class="serviciosOfertas" style="margin-right: 10px">#}
+                                    {#<div class="iconogeneral">#}
 
-                                        <div class="iconoServ">
-                                            <h6>
-                                                <span><i class="far fa-moon"></i></span>
+                                        {#<div class="iconoServ">#}
+                                            {#<h6>#}
+                                                {#<span><i class="far fa-moon"></i></span>#}
                                                 {#Cantidad de noches#}
-                                                {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
-                                            </h6>
-                                        </div>
+                                                {#{{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}#}
+                                            {#</h6>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            <div class="timeline-body">
+                                <div class="provinciaO">
+                                    <div class="serviciosOfertas">
+                                        <h6>
+                                            <span><i class="far fa-sun"></i></span>
+                                            {#Cantidad de dias#}
+                                            {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
+                                        </h6>
+                                    </div>
+                                    <div class="serviciosOfertas">
+                                        <h6>
+                                            <span><i class="far fa-moon"></i></span>
+                                            {#Cantidad de noches#}
+                                            {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
+                                        </h6>
                                     </div>
                                 </div>
+                            </div>
                                 <div class="timeline-body">
-
-                                    <p class="text-muted">
+                                    <h7 class="descr text-muted" >
                                         {{ app.session.get('language') == 'es'?
-                                        i.descripcion:
+                                        i.descripcion[:200]:
                                         i.description }}
-                                    </p>
-                                    <h6 class="text-muted">
-                                        {{ '€ '~i.precio1 }}</h6>
+                                        <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
+                                    </h7>
+
                                 </div>
                             {% endif %}
 
