@@ -471,7 +471,7 @@ class ReserveController extends Controller
             ->setFrom('cubagps@gmail.com')
             ->setBody($this->renderView(
                 'email_confirmacion/notificar_admin.html.twig',
-                ['reserve' => $reserva]
+                ['reserva' => $reserva]
             ),
                 'text/html');
         $mailer->send($message);
