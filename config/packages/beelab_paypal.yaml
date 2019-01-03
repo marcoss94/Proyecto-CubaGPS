@@ -1,0 +1,4 @@
+beelab_paypal:
+    return_route: your_return_route
+    cancel_route: your_cancel_route
+    test_mode: "%kernel.debug%"
