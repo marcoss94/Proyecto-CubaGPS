@@ -14,9 +14,10 @@
     <h3>{{ reserva.commponent }}</h3>
     <h3>{{ reserva.commponent.getType~': '~reserva.commponent.codigo }}</h3>
     {% if reserva.habitaciones | length > 0 %}
-    <h3>Habitaciones: </h3>
+        <h3>Habitaciones: </h3>
+    {% endif %}
     {% for h in reserva.habitaciones %}
-       {{ h }}
+        {{ h }}
     {% endfor %}
     <h4>{{ 'Municipio: '~reserva.commponent.municipio }} </h4>
     <h4>{{ 'Provincia: '~reserva.commponent.provincia }} </h4>
