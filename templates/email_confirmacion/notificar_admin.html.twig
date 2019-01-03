@@ -37,7 +37,7 @@
         <h4>{{ 'Email: '~reserva.commponent.email }} </h4>
         <h4>{{ 'Telefono Fijo: '~reserva.commponent.tel }} </h4>
         <h4>{{ 'Telefono Móvil: '~reserva.commponent.cel }} </h4>
-    {% else reserva.commponent.getType=='Excursion' %}
+    {% elseif reserva.commponent.getType=='Excursion' %}
         <h4>{{ 'Informacion de contacto: '~reserva.commponent.infoContacto }} </h4>
     {% endif %}
 {% endblock %}
