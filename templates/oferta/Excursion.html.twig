@@ -395,7 +395,7 @@
                 <div class="col-12 col-md-4 portfolio-item " id="reserva">
                     <div class="container">
                         <div class="modal-content">
-                            <form action="{{ path('reserva_excursion') }}" method="post" id="reserveForm">
+                            <form {% if app.user %}action="{{ path('reserva_excursion') }}"{% else %}action="{{ path('auth_forced')}}" {% endif %} method="post" id="reserveForm">
                                 <input type="hidden" name="objectId" value="{{ object.id }}">
                                 <div class="modal-body">
                                     <div class="form-row">
