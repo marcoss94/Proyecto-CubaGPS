@@ -261,7 +261,7 @@ class Habitacion extends DisplayableComponent
         return 'Habitacion';
     }
 
-   
+
 
 
 }
