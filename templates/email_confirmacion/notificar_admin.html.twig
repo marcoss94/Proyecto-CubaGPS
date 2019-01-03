@@ -13,7 +13,7 @@
     <h2>Nueva solicitud de reserva a nombre de: {{ reserva.usuario }}</h2>
     <h3>{{ reserva.commponent }}</h3>
     <h3>{{ reserva.commponent.getType~': '~reserva.commponent.codigo }}</h3>
-    <h3>{{ reserva.habitaciones|join(',') }} </h3>
+    <h3>{{ reserva.habitaciones|join(', ', ' and ') }} </h3>
     <h4>{{ 'Municipio: '~reserva.commponent.municipio }} </h4>
     <h4>{{ 'Provincia: '~reserva.commponent.provincia }} </h4>
     <h4>{{ 'Cantidad de Adultos: '~reserva.cantPersonas }} </h4>
