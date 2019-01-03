@@ -81,7 +81,7 @@ class ReserveController extends Controller
         $message = (new \Swift_Message())
             ->setSubject('Reservation')
             ->setTo($user->getEmail())
-            ->setFrom('cubagps@gmail.com')
+            ->setFrom('contact@travelcubagps.com')
             ->setBody($this->renderView(
                 'email_confirmacion/'.$next.'.html.twig',
                 ['user' => $user,
