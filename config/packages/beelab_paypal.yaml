@@ -4,3 +4,4 @@ beelab_paypal:
     test_mode: "%kernel.debug%"
     username: "armando25723"
     password: "123qweasdzxc"
+    signature: "some_signature"
