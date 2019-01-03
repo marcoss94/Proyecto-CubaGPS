@@ -30,7 +30,7 @@ class HouseForm extends AbstractType
             ->add('manager', TextType::class, ['label' => 'Manager'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripcion'])
             ->add('description', TextareaType::class, ['label' => 'Description'])
-            ->add('direccion', TextType::class, ['label' => 'Direción'])
+            ->add('direccion', TextType::class, ['label' => 'Dirección'])
             ->add('municipio', TextType::class, ['label' => 'Municipio'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
                 'Pinar del Rio' => 'Pinar del Rio',

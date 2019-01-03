@@ -26,15 +26,14 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h2>Estimad@ {{ user }}</h2>
-                                    <p class="lead">Enhorabuena le comunicamos que si hay disponibilidad para los
-                                        servicios en las fechas que ha solicitado.
-                                        Ha hecho usted una excelente elección.
-                                        ¡Tenga una feliz estancia!
+                                    <h2>Dear {{ user }}</h2>
+                                    <p class="lead">Congratulations we inform you that there is availability for services on the dates you have requested.
+                                        You have made an excellent choice.
+                                        Have a happy stay!
                                     </p>
                                     <!-- A Real Hero (and a real human being) -->
                                     {#<p><img src="http://placehold.it/600x300" /></p><!-- /hero -->#}
-                                    <p>Atentamente, <a href="#">Equipo Cuba GPS! &raquo;</a></p>
+                                    <p>Attentively, <a href="#">Cuba GPS Team! &raquo;</a></p>
                                 </td>
                             </tr>
                         </table>
@@ -46,10 +45,10 @@
                                     <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}"><img
                                                     src="{{ r.commponent.mainImage.min }}"/></a></td>
                                     <td>
-                                        <h4><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}">{{ r.commponent }}</a>
+                                        <h4><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}">{{ r.commponent.name }}</a>
 
                                         </h4>
-                                        <p class="">{{ r.commponent.descripcion }}</p>
+                                        <p class="">{{ r.commponent.description }}</p>
                                     </td>
                                 </tr>
                             </table>
@@ -61,7 +60,7 @@
                             <tr>
                                 <td align="center">
                                     <!-- Callout Panel -->
-                                    <h3><a class="btn">Efectuar Pago </a></h3>
+                                    <h3><a class="btn">Make Payment </a></h3>
 
                                 </td>
                             </tr>
@@ -74,16 +73,14 @@
                             <tr>
                                 <td>
 
-                                    <h2>Estimad@ {{ user }}</h2>
-                                    <p class="lead">Gracias por elegirnos. Hemos revisado su solicitud y lamentamos
-                                        informarles que
-                                        no se encuentra disponible para estas fechas.
-                                        Pero no se preocupe, podemos ofertarle otros servicio muy similares al anterior,
-                                        esperamos sean de su agrado.
+                                    <h2>Dear {{ user }}</h2>
+                                    <p class="lead">Thank you for choosing us. We have reviewed your request and regret to inform you that
+                                        It is not available for these dates.
+                                        But do not worry, we can offer you other services very similar to the previous one, we hope you like it.
                                     </p>
                                     <!-- A Real Hero (and a real human being) -->
                                     {#<p><img src="http://placehold.it/600x300" /></p><!-- /hero -->#}
-                                    <p>Cordialmente <a href="#">Equipo Cuba GPS! &raquo;</a></p>
+                                    <p>Attentively, <a href="#">Cuba GPS Team! &raquo;</a></p>
                                 </td>
                             </tr>
                         </table>
@@ -96,10 +93,9 @@
                         <table>
                             <tr>
                                 <td>
-                                    <h2>Estimad@ {{ user }}:</h2>
-                                    <p class="lead">Todo el equipo de CubaGPS agradece sus peticiones de servicios.
-                                        Le informamos que los siguientes servicios están disponibles para usted, ha
-                                        hecho usted una excelente elección.
+                                    <h2>Dear {{ user }}:</h2>
+                                    <p class="lead">The entire CubaGPS team appreciates your requests for services.
+                                        We inform you that the following services are available to you, you have made an excellent choice.
                                     </p>
                                 </td>
                             </tr>
@@ -112,10 +108,10 @@
                                     <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}"><img
                                                     src="{{ r.commponent.mainImage.min }}"/></a></td>
                                     <td>
-                                        <h4><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}">{{ r.commponent }}</a>
+                                        <h4><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}">{{ r.commponent.name }}</a>
 
                                         </h4>
-                                        <p class="">{{ r.commponent.descripcion }}</p>
+                                        <p class="">{{ r.commponent.description }}</p>
                                     </td>
                                 </tr>
                             </table>
@@ -126,8 +122,7 @@
                         <table>
                             <tr>
                                 <td>
-                                    <p class="lead">Lamentamos la felicidad no sea completa, ya que los siguientes
-                                        servicios no están disponible para las fechas solicitadas.
+                                    <p class="lead">We regret the happiness is not complete, since the following services are not available for the requested dates.
                                     </p>
                                 </td>
                             </tr>
@@ -140,10 +135,10 @@
                                     <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}"><img
                                                     src="{{ r.commponent.mainImage.min }}"/></a></td>
                                     <td>
-                                        <h4><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}">{{ r.commponent }}</a>
+                                        <h4><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}">{{ r.commponent.name }}</a>
 
                                         </h4>
-                                        <p class="">{{ r.commponent.descripcion }}</p>
+                                        <p class="">{{ r.commponent.description }}</p>
                                     </td>
                                 </tr>
                             </table>
@@ -155,7 +150,7 @@
                             <tr>
                                 <td align="center">
                                     <!-- Callout Panel -->
-                                    <h3><a class="btn">Efectuar Pago </a></h3>
+                                    <h3><a class="btn">Make Payment  </a></h3>
 
                                 </td>
                             </tr>
@@ -168,12 +163,9 @@
                         <table bgcolor="">
                             <tr>
                                 <td>
-
                                     <!-- Callout Panel -->
-                                    <p class="callout">Nuestro equipo quisiera hacerle la recomendación de los
-                                        siguientes
-                                        servicios disponibles para la fecha que nos solicita, para que usted escoja su
-                                        favorito y así poder hacer sus vacaciones más completas 🙂</p>
+                                    <p class="callout">Our team would like to recommend you the following services available for the date you request, so that you can choose your favorite and thus be able to make your vacation more complete 🙂
+                                            </p><!-- /callout panel -->
 
                                 </td>
                             </tr>
@@ -186,10 +178,10 @@
                                     <td class="small" width="20%" style="vertical-align: top; padding-right:10px;"><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}"><img
                                                     src="{{ r.mainImage.min }}"/></a></td>
                                     <td>
-                                        <h4><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}">{{ r.commponent }}</a>
+                                        <h4><a href="{{ path('oferta',{'id':r.id,'type':r.getType}) }}">{{ r.name }}</a>
 
                                         </h4>
-                                        <p class="">{{ r.descripcion }}</p>
+                                        <p class="">{{ r.description }}</p>
                                     </td>
                                 </tr>
                             </table>
@@ -202,7 +194,7 @@
             </td>
             <td></td>
         </tr>
-    </table><!-- /BODY -->
+    </table>
 
 
 {% endblock %}

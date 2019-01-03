@@ -121,7 +121,7 @@ class FaceBookAuthenticator extends SocialAuthenticator
     {
 
         return new RedirectResponse(
-            '/zxccxz/public/connect/auth_forced', // might be the site, where users choose their oauth provider
+            '/travelcubagps.com/connect/auth_forced', // might be the site, where users choose their oauth provider
             Response::HTTP_TEMPORARY_REDIRECT
         );
     }
