@@ -261,10 +261,7 @@ class Habitacion extends DisplayableComponent
         return 'Habitacion';
     }
 
-    public function __toString():string
-    {
-        $this->getNombre();
-    }
+   
 
 
 }
