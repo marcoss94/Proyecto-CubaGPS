@@ -10,7 +10,7 @@
 
 {% block body %}
     {{ parent() }}
-    <h2>Nueva solicitud de reserva a nombre de: {{ reserva.user }}</h2>
+    <h2>Nueva solicitud de reserva a nombre de: {{ reserva.usuario }}</h2>
     <h3>{{ reserva.commponent }}</h3>
     <h3>{{ reserva.commponent.getType~': '~reserva.commponent.codigo }}</h3>
     <h3>{{ reserva.habitaciones|join(',') }} </h3>
