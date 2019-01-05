@@ -2,16 +2,15 @@
 
 namespace App\Controller;
 
-use App\Repository\ReservaRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Transaction;
-use Beelab\PaypalBundle\Paypal\Exception;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\HttpException;
+
 
 class TransactionController extends AbstractController
 {
+
     /**
      * @Route("/transaction", name="transaction")
      */
@@ -29,71 +28,57 @@ class TransactionController extends AbstractController
     public function payment(Request $request)
     {
         $amount = $request->get('amount');  // get an amount, e.g. from your cart
-        $transaction = new Transaction($amount);
-        try {
-            $response = $this->get('beelab_paypal.service')->setTransaction($transaction)->start();
-            $this->getDoctrine()->getManager()->persist($transaction);
-            $this->getDoctrine()->getManager()->flush();
-            return $this->redirect($response->getRedirectUrl());
-        } catch (Exception $e) {
-            throw new HttpException(503, 'Payment error', $e);
-        }
+        $gatewayName = 'paypal';
+        $storage = $this->get('payum')->getStorage('Acme\PaymentBundle\Entity\Payment');
+        $payment = $storage->create();
+        $payment->setNumber(uniqid());
+        $payment->setCurrencyCode('EUR');
+        $payment->setTotalAmount($amount); // 1.23 EUR
+        $payment->setDescription('A description');
+        $payment->setClientId('anId');
+        $payment->setClientEmail('foo@example.com');
+
+        $storage->update($payment);
+
+        $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
+            $gatewayName,
+            $payment,
+            'done' // the route to redirect after capture
+        );
+
+        return $this->redirect($captureToken->getTargetUrl());
     }
 
-    /**
-     * @Route("/cancel_transaction", name="cancel_transaction")
-     */
-    public function canceledPayment(Request $request)
-    {
-        $token = $request->query->get('token');
-        $transaction = $this->getDoctrine()->getRepository('App:Transaction')->findOneByToken($token);
-        if (is_null($transaction)) {
-            throw $this->createNotFoundException(sprintf('Transaction with token %s not found.', $token));
-        }
-        $transaction->cancel(null);
-        $this->getDoctrine()->getManager()->remove($transaction);
-        $this->getDoctrine()->getManager()->flush();
-        return $this->redirectToRoute('blog_index');
-    }
 
     /**
-     * @Route("/keep_transaction", name="keep_transaction")
+     * @Route("/done", name="done")
      */
-    public function completedPayment(Request $request,ReservaRepository $reservaRepository)
+    public function doneAction(Request $request)
     {
-        $em=$this->getDoctrine()->getManager();
-        $token = $request->query->get('token');
-        $transaction = $this->getDoctrine()->getRepository('App:Transaction')->findOneByToken($token);
-        if (is_null($transaction)) {
-            throw $this->createNotFoundException(sprintf('Transaction with token %s not found.', $token));
-        }
-        $this->get('beelab_paypal.service')->setTransaction($transaction)->complete();
-        $em->remove($transaction);
-        $em->flush();
-        if (!$transaction->isOk()) {
-            $message['type'] = 'error';
-            $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
-                'Lo sentimos' : 'Sorry';
-            $message['body'] = ($this->getUser()->getIdioma() == 'es') ?
-                'Ocurrió un error durante la transacción'
-                : 'Somthing went wrong during the transaction';
-            return $this->redirectToRoute('blog_index', ['message' => $message]);// or a Response (in case of error)
-        }
-        $user=$this->getUser();
-        $reserves=$reservaRepository->findBy(['usuario'=>$user,'status'=>'pending']);
-        foreach ($reserves as $reserve){
-            $reserve->setStatus('payed');
-            $em->persist($reserve);
-        }
-        $em->flush();
-        $message['type'] = 'success';
-        $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
-            'Gracias por elegirnos' : 'Thanks';
-        $message['body'] = ($this->getUser()->getIdioma() == 'es') ?
-            'Transacción completada'
-            : 'Transaction completed successfully';
+        $token = $this->get('payum')->getHttpRequestVerifier()->verify($request);
+        $gateway = $this->get('payum')->getGateway($token->getGatewayName());
 
-        return $this->redirectToRoute('blog_index', ['message' => $message]); // or a Response (in case of success)
+        // You can invalidate the token, so that the URL cannot be requested any more:
+        // $this->get('payum')->getHttpRequestVerifier()->invalidate($token);
+
+        // Once you have the token, you can get the payment entity from the storage directly.
+        // $identity = $token->getDetails();
+        // $payment = $this->get('payum')->getStorage($identity->getClass())->find($identity);
+
+        // Or Payum can fetch the entity for you while executing a request (preferred).
+        $gateway->execute($status = new GetHumanStatus($token));
+        $payment = $status->getFirstModel();
+
+        // Now you have order and payment status
+
+        return new JsonResponse(array(
+            'status' => $status->getValue(),
+            'payment' => array(
+                'total_amount' => $payment->getTotalAmount(),
+                'currency_code' => $payment->getCurrencyCode(),
+                'details' => $payment->getDetails(),
+            ),
+        ));
     }
 
 

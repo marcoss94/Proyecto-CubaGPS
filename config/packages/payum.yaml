@@ -1,0 +1,15 @@
+payum:
+    security:
+        token_storage:
+            App\Entity\PaymentToken: { doctrine: orm }
+
+    storages:
+        App\Entity\Payment: { doctrine: orm }
+
+    gateways:
+        paypal:
+            factory: paypal_express_checkout
+            username:  'cubagps@yahoo.com'
+            password:  'lamoldia9405'
+            signature: '8JCDJUTNEV6P2'
+            sandbox: true
