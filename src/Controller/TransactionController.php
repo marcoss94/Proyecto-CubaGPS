@@ -36,7 +36,7 @@ class TransactionController extends Controller
         $payment = $storage->create();
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('EUR');
-        die(dump($amount.'.00'));
+        var_dump($amount.'.00');
         $payment->setTotalAmount($amount); // 1.23 EUR
         $payment->setDescription('A description');
         $payment->setClientId('8JCDJUTNEV6P2');
