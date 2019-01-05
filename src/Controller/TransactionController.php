@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 
-
+use App\Repository\ReservaRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Payum\Core\Request\GetHumanStatus;
@@ -36,7 +36,7 @@ class TransactionController extends Controller
         $payment = $storage->create();
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('EUR');
-        $payment->setTotalAmount($amount.'00'); // 1.23 EUR
+        $payment->setTotalAmount($amount . '00'); // 1.23 EUR
         $payment->setDescription('A description');
         $payment->setClientId('8JCDJUTNEV6P2');
         $payment->setClientEmail('cubagps@yahoo.com');
@@ -56,32 +56,34 @@ class TransactionController extends Controller
     /**
      * @Route("/done", name="done")
      */
-    public function doneAction(Request $request)
+    public function doneAction(Request $request, ReservaRepository $reservaRepository)
     {
         $token = $this->get('payum')->getHttpRequestVerifier()->verify($request);
         $gateway = $this->get('payum')->getGateway($token->getGatewayName());
-
-        // You can invalidate the token, so that the URL cannot be requested any more:
-        // $this->get('payum')->getHttpRequestVerifier()->invalidate($token);
-
-        // Once you have the token, you can get the payment entity from the storage directly.
-        // $identity = $token->getDetails();
-        // $payment = $this->get('payum')->getStorage($identity->getClass())->find($identity);
-
-        // Or Payum can fetch the entity for you while executing a request (preferred).
         $gateway->execute($status = new GetHumanStatus($token));
         $payment = $status->getFirstModel();
-
-        // Now you have order and payment status
-
-        return new JsonResponse(array(
-            'status' => $status->getValue(),
-            'payment' => array(
-                'total_amount' => $payment->getTotalAmount(),
-                'currency_code' => $payment->getCurrencyCode(),
-                'details' => $payment->getDetails(),
-            ),
-        ));
+        $message = [];
+        if ($status->get('captured')) {
+            $reserves = $reservaRepository->findBy(['usuario' => $this->getUser(), 'status' => 'pending']);
+            foreach ($reserves as $reserva) {
+                $reserva->setStatus('payed');
+            }
+            $message['type'] = 'success';
+            $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
+                'Enohorabuena' : 'Congratulations';
+            $message['body'] = ($this->getUser()->getIdioma() == 'es') ?
+                'Su transferencia ha sido efectuada exitosamente'
+                : 'Your transfer has been successfully completed';
+            return $this->redirectToRoute('blog_index', ['message' => $message]);
+        } else {
+            $message['type'] = 'error';
+            $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
+                'Lo sentimos' : 'Sorry';
+            $message['body'] = ($this->getUser()->getIdioma() == 'es') ?
+                'Ha ocurrido un error durente la transferencia'
+                : 'An error occurred during the transfer';
+            return $this->redirectToRoute('blog_index', ['message' => $message]);
+        }
     }
 
 
