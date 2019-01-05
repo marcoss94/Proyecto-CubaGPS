@@ -35,8 +35,8 @@ class TransactionController extends AbstractController
         $payment->setCurrencyCode('EUR');
         $payment->setTotalAmount($amount); // 1.23 EUR
         $payment->setDescription('A description');
-        $payment->setClientId('anId');
-        $payment->setClientEmail('foo@example.com');
+        $payment->setClientId('8JCDJUTNEV6P2');
+        $payment->setClientEmail('cubagps@yahoo.com');
 
         $storage->update($payment);
 
