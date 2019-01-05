@@ -1,7 +1,0 @@
-beelab_paypal:
-    return_route: your_return_route
-    cancel_route: your_cancel_route
-    test_mode: "%kernel.debug%"
-    username: "armando25723"
-    password: "123qweasdzxc"
-    signature: "some_signature"

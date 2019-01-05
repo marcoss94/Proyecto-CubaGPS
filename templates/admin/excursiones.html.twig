@@ -56,6 +56,7 @@
                         <th scope="col">Dias</th>
                         <th scope="col">Hora de inicio</th>
                         <th scope="col">Duración</th>
+                        <th scope="col">Dificultad</th>
                         <th scope="col">Guia</th>
                         <th scope="col">Incluye Transporte</th>
                         <th scope="col">Tipo de Transporte</th>
@@ -88,6 +89,7 @@
                         <th scope="col">Dias</th>
                         <th scope="col">Hora de inicio</th>
                         <th scope="col">Duración</th>
+                        <th scope="col">Dificultad</th>
                         <th scope="col">Guia</th>
                         <th scope="col">Incluye Transporte</th>
                         <th scope="col">Tipo de Transporte</th>
@@ -151,6 +153,7 @@
                             </td>
                             <td>{{ c.horaInicio }}</td>
                             <td>{{ c.tiempoDuracion }}</td>
+                            <td>{{ dificultad[c.dificultad][0] }}</td>
                             <td>{{ c.guia? 'si':'no' }}</td>
                             <td>{{ c.incluyeTransporte? 'si':'no' }}</td>
                             <td>{{ c.tipoTransporte }}</td>

@@ -22,12 +22,12 @@ class ExcursionForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('codigo',TextType::class,['label' => 'Código'])
+            ->add('codigo', TextType::class, ['label' => 'Código'])
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('name', TextType::class, ['label' => 'Name'])
             ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
-            ->add('description',TextareaType::class,['label' => 'Description'])
-            ->add('infoContacto',TextareaType::class,['label' => 'Información de Contacto'])
+            ->add('description', TextareaType::class, ['label' => 'Description'])
+            ->add('infoContacto', TextareaType::class, ['label' => 'Información de Contacto'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
                 'Pinar del Rio' => 'Pinar del Rio',
                 'Artemisa' => 'Artemisa',
@@ -46,17 +46,30 @@ class ExcursionForm extends AbstractType
                 'Guantánamo' => 'Guantánamo',
                 'Isla de la Juventud' => 'Isla de la Juventud',
             ),])
-            ->add('diasDisponibles', ChoiceType::class, ['label' => 'Días disponibles','choices'=>array(
-                'Lunes'=>'Lunes',
-                'Martes'=>'Martes',
-                'Miércoles'=>'Miércoles',
-                'Jueves'=>'Jueves',
-                'Viernes'=>'Viernes',
-                'Sábado'=>'Sábado',
-                'Domingo'=>'Domingo',
-            ),'expanded'=>true,'multiple'=>true])
+            ->add('diasDisponibles', ChoiceType::class, ['label' => 'Días disponibles', 'choices' => array(
+                'Lunes' => 'Lunes',
+                'Martes' => 'Martes',
+                'Miércoles' => 'Miércoles',
+                'Jueves' => 'Jueves',
+                'Viernes' => 'Viernes',
+                'Sábado' => 'Sábado',
+                'Domingo' => 'Domingo',
+            ), 'expanded' => true, 'multiple' => true])
             ->add('horaInicio', TextType::class, ['label' => 'Hora de inicio'])
-            ->add('tiempoDuracion', TextType::class, ['label' => 'Duración'])
+            ->add('tiempoDuracion', ChoiceType::class, ['label' => 'Duración', 'choices' => array(
+                '1 h' => '1',
+                '2 h' => '2',
+                '4 h' => '3',
+                '5 h' => '4',
+                '6 h' => '5',
+                '7 h' => '6',
+                '8 h' => '7',
+            ),])
+            ->add('tiempoDuracion', ChoiceType::class, ['label' => 'Duración', 'choices' => array(
+                'Baja' => '0',
+                'Media' => '1',
+                'Alta' => '2',
+            ),])
             ->add('guia', ChoiceType::class, ['label' => 'Guía', 'choices' => array(
                 'Si' => true,
                 'No' => false,
@@ -72,31 +85,31 @@ class ExcursionForm extends AbstractType
                 'Minivan' => 'Minivan',
                 'Bus' => 'Bus',
             )])
-            ->add('desayuno', ChoiceType::class, ['label' => 'Desayuno','choices'=>array(
-                'Si'=>true,
-                'No'=>false,
-            ),'expanded'=>false,'multiple'=>false])
-            ->add('almuerzo', ChoiceType::class, ['label' => 'Almuerzo','choices'=>array(
-                'Si'=>true,
-                'No'=>false,
-            ),'expanded'=>false,'multiple'=>false])
-            ->add('comida', ChoiceType::class, ['label' => 'Comida','choices'=>array(
-                'Si'=>true,
-                'No'=>false,
-            ),'expanded'=>false,'multiple'=>false])
+            ->add('desayuno', ChoiceType::class, ['label' => 'Desayuno', 'choices' => array(
+                'Si' => true,
+                'No' => false,
+            ), 'expanded' => false, 'multiple' => false])
+            ->add('almuerzo', ChoiceType::class, ['label' => 'Almuerzo', 'choices' => array(
+                'Si' => true,
+                'No' => false,
+            ), 'expanded' => false, 'multiple' => false])
+            ->add('comida', ChoiceType::class, ['label' => 'Comida', 'choices' => array(
+                'Si' => true,
+                'No' => false,
+            ), 'expanded' => false, 'multiple' => false])
             ->add('reglamento', TextareaType::class, ['label' => 'Reglamento'])
             ->add('reglament', TextareaType::class, ['label' => 'Reglament'])
             ->add('precio1', MoneyType::class, ['label' => 'Precio para una persona'])
             ->add('precio2', MoneyType::class, ['label' => 'Precio para dos personas'])
             ->add('precio3', MoneyType::class, ['label' => 'Precio para tres personas'])
             ->add('precio4', MoneyType::class, ['label' => 'Precio para cuatro o más personas'])
-            ->add('latitud',NumberType::class, ['label' => 'Latitud'])
-            ->add('longitud',NumberType::class, ['label' => 'Longitud'])
+            ->add('latitud', NumberType::class, ['label' => 'Latitud'])
+            ->add('longitud', NumberType::class, ['label' => 'Longitud'])
             ->add('active', ChoiceType::class, ['label' => 'Activo', 'choices' => array(
                 'Si' => true,
                 'No' => false,
             )])
-            ->add('valoracion', ChoiceType::class, ['label' => 'Valoración','choices' => array(
+            ->add('valoracion', ChoiceType::class, ['label' => 'Valoración', 'choices' => array(
                 '0' => 0,
                 '1' => 1,
                 '2' => 2,

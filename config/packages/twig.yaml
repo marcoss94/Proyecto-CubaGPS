@@ -76,3 +76,8 @@ twig:
             22: '10 pm'
             23: '11 pm'
             24: '12 pm'
+
+        dificultad:
+            0: ['Baja','Low']
+            1: ['Media','Middle']
+            2: ['Alta','High']
