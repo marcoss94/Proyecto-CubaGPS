@@ -30,13 +30,13 @@ class TransactionController extends Controller
      */
     public function payment(Request $request)
     {
-        $amount = round((float)($request->get('amount')),2);  // get an amount, e.g. from your cart
+        $amount = ((int)($request->get('amount')));  // get an amount, e.g. from your cart
         $gatewayName = 'paypal';
         $storage = $this->get('payum')->getStorage('App\Entity\Payment');
         $payment = $storage->create();
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('EUR');
-        die(dump($amount));
+        die(dump($amount.'.00'));
         $payment->setTotalAmount($amount); // 1.23 EUR
         $payment->setDescription('A description');
         $payment->setClientId('8JCDJUTNEV6P2');
