@@ -10,13 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Transaction extends BaseTransaction
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    protected $id;
-
+    
     // if you need other properties, or relationships, add them here...
 
     public function getDescription(): ?string
