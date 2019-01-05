@@ -58,6 +58,7 @@ class TransactionController extends Controller
      */
     public function doneAction(Request $request, ReservaRepository $reservaRepository)
     {
+        $em=$this->getDoctrine()->getManager();
         $token = $this->get('payum')->getHttpRequestVerifier()->verify($request);
         $gateway = $this->get('payum')->getGateway($token->getGatewayName());
         $gateway->execute($status = new GetHumanStatus($token));
@@ -67,6 +68,8 @@ class TransactionController extends Controller
             $reserves = $reservaRepository->findBy(['usuario' => $this->getUser(), 'status' => 'pending']);
             foreach ($reserves as $reserva) {
                 $reserva->setStatus('payed');
+                $em->persist($reserva);
+                $em->flush();
             }
             $message['type'] = 'success';
             $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
