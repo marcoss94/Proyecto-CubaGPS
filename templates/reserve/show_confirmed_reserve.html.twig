@@ -198,7 +198,6 @@
         <form action="{{ path('make_payment') }}" method="post">
             <input type="hidden" name="amount" value="{{ precio/5 }}">
             <!-- Display the payment button. -->
-            {{ dump(precio/5) }}
             <input type="image" name="submit" border="0"
                    src="https://www.paypalobjects.com/es_ES/i/btn/btn_buynow_LG.gif"
                    alt="Buy Now">
