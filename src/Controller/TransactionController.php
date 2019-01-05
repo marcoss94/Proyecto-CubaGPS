@@ -63,7 +63,7 @@ class TransactionController extends Controller
         $gateway->execute($status = new GetHumanStatus($token));
         $payment = $status->getFirstModel();
         $message = [];
-        if ($status->get('captured')) {
+        if ($status->getValue()=='captured') {
             $reserves = $reservaRepository->findBy(['usuario' => $this->getUser(), 'status' => 'pending']);
             foreach ($reserves as $reserva) {
                 $reserva->setStatus('payed');
