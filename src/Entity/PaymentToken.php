@@ -17,4 +17,5 @@ use Payum\Core\Model\Token;
  */
 class PaymentToken extends Token
 {
+
 }
