@@ -15,7 +15,7 @@ class Transaction extends BaseTransaction
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     // if you need other properties, or relationships, add them here...
 
