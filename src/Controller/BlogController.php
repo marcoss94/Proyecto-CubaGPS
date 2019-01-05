@@ -107,7 +107,8 @@ class BlogController extends AbstractController
      */
     public function underConstruction()
     {
-        return $this->render('blog/default.html');
+        return $this->redirectToRoute('blog_index');
+        //return $this->render('blog/default.html');
     }
 
     /**
