@@ -6,9 +6,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Payum\Core\Request\GetHumanStatus;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 
-class TransactionController extends AbstractController
+class TransactionController extends Controller
 {
 
     /**
@@ -29,7 +31,7 @@ class TransactionController extends AbstractController
     {
         $amount = $request->get('amount');  // get an amount, e.g. from your cart
         $gatewayName = 'paypal';
-        $storage = $this->get('payum')->getStorage('Acme\PaymentBundle\Entity\Payment');
+        $storage = $this->get('payum')->getStorage('App\Entity\Payment');
         $payment = $storage->create();
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('EUR');

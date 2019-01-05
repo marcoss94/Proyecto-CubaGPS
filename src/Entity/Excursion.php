@@ -113,6 +113,22 @@ class Excursion extends DisplayableComponent
     /**
      * @return mixed
      */
+    public function getDificultad()
+    {
+        return $this->dificultad;
+    }
+
+    /**
+     * @param mixed $dificultad
+     */
+    public function setDificultad($dificultad)
+    {
+        $this->dificultad = $dificultad;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getInfoContacto()
     {
         return $this->infoContacto;
