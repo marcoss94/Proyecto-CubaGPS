@@ -83,11 +83,11 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
-                                {% if type == 'casa' %}
+                                {% if i.getType == 'Casa' %}
                                     <div class="texto-encima"><h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
-                                {% elseif type == 'carro' %}
+                                {% elseif type == 'Carro' %}
 
-                                {% elseif type == 'excursion' %}
+                                {% elseif i.getType == 'Excursion' %}
                                     <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
                                 {% else %}
                                     <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
