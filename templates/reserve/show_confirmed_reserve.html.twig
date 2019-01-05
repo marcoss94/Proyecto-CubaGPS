@@ -196,15 +196,9 @@
             {% endfor %}
         </div>
         <form action="{{ path('make_payment') }}" method="post">
-            <!-- Identify your business so that you can collect the payments. -->
-            <input type="hidden" name="business" value="cubagps@yahoo.com">
-            <!-- Specify a Buy Now button. -->
-            <input type="hidden" name="cmd" value="_xclick">
-            <!-- Specify details about the item that buyers will purchase. -->
-            <input type="hidden" name="item_name" value="Cuba GPS services">
             <input type="hidden" name="amount" value="{{ precio/5 }}">
-            <input type="hidden" name="currency_code" value="USD">
             <!-- Display the payment button. -->
+            {{ dump(precio/5) }}
             <input type="image" name="submit" border="0"
                    src="https://www.paypalobjects.com/es_ES/i/btn/btn_buynow_LG.gif"
                    alt="Buy Now">
