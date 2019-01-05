@@ -9,7 +9,7 @@ payum:
     gateways:
         paypal:
              factory: paypal_express_checkout
-             username:  'armando25723'
+             username:  'armando25723@gmail.com'
              password:  '123qweasdzxc'
              signature: 'signature'
              sandbox: true
