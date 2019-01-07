@@ -166,6 +166,20 @@
 
                         <div class="separador"></div>
 
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Este paquete incluye':'This package includes' }}</h4>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? object.incluye : object.included }}</p>
+
+
+                        <div class="separador"></div>
+
+                        <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'No incluye':'Does not include' }}</h4>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? object.noIncluye : object.notIncluded }}</p>
+
+
+
+                            <div class="separador"></div>
 
                         <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Actividades':'Activities' }}</h4>
 
@@ -212,7 +226,7 @@ padding-top: 0px;">
                                                                     <h4>{{ app.session.get('language') == 'es'? a.nombre:a.name }}</h4>
                                                                     <h4 class="subheadingGPS">{{ a.horario }}</h4>
                                                                 </div>
-                                                                <div class="timeline-bodyGPS">
+                                                                <div class="timeline-bodyGPS expandable">
                                                                     <p class="text-muted">
                                                                         {{ app.session.get('language') == 'es'? a.descripcion:a.description }}</p>
                                                                 </div>
@@ -223,10 +237,10 @@ padding-top: 0px;">
                                             {% endfor %}
                                         </div>
                                     </div>
-                                    {#{{  }}#}
-                                    <button class='btn btn-default leftRs'><i class="fa fa-fw fa-angle-left"></i>
+
+                                    <button class='btn btn-default leftRs'  {% if d.activities|length==1  %} style="display: none"{% endif %}><i class="fa fa-fw fa-angle-left"></i>
                                     </button>
-                                    <button class='btn btn-default rightRs' style="right: 0px"><i
+                                    <button class='btn btn-default rightRs' style="right: 0px {% if d.activities|length==1  %};display: none{% endif %}"><i
                                                 class="fa fa-fw fa-angle-right"></i>
                                     </button>
                                 </div>
@@ -547,6 +561,20 @@ padding-top: 0px;">
         })
     </script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // use esta configuracion simple para valores por defecto
+            //$('div.expandable p').expander();
+            // *** O ***
+            // configure de la siguiente manera
+            $('div.expandable p').expander({
+                slicePoint: 30, // si eliminamos por defecto es 100 caracteres
+                expandText: 'Leer mas', // por defecto es 'read more...'
+                collapseTimer: 5000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
+                userCollapseText: 'Leer menos' // por defecto es 'read less...'
+            });
+        });
+    </script>
 
 
     {#<script type="text/javascript">#}
