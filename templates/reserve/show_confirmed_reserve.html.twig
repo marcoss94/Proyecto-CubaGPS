@@ -157,7 +157,7 @@
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
@@ -195,6 +195,7 @@
 
             {% endfor %}
         </div>
+        {#Boton de PayPal////////////////////////////////////////////////////////////////////////////////#}
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
             <!-- Identify your business so that you can collect the payments. -->
             <input type="hidden" name="business" value="cubagps@yahoo.com">
@@ -211,6 +212,7 @@
             <img alt="" border="0" width="1" height="1"
                  src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" >
         </form>
+        {#Boton de PayPal////////////////////////////////////////////////////////////////////////////////#}
     </section>
 {% endblock %}
 

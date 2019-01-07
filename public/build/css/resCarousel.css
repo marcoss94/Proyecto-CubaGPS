@@ -13,7 +13,7 @@
     left: -30px;
     width: 50px;
     height: 50px;
-    box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
+    /*box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);*/
     border-radius: 999px;
     background-color: #f9b501;
 
@@ -31,7 +31,7 @@
     z-index: 100;
     width: 50px;
     height: 50px;
-    box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);
+    /*box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, .3);*/
     border-radius: 999px;
     background-color: #f9b501;
 }
