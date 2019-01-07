@@ -204,7 +204,7 @@
                         {% if object.transfer %}
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <form action="{{ path('reserve_car_trans') }}" method="post">
+                                    <form {% if app.user %}action="{{ path('reserve_car_trans') }}"{% else %}action="{{ path('auth_forced')}}" {% endif %} method="post">
                                         <input type="hidden" name="id" value="{{ object.id }}">
                                         <div class="form-row">
                                             <div class="form-group col-md-8">
@@ -338,7 +338,7 @@
                         {% else %}
                             {#-------------Formulario de reserva para excursion--------------------#}
                             <div class="modal-content">
-                                <form action="{{ path('reserve_car_exc') }}" method="post" id="excForm">
+                                <form {% if app.user %}action="{{ path('reserve_car_exc') }}"{% else %}action="{{ path('auth_forced')}}" {% endif %} method="post" id="excForm">
                                     <div class="modal-body">
                                         <input type="hidden" name="id" value="{{ object.id }}">
                                         <div class="form-row">

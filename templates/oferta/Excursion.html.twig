@@ -95,7 +95,7 @@
                                     <div class="iconoServ">
                                         <h6>
                                             <span><i class="far fa-clock"></i></span>
-                                            {{ object.duracion }} h
+                                            {{ object.tiempoDuracion }} h
                                         </h6>
                                     </div>
                                 </div>
@@ -136,6 +136,20 @@
                                     </div>
                                 </div>
                             {% endif %}
+                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                <div class="iconogeneral">
+
+                                    <div class="iconoServ">
+                                        <h6>
+                                            <span>{{ app.session.get('language')== 'es' ?
+                                                'Dificultad: ' :
+                                                'Dificulty: ' }}</span>
+                                            {{ dificultad[c.dificultad][app.session.get('language')== 'es' ? 1 : 2 ] }}
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            dificultad[c.dificultad][0]
                         </div>
 
                         <div>
@@ -395,7 +409,7 @@
                 <div class="col-12 col-md-4 portfolio-item " id="reserva">
                     <div class="container">
                         <div class="modal-content">
-                            <form action="{{ path('reserva_excursion') }}" method="post" id="reserveForm">
+                            <form {% if app.user %}action="{{ path('reserva_excursion') }}"{% else %}action="{{ path('auth_forced')}}" {% endif %} method="post" id="reserveForm">
                                 <input type="hidden" name="objectId" value="{{ object.id }}">
                                 <div class="modal-body">
                                     <div class="form-row">

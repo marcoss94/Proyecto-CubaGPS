@@ -264,5 +264,4 @@ class Habitacion extends DisplayableComponent
 
 
 
-
 }

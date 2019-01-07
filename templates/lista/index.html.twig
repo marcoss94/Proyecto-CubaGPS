@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Lista':'List' }}-{% if type == 'casa' %}{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}
-    {% elseif type == 'carro' %}{{ app.session.get('language') == 'es'? 'Coches':'Cars' }}
-    {% elseif type == 'excursion' %}{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}
-    {% elseif type == 'paquete' %}{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}
-    {% else %}{{ app.session.get('language') == 'es'? 'Resultados':'Results' }}
-    {% endif %}
+{% elseif type == 'carro' %}{{ app.session.get('language') == 'es'? 'Coches':'Cars' }}
+{% elseif type == 'excursion' %}{{ app.session.get('language') == 'es'? 'Excursiones':'Trips' }}
+{% elseif type == 'paquete' %}{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}
+{% else %}{{ app.session.get('language') == 'es'? 'Resultados':'Results' }}
+{% endif %}
 
-    {% endblock %}
+{% endblock %}
 
  {% block stylesheets %}
 
@@ -83,14 +83,18 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
-                                {% if type == 'casa' %}
-                                    <div class="texto-encima"><h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
-                                {% elseif type == 'carro' %}
-
-                                {% elseif type == 'excursion' %}
-                                    <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
-                                {% else %}
-                                    <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
+                                {% if i.getType == 'Casa' %}
+                                    <div class="texto-encima">
+                                        <h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6>
+                                    </div>
+                                {% elseif i.getType == 'Excursion' %}
+                                    <div class="texto-encima">
+                                        <h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6>
+                                    </div>
+                                {% elseif i.getType == 'Paquete' %}
+                                    <div class="texto-encima">
+                                        <h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6>
+                                    </div>
                                 {% endif %}
 
                             </div>
@@ -120,24 +124,27 @@
                                         i.name }}</h4></a>
                                 <h6 class="provinciaO">{{ i.municipio~', '~i.provincia }}</h6>
                                 <div class="timeline-body">
-                                    <h7 class="descr text-muted" >
+                                    <h7 class="descr text-muted">
                                         {{ app.session.get('language') == 'es'?
                                         i.descripcion[:200]:
                                         i.description }}
-                                        <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
+                                        <a style="color: #2b506b;"
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
                                     </h7>
 
                                 </div>
                             {% elseif i.getType == 'Carro' %}
                                 <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
                                     <h4>{{ i.nombre }}</h4></a>
-                                <h6 class="provinciaO">{{i.provincia }}</h6>
+                                <h6 class="provinciaO">{{ i.provincia }}</h6>
                                 <div class="timeline-body">
                                     <h7 class="descr text-muted">
                                         {{ app.session.get('language') == 'es'?
                                         i.descripcion[:200]:
                                         i.description }}
-                                        <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>  </h7>
+                                        <a style="color: #2b506b;"
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
+                                    </h7>
                                 </div>
                             {% elseif i.getType == 'Excursion' %}
                                 <a class="nav-item nombreO" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}">
@@ -147,11 +154,12 @@
 
                                 <h6 class="provinciaO">{{ i.provincia }}</h6>
                                 <div class="timeline-body">
-                                    <h7 class="descr text-muted" >
+                                    <h7 class="descr text-muted">
                                         {{ app.session.get('language') == 'es'?
                                         i.descripcion[:200]:
                                         i.description }}
-                                        <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
+                                        <a style="color: #2b506b;"
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
                                     </h7>
 
                                 </div>
@@ -161,53 +169,54 @@
                                         i.nombre:
                                         i.name }}</h4></a>
                                 {#<div class="serviciosOfertas" style="margin-right: 10px">#}
-                                    {#<div class="iconogeneral">#}
+                                {#<div class="iconogeneral">#}
 
-                                        {#<div class="iconoServ">#}
-                                            {#<h6>#}
-                                                {#<span><i class="far fa-sun"></i></span>#}
-                                                {#Cantidad de dias#}
-                                                {#{{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}#}
-                                            {#</h6>#}
-                                        {#</div>#}
-                                    {#</div>#}
+                                {#<div class="iconoServ">#}
+                                {#<h6>#}
+                                {#<span><i class="far fa-sun"></i></span>#}
+                                {#Cantidad de dias#}
+                                {#{{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}#}
+                                {#</h6>#}
+                                {#</div>#}
+                                {#</div>#}
                                 {#</div>#}
                                 {#<div class="serviciosOfertas" style="margin-right: 10px">#}
-                                    {#<div class="iconogeneral">#}
+                                {#<div class="iconogeneral">#}
 
-                                        {#<div class="iconoServ">#}
-                                            {#<h6>#}
-                                                {#<span><i class="far fa-moon"></i></span>#}
-                                                {#Cantidad de noches#}
-                                                {#{{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}#}
-                                            {#</h6>#}
-                                        {#</div>#}
-                                    {#</div>#}
+                                {#<div class="iconoServ">#}
+                                {#<h6>#}
+                                {#<span><i class="far fa-moon"></i></span>#}
+                                {#Cantidad de noches#}
+                                {#{{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}#}
+                                {#</h6>#}
                                 {#</div>#}
-                            <div class="timeline-body">
-                                <div class="provinciaO">
-                                    <div class="serviciosOfertas">
-                                        <h6>
-                                            <span><i class="far fa-sun"></i></span>
-                                            {#Cantidad de dias#}
-                                            {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
-                                        </h6>
-                                    </div>
-                                    <div class="serviciosOfertas">
-                                        <h6>
-                                            <span><i class="far fa-moon"></i></span>
-                                            {#Cantidad de noches#}
-                                            {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
-                                        </h6>
+                                {#</div>#}
+                                {#</div>#}
+                                <div class="timeline-body">
+                                    <div class="provinciaO">
+                                        <div class="serviciosOfertas">
+                                            <h6>
+                                                <span><i class="far fa-sun"></i></span>
+                                                {#Cantidad de dias#}
+                                                {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
+                                            </h6>
+                                        </div>
+                                        <div class="serviciosOfertas">
+                                            <h6>
+                                                <span><i class="far fa-moon"></i></span>
+                                                {#Cantidad de noches#}
+                                                {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                                 <div class="timeline-body">
-                                    <h7 class="descr text-muted" >
+                                    <h7 class="descr text-muted">
                                         {{ app.session.get('language') == 'es'?
                                         i.descripcion[:200]:
                                         i.description }}
-                                        <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
+                                        <a style="color: #2b506b;"
+                                           href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
                                     </h7>
 
                                 </div>

@@ -152,7 +152,7 @@ class TransferController extends Controller
     /**
      * @Route("/reserve/reserve_car_trans", name="reserve_car_trans")
      */
-    public function reserve_car_trans(Request $request, CarroRepository $carroRepository,LugarRepository $lugarRepository)
+    public function reserve_car_trans(Request $request, CarroRepository $carroRepository,LugarRepository $lugarRepository,\Swift_Mailer $mailer)
     {
         $car= $carroRepository->find($request->get('id'));
         $reserve=new Reserva();
@@ -180,6 +180,7 @@ class TransferController extends Controller
         $message['body'] = ($user->getIdioma()=='es')?
             'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
             :'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
+        $this->sendAdminEmail($reserve,$mailer);
         return $this->redirectToRoute('blog_index',['message'=>$message]);
     }
 
@@ -189,6 +190,21 @@ class TransferController extends Controller
         $user->setEmail($email);
         $em->persist($user);
         $em->flush();
+    }
+
+    public function sendAdminEmail(Reserva $reserva, $mailer){
+
+        $message = (new \Swift_Message())
+            ->setSubject('Solocitud de Reserva')
+            ->setTo('lemuel@travelcubagps.com')
+            ->setFrom('contact@travelcubagps.com')
+            ->setBody($this->renderView(
+                'email_confirmacion/notificar_admin.html.twig',
+                ['reserve' => $reserva]
+            ),
+                'text/html');
+        $mailer->send($message);
+        return;
     }
 
 

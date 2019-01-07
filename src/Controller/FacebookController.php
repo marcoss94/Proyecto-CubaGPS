@@ -18,7 +18,6 @@ class FacebookController extends Controller
      */
     public function connectAction(Request $request, ClientRegistry $clientRegistry)
     {
-        // will redirect to Facebook!
         $this->get('session')->set('redirectBack', $request->server->get('HTTP_REFERER'));
         return $clientRegistry
             ->getClient('facebook_main')// key used in config/packages/knpu_oauth2_client.yaml

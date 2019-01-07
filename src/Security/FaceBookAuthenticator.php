@@ -73,17 +73,26 @@ class FaceBookAuthenticator extends SocialAuthenticator
         $user->setLastname($facebookUser->getLastName());
         $user->setUsername($facebookUser->getFirstName());
         $user->setPicture($facebookUser->getPictureUrl());
-        $user->setEmail($facebookUser->getEmail()==null?'':$facebookUser->getEmail());
+        $user->setEmail($facebookUser->getEmail() == null ? '' : $facebookUser->getEmail());
         $user->setRegisteredAt();
         $user->setUserOf('facebook');
         $user->setRoles(['ROLE_USER']);
-        if(isset($_SESSION['redirectedBy'])){
-            $publisher= $this->em->getRepository(User::class)
+        if (isset($_SESSION['redirectedBy'])) {
+            $publisher = $this->em->getRepository(User::class)
                 ->find($_SESSION['redirectedBy']);
             $user->setRedirectedBy($publisher);
-        }
-        if(isset($_SESSION['language'])){
-            $user->setIdioma($_SESSION['language']);
+        } else {
+            $langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            foreach ($langs as $l) {
+                $head = substr($l, 0, 2);
+                if ($head == 'es') {
+                    $user->setIdioma('es');
+                    break;
+                } elseif ($head[0] == 'en') {
+                    $user->setIdioma('en');
+                    break;
+                }
+            }
         }
         $this->em->persist($user);
         $this->em->flush();
@@ -121,12 +130,10 @@ class FaceBookAuthenticator extends SocialAuthenticator
     {
 
         return new RedirectResponse(
-            '/zxccxz/public/connect/auth_forced', // might be the site, where users choose their oauth provider
+            '/connect/auth_forced', // might be the site, where users choose their oauth provider
             Response::HTTP_TEMPORARY_REDIRECT
         );
     }
-
-
 
 
 }

@@ -100,11 +100,30 @@ class Excursion extends DisplayableComponent
      */
     private $infoContacto;
 
-
+    /**
+     * @ORM\Column(type="string", length=20, nullable=false)
+     */
+    private $dificultad='baja';
 
     public function getDiasDisponibles(): ?array
     {
         return $this->diasDisponibles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDificultad()
+    {
+        return $this->dificultad;
+    }
+
+    /**
+     * @param mixed $dificultad
+     */
+    public function setDificultad($dificultad)
+    {
+        $this->dificultad = $dificultad;
     }
 
     /**
