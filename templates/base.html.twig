@@ -383,23 +383,23 @@
                     <h3 class="section-subheading text-muted">{{ app.session.get('language') == 'es'? 'Comuniquese con nosotros, trabajamos para usted ':'Contact us, we work for you' }}</h3>
 
 
-                    <div class="Alertinfo message">
+                    <div class="Alertinfo message" style="display: none">
                         <h3 id="textoInfoGrande">FYI, something just happened!</h3>
                         <p id="textoInfo">This is just an info notification message.</p>
                     </div>
 
-                    <div class="Alerterror message">
+                    <div class="Alerterror message" style="display: none">
                         <h3 id="textoErrorGrande">Ups, an error ocurred</h3>
                         <p id="textoError">This is just an error notification message.</p>
 
                     </div>
 
-                    <div class="Alertwarning message">
+                    <div class="Alertwarning message" style="display: none">
                         <h3 id="textoWarningGrande">Wait, I must warn you!</h3>
                         <p id="textoWarning">This is just a warning notification message.</p>
                     </div>
 
-                    <div class="Alertsuccess message">
+                    <div class="Alertsuccess message" style="display: none">
                         <h3 id="textoSuccessGrande">Congrats, you did it!</h3>
                         <p id="textoSuccess">This is just a success notification message.</p>
 
@@ -985,6 +985,7 @@ If the cancellation is made from day 6 before the start date, 100% of the deposi
                 $("#textoSuccessGrande").text(head);
                 $("#textoSuccess").text(body);
                 $('.Alertsuccess').animate({top:"0"}, 500);
+                $('.Alertsuccess').css("display", "block");
                 $('#messageArea').val('');
             }
         }
