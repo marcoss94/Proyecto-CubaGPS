@@ -975,11 +975,13 @@ If the cancellation is made from day 6 before the start date, 100% of the deposi
                 $("#textoWarningGrande").text(head);
                 $("#textoWarning").text(body);
                 $('.Alertwarning').animate({top:"0"}, 500);
+                $('.Alertwarning').css("display", "block");
                 $('#messageArea').val('');
             }else if(type=="error"){
                 $("#textoErrorGrande").text(head);
                 $("#textoError").text(body);
                 $('.Alerterror').animate({top:"0"}, 500);
+                $('.Alerterror').css("display", "block");
                 $('#messageArea').val('');
             }else {
                 $("#textoSuccessGrande").text(head);
