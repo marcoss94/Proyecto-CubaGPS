@@ -144,12 +144,11 @@
                                             <span>{{ app.session.get('language')== 'es' ?
                                                 'Dificultad: ' :
                                                 'Dificulty: ' }}</span>
-                                            {{ dificultad[c.dificultad][app.session.get('language')== 'es' ? 1 : 2 ] }}
+                                            {{ dificultad[object.dificultad][app.session.get('language')== 'es' ? 0 : 1 ] }}
                                         </h6>
                                     </div>
                                 </div>
                             </div>
-                            dificultad[c.dificultad][0]
                         </div>
 
                         <div>
