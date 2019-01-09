@@ -978,28 +978,7 @@ h2 {
     top: 7px;
 }
 /*-----------------------------------------------------------------------------*/
-.texto-encima{
-    position: absolute;
 
-    top: 0px;
-
-    background: rgba(249, 181, 1,0.7);
-
-    color: #fff;
-
-    padding: 3px 203px 15px 0px;
-
-    margin: 0 -9999rem;
-
-    padding: 0.5rem 9999rem;
-
-    padding-bottom: 1rem;
-
-    padding-bottom: 0.25rem;
-
-    padding-bottom: 10px !important;
-
-}
 
 .precio{
 
@@ -1061,7 +1040,28 @@ h2 {
 
 @media (min-width: 1281px) {
 
+    .texto-encima{
+        position: absolute;
 
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+        padding: 3px 203px 15px 0px;
+
+        margin: 0 -9999rem;
+
+        padding: 0.5rem 9999rem;
+
+        padding-bottom: 1rem;
+
+        padding-bottom: 0.25rem;
+
+        padding-bottom: 10px !important;
+
+    }
 
 }
 
@@ -1072,7 +1072,28 @@ h2 {
 
 @media (min-width: 1025px) and (max-width: 1280px) {
 
+    .texto-encima{
+        position: absolute;
 
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+        padding: 3px 203px 15px 0px;
+
+        margin: 0 -9999rem;
+
+        padding: 0.5rem 9999rem;
+
+        padding-bottom: 1rem;
+
+        padding-bottom: 0.25rem;
+
+        padding-bottom: 10px !important;
+
+    }
 
 }
 
@@ -1083,7 +1104,28 @@ h2 {
 
 @media (min-width: 768px) and (max-width: 1024px) {
 
+    .texto-encima{
+        position: absolute;
 
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+        padding: 3px 203px 15px 0px;
+
+        margin: 0 -9999rem;
+
+        padding: 0.5rem 9999rem;
+
+        padding-bottom: 1rem;
+
+        padding-bottom: 0.25rem;
+
+        padding-bottom: 10px !important;
+
+    }
 }
 
 /*!**/
@@ -1098,7 +1140,7 @@ h2 {
 
         top: 0px;
 
-        background: rgba(132, 255, 0, 0.7);
+        background: rgba(249, 181, 1,0.7);
 
         color: #fff;
 
@@ -1119,7 +1161,7 @@ h2 {
 
         top: 0px;
 
-        background: rgba(255, 0, 0, 0.7);
+        background: rgba(249, 181, 1,0.7);
 
         color: #fff;
 
@@ -1140,9 +1182,10 @@ h2 {
 
         top: 0px;
 
-        background: rgba(0,0,0,0.7);
+        background: rgba(249, 181, 1,0.7);
 
         color: #fff;
+
 
 
     }
