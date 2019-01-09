@@ -65,7 +65,7 @@ class ExcursionForm extends AbstractType
                 '7 h' => '6',
                 '8 h' => '7',
             ),])
-            ->add('tiempoDuracion', ChoiceType::class, ['label' => 'Duración', 'choices' => array(
+            ->add('dificultad', ChoiceType::class, ['label' => 'Dificultad', 'choices' => array(
                 'Baja' => '0',
                 'Media' => '1',
                 'Alta' => '2',

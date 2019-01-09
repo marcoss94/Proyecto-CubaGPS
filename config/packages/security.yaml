@@ -24,6 +24,8 @@ security:
                             password: $2y$13$T5engsBjIwk3JQExX0YPROIGSFEFtQGfZMvjPCCBCKEsUGbEptbgS
                             roles: 'ROLE_ADMIN'
 
+
+
     # https://symfony.com/doc/current/security.html#initial-security-yml-setup-authentication
     firewalls:
         admin:
