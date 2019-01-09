@@ -26,7 +26,7 @@
 
         <!-- Custom styles for this template -->
         <link href="{{ asset('build/css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('build/css/agency.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('build/css/agency.css') }}" rel="stylesheet">
         <link href="{{ asset('build/css/letras.scss') }}" rel="stylesheet">
 
 
@@ -58,7 +58,7 @@
             <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
                     style="background-color: #f9b501" data-target="#navbarResponsive" aria-controls="navbarResponsive"
                     aria-expanded="false" aria-label="Toggle navigation">
-                Menu
+
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -129,6 +129,25 @@
                         </div>
                     </li>
 
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                 style="background-color: #212529;">
+
+                                <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
+                                <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
+
+                            </div>
+                        </div>
+                    </li>
+
+
                     {% if app.user %}
 
                     <li class="nav-item">
@@ -172,23 +191,7 @@
                         </li>
                     {% endif %}
 
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="caret"></span>
-                            </a>
 
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                                 style="background-color: #212529;">
-
-                                <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
-                                <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
-
-                            </div>
-                        </div>
-                    </li>
 
 
 
@@ -216,7 +219,7 @@
             <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse"
                     style="background-color: #f9b501" data-target="#navbarResponsive" aria-controls="navbarResponsive"
                     aria-expanded="false" aria-label="Toggle navigation">
-                Menu
+
                 <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -292,6 +295,26 @@
                     </li>
 
 
+                    <li class="nav-item">
+
+                        <div class="dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-globe" aria-hidden="true"></i>
+                                <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                 style="background-color: #212529;">
+
+                                <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
+                                <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
+
+                            </div>
+                        </div>
+
+                    </li>
+
                     {% if app.user %}
 
                         <li class="nav-item">
@@ -334,25 +357,7 @@
                             </a>
                         </li>
                     {% endif %}
-                    <li class="nav-item">
 
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="caret"></span>
-                            </a>
-
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                                 style="background-color: #212529;">
-
-                                <a {% if app.session.get('language') == 'es' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>Español</a>
-                                <a {% if app.session.get('language') == 'en' %} class="nav-link disabled" {% else %} class="nav-link " href="{{ path('change_language') }}"{% endif %}>English</a>
-
-                            </div>
-                        </div>
-
-                    </li>
                 </ul>
             </div>
         </div>
@@ -383,23 +388,23 @@
                     <h3 class="section-subheading text-muted">{{ app.session.get('language') == 'es'? 'Comuniquese con nosotros, trabajamos para usted ':'Contact us, we work for you' }}</h3>
 
 
-                    <div class="Alertinfo message">
+                    <div class="Alertinfo message" style="display: none">
                         <h3 id="textoInfoGrande">FYI, something just happened!</h3>
                         <p id="textoInfo">This is just an info notification message.</p>
                     </div>
 
-                    <div class="Alerterror message">
+                    <div class="Alerterror message" style="display: none">
                         <h3 id="textoErrorGrande">Ups, an error ocurred</h3>
                         <p id="textoError">This is just an error notification message.</p>
 
                     </div>
 
-                    <div class="Alertwarning message">
+                    <div class="Alertwarning message" style="display: none">
                         <h3 id="textoWarningGrande">Wait, I must warn you!</h3>
                         <p id="textoWarning">This is just a warning notification message.</p>
                     </div>
 
-                    <div class="Alertsuccess message">
+                    <div class="Alertsuccess message" style="display: none">
                         <h3 id="textoSuccessGrande">Congrats, you did it!</h3>
                         <p id="textoSuccess">This is just a success notification message.</p>
 
@@ -498,11 +503,11 @@ border-color: #f9b501">
                     <ul class="list-inline quicklinks">
                         <li class="list-inline-item">
                             <a href="#" data-toggle="modal"
-                               data-target="#piliticaModal" >{{ app.session.get('language') == 'es'? 'Políticas':'Privacy Policy' }}</a>
+                               data-target="#piliticaModal" style="color: #2a4f6b;">{{ app.session.get('language') == 'es'? 'Políticas':'Privacy Policy' }}</a>
 
                         </li>
                         <li class="list-inline-item">
-                            <a href="#">Terms of Use</a>
+                            <a href="#" style="color: #2a4f6b;">Terms of Use</a>
                         </li>
 
                     </ul>
@@ -975,22 +980,24 @@ If the cancellation is made from day 6 before the start date, 100% of the deposi
                 $("#textoWarningGrande").text(head);
                 $("#textoWarning").text(body);
                 $('.Alertwarning').animate({top:"0"}, 500);
+                $('.Alertwarning').css("display", "block");
                 $('#messageArea').val('');
             }else if(type=="error"){
                 $("#textoErrorGrande").text(head);
                 $("#textoError").text(body);
                 $('.Alerterror').animate({top:"0"}, 500);
+                $('.Alerterror').css("display", "block");
                 $('#messageArea').val('');
             }else {
                 $("#textoSuccessGrande").text(head);
                 $("#textoSuccess").text(body);
                 $('.Alertsuccess').animate({top:"0"}, 500);
+                $('.Alertsuccess').css("display", "block");
                 $('#messageArea').val('');
             }
         }
 
     </script>
-
 
 
 

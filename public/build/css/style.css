@@ -267,7 +267,7 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    /*font-size: 16px;*/
 }
 
 h1 {
@@ -626,6 +626,8 @@ h2 {
         /*overflow: hidden;*/
     }
 
+
+
 }
 @media (max-width: 576px) {
 
@@ -976,28 +978,7 @@ h2 {
     top: 7px;
 }
 /*-----------------------------------------------------------------------------*/
-.texto-encima{
-    position: absolute;
 
-    top: 0px;
-
-    background: rgba(249, 181, 1,0.7);
-
-    color: #fff;
-
-    padding: 3px 203px 15px 0px;
-
-    margin: 0 -9999rem;
-
-    padding: 0.5rem 9999rem;
-
-    padding-bottom: 1rem;
-
-    padding-bottom: 0.25rem;
-
-    padding-bottom: 10px !important;
-
-}
 
 .precio{
 
@@ -1035,4 +1016,181 @@ h2 {
 
 }
 
+.navigation .pagination .page-item .page-link{
+    color: #1aacb7;
+
+}
+.navigation .pagination .page-item.active .page-link{
+    background-color: #2a4f6b;
+
+    border-color: #2a4f6b;
+
+}
+.navigation .pagination{
+    justify-content: center !important;
+}
+
+
+/*-----------------------------------------------------------------------------*/
+
+/*
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1281px) {
+
+    .texto-encima{
+        position: absolute;
+
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+        padding: 3px 203px 15px 0px;
+
+        margin: 0 -9999rem;
+
+        padding: 0.5rem 9999rem;
+
+        padding-bottom: 1rem;
+
+        padding-bottom: 0.25rem;
+
+        padding-bottom: 10px !important;
+
+    }
+
+}
+
+/*
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+
+    .texto-encima{
+        position: absolute;
+
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+        padding: 3px 203px 15px 0px;
+
+        margin: 0 -9999rem;
+
+        padding: 0.5rem 9999rem;
+
+        padding-bottom: 1rem;
+
+        padding-bottom: 0.25rem;
+
+        padding-bottom: 10px !important;
+
+    }
+
+}
+
+/*!**/
+  /*##Device = Tablets, Ipads (portrait)*/
+  /*##Screen = B/w 768px to 1024px*/
+/**!*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .texto-encima{
+        position: absolute;
+
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+        padding: 3px 203px 15px 0px;
+
+        margin: 0 -9999rem;
+
+        padding: 0.5rem 9999rem;
+
+        padding-bottom: 1rem;
+
+        padding-bottom: 0.25rem;
+
+        padding-bottom: 10px !important;
+
+    }
+}
+
+/*!**/
+  /*##Device = Tablets, Ipads (landscape)*/
+  /*##Screen = B/w 768px to 1024px*/
+/**!*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+
+    .texto-encima{
+        position: absolute;
+
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+
+    }
+
+}
+
+/*!**/
+  /*##Device = Low Resolution Tablets, Mobiles (Landscape)*/
+  /*##Screen = B/w 481px to 767px*/
+/**!*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .texto-encima{
+        position: absolute;
+
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+
+    }
+
+}
+
+/*!**/
+  /*##Device = Most of the Smartphones Mobiles (Portrait)*/
+  /*##Screen = B/w 320px to 479px*/
+/**!*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .texto-encima{
+        position: absolute;
+
+        top: 0px;
+
+        background: rgba(249, 181, 1,0.7);
+
+        color: #fff;
+
+        margin: 0 -9999rem;
+
+        padding: 0.5rem 9999rem;
+
+    }
+
+}
 /*-----------------------------------------------------------------------------*/

@@ -21,13 +21,13 @@
 {% block body %}
     <section class="bg-light" id="portfolio">
         <div class="container">
-            <h4>{{ app.session.get('language') == 'es'? 'Precio Total: ':'Total Price: ' }}{{ precio }}</h4>
+
             {% for r in reserves %}
                 {% if r.type == 'esp' %}
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'Since' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
@@ -58,7 +58,7 @@
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
@@ -86,7 +86,7 @@
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Inicia':'Start At' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Termina':'End At' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
@@ -116,7 +116,7 @@
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Salida':'Departure' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
@@ -157,7 +157,7 @@
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicio':'Service' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</th>
                             <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
@@ -194,16 +194,20 @@
                 {% endif %}
 
             {% endfor %}
+
+            <h4>{{ app.session.get('language') == 'es'? 'Precio Total: ':'Total Price: ' }}{{ precio }}</h4>
+
+            <form action="{{ path('make_payment') }}" method="post">
+                <input type="hidden" name="amount" value="{{ precio/5 }}">
+                <!-- Display the payment button. -->
+                <input type="image" name="submit" border="0"
+                       src="https://www.paypalobjects.com/es_ES/i/btn/btn_buynow_LG.gif"
+                       alt="Buy Now">
+                <img alt="" border="0" width="1" height="1"
+                     src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" >
+            </form>
         </div>
-        <form action="{{ path('make_payment') }}" method="post">
-            <input type="hidden" name="amount" value="{{ precio/5 }}">
-            <!-- Display the payment button. -->
-            <input type="image" name="submit" border="0"
-                   src="https://www.paypalobjects.com/es_ES/i/btn/btn_buynow_LG.gif"
-                   alt="Buy Now">
-            <img alt="" border="0" width="1" height="1"
-                 src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" >
-        </form>
+
     </section>
 {% endblock %}
 

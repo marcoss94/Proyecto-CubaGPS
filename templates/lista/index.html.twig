@@ -230,16 +230,38 @@
                         'No results have been found' }}</h3>
                 {% endfor %}
                 {#boton de ver mas#}
-                <div class="navigation">
-                    {{ knp_pagination_render(data) }}
+
+
+
+            </div>
+            <div class="row">
+
+                <div class="col-12 portfolio-item">
+
+                    <div class="navigation">
+                        {{ knp_pagination_render(data) }}
+                    </div>
+
+
                 </div>
+
             </div>
         </div>
     </section>
 
 
+    {#<div class="row">#}
+
+        {#<div class="col-12 portfolio-item">#}
+
+                        {#<div class="navigation">#}
+                            {#{{ knp_pagination_render(data) }}#}
+                        {#</div>#}
 
 
+        {#</div>#}
+
+    {#</div>#}
 
 {% endblock %}
 
