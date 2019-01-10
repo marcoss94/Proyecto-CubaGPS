@@ -349,19 +349,57 @@ border-color: #f9b501;"
 
                                             <div class="timeline-body">
                                                 <div class="provinciaO">
-                                                    <div class="serviciosOfertas">
-                                                        <h6>
-                                                            <span><i class="far fa-sun"></i></span>
-                                                            {#Cantidad de dias#}
-                                                            {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
-                                                        </h6>
-                                                    </div>
-                                                    <div class="serviciosOfertas">
-                                                        <h6>
-                                                            <span><i class="far fa-moon"></i></span>
-                                                            {#Cantidad de noches#}
-                                                            {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
-                                                        </h6>
+
+                                                    <div>
+                                                        <div class="serviciosOfertas" style="margin-right: 10px">
+                                                            <div class="iconogeneral">
+                                                                <div class="iconoServ">
+                                                                    <h6>
+
+                                                                        <div class="precio">1<i class="fas fa-user"></i>
+                                                                            <span>€{{ object.precio1 }}</span></div>
+
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="serviciosOfertas" style="margin-right: 10px">
+                                                            <div class="iconogeneral">
+                                                                <div class="iconoServ">
+                                                                    <h6>
+
+
+                                                                        <div class="precio"> 2<i class="fas fa-users"></i>
+                                                                            <span>€{{ object.precio2 }}</span></div>
+
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="serviciosOfertas" style="margin-right: 10px">
+                                                            <div class="iconogeneral">
+                                                                <div class="iconoServ">
+                                                                    <h6>
+
+
+                                                                        <div class="precio"> 3<i class="fas fa-users"></i>
+                                                                            <span>€{{ object.precio3 }}</span></div>
+
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="serviciosOfertas" style="margin-right: 10px">
+                                                            <div class="iconogeneral">
+                                                                <div class="iconoServ">
+                                                                    <h6>
+
+                                                                        <div class="precio"> +4<i class="fas fa-users"></i>
+                                                                            <span> €{{ object.precio4 }}  </span></div>
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div>
 
