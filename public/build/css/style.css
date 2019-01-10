@@ -1196,6 +1196,18 @@ h2 {
 p.infoExtra {
     display:none;
 }
-.leerMas { color:blue; cursor:pointer; display:inline;}
-.leerMas:hover {color:purple; text-decoration:underline;}
+
+.leerMas {
+    font-size: 18px;
+    color: #2a4f6b;
+    cursor: pointer;
+    display: inline;
+}
+
+.leerMas:hover {
+    color: #fed136;
+    text-decoration: underline;
+}
+
+
 /*-----------------------------------------------------------------------------*/

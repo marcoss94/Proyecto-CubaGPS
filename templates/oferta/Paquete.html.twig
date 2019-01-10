@@ -230,10 +230,10 @@ padding-top: 0px;">
                                                                 <div class="timeline-bodyGPS ">
 
                                                                     <p class="text-muted">
-                                                                        {{ app.session.get('language') == 'es'? a.descripcion[:20]:a.description[:20] }}</p>
+                                                                        {{ app.session.get('language') == 'es'? a.descripcion[:100]:a.description[:100] }}</p>
 
 
-                                                                    <p class="text-muted infoExtra">{{ app.session.get('language') == 'es'? a.descripcion[20:]:a.description[20:] }}</p>
+                                                                    <p class="text-muted infoExtra">{{ app.session.get('language') == 'es'? a.descripcion[100:]:a.description[100:] }}</p>
                                                                     <div class="leerMas">Leer más</div>
 
                                                                 </div>
