@@ -396,12 +396,11 @@
                         {#<div class="separador"></div>#}
 
 
-                        <div onload="load()" onunload="GUnload()">
+
 
 
                         <div id="map" style="width: 100%; height: 400px; background: grey"></div>
-                        </div>
-
+                      
                         {#Comentarios --------------------------------------------------------------------------------------#}
 
                         {% if object.comentarios|length %}
@@ -852,22 +851,24 @@
     {#</script>#}
 
 
-    <script src="https://maps.google.com/maps?file=api&v=2&key=AIzaSyDFXmdA1H7fsl71AFU5gKALt5N1DkWSQJ0" type="text/javascript"></script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDFXmdA1H7fsl71AFU5gKALt5N1DkWSQJ0&callback=initMap">
+    </script>
     <script type="text/javascript">
-        //<![CDATA[
-        function load() {
-            if (GBrowserIsCompatible()) {
-                var map = new GMap2(document.getElementById("map"));
-                map.setCenter(new GLatLng(40.41689826118782,-3.7034815549850464), 17);
-                map.addControl(new GLargeMapControl());
-                map.setMapType(G_SATELLITE_MAP);
+        function initMap() {
+            var myLatLng = {lat: -25.363, lng: 131.044};
 
-                var point = new GPoint (-3.7034815549850464, 40.41689826118782);
-                var marker = new GMarker(point);
-                map.addOverlay(marker);
-            }
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: myLatLng
+            });
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                title: 'Hello World!'
+            });
         }
-        //]]>
     </script>
 
 {% endblock %}
