@@ -79,6 +79,7 @@ class TransactionController extends Controller
                 : 'Your transfer has been successfully completed';
             return $this->redirectToRoute('blog_index', ['message' => $message]);
         } else {
+            dump($payment);die;
             $message['type'] = 'error';
             $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
                 'Lo sentimos' : 'Sorry';

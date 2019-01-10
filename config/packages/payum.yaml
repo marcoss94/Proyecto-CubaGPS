@@ -9,7 +9,7 @@ payum:
     gateways:
         paypal:
              factory: paypal_express_checkout
-             username:  'cubagps_api1.yahoo.com'
-             password:  'QH69HGWWBAEYQ64N'
-             signature: 'Ah14sYs5dQYgtHRroQe-aH89juTTAlE9osLXTX3PK7701otCDKQaUDdz'
-             sandbox: false
+             username:  'lemuelSB_api1.gmail.com'
+             password:  'VLABJSEDH6LCPR89'
+             signature: 'AmH177qxMLAtqir0oGPBXnwl6iL3AzUCG10Rzf8531T9PeA.vz6VMH9V'
+             sandbox: true
