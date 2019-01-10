@@ -37,10 +37,9 @@ class TransactionController extends Controller
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('EUR');
         $payment->setTotalAmount($amount . '00'); // 1.23 EUR
-        $payment->setDescription('A description');
+        $payment->setDescription('CubaGPS transaction');
         $payment->setClientId('8JCDJUTNEV6P2');
         $payment->setClientEmail('cubagps@yahoo.com');
-
         $storage->update($payment);
 
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
@@ -64,10 +63,11 @@ class TransactionController extends Controller
         $gateway->execute($status = new GetHumanStatus($token));
         $payment = $status->getFirstModel();
         $message = [];
-        if ($status->getValue()=='captured') {
+        if ($status->getValue()=='captured'||$status->getValue()=='pending') {
             $reserves = $reservaRepository->findBy(['usuario' => $this->getUser(), 'status' => 'pending']);
             foreach ($reserves as $reserva) {
                 $reserva->setStatus('payed');
+
                 $em->persist($reserva);
                 $em->flush();
             }
