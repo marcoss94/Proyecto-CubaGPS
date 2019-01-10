@@ -227,8 +227,13 @@ padding-top: 0px;">
                                                                     <h4 class="subheadingGPS">{{ a.horario }}</h4>
                                                                 </div>
                                                                 <div class="timeline-bodyGPS expandable">
+
                                                                     <p class="text-muted">
-                                                                        {{ app.session.get('language') == 'es'? a.descripcion:a.description }}</p>
+                                                                        {{ app.session.get('language') == 'es'? a.descripcion[:20]:a.description[:20] }}</p>
+                                                                    <p id=”oculto”> {{ app.session.get('language') == 'es'? a.descripcion[20:]:a.description[20:] }} <a id=”ocultar” href=”#”>Come Back</a></p>
+                                                                    <p><a id=”mostrar” href=”#”>Read More</a></p>
+
+
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -576,6 +581,21 @@ padding-top: 0px;">
         });
     </script>
 
+    <script>
+        $(document).on('ready', function () {
+            $("#ocultar").click(function (event) {
+                event.preventDefault();
+                $("#oculto").hide("slow");
+                $("#mostrar").show(1000);
+            });
+
+            $("#mostrar").click(function (event) {
+                event.preventDefault();
+                $("#oculto").show(1000);
+                $("#mostrar").hide("slow");
+            });
+        });
+    </script>
 
     {#<script type="text/javascript">#}
     {#function showGoogleMaps()#}
