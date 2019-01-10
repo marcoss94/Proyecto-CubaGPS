@@ -226,9 +226,16 @@ padding-top: 0px;">
                                                                     <h4>{{ app.session.get('language') == 'es'? a.nombre:a.name }}</h4>
                                                                     <h4 class="subheadingGPS">{{ a.horario }}</h4>
                                                                 </div>
-                                                                <div class="timeline-bodyGPS expandable">
+
+                                                                <div class="timeline-bodyGPS ">
+
                                                                     <p class="text-muted">
-                                                                        {{ app.session.get('language') == 'es'? a.descripcion:a.description }}</p>
+                                                                        {{ app.session.get('language') == 'es'? a.descripcion[:20]:a.description[:20] }}</p>
+
+
+                                                                    <p class="text-muted infoExtra">{{ app.session.get('language') == 'es'? a.descripcion[20:]:a.description[20:] }}</p>
+                                                                    <div class="leerMas">Leer más</div>
+
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -561,21 +568,51 @@ padding-top: 0px;">
         })
     </script>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            // use esta configuracion simple para valores por defecto
-            //$('div.expandable p').expander();
-            // *** O ***
-            // configure de la siguiente manera
-            $('div.expandable p').expander({
-                slicePoint: 30, // si eliminamos por defecto es 100 caracteres
-                expandText: 'Leer mas', // por defecto es 'read more...'
-                collapseTimer: 5000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar
-                userCollapseText: 'Leer menos' // por defecto es 'read less...'
+    {#<script type="text/javascript">#}
+        {#$(document).ready(function() {#}
+            {#// use esta configuracion simple para valores por defecto#}
+            {#//$('div.expandable p').expander();#}
+            {#// *** O ***#}
+            {#// configure de la siguiente manera#}
+            {#$('div.expandable p').expander({#}
+                {#slicePoint: 30, // si eliminamos por defecto es 100 caracteres#}
+                {#expandText: 'Leer mas', // por defecto es 'read more...'#}
+                {#collapseTimer: 5000, // tiempo de para cerrar la expanción si desea poner 0 para no cerrar#}
+                {#userCollapseText: 'Leer menos' // por defecto es 'read less...'#}
+            {#});#}
+        {#});#}
+    {#</script>#}
+
+
+
+    <script>
+
+        jQuery(function () {
+            jQuery(".leerMas").bind("click", function () {
+                jQuery(this).text(jQuery(this).text() == "Leer más" ? "Ocultar" : "Leer más");
+                jQuery(this).prev().slideToggle();
             });
         });
+
     </script>
 
+
+
+    {#<script>#}
+        {#$(document).on('ready', function () {#}
+            {#$("#ocultar").click(function (event) {#}
+                {#event.preventDefault();#}
+                {#$("#oculto").hide("slow");#}
+                {#$("#mostrar").show(1000);#}
+            {#});#}
+
+            {#$("#mostrar").click(function (event) {#}
+                {#event.preventDefault();#}
+                {#$("#oculto").show(1000);#}
+                {#$("#mostrar").hide("slow");#}
+            {#});#}
+        {#});#}
+    {#</script>#}
 
     {#<script type="text/javascript">#}
     {#function showGoogleMaps()#}
