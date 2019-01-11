@@ -502,16 +502,16 @@ border-color: #f9b501">
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
                         <li class="list-inline-item">
-                            <a href="{{ path('politicas') }}">{{ app.session.get('language') == 'es'? 'Políticas':'Privacy Policy' }}</a>
+                            <a href="{{ path('politicas') }}" target="_blank">{{ app.session.get('language') == 'es'? 'Políticas':'Privacy Policy' }}</a>
 
                         </li>
                         <li class="list-inline-item">
-                            <a href="{{ path('reservaCancelacion') }}">{{ app.session.get('language') == 'es'? 'Reserva y Cancelación':'Reservation and Cancellation' }}</a>
+                            <a href="{{ path('reservaCancelacion') }}" target="_blank">{{ app.session.get('language') == 'es'? 'Reserva y Cancelación':'Reservation and Cancellation' }}</a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="{{ path('preguntasFrecuentes') }}">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</a>
+                            <a href="{{ path('preguntasFrecuentes') }}" target="_blank">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</a>
                         </li><li class="list-inline-item">
-                            <a href="{{ path('quienesSomos') }}">{{ app.session.get('language') == 'es'? 'Quienes Somos':'About us' }}</a>
+                            <a href="{{ path('quienesSomos') }}" target="_blank">{{ app.session.get('language') == 'es'? 'Quienes Somos':'About us' }}</a>
                         </li>
 
                     </ul>
