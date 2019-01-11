@@ -294,7 +294,25 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-                                                <div class="texto-encima"><h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
+                                                <div class="texto-encima">
+                                                    <h6>
+                                                        <div class="serviciosOfertas">
+                                                            <h6>
+                                                                <span><i class="far fa-sun"></i></span>
+                                                                {#Cantidad de dias#}
+                                                                {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
+                                                            </h6>
+                                                        </div>
+                                                        <div class="serviciosOfertas">
+                                                            <h6>
+                                                                <span><i class="far fa-moon"></i></span>
+                                                                {#Cantidad de noches#}
+                                                                {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
+                                                            </h6>
+                                                        </div>
+                                                        {#{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}#}
+                                                    </h6>
+                                                </div>
                                             </div>
 
                                         </a>
@@ -331,19 +349,57 @@ border-color: #f9b501;"
 
                                             <div class="timeline-body">
                                                 <div class="provinciaO">
-                                                    <div class="serviciosOfertas">
-                                                        <h6>
-                                                            <span><i class="far fa-sun"></i></span>
-                                                            {#Cantidad de dias#}
-                                                            {{ i.duracion }}{{ app.session.get('language') == 'es'? ' Días ':' Days' }}
-                                                        </h6>
-                                                    </div>
-                                                    <div class="serviciosOfertas">
-                                                        <h6>
-                                                            <span><i class="far fa-moon"></i></span>
-                                                            {#Cantidad de noches#}
-                                                            {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
-                                                        </h6>
+
+                                                    <div>
+                                                        <div class="serviciosOfertas" style="margin-right: 10px">
+                                                            <div class="iconogeneral">
+                                                                <div class="iconoServ">
+                                                                    <h6>
+
+                                                                        <div class="precioBlog">1<i class="fas fa-user"></i>
+                                                                            <span>€{{ i.precio1 }}</span></div>
+
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="serviciosOfertas" style="margin-right: 10px">
+                                                            <div class="iconogeneral">
+                                                                <div class="iconoServ">
+                                                                    <h6>
+
+
+                                                                        <div class="precioBlog"> 2<i class="fas fa-users"></i>
+                                                                            <span>€{{ i.precio2 }}</span></div>
+
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="serviciosOfertas" style="margin-right: 10px">
+                                                            <div class="iconogeneral">
+                                                                <div class="iconoServ">
+                                                                    <h6>
+
+
+                                                                        <div class="precioBlog"> 3<i class="fas fa-users"></i>
+                                                                            <span>€{{ i.precio3 }}</span></div>
+
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="serviciosOfertas" style="margin-right: 10px">
+                                                            <div class="iconogeneral">
+                                                                <div class="iconoServ">
+                                                                    <h6>
+
+                                                                        <div class="precioBlog"> +4<i class="fas fa-users"></i>
+                                                                            <span> €{{ i.precio4 }}  </span></div>
+                                                                    </h6>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div>
 
@@ -598,8 +654,8 @@ border-color: #f9b501;"
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <h2 class="section-heading text-uppercase info infocomm">{{ app.session.get('language') == 'es'? 'Sobre Nosotros':'About us' }}</h2>
-                                <h3 class="section-subheading"
-                                    style="color: white">{{ app.session.get('language') == 'es'? 'Dejenos saber su opinión sobre la página':'Let us know your opinion about the page' }}</h3>
+                                {#<h3 class="section-subheading"#}
+                                    {#style="color: white">{{ app.session.get('language') == 'es'? 'Dejenos saber su opinión sobre la página':'Let us know your opinion about the page' }}</h3>#}
                             </div>
                         </div>
                         {#///////////////// las bolas para poner lo q identifica la agencia#}
