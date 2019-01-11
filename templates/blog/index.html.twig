@@ -947,7 +947,7 @@ border-color: #f9b501;"
                 {#///////////////////////////comentarios./////////////////////////////////////////////#}
                 <ul class="list-unstyled ">
                     {% for c in comments if c.revisado %}
-                        <li class="media">
+                        <li class="media comment">
                             <a class="pr-3 " href="#">
                                 <img class="mr-3 rounded-circle fotocomment"
                                      src="{{ asset(c.autor.picture) }}"
