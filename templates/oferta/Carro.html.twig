@@ -733,9 +733,10 @@
                     data: data,
                     success: function (response) {
                         if (response.result) {
-                            $("#textoSuccessGrande").text('Algo acaba de suceder');
-                            $("#textoSuccess").text('Su comentario ha sido recibido correctamente');
-                            $('.Alertsuccess').animate({top: "0"}, 500);
+                            var head = '{{ app.session.get('language') == 'es'? 'Gracias':'Thanks' }}';
+                            var body = '{{ app.session.get('language') == 'es'? 'Su comentario ha sido recibido correctamente':'You must write a comment of at least 6 characters' }}';
+                            show_alert_box("success", head, body);
+                            //este código no se está ejecutando, no se porque.
                             $('#commentArea').val('');
                         }
                     }
