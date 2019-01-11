@@ -759,13 +759,12 @@
         })
         $('#createCommentButton').click(function () {
             var objectId = $('#objectId').val();
-            var objectType = $('#objectType').val();
             var comment = $('#commentArea').val();
             var userId = $('#userId').val();
             if (comment == '') {
-                $("#textoWarningGrande").text('Algo acaba de suceder');
-                $("#textoWarning").text('Debe escribir un comentario');
-                $('.Alertwarning').animate({top:"0"}, 500);
+                var head = '{{ app.session.get('language') == 'es'? 'Falta información':'Text Missing' }}';
+                var body = '{{ app.session.get('language') == 'es'? 'Debe introducir un comentario':'You must write a comment of at least 6 characters' }}';
+                show_alert_box("success", head, body);
             } else {
                 var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                 $.ajax({
@@ -775,7 +774,7 @@
                     success: function (response) {
                         if (response.result) {
                             var head = '{{ app.session.get('language') == 'es'? 'Gracias':'Thanks' }}';
-                            var body = '{{ app.session.get('language') == 'es'? 'Su comentario ha sido recibido correctamente':'You must write a comment of at least 6 characters' }}';
+                            var body = '{{ app.session.get('language') == 'es'? 'Su comentario ha sido recibido correctamente':'Your comment has been received correctly' }}';
                             show_alert_box("success", head, body);
                             //este código no se está ejecutando, no se porque.
                             $('#commentArea').val('');
