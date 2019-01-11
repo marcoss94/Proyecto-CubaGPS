@@ -9,7 +9,7 @@
 .fotosOferta{
     width: 400px;
     height: 250px;
-    border-radius: .45rem;
+    /*border-radius: .45rem;*/
 }
 .parallax {
     /* The image used */
@@ -1009,6 +1009,27 @@ h2 {
     font-size: 15px;
     padding: 6px;
     /*border: solid #ffffff 2px;*/
+    text-decoration: none;
+}
+.precioBlog{
+
+
+
+    font-family: Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    color: #212529;
+    font-size: 15px;
+    padding: 10px;
+
+    text-decoration: none;
+}
+.precioBlog span{
+
+
+    font-family: Montserrat,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+    color: #2b506b;
+    font-size: 15px;
+
+
     text-decoration: none;
 }
 .precioReserva{
