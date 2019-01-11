@@ -401,6 +401,8 @@
 
                         <div id="map" style="width: 100%; height: 400px; background: grey"></div>
 
+                        <div class="separador"></div>
+
                         {#Comentarios --------------------------------------------------------------------------------------#}
 
                         {% if object.comentarios|length %}
@@ -409,7 +411,7 @@
                             <ul class="list-unstyled ">
                                 {% for c in object.comentarios if c.revisado %}
                                     {% if loop.index < 7 %}
-                                        <li class="media">
+                                        <li class="media comment">
                                             <a class="pr-3 " href="#">
                                                 <img class="mr-3 rounded-circle fotocomment"
                                                      src="{{ asset(c.autor.picture) }}"
