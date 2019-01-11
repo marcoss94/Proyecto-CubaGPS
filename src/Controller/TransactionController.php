@@ -35,13 +35,12 @@ class TransactionController extends Controller
         $storage = $this->get('payum')->getStorage('App\Entity\Payment');
         $payment = $storage->create();
         $payment->setNumber(uniqid());
-        $payment->setCurrencyCode('EUR');
-        $payment->setTotalAmount($amount . '00'); // 1.23 EUR
+        $payment->setCurrencyCode('USD');
+        $payment->setTotalAmount($amount . '00'); //  1.23 EUR
         $payment->setDescription('CubaGPS transaction');
-        $payment->setClientId('8JCDJUTNEV6P2');
+        //$payment->setClientId('8JCDJUTNEV6P2');
         $payment->setClientEmail('cubagps@yahoo.com');
         $storage->update($payment);
-
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
             $gatewayName,
             $payment,
@@ -67,7 +66,6 @@ class TransactionController extends Controller
             $reserves = $reservaRepository->findBy(['usuario' => $this->getUser(), 'status' => 'pending']);
             foreach ($reserves as $reserva) {
                 $reserva->setStatus('payed');
-
                 $em->persist($reserva);
                 $em->flush();
             }

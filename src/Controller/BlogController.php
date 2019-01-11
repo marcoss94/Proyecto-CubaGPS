@@ -21,6 +21,7 @@ use App\Repository\ComentarioRepository;
 use App\Repository\ExcursionRepository;
 use App\Repository\PaqueteRepository;
 use App\Repository\PostRepository;
+use App\Repository\ReservaRepository;
 use App\Repository\SistemRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -55,7 +56,7 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(Request $request,CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository,PaqueteRepository $paqueteRepository,ComentarioRepository $comentarioRepository)
+    public function index(Request $request,CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository,PaqueteRepository $paqueteRepository,ComentarioRepository $comentarioRepository,ReservaRepository $reservaRepository)
     {
         if(!$this->get('session')->get('language')){
             $langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
@@ -87,6 +88,9 @@ class BlogController extends AbstractController
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix
         $message=$request->get('message');
+        $user=$this->getUser();
+        $cart=$reservaRepository->findOneBy(['usuario'=>$this->getUser(),'status'=>'pending'])?true:false;
+        $reservasActivas=$reservaRepository->findOneBy(['usuario'=>$this->getUser(),'status'=>'payed'])?true:false;
         return $this->render('blog/index.html.twig', [
             'base' => 'true',
             'carros' => $carros,
@@ -94,7 +98,9 @@ class BlogController extends AbstractController
             'excursiones' => $excursiones,
             'paquetes'=>$paquetes,
             'comments'=>$comments,
-            'message'=>$message
+            'message'=>$message,
+            'cart'=>$cart,
+            'reserves'=> $reservasActivas
         ]);
     }
 
