@@ -1197,6 +1197,12 @@ h2 {
         padding: 0px 13px 0px 13px;
     }
 
+    .fotosOferta{
+        width: 500px;
+        height: 300px;
+        /*border-radius: .45rem;*/
+    }
+
 }
 
 /*!**/
