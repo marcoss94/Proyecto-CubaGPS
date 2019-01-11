@@ -1205,8 +1205,10 @@ h2 {
 
         color: #fff;
 
-        padding: 7px 87px 5px;
-        margin: 0px -3px;
+        padding: 5px;
+        width: 100%;
+
+        text-align: center;
 
     }
 
