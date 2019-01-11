@@ -38,7 +38,7 @@ abstract class DisplayableComponent
     private $images;
 
     /**
-     * @ORM\Column(type="string", length=1000,nullable=true)
+     * @ORM\Column(type="string", length=2000,nullable=true)
      */
     private $descripcion;
 
@@ -49,7 +49,7 @@ abstract class DisplayableComponent
 
 
     /**
-     * @ORM\Column(type="string", length=1000,nullable=true)
+     * @ORM\Column(type="string", length=2000,nullable=true)
      */
     private $description;
 
