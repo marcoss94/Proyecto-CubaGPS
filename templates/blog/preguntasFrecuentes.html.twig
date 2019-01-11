@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block descripcion %} Preguntas Frecuentes.{% endblock %}
+
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}"/>
+     <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
+
+
+     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059"/>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
+     {#<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>#}
+
+     <link rel="stylesheet" href="{{ asset('build/css/carousel.css') }}">
+ {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    {#<header class="bannerOferta">#}
+
+    {#Banner de Kevin#}
+    {#</header>#}
+
+    <section class="bg-light" id="portfolio" style="padding: 120px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 portfolio-item">
+                    <div class=" infoOferta text-left">
+                        {#Nombre#}
+                        <h2 class="nombreO">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</h2>
+
+                        {#provincia#}
+
+                        <div class="separador"></div>
+                        {#Descripcion --------------------------------------------------------------------------------------#}
+                        {#descripcion#}
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Textos':'Frequent Questions' }}</p>
+
+
+                        <div class="separador"></div>
+
+                    </div>
+                </div>
+
+                {#---------------------------------Formulario de Reserva-----------------------------------------------------#}
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
+{% block footer %}
+
+    {{ parent() }}
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+{% endblock %}
+
+
+
+

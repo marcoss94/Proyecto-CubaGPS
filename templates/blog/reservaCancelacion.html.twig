@@ -1,0 +1,156 @@
+{% extends 'base.html.twig' %}
+
+{% block descripcion %} Reserva y Cancelación.{% endblock %}
+
+{% block title %}Cuba GPS |{{ app.session.get('language') == 'es'? 'Reserva y Cancelación':'Reservation and Cancellation' }}{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}"/>
+     <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
+
+
+     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059"/>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
+     {#<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>#}
+
+     <link rel="stylesheet" href="{{ asset('build/css/carousel.css') }}">
+ {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    {#<header class="bannerOferta">#}
+
+    {#Banner de Kevin#}
+    {#</header>#}
+
+    <section class="bg-light" id="portfolio" style="padding: 120px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 portfolio-item">
+                    <div class=" infoOferta text-left">
+                        {#Nombre#}
+                        <h2 class="nombreO">{{ app.session.get('language') == 'es'? 'Políticas de Reserva y Cancelación ':'Reservation and Cancellation Policies' }}</h2>
+
+                        {#provincia#}
+
+                        <div class="separador"></div>
+                        {#Descripcion --------------------------------------------------------------------------------------#}
+                        {#descripcion#}
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Datos de Reserva: Es responsabilidad del cliente verificar que la información relacionada en esta confirmación es correcta y por ende autoriza a CubaGPS a realizar las respectivas emisiones y reconfirmaciones con estos datos (Nombres, Documentos de identidad, servicios confirmados etc.)
+Cualquier diferencia o error en la información suministrada previamente, y que causare cobro por modificaciones o cambios será asumido en su totalidad por el cliente, verificar la documentación requerida y la vigencia de los mismos para su viaje como: visas, permisos, pasaportes, documentos de identificación, vacunas exigidas, etc.
+':'Reservation Data: It is the customer is responsibility to verify that the information related to this confirmation is correct and therefore authorizes CubaGPS to perform the respective emissions and reconfirmations with these data (names, identity documents, confirmed services, etc.)
+Any difference or error in the information previously provided, and that causes collection for modifications or changes will be assumed in full by the client, verify the required documentation and the validity of the same for his trip as: visas, permits, passports, documents of identification, required vaccines, etc.' }}</p>
+
+                        <div class="separador"></div>
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? 'Reserva. ':'Reservation' }}</h3>
+
+
+                        <div class="separador"></div>
+
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Sugerimos reservar al menos con un mes de antelación. La reserva queda confirmada con el pago por adelantado del 20% del precio de venta, un mes antes de la fecha de inicio del paquete. El pago del 100% del precio debe hacerse el primer día en Cuba.
+Para las reservas con no menos de un mes de antelación se ponen en manifiesto los puntos descritos en Cancelación o Cambio de Reserva sin Justificación dependiendo de los días previos a su viaje.
+No podrá hacer una reserva en ninguno de nuestros servicios con menos de 4 días de antelación al viaje.
+Para garantizar una respuesta segura a su solicitud de servicio, Cuba GPS se compromete a responder en menos de 24 horas su confirmación de servicio, con un radio de 36 horas más, para el cliente enviar su respuesta definitiva, con el pago del 20% del valor total del servicio. Si no se cumple con estos plazos la pre-reserva se da por cancelada.
+':'We suggest booking at least one month in advance. The reservation is confirmed with the advance payment of 20% of the sale price, one month before the start date of the package. The payment of 100% of the price must be made the first day in Cuba.
+For bookings with no less than one month in advance, the points described in Cancellation or Change of Reservation without Justification become clear depending on the days prior to your trip.
+You can not make a reservation in any of our services less than 4 days before the trip.
+To guarantee a secure response to your request for service, Cuba GPS undertakes to respond in less than 24 hours to your confirmation of service, with a radius of 36 hours, for the client to send your definitive answer, with the payment of 20% of the total value of the service. If these deadlines are not met, the pre-reservation is considered canceled.' }}</p>
+
+
+                        <div class="separador"></div>
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? 'Depósitos. ':'Deposits.' }}</h3>
+
+
+                        <div class="separador"></div>
+
+
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Para garantizar cualquiera de los servicios confirmados por parte de CubaGPS será indispensable como mínimo un porcentaje % del valor total del plan. Al realizar el depósito o pago para garantizar cualquier reserva, el cliente declara que conoce las condiciones de los servicios contratados y acepto  las casas de hospedajes, paquetes vacacionales, transporte, etc. Registrados en esta confirmación y que nada debe ser entendido como incluido si no está descrito claramente en esta Confirmación de Servicios Contratados.':'To guarantee any of the services confirmed by CubaGPS, at least a percentage of the total value of the plan will be indispensable. When making the deposit or payment to guarantee any reservation, the client declares that he / she knows the conditions of the contracted services and I accept the lodging houses, vacation packages, transportation, etc. Registered in this confirmation and that nothing should be understood as included if it is not clearly described in this Confirmation of Contracted Services.' }}</p>
+
+                        <div class="separador"></div>
+
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? 'Pago Total. ':'Full payment.' }}</h3>
+
+
+                        <div class="separador"></div>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? '*Para Garantizar su reserva y tarifa, debe realizar el pago en los plazos establecidos y enviar la evidencia de la transacción al asesor correspondiente o al correo admon@travelcubagps.com .
+*Los datos suministrados deben ser los mismos que reposan en su entidad financiera (dirección de correspondencia, teléfono, cédula, nombres y apellidos).
+*La tasa administrativa y los cargos por gestión cobrados en nuestro sitio web no son rembolsables en ningún caso.
+':'* To guarantee your reservation and rate, you must make the payment within the established deadlines and send the evidence of the transaction to the corresponding advisor or email admon@travelcubagps.com.
+* The data provided must be the same as those stored in your financial institution (correspondence address, telephone number, identification number, first and last names).
+* The administrative fee and the management fees charged on our website are not refundable in any case.' }}</p>
+
+
+
+                        <div class="separador"></div>
+
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? 'Cancelación o Cambio de Reserva sin Justificación.':'Cancellation or Change of Reservation without Justification.' }}</h3>
+
+
+                        <div class="separador"></div>
+
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Cuando la reserva no se vaya a utilizar, el pasajero o cliente deberá cancelarla con antelación no inferior a quince días (15). Cualquier cambio pretendido en su reserva, deberá solicitarlo de manera escrita con la misma antelación a nuestros correos de contactos, siempre que no se trate de tarifas que tengan restricciones y deberes especiales de confirmación, asumiendo eventuales sobre costos según las condiciones de la tarifa y las disponibilidad del cupo.
+A.	Cancelaciones recibidas entre 20 y 15 días antes del inicio del viaje tendrán un cargo del 25% sobre el valor total del (20%) cobrado por anticipado del programa, por gastos administrativos.
+B.	Cancelaciones recibidas entre 14 y 11 días antes del inicio del viaje tendrán un cargo del 50% sobre el valor total del (20%) cobrado por anticipado del programa, por gastos administrativos.
+C.	Cancelaciones recibidas entre 10 días o menos antes del viaje y la no presentación de los pasajeros (NO SHOW) al inicio de los servicios, tendrá un cargo del 100% sobre el Valor total del depósito realizado.
+
+':'When the reservation is not used, the passenger or client must cancel it in advance not less than fifteen days (15). Any change intended in your reservation, you must request it in writing with the same advance to our contact emails, as long as it is not about tariffs that have restrictions and special confirmation duties, assuming any costs according to the conditions of the tariff and the availability of the quota.
+A. Cancellations received between 20 and 15 days before the start of the trip will have a charge of 25% of the total value of the (20%) charged in advance of the program, for administrative expenses.
+B. Cancellations received between 14 and 11 days before the start of the trip will have a charge of 50% of the total value of the (20%) charged in advance of the program, for administrative expenses.
+C. Cancellations received between 10 days or less before the trip and the non-presentation of passengers (NO SHOW) at the start of services, will have a charge of 100% of the total value of the deposit made.' }}</p>
+
+
+
+                        <div class="separador"></div>
+
+                    </div>
+                </div>
+
+                {#---------------------------------Formulario de Reserva-----------------------------------------------------#}
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
+{% block footer %}
+
+    {{ parent() }}
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+{% endblock %}
+
+
+
+
