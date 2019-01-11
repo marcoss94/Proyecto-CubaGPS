@@ -1,0 +1,127 @@
+{% extends 'base.html.twig' %}
+
+{% block descripcion %} Políticas.{% endblock %}
+
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Políticas':'Privacy Policy' }}{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}"/>
+     <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
+
+
+     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059"/>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
+     {#<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>#}
+
+     <link rel="stylesheet" href="{{ asset('build/css/carousel.css') }}">
+ {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <section class="bg-light" id="portfolio" style="padding: 44px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-8 portfolio-item">
+                    <div class=" infoOferta text-left">
+                        {#Nombre#}
+                        <h2 class="nombreO">{{ app.session.get('language') == 'es'? 'Políticas de la página Web ':'Privacy Policy' }}</h2>
+
+                        {#provincia#}
+
+                        <div class="separador"></div>
+                        {#Descripcion --------------------------------------------------------------------------------------#}
+                        {#descripcion#}
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Proteger su información privada es nuestra prioridad. Esta Declaración de privacidad se aplica a CubaGPS y rige la recopilación y el uso de datos. El sitio web de CubaGPS es un sitio de información de viajes y comercio electrónico. Al utilizar el sitio web www.travelcubagps.com usted acepta las prácticas de datos en esta declaración ':'Protecting your private information is our priority. This Privacy Statement applies to CubaGPS and governs the collection and use of data. The CubaGPS website is a travel and e-commerce information site. By using the www.travelcubagps.com website you accept the data practices in this statement' }}</p>
+
+
+                        <div class="separador"></div>
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? 'Recopilación de su información personal ':'Collection of your personal information' }}</h3>
+
+                        <div class="separador"></div>
+
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'No recopilamos ninguna información personal sobre usted a menos que usted nos las proporcione voluntariamente. Sin embargo, es posible que deba proporcionarnos cierta información personal cuando elija utilizar ciertos productos o servicios disponibles en el Sitio. Estos pueden incluir a) registrarse para ofertas especiales de terceros seleccionados; b) su email para promociones de nuestro sitio web. C) enviar su tarjeta de crédito u otra información de pago al realizar un pedido y comprar productos y servicios en nuestro Sitio. Para ello, utilizaremos su información para, entre otros, comunicarnos con usted en relación con los servicios y / o productos que nos haya solicitado. También podemos recopilar información personal o no personal adicional en el futuro.
+CubaGPS recopila y utiliza su información personal para operar su(s) sitio(s) web y entregar los servicios que ha solicitado.
+CubaGPS puede compartir con socios de confianza para ayudarlo a realizar un análisis estadístico, enviarle un correo electrónico o correo postal, brindar asistencia al cliente u organizar las entregas. Todos los terceros tienen prohibido el uso de su información personal y están obligados a mantener la confidencialidad de su información.
+Puede divulgar su información personal, sin previo aviso, si así lo exige la ley o si consideramos de buena fe que dicha acción es necesaria para: a) cumplir con los decretos de la ley o cumplir con el proceso legal en el que se basa Ahora o el sitio; b) proteger y defender los derechos o propiedad de Cuba GPS / o c) actuar en circunstancias extremas para proteger la seguridad personal de los usuarios de Cuba GPS, o del público.
+Seguridad de su información personal.
+Cuba GPS asegura su información frente al acceso, uso o divulgación no autorizados. En Cuba GPS nos esforzamos por tomar las medidas de seguridad adecuadas para proteger contra el acceso no autorizado a la alteración de su información personal. Desafortunadamente, no se puede garantizar que la transmisión de datos a través de internet o cualquier red inalámbrica sea 100% segura. Como resultados, mientras nos esforzamos por proteger su información personal, usted reconoce que: a) existen limitaciones de seguridad y privacidad inherentes a Internet que están fuera de nuestro control; y b) no se puede garantizar la seguridad, integridad y privacidad de toda la información y los datos intercambiados entre usted y nosotros a través de este Sitio.
+ ':'We do not collect any personal information about you unless you voluntarily provide them to us. However, you may need to provide us with certain personal information when you choose to use certain products or services available on the Site. These may include a) registering for special offers from selected third parties; b) your email for promotions of our website. C) send your credit card or other payment information when placing an order and purchase products and services on our Site. For this, we will use your information to, among others, communicate with you in relation to the services and / or products that you have requested. We may also collect additional personal or non-personal information in the future.
+CubaGPS collects and uses your personal information to operate your website (s) and deliver the services you have requested.
+CubaGPS can share with trusted partners to help you perform a statistical analysis, send you an email or postal mail, assist the customer or arrange deliveries. All third parties are prohibited from using your personal information and are required to maintain the confidentiality of your information.
+You may disclose your personal information, without prior notice, if required by law or if we believe in good faith that such action is necessary to: a) comply with the decrees of the law or comply with the legal process on which it is based. or the site; b) protect and defend the rights or property of Cuba GPS / or c) act in extreme circumstances to protect the personal safety of users of Cuba GPS, or the public.
+Security of your personal information.
+Cuba GPS secures your information against unauthorized access, use or disclosure. In Cuba GPS we strive to take the appropriate security measures to protect against unauthorized access to the alteration of your personal information. Unfortunately, it can not be guaranteed that data transmission over the internet or any wireless network is 100% secure. As a result, while we strive to protect your personal information, you acknowledge that: a) there are security and privacy limitations inherent in the Internet that are beyond our control; and b) the security, integrity and privacy of all information and data exchanged between you and us through this Site can not be guaranteed.' }}</p>
+
+                        <div class="separador"></div>
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? 'Comunicación por correo electrónico. ':'Communication by email.' }}</h3>
+
+                        <div class="separador"></div>
+
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'De vez en cuando, CubaGPS pueden contactarlo por correo electrónico con el fin de proporcionar anuncios, ofertas promocionales, alertas, confirmaciones, encuestas y / o otras comunicaciones generales. Para mejorar nuestros Servicios, es posible que recibamos una notificación cuando abra un correo electrónico de CubaGPS, puede optar por no recibir dichas comunicaciones al eliminar su cuenta o cancelar la suscripción. ':'From time to time, CubaGPS may contact you by email in order to provide advertisements, promotional offers, alerts, confirmations, surveys and / or other general communications. To improve our Services, we may receive a notification when you open an email from CubaGPS, you can choose not to receive such communications by deleting your account or canceling the subscription.' }}</p>
+
+
+                        <div class="separador"></div>
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? 'Cambios a esta declaración. ':'Changes to this statement.' }}</h3>
+
+                        <div class="separador"></div>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'CubaGPS se reserva el derecho de cambiar esta Política de Privacidad de vez en cuando. Le notificaremos sobre los cambios significativos en la forma en que tratamos la información personal enviando un aviso a la dirección de correo electrónico principal especificada en su cuenta, colocando un aviso prominente en nuestro sitio y / o los Servicios disponibles a través de este Sitio después de dichas modificaciones constituirá su: a) reconocimiento de la Política de Privacidad modificada; y b) acuerdo para cumplir y estar sujetos a esa Política. ':'CubaGPS reserves the right to change this Privacy Policy from time to time. We will notify you of significant changes in the way we treat personal information by sending a notice to the primary email address specified in your account, placing a prominent notice on our site and / or the Services available through this Site after said modifications will constitute its: a) recognition of the modified Privacy Policy; and b) agreement to comply and be subject to that Policy.' }}</p>
+
+                        <div class="separador"></div>
+
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? 'Información del contacto. ':'Contact information.' }}</h3>
+
+
+                        <div class="separador"></div>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'CubaGPS agradece sus preguntas o comentarios sobre esta Declaración de Privacidad. Si cree que CubaGPS no se ha adherido a esta Declaración, comuníquese con 786 222 9535 en Miami Fl ':'CubaGPS welcomes your questions or comments about this Privacy Statement. If you believe that CubaGPS has not adhered to this Statement, call 786 222 9535 in Miami Fl' }}</p>
+                    </div>
+                </div>
+
+                {#---------------------------------Formulario de Reserva-----------------------------------------------------#}
+            </div>
+        </div>
+    </section>
+
+
+
+
+{% endblock %}
+{% block footer %}
+
+    {{ parent() }}
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+{% endblock %}
+
+
+
+
