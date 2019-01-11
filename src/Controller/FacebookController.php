@@ -47,6 +47,9 @@ class FacebookController extends Controller
      */
     public function connectCheckAction()
     {
+        if(is_null($this->get('session')->get('redirectBack'))){
+            return $this->redirectToRoute('show_confirmed_reserves');
+        }
         return $this->redirect($this->get('session')->get('redirectBack'));
     }
 

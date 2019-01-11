@@ -46,6 +46,9 @@ class GoogleController extends Controller
         if (!$this->getUser()) {
             return new JsonResponse(array('status' => false, 'message' => "User not found!"));
         } else {
+            if(is_null($this->get('session')->get('redirectBack'))){
+                return $this->redirectToRoute('show_confirmed_reserves');
+            }
             return $this->redirect($this->get('session')->get('redirectBack'));
         }
 
