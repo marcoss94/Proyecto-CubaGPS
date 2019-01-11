@@ -38,7 +38,7 @@ class TransactionController extends Controller
         $payment->setCurrencyCode('USD');
         $payment->setTotalAmount($amount . '00'); //  1.23 EUR
         $payment->setDescription('CubaGPS transaction');
-        //$payment->setClientId('8JCDJUTNEV6P2');
+        $payment->setClientId('AdMblov1-V097nTxvwzczfUPVbmAUfesl443dOp0l03OS8hulcGWF3jG2XHsYT4g2RaT7J5_k6qPwQ1-');
         $payment->setClientEmail('cubagps@yahoo.com');
         $storage->update($payment);
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
@@ -56,13 +56,13 @@ class TransactionController extends Controller
      */
     public function doneAction(Request $request, ReservaRepository $reservaRepository)
     {
-        $em=$this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
         $token = $this->get('payum')->getHttpRequestVerifier()->verify($request);
         $gateway = $this->get('payum')->getGateway($token->getGatewayName());
         $gateway->execute($status = new GetHumanStatus($token));
         $payment = $status->getFirstModel();
         $message = [];
-        if ($status->getValue()=='captured'||$status->getValue()=='pending') {
+        if ($status->getValue() == 'captured' || $status->getValue() == 'pending') {
             $reserves = $reservaRepository->findBy(['usuario' => $this->getUser(), 'status' => 'pending']);
             foreach ($reserves as $reserva) {
                 $reserva->setStatus('payed');
@@ -77,7 +77,8 @@ class TransactionController extends Controller
                 : 'Your transfer has been successfully completed';
             return $this->redirectToRoute('blog_index', ['message' => $message]);
         } else {
-            dump($payment);die();
+            dump($payment);
+            die();
             $message['type'] = 'error';
             $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
                 'Lo sentimos' : 'Sorry';
