@@ -258,4 +258,42 @@ class BlogController extends AbstractController
         return $this->render('blog/bautcher.html.twig');
     }
 
+//    -------------------------------------------------------------------------------------
+
+    /**
+     * @Route("/politicas", name="politicas")
+     */
+    public function politicas()
+    {
+        return $this->render('blog/politicas.html.twig');
+    }
+
+    /**
+     * @Route("/reservaCancelacion", name="reservaCancelacion")
+     */
+    public function reservaCancelacion()
+    {
+        return $this->render('blog/reservaCancelacion.html.twig');
+    }
+
+    /**
+     * @Route("/preguntasFrecuentes", name="preguntasFrecuentes")
+     */
+    public function preguntasFrecuentes()
+    {
+        return $this->render('blog/preguntasFrecuentes.html.twig');
+    }
+
+    /**
+     * @Route("/quienesSomos", name="quienesSomos")
+     */
+    public function quienesSomos()
+    {
+        return $this->render('blog/quienesSomos.html.twig');
+    }
+
+
+
+//    -------------------------------------------------------------------------------------
+
 }

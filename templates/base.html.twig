@@ -502,12 +502,16 @@ border-color: #f9b501">
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
                         <li class="list-inline-item">
-                            <a href="#" data-toggle="modal"
-                               data-target="#piliticaModal" style="color: #2a4f6b;">{{ app.session.get('language') == 'es'? 'Políticas':'Privacy Policy' }}</a>
+                            <a href="#">{{ app.session.get('language') == 'es'? 'Políticas':'Privacy Policy' }}</a>
 
                         </li>
                         <li class="list-inline-item">
-                            <a href="#" style="color: #2a4f6b;">Terms of Use</a>
+                            <a href="#">{{ app.session.get('language') == 'es'? 'Reserva y Cancelación':'Reservation and Cancellation' }}</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</a>
+                        </li><li class="list-inline-item">
+                            <a href="#">{{ app.session.get('language') == 'es'? 'Quienes Somos':'About us' }}</a>
                         </li>
 
                     </ul>
