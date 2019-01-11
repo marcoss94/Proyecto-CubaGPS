@@ -72,11 +72,7 @@ class UserController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $comment = new Comentario();
         $type = $request->get('type');
-        if ($type == 'component') {
-            $comment->setComponent($componentRepository->find($request->get('targetId')));
-        } elseif ($type == 'paquete') {
-            $comment->setPaquete($paqueteRepository->find($request->get('targetId')));
-        }
+        $comment->setComponent($componentRepository->find($request->get('targetId')));
         $comment->setType($type);
         $comment->setText($request->get('text'));
         $autor = $userRepository->find($request->get('userId'));
