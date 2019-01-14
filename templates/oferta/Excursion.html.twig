@@ -89,67 +89,67 @@
                     <div class=" infoOferta text-left">
                         <h2 class="nombreO">{{ app.session.get('language')== 'es' ? object.nombre : object.name }}</h2>
                         <h4 class="section-subheading">{{ object.provincia }}</h4>
-                        <div>
-                            <div class="serviciosOfertas" style="margin-right: 10px">
-                                <div class="iconogeneral">
-                                    <div class="iconoServ">
-                                        <h6>
-                                            <span><i class="far fa-clock"></i></span>
-                                            {{ object.tiempoDuracion }} h
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                            {% if object.incluyeTransporte %}
-                                <div class="serviciosOfertas" style="margin-right: 10px">
-                                    <div class="iconogeneral">
+                        {#<div>#}
+                            {#<div class="serviciosOfertas" style="margin-right: 10px">#}
+                                {#<div class="iconogeneral">#}
+                                    {#<div class="iconoServ">#}
+                                        {#<h6>#}
+                                            {#<span><i class="far fa-clock"></i></span>#}
+                                            {#{{ object.tiempoDuracion }} h#}
+                                        {#</h6>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                            {#{% if object.incluyeTransporte %}#}
+                                {#<div class="serviciosOfertas" style="margin-right: 10px">#}
+                                    {#<div class="iconogeneral">#}
 
-                                        <div class="iconoServ">
-                                            <h6>
-                                                <span><i class="fas fa-bus-alt"></i></span>
-                                                {% if object.tipoTransporte == 'Clásico' %}
-                                                    {{ app.session.get('language')== 'es' ?
-                                                    'Transporte en auto Clásico' :
-                                                    'Classic car transportation' }}
-                                                {% else %}
-                                                    {{ app.session.get('language')== 'es' ?
-                                                    'Transporte incluído' :
-                                                    'Transportation included' }}
-                                                {% endif %}
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                            {% if object.guia %}
-                                <div class="serviciosOfertas" style="margin-right: 10px">
-                                    <div class="iconogeneral">
+                                        {#<div class="iconoServ">#}
+                                            {#<h6>#}
+                                                {#<span><i class="fas fa-bus-alt"></i></span>#}
+                                                {#{% if object.tipoTransporte == 'Clásico' %}#}
+                                                    {#{{ app.session.get('language')== 'es' ?#}
+                                                    {#'Transporte en auto Clásico' :#}
+                                                    {#'Classic car transportation' }}#}
+                                                {#{% else %}#}
+                                                    {#{{ app.session.get('language')== 'es' ?#}
+                                                    {#'Transporte incluído' :#}
+                                                    {#'Transportation included' }}#}
+                                                {#{% endif %}#}
+                                            {#</h6>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#{% endif %}#}
+                            {#{% if object.guia %}#}
+                                {#<div class="serviciosOfertas" style="margin-right: 10px">#}
+                                    {#<div class="iconogeneral">#}
 
-                                        <div class="iconoServ">
-                                            <h6>
-                                                <span><i class="fas fa-user-tie"></i></span>
-                                                {{ app.session.get('language')== 'es' ?
-                                                'Guía' :
-                                                'Guide' }}
-                                            </h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endif %}
-                            <div class="serviciosOfertas" style="margin-right: 10px">
-                                <div class="iconogeneral">
+                                        {#<div class="iconoServ">#}
+                                            {#<h6>#}
+                                                {#<span><i class="fas fa-user-tie"></i></span>#}
+                                                {#{{ app.session.get('language')== 'es' ?#}
+                                                {#'Guía' :#}
+                                                {#'Guide' }}#}
+                                            {#</h6>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#{% endif %}#}
+                            {#<div class="serviciosOfertas" style="margin-right: 10px">#}
+                                {#<div class="iconogeneral">#}
 
-                                    <div class="iconoServ">
-                                        <h6>
-                                            <span>{{ app.session.get('language')== 'es' ?
-                                                'Dificultad: ' :
-                                                'Dificulty: ' }}</span>
-                                            {{ dificultad[object.dificultad][app.session.get('language')== 'es' ? 0 : 1 ] }}
-                                        </h6>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    {#<div class="iconoServ">#}
+                                        {#<h6>#}
+                                            {#<span>{{ app.session.get('language')== 'es' ?#}
+                                                {#'Dificultad: ' :#}
+                                                {#'Dificulty: ' }}</span>#}
+                                            {#{{ dificultad[object.dificultad][app.session.get('language')== 'es' ? 0 : 1 ] }}#}
+                                        {#</h6>#}
+                                    {#</div>#}
+                                {#</div>#}
+                            {#</div>#}
+                        {#</div>#}
 
                         <div>
                             <div class="serviciosOfertas" style="margin-right: 10px">
@@ -332,6 +332,94 @@
                                 {% endif %}
 
                             </div>
+
+                            <div class="col-6 col-md-4">
+
+                                <div class="" style="margin-right: 10px">
+                                    <div class="iconogeneral">
+                                        <div class="iconoServ">
+                                            <div style="margin-right: 8px">
+                                                <span><i class="far fa-clock"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="iconoServ">
+                                            <span>{{ object.tiempoDuracion }} h</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-6 col-md-4">
+                                {% if object.incluyeTransporte %}
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-bus-alt"></i></span>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="iconoServ">
+                                            <span>{% if object.tipoTransporte == 'Clásico' %}
+                                                        {{ app.session.get('language')== 'es' ?
+                                                'Transporte en auto Clásico' :
+                                                'Classic car transportation' }}
+                                                    {% else %}
+                                                    {{ app.session.get('language')== 'es' ?
+                                                    'Transporte incluído' :
+                                                    'Transportation included' }}
+                                                {% endif %}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-6 col-md-4">
+                                {% if object.guia %}
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-user-tie"></i></span>
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="iconoServ">
+                                            <span> {{ app.session.get('language')== 'es' ?
+                                                'Guía' :
+                                                'Guide' }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-6 col-md-4">
+
+                                <div class="" style="margin-right: 10px">
+                                    <div class="iconogeneral">
+                                        <div class="iconoServ">
+                                            <div style="margin-right: 8px">
+
+                                            <span>{{ app.session.get('language')== 'es' ?
+                                                'Dificultad: ' :
+                                                'Dificulty: ' }}</span>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="iconoServ">
+                                            <span> {{ dificultad[object.dificultad][app.session.get('language')== 'es' ? 0 : 1 ] }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                         <div class="separador"></div>
                         <h4 class="section-subheading">{{ app.session.get('language') == 'es'? 'Reglamentos':'Regulations' }}</h4>
