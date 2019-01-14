@@ -349,32 +349,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-6 col-md-4">
-                                {% if object.incluyeTransporte %}
-                                    <div class="" style="margin-right: 10px">
-                                        <div class="iconogeneral">
-                                            <div class="iconoServ">
-                                                <div style="margin-right: 8px">
-                                                    <span><i class="fas fa-bus-alt"></i></span>
 
-
-                                                </div>
-                                            </div>
-                                            <div class="iconoServ">
-                                            <span>{% if object.tipoTransporte == 'Clásico' %}
-                                                        {{ app.session.get('language')== 'es' ?
-                                                'Transporte en auto Clásico' :
-                                                'Classic car transportation' }}
-                                                    {% else %}
-                                                    {{ app.session.get('language')== 'es' ?
-                                                    'Transporte incluído' :
-                                                    'Transportation included' }}
-                                                {% endif %}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            </div>
 
                             <div class="col-6 col-md-4">
                                 {% if object.guia %}
@@ -417,6 +392,33 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div class="col-6 col-md-4">
+                                {% if object.incluyeTransporte %}
+                                    <div class="" style="margin-right: 10px">
+                                        <div class="iconogeneral">
+                                            <div class="iconoServ">
+                                                <div style="margin-right: 8px">
+                                                    <span><i class="fas fa-bus-alt"></i></span>
+
+
+                                                </div>
+                                            </div>
+                                            <div class="iconoServ">
+                                            <span>{% if object.tipoTransporte == 'Clásico' %}
+                                                        {{ app.session.get('language')== 'es' ?
+                                                'Transporte en auto Clásico' :
+                                                'Classic car transportation' }}
+                                                    {% else %}
+                                                    {{ app.session.get('language')== 'es' ?
+                                                    'Transporte incluído' :
+                                                    'Transportation included' }}
+                                                {% endif %}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
 
 
