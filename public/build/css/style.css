@@ -1251,5 +1251,8 @@ p.infoExtra {
     text-decoration: underline;
 }
 
+.comment{
+    padding-top: 15px;
+}
 
 /*-----------------------------------------------------------------------------*/
