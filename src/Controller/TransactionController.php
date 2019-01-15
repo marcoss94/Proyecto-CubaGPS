@@ -46,7 +46,6 @@ class TransactionController extends Controller
             $payment,
             'done' // the route to redirect after capture
         );
-
         return $this->redirect($captureToken->getTargetUrl());
     }
 
