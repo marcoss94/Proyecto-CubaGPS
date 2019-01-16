@@ -1255,4 +1255,7 @@ p.infoExtra {
     padding-top: 15px;
 }
 
+.sobreNosotros i .fa-circle:hover{
+    color: black;
+}
 /*-----------------------------------------------------------------------------*/
