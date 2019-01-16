@@ -83,7 +83,7 @@ class BlogController extends AbstractController
         if($request->get('redirectId')){
             $this->get('session')->set('redirectedBy',$request->get('redirectId'));
         }
-        $comments=$comentarioRepository->findBy(['type'=>'sitio','revisado'=>true],['publishedAt'=>'DESC'],6);
+        $comments=$comentarioRepository->findBy(['type'=>'sitio','revisado'=>true],['publishedAt'=>'ASC'],6);
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         // See https://symfony.com/doc/current/templating.html#template-suffix

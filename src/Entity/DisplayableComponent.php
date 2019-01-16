@@ -92,7 +92,7 @@ abstract class DisplayableComponent
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comentario", mappedBy="component")
-     * @ORM\OrderBy({"publishedAt" = "DESC"})
+     * @ORM\OrderBy({"publishedAt" = "ASC"})
      */
     private $comentarios;
 

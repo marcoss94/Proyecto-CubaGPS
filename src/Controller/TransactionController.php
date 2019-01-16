@@ -77,6 +77,7 @@ class TransactionController extends Controller
             return $this->redirectToRoute('blog_index', ['message' => $message]);
         } else {
             dump($payment);
+            dump($status);
             die();
             $message['type'] = 'error';
             $message['head'] = ($this->getUser()->getIdioma() == 'es') ?

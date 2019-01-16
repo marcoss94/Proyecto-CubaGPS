@@ -196,7 +196,7 @@ class TransferController extends Controller
 
         $message = (new \Swift_Message())
             ->setSubject('Solocitud de Reserva')
-            ->setTo('lemuel@travelcubagps.com')
+            ->setTo('lemueldiaz@travelcubagps.com')
             ->setFrom('contact@travelcubagps.com')
             ->setBody($this->renderView(
                 'email_confirmacion/notificar_admin.html.twig',
