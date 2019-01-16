@@ -663,9 +663,9 @@ border-color: #f9b501;"
                             <div class="col-md-4">
         <span class="fa-stack fa-4x">
         <i class="fas fa-circle fa-stack-2x text-primary"></i>
-        <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+        <i class="fas fa-users fa-stack-1x fa-inverse"></i>
         </span>
-                                <h4 class="service-heading info">E-Commerce</h4>
+                                <h4 class="service-heading info">{{ app.session.get('language') == 'es'? 'Quienes Somos':'About us' }}</h4>
                                 <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
                                     maxime quam
@@ -675,7 +675,7 @@ border-color: #f9b501;"
                             <div class="col-md-4">
         <span class="fa-stack fa-4x">
         <i class="fas fa-circle fa-stack-2x text-primary"></i>
-        <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+        <i class="far fa-question-circle fa-stack-1x fa-inverse"></i>
         </span>
                                 <h4 class="service-heading info">Responsive Design</h4>
                                 <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
