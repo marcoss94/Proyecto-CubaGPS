@@ -12,7 +12,14 @@
 
     <title>Travel {% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}</title>
 
-
+    <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;}
+        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+        .tg .tg-uys7{border-color:inherit;text-align:center}
+        .tg .tg-xldj{border-color:inherit;text-align:left}
+        .tg .tg-quj4{border-color:inherit;text-align:right}
+    </style>
 
 </head>
 
@@ -29,93 +36,87 @@
 
         </div>
 
-        <div>
-            <h4 id="paquetes" class="section-heading text-uppercase"> Folio:</h4>
-            <p> #folio</p>
-        </div>
 
 
-        <div>
-            <h4 id="paquetes" class="section-heading text-uppercase"> Nombre y Apellidos:</h4>
-            <p> #nombre y apellidos</p>
-        </div>
-
-        <div>
-            <h4 id="paquetes" class="section-heading text-uppercase"> Cantidad de personas:</h4>
-            <p> #cantidad</p>
-        </div>
-
-        <div>
-            <h4 id="paquetes" class="section-heading text-uppercase"> Servicios:</h4>
-            <p> #Renta de casa</p>
-            <p> #Paquete</p>
-        </div>
-
-        <div>
-            <h4 id="paquetes" class="section-heading text-uppercase"> Cantidad de días:</h4>
-            <p> #cantidad</p>
-        </div>
-
-        <div>
-            <h4 id="paquetes" class="section-heading text-uppercase"> Cantidad de Habitaciones:</h4>
-            <p> #cantidad</p>
-        </div>
-
-        <div>
-            <h4 id="paquetes" class="section-heading text-uppercase"> Fecha Entrada:</h4>
-            <p> #fechaentrada</p>
-        </div>
-
-        <div style="margin-bottom: 50px">
-            <h4 id="paquetes" class="section-heading text-uppercase"> Fecha Salida:</h4>
-            <p> #fechasalida</p>
-        </div>
-
-
-        {##}
+            <table class="tg">
+                <tr>
+                    <th class="tg-xldj" colspan="3">Reservación<br></th>
+                    <th class="tg-quj4" colspan="2">Folio: 100</th>
+                </tr>
+                <tr>
+                    <strong>
+                    <td class="tg-uys7">Nombre y Apellidos</td>
+                    <td class="tg-uys7">Cantidad de personas</td>
+                    <td class="tg-uys7">Cantidad de días</td>
+                    <td class="tg-uys7">Fecha Entrada</td>
+                    <td class="tg-uys7">Fecha Salida</td>
+                    </strong>
+                </tr>
+                <tr>
+                    <td class="tg-xldj">#Marcos alvarez gallardo</td>
+                    <td class="tg-xldj">#3</td>
+                    <td class="tg-xldj">#4</td>
+                    <td class="tg-xldj">#10-5-2019</td>
+                    <td class="tg-xldj">#14-5-2019</td>
+                </tr>
+            </table>
 
 
 
-        {##}
-
-        <div>
-            <h4 id="paquetes" class="section-heading text-uppercase"> El Programa por día : #ponerServicio</h4>
-            <p> #Aki van los servicios ejemplo si es casa, las casa que alquilaron </p>
-            <p> #Si es carro los tranker o los tour o lo que sea la reservacion </p>
-            <p> #Horarios #En caso de excursiones poner exurciones y los horarios  </p>
-            <p> #Paquetes lo mismo</p>
-        </div>
+            <table class="tg">
+                <tr>
+                    <th class="tg-xldj" colspan="2"><strong>Programa por día</strong><br></th>
+                </tr>
+                <tr>
+                    <td class="tg-xldj" colspan="2">Servicios</td>
+                </tr>
+                <tr>
+                    <td class="tg-0pky" colspan="2">#Si es carro los tranfer o los tour o lo que sea la reservacion</td>
+                </tr>
+                <tr>
+                    <td class="tg-0pky" colspan="2">#Horarios #En caso de excursiones poner exurciones y los horarios</td>
+                </tr>
+                <tr>
+                    <td class="tg-0pky" colspan="2">#Paquetes lo mismo</td>
+                </tr>
+                <tr>
+                    <td class="tg-xldj" colspan="2">#Aki van los servicios ejemplo si es casa, las casa que alquilaron</td>
+                </tr>
+            </table>
 
 
 
 
+            <table class="tg">
+                <tr>
+                    <th class="tg-s268">Precio por día</th>
+                    <th class="tg-s268"><strong>#precio USD</strong></th>
+                </tr>
+                <tr>
+                    <td class="tg-s268">Precio por persona</td>
+                    <td class="tg-s268"><strong>#precio USD</strong></td>
+                </tr>
+                <tr>
+                    <td class="tg-s268">Precio por persona cada día</td>
+                    <td class="tg-s268"><strong>#precio USD</strong></td>
+                </tr>
+                <tr>
+                    <td class="tg-s268">Total</td>
+                    <td class="tg-s268"><strong>#precio USD</strong></td>
+                </tr>
+            </table>
 
-        <div>
-            <p id="paquetes" class="section-heading text-uppercase">#dias días en Cuba para un <strong>total de #precioTotal USD</strong></p>
 
-        </div>
 
-        <div>
-            <p id="paquetes" class="section-heading text-uppercase"> Precio por día <strong>#precio USD</strong></p>
 
-        </div>
 
-        <div>
-            <p id="paquetes" class="section-heading text-uppercase"> Precio por persona <strong>#precio USD</strong></p>
-
-        </div>
-
-        <div  style="margin-bottom: 50px">
-            <p id="paquetes" class="section-heading text-uppercase"> Precio por persona cada día <strong>#precio USD</strong></p>
-
-        </div>
 
 
 
 
 
         <div>
-            
+
                 <div>
                 <img src="{{ asset('build/img/logooficial.png') }}"
                      width="200" height="100"
