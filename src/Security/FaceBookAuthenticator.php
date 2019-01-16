@@ -77,10 +77,10 @@ class FaceBookAuthenticator extends SocialAuthenticator
         $user->setRegisteredAt();
         $user->setUserOf('facebook');
         $user->setRoles(['ROLE_USER']);
-        dump($_SESSION);die;
-        if (isset($_SESSION['redirectedBy'])) {
+
+        if (isset($_SESSION['_sf2_attributes']['redirectedBy'])) {
             $publisher = $this->em->getRepository(User::class)
-                ->find($_SESSION['redirectedBy']);
+                ->find($_SESSION['_sf2_attributes']['redirectedBy']);
             $user->setRedirectedBy($publisher);
         } else {
             $langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
