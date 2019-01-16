@@ -56,52 +56,52 @@ class BlogController extends AbstractController
      * Content-Type header for the response.
      * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
-    public function index(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository, PaqueteRepository $paqueteRepository, ComentarioRepository $comentarioRepository, ReservaRepository $reservaRepository)
+    public function index(Request $request,CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository,PaqueteRepository $paqueteRepository,ComentarioRepository $comentarioRepository,ReservaRepository $reservaRepository)
     {
-        if (!$this->get('session')->get('language')) {
-            $langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-            $b = true;
-            foreach ($langs as $l) {
-                $head = substr($l, 0, 2);
-                if ($head == 'es') {
+        if(!$this->get('session')->get('language')){
+            $langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            $b=true;
+            foreach ($langs as $l){
+                $head=substr($l,0,2);
+                if ($head == 'es'){
                     $this->get('session')->set('language', 'es');
-                    $b = false;
+                    $b=false;
                     break;
-                } elseif ($head[0] == 'en') {
+                }
+                elseif($head[0]=='en'){
                     $this->get('session')->set('language', 'en');
-                    $b = false;
+                    $b=false;
                     break;
                 }
             }
-            if ($b) $this->get('session')->set('language', 'en');
+            if($b) $this->get('session')->set('language', 'en');
         }
         $carros = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
         $casas = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
         $excursiones = $excursionRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
-        $paquetes = $paqueteRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
-        if ($request->get('redirectId')) {
-            $this->get('session')->set('redirectedBy', $request->get('redirectId'));
+        $paquetes = $paqueteRepository->findBy(['active' => true],['valoracion' => 'DESC'], 9);
+        if($request->get('redirectId')){
+            $this->get('session')->set('redirectedBy',$request->get('redirectId'));
         }
-        $comments = $comentarioRepository->findBy(['type' => 'sitio', 'revisado' => true], ['publishedAt' => 'ASC'], 6);
-        // Every template name also has two extensions that specify the format and
-        // engine for that template.
-        // See https://symfony.com/doc/current/templating.html#template-suffix
-        $message = $request->get('message');
-        $user = $this->getUser();
-        $cart = $reservaRepository->findOneBy(['usuario' => $this->getUser(), 'status' => 'pending']) ? true : false;
-        $reservasActivas = $reservaRepository->findOneBy(['usuario' => $this->getUser(), 'status' => 'payed']) ? true : false;
+        $comments=$comentarioRepository->findBy(['type'=>'sitio','revisado'=>true],['publishedAt'=>'ASC'],6);
+        $message=$request->get('message');
+        $user=$this->getUser();
+        $cart=$reservaRepository->findOneBy(['usuario'=>$this->getUser(),'status'=>'pending'])?true:false;
+        $reservasActivas=$reservaRepository->findOneBy(['usuario'=>$this->getUser(),'status'=>'payed'])?true:false;
         return $this->render('blog/index.html.twig', [
             'base' => 'true',
             'carros' => $carros,
             'casas' => $casas,
             'excursiones' => $excursiones,
-            'paquetes' => $paquetes,
-            'comments' => $comments,
-            'message' => $message,
-            'cart' => $cart,
-            'reserves' => $reservasActivas
+            'paquetes'=>$paquetes,
+            'comments'=>$comments,
+            'message'=>$message,
+            'cart'=>$cart,
+            'reserves'=> $reservasActivas
         ]);
     }
+
+
 
 
     /**
@@ -120,11 +120,11 @@ class BlogController extends AbstractController
      */
     public function changeLanguaje(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em=$this->getDoctrine()->getManager();
         $language = ($this->get('session')->get('language') == 'es') ? 'en' : 'es';
         $this->get('session')->set('language', $language);
-        if ($this->getUser()) {
-            $user = $this->getUser();
+        if($this->getUser()){
+            $user=$this->getUser();
             $user->setIdioma($language);
             $em->persist($user);
             $em->flush();
@@ -294,6 +294,7 @@ class BlogController extends AbstractController
     {
         return $this->render('blog/quienesSomos.html.twig');
     }
+
 
 
 //    -------------------------------------------------------------------------------------
