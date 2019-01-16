@@ -77,7 +77,6 @@ class FaceBookAuthenticator extends SocialAuthenticator
         $user->setRegisteredAt();
         $user->setUserOf('facebook');
         $user->setRoles(['ROLE_USER']);
-
         if (isset($_SESSION['_sf2_attributes']['redirectedBy'])) {
             $publisher = $this->em->getRepository(User::class)
                 ->find($_SESSION['_sf2_attributes']['redirectedBy']);
