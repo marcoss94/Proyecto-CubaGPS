@@ -38,15 +38,14 @@ class TransactionController extends Controller
         $payment->setCurrencyCode('USD');
         $payment->setTotalAmount($amount . '00'); //  1.23 EUR
         $payment->setDescription('CubaGPS transaction');
-        $payment->setClientId('AdMblov1-V097nTxvwzczfUPVbmAUfesl443dOp0l03OS8hulcGWF3jG2XHsYT4g2RaT7J5_k6qPwQ1-');
-        $payment->setClientEmail('cubagps@yahoo.com');
+        $payment->setClientId('asdasdasdasdasd');
+        $payment->setClientEmail('lemuelSB@gmail.com');
         $storage->update($payment);
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
             $gatewayName,
             $payment,
             'done' // the route to redirect after capture
         );
-
         return $this->redirect($captureToken->getTargetUrl());
     }
 
