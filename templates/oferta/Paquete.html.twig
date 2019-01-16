@@ -281,7 +281,7 @@ padding-top: 0px;">
                         {% if app.user %}
                             <div class="form-group">
                                 <input type="hidden" id="objectId" name="targetId" value="{{ object.id }}">
-                                <input type="hidden" id="objectType" name="type" value="paquete">
+                                <input type="hidden" id="objectType" name="type" value="component">
                                 <input type="hidden" id="userId" name="user" value="{{ app.user.id }}">
                                 <textarea class="form-control" id="commentArea"
                                           placeholder="{{ app.session.get('language') == 'es'? 'Tu Comentario ':'Your Comment ' }}*"
@@ -543,9 +543,9 @@ padding-top: 0px;">
             var comment = $('#commentArea').val();
             var userId = $('#userId').val();
             if (comment == '') {
-                alert('debe escribir un comentario');
-                $("#textoWarningGrande").text('Algo acaba de suceder');
-                $("#textoWarning").text('Debe escribir un comentario');
+                $("#textoWarningGrande").text('Error');
+                var text = '{{ app.session.get('language')=='es' ? 'Debe escribir un comentario': 'You must write a comment' }}';
+                $("#textoWarning").text(text);
                 $('.Alertwarning').animate({top: "0"}, 500);
             } else {
                 var data = {targetId: objectId, type: objectType, text: comment, userId: userId}

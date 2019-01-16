@@ -745,10 +745,10 @@
             var comment = $('#commentArea').val();
             var userId = $('#userId').val();
             if (comment == '') {
-                alert('debe escribir un comentario');
-                $("#textoWarningGrande").text('Algo acaba de suceder');
-                $("#textoWarning").text('Debe escribir un comentario');
-                $('.Alertwarning').animate({top:"0"}, 500);
+                $("#textoWarningGrande").text('Error');
+                var text = '{{ app.session.get('language')=='es' ? 'Debe escribir un comentario': 'You must write a comment' }}';
+                $("#textoWarning").text(text);
+                $('.Alertwarning').animate({top: "0"}, 500);
             } else {
                 var data = {targetId: objectId, type: objectType, text: comment, userId: userId}
                 $.ajax({

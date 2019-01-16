@@ -73,7 +73,6 @@ class Comentario
 
     public function getTarget(){
         if($this->type=='component')return $this->component;
-        elseif ($this->type=='paquete')return $this->paquete;
         else return 'CubaGPS';
     }
 
