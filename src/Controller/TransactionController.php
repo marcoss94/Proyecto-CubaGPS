@@ -37,7 +37,7 @@ class TransactionController extends Controller
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('USD');
         $payment->setTotalAmount($amount . '00'); //  1.23 EUR
-        $payment->setDescription('CubaGPS transaction');
+        $payment->setDescription('Rent service');
         $payment->setClientId('464A9VYSJ999N');
         $payment->setClientEmail('cubagps@yahoo.com');
         $storage->update($payment);
