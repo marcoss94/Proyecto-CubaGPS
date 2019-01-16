@@ -661,10 +661,12 @@ border-color: #f9b501;"
                         {#///////////////// las bolas para poner lo q identifica la agencia#}
                         <div class="row text-center">
                             <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                                <a  href="{{ path('quienesSomos') }}" target="_blank">
+             <span class="fa-stack fa-4x">
+        <i class="sobreNosotros fas fa-circle fa-stack-2x text-primary"></i>
         <i class="fas fa-users fa-stack-1x fa-inverse"></i>
         </span>
+                                </a>
                                 <h4 class="service-heading info">{{ app.session.get('language') == 'es'? 'Quienes Somos':'About us' }}</h4>
                                 <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
@@ -673,10 +675,12 @@ border-color: #f9b501;"
                                 </h7>
                             </div>
                             <div class="col-md-4">
+                                <a class="sobreNosotros" href="{{ path('preguntasFrecuentes') }}" target="_blank">
         <span class="fa-stack fa-4x">
         <i class="fas fa-circle fa-stack-2x text-primary"></i>
         <i class="fas fa-question-circle fa-stack-1x fa-inverse"></i>
         </span>
+                                </a>
                                 <h4 class="service-heading info">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</h4>
                                 <h7 style="color: white">¿Necesito visado para viajar a Cuba?
                                     ¿Necesito documento Médico-Sanitario para entrar a Cuba?
@@ -684,10 +688,12 @@ border-color: #f9b501;"
                                 </h7>
                             </div>
                             <div class="col-md-4">
+                                <a class="sobreNosotros" href="{{ path('preguntasFrecuentes') }}" target="_blank">
         <span class="fa-stack fa-4x">
         <i class="fas fa-circle fa-stack-2x text-primary"></i>
         <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
         </span>
+                                </a>
                                 <h4 class="service-heading info">Web Security</h4>
                                 <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                     Minima
