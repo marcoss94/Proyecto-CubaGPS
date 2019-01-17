@@ -152,6 +152,7 @@
 
                     {% if app.user %}
                         {% if cart and reserves %}
+                            cart and reserves
                             <div class="dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -168,12 +169,14 @@
                                 </div>
                             </div>
                         {% elseif cart %}
+                            only cart
                             <li class="nav-item">
                                 <a class="nav-link" style="color: red" href="{{ path('show_confirmed_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
                                 </a>
                             </li>
                         {% elseif reserves %}
+                            only reserves
                             <li class="nav-item">
                                 <a class="nav-link" style="color: red" href="#">
                                     <i class="fas fa-shopping-cart"></i>
