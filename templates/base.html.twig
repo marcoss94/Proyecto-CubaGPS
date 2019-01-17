@@ -533,11 +533,13 @@ border-color: #f9b501">
                                     aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     </div>
                     <div class="modal-body">
+                        <i class="fab fa-facebook-f"></i>
                         <a class="btn btn-info btn-xl botonFace botonInicioSesion"
                            href="{{ path('connect_facebook_start') }}">{{ app.session.get('language') == 'es'? 'Ingresa con Facebook':'Log in with Facebook' }}</a>
                         {#<a href="{{ path('connect_facebook_start') }}">{{ app.session.get('language') == 'es'? 'Inicia Sesión con Facebook':'Log in with Facebook' }}</a>#}
                     </div>
                     <div class="modal-body">
+                        <i class="fab fa-google"></i>
                         <a class="btn btn-danger btn-xl botonGoogle botonInicioSesion"
                            href="{{ path('connect_google') }}">{{ app.session.get('language') == 'es'? 'Ingresa con Google':'Log in with Google' }}</a></a>
                     </div>
