@@ -162,12 +162,12 @@
                                     <a class="nav-link"
                                        href="{{ path('show_confirmed_reserves') }}"
                                        style="color: red">
-                                        <span id="notification_count">3</span>
+
                                         {{ app.session.get('language') == 'es'? 'Reservas Pendientes':'Pending Reserves' }}</a>
                                     <a class="nav-link"
                                        href="{{ path('show_active_reserves') }}"
                                        style="color: green">
-                                        <span id="notification_count">3</span>
+                                        
                                         {{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
                                 </div>
                             </div>
@@ -181,6 +181,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('show_active_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
+                                    <span id="notification_count">3</span>
                                 </a>
                             </li>
                         {% endif %}
@@ -349,12 +350,12 @@
                                     <a class="nav-link"
                                        href="{{ path('show_confirmed_reserves') }}"
                                        style="color: red">
-                                        <span id="notification_count">3</span>
+
                                         {{ app.session.get('language') == 'es'? 'Reservas Pendientes':'Pending Reserves' }}</a>
                                     <a class="nav-link"
                                        href="{{ path('show_active_reserves') }}"
                                        style="color: green">
-                                        <span id="notification_count">3</span>
+
                                         {{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
                                 </div>
                             </div>
@@ -362,6 +363,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" style="color: red" href="{{ path('show_confirmed_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
+                                    <span id="notification_count">3</span>
                                 </a>
                             </li>
                         {% elseif app.session.get('reserves') %}
