@@ -163,7 +163,7 @@
                                        href="{{ path('show_confirmed_reserves') }}"
                                        style="color: red">{{ app.session.get('language') == 'es'? 'Reservas Pendientes':'Pending Reserves' }}</a>
                                     <a class="nav-link"
-                                       href="#"
+                                       href="{{ path('show_active_reserves') }}"
                                        style="color: green">{{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
                                 </div>
                             </div>
@@ -175,7 +175,7 @@
                             </li>
                         {% elseif reserves %}
                             <li class="nav-item">
-                                <a class="nav-link"  href="#">
+                                <a class="nav-link" href="{{ path('show_active_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
                                 </a>
                             </li>
@@ -334,14 +334,35 @@
 
                     {% if app.user %}
 
-                        <li class="nav-item">
-
-                            <a class="nav-link" href="{{ path('show_confirmed_reserves') }}">
-                                <i class="fas fa-shopping-cart"></i>
-                            </a>
-
-
-                        </li>
+                        {% if cart and reserves %}
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-shopping-cart" style="color: red"></i>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                     style="background-color: #212529;">
+                                    <a class="nav-link"
+                                       href="{{ path('show_confirmed_reserves') }}"
+                                       style="color: red">{{ app.session.get('language') == 'es'? 'Reservas Pendientes':'Pending Reserves' }}</a>
+                                    <a class="nav-link"
+                                       href="{{ path('show_active_reserves') }}"
+                                       style="color: green">{{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
+                                </div>
+                            </div>
+                        {% elseif cart %}
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: red" href="{{ path('show_confirmed_reserves') }}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </li>
+                        {% elseif reserves %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('show_active_reserves') }}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </li>
+                        {% endif %}
 
                         <li class="nav-item">
                             <div class="dropdown">

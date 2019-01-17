@@ -1,0 +1,220 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Reserva ':'Reserve' }}!{% endblock %}
+
+ {% block stylesheets %}
+
+     {{ parent() }}
+
+
+ {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+    <section class="bg-light" id="portfolio">
+        <div class="container">
+
+            {% for r in reserves %}
+                {% if r.type == 'esp' %}
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'Since' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Descripcion':'Description' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
+                            <td>{{ r.startAt|date("d/m/Y") }}</td>
+                            <td>{{ r.endAt|date("d/m/Y") }}</td>
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ r.descripcion }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="separador"></div>
+                {% elseif r.commponent.getType == 'Excursion' %}
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
+                            <td>{{ r.startAt|date("d/m/Y") }}</td>
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="separador"></div>
+                {% elseif r.commponent.getType == 'Paquete' %}
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Inicia':'Start At' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Termina':'End At' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
+                            <td>{{ r.startAt|date("d/m/Y") }}</td>
+                            <td>{{ r.endAt|date("d/m/Y") }}</td>
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="separador"></div>
+                {% elseif r.commponent.getType == 'Casa' %}
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Salida':'Departure' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
+                            <td>{{ r.startAt|date("d/m/Y") }}</td>
+                            <td>{{ r.endAt|date("d/m/Y") }}</td>
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
+                        </tr>
+                        </tbody>
+                        <thead class="thead-light">
+                        <tr>
+                            <th colspan="6">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</th>
+                        </tr>
+                        </thead>
+                        {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
+                            <tr>
+                                <td colspan="4">{{ h }}</td>
+                                <td colspan="2">{{ '€'~h.precio * r.getDias }}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                    <div class="separador"></div>
+                {% else %}
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+
+                                    <img
+                                            src="{{ asset(r.commponent.getMainImage.min) }}"
+                                            class="img-fluid avat"
+                                            style=" height: 35px; margin-right: 20px; width: 35px;"
+                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
+                            </th>
+                            <td>{{ r.startAt|date("d/m/Y") }}</td>
+                            {% if r.type == 'trans' %}
+                                <td>{{ r.desde }}</td>
+                                <td>{{ r.hasta }}</td>
+                            {% else %}
+                                <td>{{ hora[r.horaInicial] }}</td>
+                                <td>{{ hora[r.horaFinal] }}</td>
+                            {% endif %}
+                            <td>{{ r.cantPersonas }}</td>
+                            <td>{{ '€'~r.costo }}</td>
+                            <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="separador"></div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+
+    </section>
+{% endblock %}
+
+
+{% block footer %}
+    {{ parent() }}
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+
+{% endblock %}
+
+
+
+
+
