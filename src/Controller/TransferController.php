@@ -200,7 +200,7 @@ class TransferController extends Controller
             ->setFrom('contact@travelcubagps.com')
             ->setBody($this->renderView(
                 'email_confirmacion/notificar_admin.html.twig',
-                ['reserve' => $reserva]
+                ['reserva' => $reserva]
             ),
                 'text/html');
         $mailer->send($message);
