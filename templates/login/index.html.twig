@@ -45,7 +45,7 @@
                         <div class="form-label-group">
                             {#<button class="botonGoogle botonInicioSesion" type="button" href="{{ path('connect_facebook_start') }}">Ingresa con Google</button>#}
 
-                            <a class="btn btn-primary btn-xl botonFace botonInicioSesion"  href="{{ path('facebook_forced') }}"><i class="fab fa-facebook-f" style="color: white; padding-right: 20px;">{{ app.session.get('language') == 'es'? 'Ingresa con Facebook':'Log in with Facebook' }}</a>
+                            <a class="btn btn-primary btn-xl botonFace botonInicioSesion"  href="{{ path('facebook_forced') }}"><i class="fab fa-facebook-f" style="color: white; padding-right: 20px;"></i>{{ app.session.get('language') == 'es'? 'Ingresa con Facebook':'Log in with Facebook' }}</a>
 
                             {#<a href="{{ path('connect_facebook_start') }}">#}
                                 {#<img class="botonInicioSesion" src="{{ asset('build/img/inicio_sesion_facebook.png') }}" alt="">#}
