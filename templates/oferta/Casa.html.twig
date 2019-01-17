@@ -704,9 +704,7 @@
                     : 'Enter an email address';
                 var head= ($('#lang').val() == 'es') ? 'Falta información'
                     : 'Information Missing';
-                $("#textoErrorGrande").text(head);
-                $("#textoError").text(text);
-                $('.Alerterror').animate({top:"0"}, 500);
+                show_alert_box("error", head, text);
                 return;
             }
             {% endif %}
@@ -718,9 +716,7 @@
                         : 'The departure date can not be before the date of entry';
                     var head= ($('#lang').val() == 'es') ? 'Falta información'
                         : 'Information Missing';
-                    $("#textoErrorGrande").text(head);
-                    $("#textoError").text(text);
-                    $('.Alerterror').animate({top:"0"}, 500);
+                    show_alert_box("error", head, text);
                     return;
                 }
             }
@@ -739,9 +735,7 @@
                     : 'You must select the entry and departure dates';
                 var head= ($('#lang').val() == 'es') ? 'Falta información'
                     : 'Information Missing';
-                $("#textoErrorGrande").text(head);
-                $("#textoError").text(text);
-                $('.Alerterror').animate({top:"0"}, 500);
+                show_alert_box("error", head, text);
                 return;
             }
             if (capacidad < cantN + cantA) {
@@ -749,9 +743,7 @@
                     : 'The amount of people exceeds the capacity of the selected rooms';
                 var head= ($('#lang').val() == 'es') ? 'Falta información'
                     : 'Information Missing';
-                $("#textoErrorGrande").text(head);
-                $("#textoError").text(text);
-                $('.Alerterror').animate({top:"0"}, 500);
+                show_alert_box("error", head, text);
                 return;
             }
 
