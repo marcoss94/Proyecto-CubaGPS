@@ -24,6 +24,7 @@
 
             {% for r in reserves %}
                 {% if r.type == 'esp' %}
+            <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
@@ -53,8 +54,10 @@
                         </tr>
                         </tbody>
                     </table>
+            </div>
                     <div class="separador"></div>
                 {% elseif r.commponent.getType == 'Excursion' %}
+            <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
@@ -81,8 +84,10 @@
                         </tr>
                         </tbody>
                     </table>
+            </div>
                     <div class="separador"></div>
                 {% elseif r.commponent.getType == 'Paquete' %}
+            <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
@@ -111,8 +116,10 @@
                         </tr>
                         </tbody>
                     </table>
+            </div>
                     <div class="separador"></div>
                 {% elseif r.commponent.getType == 'Casa' %}
+            <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
@@ -152,8 +159,10 @@
                         {% endfor %}
 
                     </table>
+            </div>
                     <div class="separador"></div>
                 {% else %}
+            <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead class="thead-dark">
                         <tr>
@@ -190,6 +199,7 @@
                         </tr>
                         </tbody>
                     </table>
+            </div>
                     <div class="separador"></div>
                 {% endif %}
 
