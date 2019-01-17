@@ -345,24 +345,25 @@
                                 <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-shopping-cart" style="color: red"></i>
+                                    <span id="notification_count" style="background-color: rgb(207, 61, 44)">!</span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
                                      style="background-color: #212529;">
                                     <a class="nav-link"
-                                       href="{{ path('show_confirmed_reserves') }}"
-                                       style="color: red">
+                                       href="{{ path('show_confirmed_reserves') }}">
 
                                         {{ app.session.get('language') == 'es'? 'Reservas Pendientes':'Pending Reserves' }}</a>
+                                    <span id="notification_count" style="background-color: rgb(207, 61, 44)">!</span>
                                     <a class="nav-link"
-                                       href="{{ path('show_active_reserves') }}"
-                                       style="color: green">
+                                       href="{{ path('show_active_reserves') }}">
 
                                         {{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
+
                                 </div>
                             </div>
                         {% elseif app.session.get('cart') %}
                             <li class="nav-item">
-                                <a class="nav-link" style="color: red" href="{{ path('show_confirmed_reserves') }}">
+                                <a class="nav-link"  href="{{ path('show_confirmed_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
                                     <span id="notification_count" style="background-color: rgb(207, 61, 44)">!</span>
                                 </a>
@@ -371,7 +372,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('show_active_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <span id="notification_count" style="background-color:rgb(44, 207, 51)">!</span>
+                                    <span id="notification_count" style="background-color: rgb(207, 61, 44)">!</span>
                                 </a>
                             </li>
                         {% endif %}
