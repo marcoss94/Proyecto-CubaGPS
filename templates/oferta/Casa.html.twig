@@ -725,9 +725,7 @@
                     : 'You must select at least one room';
                 var head= ($('#lang').val() == 'es') ? 'Falta información'
                     : 'Information Missing';
-                $("#textoErrorGrande").text(head);
-                $("#textoError").text(text);
-                $('.Alerterror').animate({top:"0"}, 500);
+                show_alert_box("error", head, text);
                 return;
             }
             if (salida.toTimeString() == 'Invalid Date' || entrada.toTimeString() == 'Invalid Date') {
