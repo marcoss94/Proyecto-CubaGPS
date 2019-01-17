@@ -92,6 +92,8 @@ class BlogController extends AbstractController
             $cart = $reservaRepository->findOneBy(['usuario' => $user, 'status' => 'pending']) ? true : false;
             $reservasActivas = $reservaRepository->findOneBy(['usuario' => $user, 'status' => 'payed']) ? true : false;
         }
+        $this->get('session')->set('cart',$cart);
+        $this->get('session')->set('reserves',$reservasActivas);
         //------------------------------------------------------------------------------
         return $this->render('blog/index.html.twig', [
             'base' => 'true',
