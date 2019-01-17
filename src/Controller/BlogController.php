@@ -85,6 +85,8 @@ class BlogController extends AbstractController
         $comments = $comentarioRepository->findBy(['type' => 'sitio', 'revisado' => true], ['publishedAt' => 'ASC'], 6);
         $message = $request->get('message');
         //--------------Reservas-----------------------------------//
+        $cart=false;
+        $reservs=false;
         if (!is_null($this->getUser())) {
             $user = $this->getUser();
             $cart = $reservaRepository->findOneBy(['usuario' => $user, 'status' => 'pending']) ? true : false;
