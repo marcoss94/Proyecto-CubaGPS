@@ -280,9 +280,9 @@ class ReserveController extends Controller
     public function activeReserves(ReservaRepository $reservaRepository)
     {
         $user = $this->getUser();
-        $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => ['confirmed', 'payed']]);
+        $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => 'payed']);
         if (count($reserves)) {
-            return $this->render('reserve/show_confirmed_reserve.html.twig', ['reserves' => $reserves, 'base' => 'false']);
+            return $this->render('reserve/show_active_reserve.html.twig', ['reserves' => $reserves, 'base' => 'false']);
         } else {
             return $this->redirectToRoute('blog_index');
         }
