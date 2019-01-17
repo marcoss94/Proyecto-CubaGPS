@@ -175,14 +175,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" style="color: red" href="{{ path('show_confirmed_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <span id="notification_count">3</span>
+                                    <span id="notification_count" style="background-color: rgb(207, 61, 44)">!</span>
                                 </a>
                             </li>
                         {% elseif reserves %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('show_active_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <span id="notification_count">3</span>
+                                    <span id="notification_count" style="background-color:rgb(44, 207, 51)">!</span>
                                 </a>
                             </li>
                         {% endif %}
@@ -364,14 +364,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" style="color: red" href="{{ path('show_confirmed_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <span id="notification_count">3</span>
+                                    <span id="notification_count" style="background-color: rgb(207, 61, 44)">!</span>
                                 </a>
                             </li>
                         {% elseif app.session.get('reserves') %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('show_active_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
-                                    <span id="notification_count">3</span>
+                                    <span id="notification_count" style="background-color:rgb(44, 207, 51)">!</span>
                                 </a>
                             </li>
                         {% endif %}
