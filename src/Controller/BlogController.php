@@ -85,9 +85,11 @@ class BlogController extends AbstractController
         }
         $comments=$comentarioRepository->findBy(['type'=>'sitio','revisado'=>true],['publishedAt'=>'ASC'],6);
         $message=$request->get('message');
+        //--------------Reservas-----------------------------------//
         $user=$this->getUser();
         $cart=$reservaRepository->findOneBy(['usuario'=>$this->getUser(),'status'=>'pending'])?true:false;
         $reservasActivas=$reservaRepository->findOneBy(['usuario'=>$this->getUser(),'status'=>'payed'])?true:false;
+        //------------------------------------------------------------------------------
         return $this->render('blog/index.html.twig', [
             'base' => 'true',
             'carros' => $carros,

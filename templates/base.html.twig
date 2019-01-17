@@ -4,12 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="{% block descripcion %}{{ app.session.get('language') == 'es'? 'Descropción General':'Official' }}{% endblock %}">
+    <meta name="description"
+          content="{% block descripcion %}{{ app.session.get('language') == 'es'? 'Descropción General':'Official' }}{% endblock %}">
     <meta name="author" content="Travel Cuba GPS">
     <meta name=”google” content=”nositelinkssearchbox”>
     <meta name=”generator” content="Symfony 4.0">
 
-    <title>Travel {% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}</title>
+    <title>
+        Travel {% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}</title>
 
     {% block stylesheets %}
         <!-- Bootstrap core CSS -->
@@ -50,7 +52,7 @@
 
         <div class="container" id="page-top">
 
-            <a class="navbar-brand js-scroll-trigger"  href="#page-top"><img src="{{ asset('build/img/logo.png') }}"
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{ asset('build/img/logo.png') }}"
                                                                             width="140" height="50"
                                                                             class="d-inline-block align-top" alt="">
             </a>
@@ -105,7 +107,7 @@
                                 <a class="nav-link js-scroll-trigger "
                                    href="#casas">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
                                 {#<a class="nav-link js-scroll-trigger "#}
-                                   {#href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
+                                {#href="#hoteles">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
                                 <a class="nav-link js-scroll-trigger "
                                    href="#paquetes">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
                                 <a class="nav-link js-scroll-trigger "
@@ -149,39 +151,59 @@
 
 
                     {% if app.user %}
-
-                    <li class="nav-item">
-
-                        <a class="nav-link" href="{{ path('show_confirmed_reserves') }}" >
-                            <i class="fas fa-shopping-cart"></i>
-                        </a>
-
-
-                    </li>
-
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {#<img src="{{ asset(app.user.picture) }}"#}
-                                <img src="{{ asset(app.user.picture) }}"
-                                     class="img-fluid rounded-circle avat"
-                                     style=" height: 35px; border-bottom-left-radius: 50%;
-                                    border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
-                                 style="background-color: #212529;">
-                                <a class="nav-link"
-                                   href="{{ path('security_logout') }}">{{ app.session.get('language') == 'es'? 'Cerrar Sesión':'Logout' }}</a>
-                                {% if is_granted('ROLE_PUBLISHER') %}
-                                <a class="nav-link js-scroll-trigger" href="" data-toggle="modal"
-                                   data-target="#linkModal">
-                                    {{ app.session.get('language') == 'es'? 'Enlace Único':'Unic Link' }}
+                        {% if cart and reserves %}
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-shopping-cart" style="color: red"></i>
                                 </a>
-                                {% endif %}
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                     style="background-color: #212529;">
+                                    <a class="nav-link"
+                                       href="{{ path('show_confirmed_reserves') }}"
+                                       style="color: red">{{ app.session.get('language') == 'es'? 'Reservas Pendientes':'Pending Reserves' }}</a>
+                                    <a class="nav-link"
+                                       href="#"
+                                       style="color: green">{{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
+                                </div>
                             </div>
-                        </div>
-                    </li>
+                        {% elseif cart %}
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: red" href="{{ path('show_confirmed_reserves') }}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </li>
+                        {% elseif reserves %}
+                            <li class="nav-item">
+                                <a class="nav-link" style="color: red" href="#">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </li>
+                        {% endif %}
+
+                        <li class="nav-item">
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {#<img src="{{ asset(app.user.picture) }}"#}
+                                    <img src="{{ asset(app.user.picture) }}"
+                                         class="img-fluid rounded-circle avat"
+                                         style=" height: 35px; border-bottom-left-radius: 50%;
+                                    border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
+                                     style="background-color: #212529;">
+                                    <a class="nav-link"
+                                       href="{{ path('security_logout') }}">{{ app.session.get('language') == 'es'? 'Cerrar Sesión':'Logout' }}</a>
+                                    {% if is_granted('ROLE_PUBLISHER') %}
+                                        <a class="nav-link js-scroll-trigger" href="" data-toggle="modal"
+                                           data-target="#linkModal">
+                                            {{ app.session.get('language') == 'es'? 'Enlace Único':'Unic Link' }}
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
 
                     {% else %}
                         <li class="nav-item">
@@ -190,11 +212,6 @@
                             </a>
                         </li>
                     {% endif %}
-
-
-
-
-
 
 
                 </ul>
@@ -281,7 +298,7 @@
                                 <a class="nav-link js-scroll-trigger "
                                    href="{{ path('lista',{'type':'casa'}) }}">{{ app.session.get('language') == 'es'? 'Casas':'Houses' }}</a>
                                 {#<a class="nav-link js-scroll-trigger "#}
-                                   {#href="">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
+                                {#href="">{{ app.session.get('language') == 'es'? 'Hoteles':'Hotels' }}</a>#}
                                 <a class="nav-link js-scroll-trigger "
                                    href="{{ path('lista',{'type':'paquete'}) }}">{{ app.session.get('language') == 'es'? 'Paquetes':'Packages' }}</a>
                                 <a class="nav-link js-scroll-trigger "
@@ -319,7 +336,7 @@
 
                         <li class="nav-item">
 
-                            <a class="nav-link" href="{{ path('show_confirmed_reserves') }}" >
+                            <a class="nav-link" href="{{ path('show_confirmed_reserves') }}">
                                 <i class="fas fa-shopping-cart"></i>
                             </a>
 
@@ -375,9 +392,9 @@
     <!-- Contact -->
 
     {#<div class="popupunder alert alert-success fade in">#}
-        {#<button type="button" class="close close-sm" data-dismiss="alert"><i#}
-                    {#class="glyphicon glyphicon-remove"></i></button>#}
-        {#<strong>Success : </strong> The update process has been completed successfull!#}
+    {#<button type="button" class="close close-sm" data-dismiss="alert"><i#}
+    {#class="glyphicon glyphicon-remove"></i></button>#}
+    {#<strong>Success : </strong> The update process has been completed successfull!#}
     {#</div>#}
 
     <section id="contact">
@@ -411,10 +428,10 @@
                     </div>
 
                     {#<ul id="trigger-list">#}
-                        {#<li><a href="#b" class="trigger Alertinfo-trigger">Info</a></li>#}
-                        {#<li><a href="#b" class="trigger Alerterror-trigger">Error</a></li>#}
-                        {#<li><a href="#b" class="trigger Alertwarning-trigger">Warning</a></li>#}
-                        {#<li><a href="#b" class="trigger Alertsuccess-trigger">Success</a></li>#}
+                    {#<li><a href="#b" class="trigger Alertinfo-trigger">Info</a></li>#}
+                    {#<li><a href="#b" class="trigger Alerterror-trigger">Error</a></li>#}
+                    {#<li><a href="#b" class="trigger Alertwarning-trigger">Warning</a></li>#}
+                    {#<li><a href="#b" class="trigger Alertsuccess-trigger">Success</a></li>#}
                     {#</ul>#}
 
 
@@ -474,8 +491,12 @@ border-color: #f9b501">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span>{{ app.session.get('language') == 'es'? 'Iconos diseñados por':'Icons designed by' }} <a href="http://www.freepik.com" title="Freepik">Freepik</a> {{ app.session.get('language') == 'es'? 'desde':'from' }}  <a
-                                href="https://www.flaticon.es/" title="Flaticon">www.flaticon.com</a> {{ app.session.get('language') == 'es'? 'con licencia':'with license' }} <a
+                    <span>{{ app.session.get('language') == 'es'? 'Iconos diseñados por':'Icons designed by' }} <a
+                                href="http://www.freepik.com"
+                                title="Freepik">Freepik</a> {{ app.session.get('language') == 'es'? 'desde':'from' }} <a
+                                href="https://www.flaticon.es/"
+                                title="Flaticon">www.flaticon.com</a> {{ app.session.get('language') == 'es'? 'con licencia':'with license' }}
+                        <a
                                 href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
                                 target="_blank">CC 3.0 BY</a></span>
 
@@ -502,16 +523,21 @@ border-color: #f9b501">
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
                         <li class="list-inline-item">
-                            <a href="{{ path('politicas') }}" target="_blank">{{ app.session.get('language') == 'es'? 'Políticas de Privacidad':'Privacy Policy' }}</a>
+                            <a href="{{ path('politicas') }}"
+                               target="_blank">{{ app.session.get('language') == 'es'? 'Políticas de Privacidad':'Privacy Policy' }}</a>
 
                         </li>
                         <li class="list-inline-item">
-                            <a href="{{ path('reservaCancelacion') }}" target="_blank">{{ app.session.get('language') == 'es'? 'Reserva y Cancelación':'Reservation and Cancellation' }}</a>
+                            <a href="{{ path('reservaCancelacion') }}"
+                               target="_blank">{{ app.session.get('language') == 'es'? 'Reserva y Cancelación':'Reservation and Cancellation' }}</a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="{{ path('preguntasFrecuentes') }}" target="_blank">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</a>
-                        </li><li class="list-inline-item">
-                            <a href="{{ path('quienesSomos') }}" target="_blank">{{ app.session.get('language') == 'es'? 'Quienes Somos':'About us' }}</a>
+                            <a href="{{ path('preguntasFrecuentes') }}"
+                               target="_blank">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{ path('quienesSomos') }}"
+                               target="_blank">{{ app.session.get('language') == 'es'? 'Quienes Somos':'About us' }}</a>
                         </li>
 
                     </ul>
@@ -519,8 +545,6 @@ border-color: #f9b501">
             </div>
             <span class="copyright">Copyright &copy; CubaGPS 2018</span>
         </div>
-
-
 
 
         <div class="portfolio-modal-sm modal fade" id="loginModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -535,13 +559,17 @@ border-color: #f9b501">
                     <div class="modal-body">
 
                         <a class="btn btn-info btn-xl botonFace botonInicioSesion"
-                           href="{{ path('connect_facebook_start') }}"><i class="fab fa-facebook-f" style="color: white; padding-right: 20px;"></i> {{ app.session.get('language') == 'es'? 'Ingresa con Facebook':'Log in with Facebook' }}</a>
+                           href="{{ path('connect_facebook_start') }}"><i class="fab fa-facebook-f"
+                                                                          style="color: white; padding-right: 20px;"></i> {{ app.session.get('language') == 'es'? 'Ingresa con Facebook':'Log in with Facebook' }}
+                        </a>
                         {#<a href="{{ path('connect_facebook_start') }}">{{ app.session.get('language') == 'es'? 'Inicia Sesión con Facebook':'Log in with Facebook' }}</a>#}
                     </div>
                     <div class="modal-body">
 
                         <a class="btn btn-danger btn-xl botonGoogle botonInicioSesion"
-                           href="{{ path('connect_google') }}"> <i class="fab fa-google" style="color: white; padding-right: 20px;"></i> {{ app.session.get('language') == 'es'? 'Ingresa con Google':'Log in with Google' }}</a></a>
+                           href="{{ path('connect_google') }}"> <i class="fab fa-google"
+                                                                   style="color: white; padding-right: 20px;"></i> {{ app.session.get('language') == 'es'? 'Ingresa con Google':'Log in with Google' }}
+                        </a></a>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default"
@@ -587,8 +615,6 @@ border-color: #f9b501">
                         <button type="button" class="close" style="float: right" data-dismiss="modal"><span
                                     aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                     </div>
-
-
 
 
                     <input type="hidden" name="status" value="search">
@@ -767,44 +793,40 @@ border-color: #f9b501">
 
         {#---------------------------------------------------------#}
 
-        var myMessages = ['Alertinfo','Alertwarning','Alerterror','Alertsuccess']; // define the messages types
-        function hideAllMessages()
-        {
+        var myMessages = ['Alertinfo', 'Alertwarning', 'Alerterror', 'Alertsuccess']; // define the messages types
+        function hideAllMessages() {
             var messagesHeights = new Array(); // this array will store height for each
 
-            for (i=0; i<myMessages.length; i++)
-            {
+            for (i = 0; i < myMessages.length; i++) {
                 messagesHeights[i] = $('.' + myMessages[i]).outerHeight();
                 $('.' + myMessages[i]).css('top', -messagesHeights[i]); //move element outside viewport
             }
         }
 
-        function showMessage(type)
-        {
-            $('.'+ type +'-trigger').click(function(){
+        function showMessage(type) {
+            $('.' + type + '-trigger').click(function () {
                 hideAllMessages();
-                $('.'+type).animate({top:"0"}, 500);
+                $('.' + type).animate({top: "0"}, 500);
             });
         }
-//
-        $(document).ready(function(){
+        //
+        $(document).ready(function () {
 
             // Initially, hide them all
             hideAllMessages();
 
             // Show message
-            for(var i=0;i<myMessages.length;i++)
-            {
+            for (var i = 0; i < myMessages.length; i++) {
                 showMessage(myMessages[i]);
             }
 
             // When message is clicked, hide it
-            $('.message').click(function(){
+            $('.message').click(function () {
                 $(this).animate({top: -$(this).outerHeight()}, 500);
             });
 //
         });
-///-----------------------------------------------------------------------/
+        ///-----------------------------------------------------------------------/
 
         $(document).ready(function () {
             $('#inputEntrada').attr('min', yyyymmdd());
@@ -847,30 +869,30 @@ border-color: #f9b501">
             var tel = $('#phone').val();
             var email = $('#email').val();
             var texto = $('#messageArea').val();
-            if (nombre.length<4) {
-                var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
-                var body='{{ app.session.get('language') == 'es'?
+            if (nombre.length < 4) {
+                var head = '{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
+                var body = '{{ app.session.get('language') == 'es'?
                 'Para contactarnos es necesario que insertes tu nombre'
                 :'To contact us you need to insert your name' }}';
-                show_alert_box("error",head,body);
+                show_alert_box("error", head, body);
             } else if (!email.match(emailPattern)) {
-                var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
-                var body='{{ app.session.get('language') == 'es'?
+                var head = '{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
+                var body = '{{ app.session.get('language') == 'es'?
                 'Para contactarnos es necesario que insertes tu número de correo electrónico'
                 :'To contact us you need to insert your email' }}';
-                show_alert_box("error",head,body);
+                show_alert_box("error", head, body);
             } else if (!tel.match(telPattern)) {//
-                var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
-                var body='{{ app.session.get('language') == 'es'?
+                var head = '{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
+                var body = '{{ app.session.get('language') == 'es'?
                 'Para contactarnos es necesario que insertes tu número de teléfono'
                 :'To contact us you need to insert your phone number' }}';
-                show_alert_box("error",head,body);
-            }else if(texto.length<20){
-                var head='{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
-                var body='{{ app.session.get('language') == 'es'?
+                show_alert_box("error", head, body);
+            } else if (texto.length < 20) {
+                var head = '{{ app.session.get('language') == 'es'? 'Lo sentimos':'Sorry' }}';
+                var body = '{{ app.session.get('language') == 'es'?
                 'Para contactarnos es necesario que insertes un mensage más extenso'
                 :'To contact us it is necessary that you insert a more extensive message' }}';
-                show_alert_box("error",head,body);
+                show_alert_box("error", head, body);
             } else {
                 var data = {nombre: nombre, tel: tel, email: email, text: texto}
                 $.ajax({
@@ -879,9 +901,9 @@ border-color: #f9b501">
                     data: data,
                     success: function (response) {
                         if (response.result) {//
-                            var head='{{ app.session.get('language') == 'es'? 'Gracias':'Thanks' }}';
-                            var body='{{ app.session.get('language') == 'es'? 'Su mensaje ha sido recibido correctamente':'Your message has been received correctly' }}';
-                            show_alert_box("success",head,body);
+                            var head = '{{ app.session.get('language') == 'es'? 'Gracias':'Thanks' }}';
+                            var body = '{{ app.session.get('language') == 'es'? 'Su mensaje ha sido recibido correctamente':'Your message has been received correctly' }}';
+                            show_alert_box("success", head, body);
 //
                         }
                     }
@@ -948,23 +970,23 @@ border-color: #f9b501">
                 $(target).show();
             });
         });
-        function show_alert_box(type,head,body){
-            if(type=="warning"){
+        function show_alert_box(type, head, body) {
+            if (type == "warning") {
                 $("#textoWarningGrande").text(head);
                 $("#textoWarning").text(body);
-                $('.Alertwarning').animate({top:"0"}, 500);
+                $('.Alertwarning').animate({top: "0"}, 500);
                 $('.Alertwarning').css("display", "block");
                 $('#messageArea').val('');
-            }else if(type=="error"){
+            } else if (type == "error") {
                 $("#textoErrorGrande").text(head);
                 $("#textoError").text(body);
-                $('.Alerterror').animate({top:"0"}, 500);
+                $('.Alerterror').animate({top: "0"}, 500);
                 $('.Alerterror').css("display", "block");
                 $('#messageArea').val('');
-            }else {
+            } else {
                 $("#textoSuccessGrande").text(head);
                 $("#textoSuccess").text(body);
-                $('.Alertsuccess').animate({top:"0"}, 500);
+                $('.Alertsuccess').animate({top: "0"}, 500);
                 $('.Alertsuccess').css("display", "block");
                 $('#messageArea').val('');
             }
