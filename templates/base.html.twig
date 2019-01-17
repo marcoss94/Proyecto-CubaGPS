@@ -348,10 +348,14 @@
                                      style="background-color: #212529;">
                                     <a class="nav-link"
                                        href="{{ path('show_confirmed_reserves') }}"
-                                       style="color: red">{{ app.session.get('language') == 'es'? 'Reservas Pendientes':'Pending Reserves' }}</a>
+                                       style="color: red">
+                                        <span id="notification_count">3</span>
+                                        {{ app.session.get('language') == 'es'? 'Reservas Pendientes':'Pending Reserves' }}</a>
                                     <a class="nav-link"
                                        href="{{ path('show_active_reserves') }}"
-                                       style="color: green">{{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
+                                       style="color: green">
+                                        <span id="notification_count">3</span>
+                                        {{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
                                 </div>
                             </div>
                         {% elseif app.session.get('cart') %}
