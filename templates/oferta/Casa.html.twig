@@ -762,6 +762,7 @@
         $('#createCommentButton').click(function () {
             var objectId = $('#objectId').val();
             var comment = $('#commentArea').val();
+            var objectType = $('#objectType').val();
             var userId = $('#userId').val();
             if (comment == '') {
                 var head = '{{ app.session.get('language') == 'es'? 'Falta información':'Text Missing' }}';
