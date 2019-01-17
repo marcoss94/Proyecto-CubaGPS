@@ -686,7 +686,7 @@
                     : 'Information Missing';
                 $("#textoErrorGrande").text(head);
                 $("#textoError").text(text);
-                $('.Alerterror').animate({top: "0"}, 500);
+                show_alert_box("error", head, text);
                 return;
             }
             $('#excForm').submit();

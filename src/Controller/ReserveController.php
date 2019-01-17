@@ -76,14 +76,14 @@ class ReserveController extends Controller
                 $confirmedReserves[] = $reserve;
             }
         }
-        $next=$user->getIdioma()=='es'?'index':'index_en';
+        $next = $user->getIdioma() == 'es' ? 'index' : 'index_en';
         $em->flush();
         $message = (new \Swift_Message())
             ->setSubject('Reservation')
             ->setTo($user->getEmail())
             ->setFrom('contact@travelcubagps.com')
             ->setBody($this->renderView(
-                'email_confirmacion/'.$next.'.html.twig',
+                'email_confirmacion/' . $next . '.html.twig',
                 ['user' => $user,
                     'adjuntos' => $adj,
                     'rechazos' => $rechazos,
@@ -108,7 +108,7 @@ class ReserveController extends Controller
     /**
      * @Route("/reserve/casa", name="reserva_casa")
      */
-    public function reserva_casa(CasaRepository $casaRepository, Request $request, UserRepository $userRepository,\Swift_Mailer $mailer)
+    public function reserva_casa(CasaRepository $casaRepository, Request $request, UserRepository $userRepository, \Swift_Mailer $mailer)
     {
         $em = $this->getDoctrine()->getManager();
         $casa = $casaRepository->find($request->get('objectId'));
@@ -146,14 +146,14 @@ class ReserveController extends Controller
         $message['body'] = ($user->getIdioma() == 'es') ?
             'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
             : 'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
-        $this->sendAdminEmail($reserve,$mailer);
+        $this->sendAdminEmail($reserve, $mailer);
         return $this->redirectToRoute('blog_index', ['message' => $message]);
     }
 
     /**
      * @Route("/reserve/excursion", name="reserva_excursion")
      */
-    public function reserva_excursion(ExcursionRepository $excursionRepository, Request $request, UserRepository $userRepository,\Swift_Mailer $mailer)
+    public function reserva_excursion(ExcursionRepository $excursionRepository, Request $request, UserRepository $userRepository, \Swift_Mailer $mailer)
     {
         $em = $this->getDoctrine()->getManager();
         $excursion = $excursionRepository->find($request->get('objectId'));
@@ -185,14 +185,14 @@ class ReserveController extends Controller
         $message['body'] = ($user->getIdioma() == 'es') ?
             'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
             : 'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
-        $this->sendAdminEmail($reserve,$mailer);
+        $this->sendAdminEmail($reserve, $mailer);
         return $this->redirectToRoute('blog_index', ['message' => $message]);
     }
 
     /**
      * @Route("/reserve/paquete", name="reserva_paquete")
      */
-    public function reserva_paquete(PaqueteRepository $paqueteRepository, UserRepository $userRepository, Request $request,\Swift_Mailer $mailer)
+    public function reserva_paquete(PaqueteRepository $paqueteRepository, UserRepository $userRepository, Request $request, \Swift_Mailer $mailer)
     {
         $em = $this->getDoctrine()->getManager();
         $paquete = $paqueteRepository->find($request->get('objectId'));
@@ -229,7 +229,7 @@ class ReserveController extends Controller
         $message['body'] = ($user->getIdioma() == 'es') ?
             'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
             : 'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
-        $this->sendAdminEmail($reserve,$mailer);
+        $this->sendAdminEmail($reserve, $mailer);
         return $this->redirectToRoute('blog_index', ['message' => $message]);
     }
 
@@ -269,6 +269,20 @@ class ReserveController extends Controller
         }
         if (count($preReserves)) {
             return $this->render('reserve/show_confirmed_reserve.html.twig', ['reserves' => $preReserves, 'base' => 'false', 'precio' => $price]);
+        } else {
+            return $this->redirectToRoute('blog_index');
+        }
+    }
+
+    /**
+     * @Route("/reserve/show_active_reserves", name="show_active_reserves")
+     */
+    public function activeReserves(ReservaRepository $reservaRepository)
+    {
+        $user = $this->getUser();
+        $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => ['confirmed', 'payed']]);
+        if (count($reserves)) {
+            return $this->render('reserve/show_confirmed_reserve.html.twig', ['reserves' => $reserves, 'base' => 'false']);
         } else {
             return $this->redirectToRoute('blog_index');
         }
@@ -392,7 +406,7 @@ class ReserveController extends Controller
     /**
      * @Route("/reserve/reserve_car_exc", name="reserve_car_exc")
      */
-    public function reserve_car_exc(Request $request, CarroRepository $carroRepository,\Swift_Mailer $mailer)
+    public function reserve_car_exc(Request $request, CarroRepository $carroRepository, \Swift_Mailer $mailer)
     {
         $car = $carroRepository->find($request->get('id'));
         $reserve = new Reserva();
@@ -417,7 +431,7 @@ class ReserveController extends Controller
         $message['body'] = ($user->getIdioma() == 'es') ?
             'Su solicitud de reserva será evaluada en breve, en menos de 24 horas le daremos respuesta'
             : 'Your reservation request will be evaluated shortly, in less than 24 hours we will give you an answer';
-        $this->sendAdminEmail($reserve,$mailer);
+        $this->sendAdminEmail($reserve, $mailer);
         return $this->redirectToRoute('blog_index', ['message' => $message]);
     }
 
@@ -463,7 +477,8 @@ class ReserveController extends Controller
         return $this->redirectToRoute('show_confirmed_reserves');
     }
 
-    public function sendAdminEmail(Reserva $reserva, $mailer){
+    public function sendAdminEmail(Reserva $reserva, $mailer)
+    {
 
         $message = (new \Swift_Message())
             ->setSubject('Solocitud de Reserva')
