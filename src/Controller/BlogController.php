@@ -86,7 +86,7 @@ class BlogController extends AbstractController
         $message = $request->get('message');
         //--------------Reservas-----------------------------------//
         $cart=false;
-        $reservs=false;
+        $reservasActivas=false;
         if (!is_null($this->getUser())) {
             $user = $this->getUser();
             $cart = $reservaRepository->findOneBy(['usuario' => $user, 'status' => 'pending']) ? true : false;
