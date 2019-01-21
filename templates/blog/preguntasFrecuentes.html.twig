@@ -2,7 +2,7 @@
 
 {% block descripcion %} Preguntas Frecuentes. ¿Necesito visado para viajar a Cuba? ¿Necesito documento Médico-Sanitario para entrar a Cuba? ¿Es fácil llamar desde Cuba al exterior?{% endblock %}
 
-{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}{% endblock %}
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':' Frequently Asked Questions' }}{% endblock %}
 
  {% block stylesheets %}
      {{ parent() }}
@@ -43,7 +43,7 @@
                 <div class="col-12 portfolio-item">
                     <div class=" infoOferta text-left">
                         {#Nombre#}
-                        <h2 class="nombreO">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</h2>
+                        <h2 class="nombreO">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequently Asked Questions' }}</h2>
 
                         {#provincia#}
 
@@ -51,79 +51,92 @@
                         {#Descripcion --------------------------------------------------------------------------------------#}
                         {#descripcion#}
 
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '1-	¿Necesito visado para viajar a Cuba?':'1- Do I need a visa to travel to Cuba?' }}</h3>
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '1-	¿Necesito una visa?':'1- Do I need a visa?' }}</h3>
 
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Si. Para viajar a Cuba es necesario disponer de una visa/visado. Permite una entrada al país y tiene una validez de 30 días, prorrogables por otros 30 días más una vez en estando en Cuba.':'Yes. To travel to Cuba it is necessary to have a visa / visa. It allows entry into the country and is valid for 30 days, renewable for another 30 days plus once in Cuba.' }}</p>
-
-
-                        <div class="separador"></div>
-
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '2-	¿Necesito documento Médico-Sanitario para entrar a Cuba?':'2- Do I need a Medical-Health document to enter Cuba?' }}</h3>
-
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Solo existen restricciones sanitarias para viajeros procedentes de países dodne existan la fiebre amarilla, el cólera endémico, o hayan sido declarados zona de infección por la Organización Mundial de la Salud (OMS), en cuyo caso se exige presentar el Certificado Internacional de Vacunación.':'There are only sanitary restrictions for travelers from countries where there is yellow fever, endemic cholera, or have been declared an infection zone by the World Health Organization (WHO), in which case it is required to present the International Certificate of Vaccination.' }}</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Sí, se requiere una visa de turista, tarjeta de turista, para todos los visitantes. Es válido por 30 días (90 días para los canadienses) y se puede extender dos veces mientras esté en Cuba. Las visas de turista se pueden comprar por adelantado en los consulados o agencias de turismo cubanos, e incluso en la aerolínea que ofrece viajes a Cuba. Las aerolíneas estadounidenses que ofrecen servicios a Cuba proporcionan visas a través de servicios de viajes afiliados. Su pasaporte debe ser válido por seis meses después de la fecha de entrada a Cuba.':'Yes, a tourist visa—tarjeta de turista—is required for all visitors. It’s valid for 30 days (90 days for Canadians) and can be extended twice while in Cuba. Tourist visas can be purchased in advance from Cuban consulates, or tourist agencies, and even the airline providing travel to Cuba. U.S. airlines that offer service to Cuba provide visas through affiliate travel services. Your passport must be valid for six months beyond the date of entry to Cuba.' }}</p>
 
 
                         <div class="separador"></div>
 
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '3-	¿Es fácil llamar desde Cuba al exterior? ':'3- Is it easy to call from abroad?' }}</h3>
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '2- ¿Es fácil llamar desde Cuba al exterior?':'2- It is easy to call from Cuba to other countries?' }}</h3>
 
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'En Cuba funciona el teléfono móvil con el sistema de roaming activado sin problemas, sin embargo las llamadas hacia o desde Cuba actualmente siguen siendo muy caras.
-Contacte con sus proveedores telefonía móvil la tarifa de precios. Para Llamar debes marcar el código del país (+53 Cuba) sin agregar el número cero y marcar el teléfono al que desea llamar.
-':'In Cuba the mobile phone works with the roaming system activated without problems, however the calls to or from Cuba currently are still very expensive.
-Contact your mobile phone providers the price rate. To Call you must dial the country code (+53 Cuba) without adding the number zero and dial the phone you want to call.' }}</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'En Cuba funciona el teléfono móvil con el sistema de roaming activado sin problemas, sin embargo las llamadas hacia o desde Cuba actualmente siguen siendo muy caras. Contacte con sus proveedores telefonía móvil la tarifa de precios. Para Llamar debes marcar el código del país (+53 Cuba) sin agregar el número cero y marcar el teléfono al que desea llamar.':'In Cuba your mobile phone with roaming should work fine, however calls to or from Cuba are currently very expensive. Please check with your mobile provider the current costs. If you want to make a call just dial the country code +53 Cuba) without adding the number zero and then dial the phone you want to call.' }}</p>
                         <center>
-                        <a href="http://www.etecsa.cu/inicio/llamadas_internacionales/#telmovil">http://www.etecsa.cu/inicio/ llamadas_internacionales/#telmovil</a>
+                            <a href="http://www.etecsa.cu/inicio/llamadas_internacionales/#telmovil">http://www.etecsa.cu/inicio/ llamadas_internacionales/#telmovil</a>
                         </center>
 
                         <div class="separador"></div>
 
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '4-	¿Tengo acceso a internet en Cuba? ':'4- Do I have Internet access in Cuba?' }}</h3>
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '3-	¿Tengo acceso a internet en Cuba? ':'3- Do I have access to the internet in Cuba?' }}</h3>
 
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'En las cadenas Hoteleras la conexión a internet está disponible, en algunas Casas de Renta brindan este servicio, También en determinadas áreas de la ciudad ETECSA está ofreciendo conexiones Wifi por un precio de 1 CUC la hora. Cuentas que solo funciona en los lugares con internet. ':'In the hotel chains the Internet connection is available, in some rental houses this service is offered, also in the areas of the city, ETECSA, is available in Wifi connections for a price of 1 CUC per hour. Accounts that only works in places with internet.' }}</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'En las cadenas Hoteleras la conexión a internet está disponible, en algunas Casas de Renta brindan este servicio, También en determinadas áreas de la ciudad ETECSA está ofreciendo conexiones Wifi por un precio de 1 CUC la hora. Cuentas que solo funciona en los lugares con internet.':'In the large hotel chains, internet connection is available, and most rental houses provide this service. There are also “ETECSA” offices where you can use internet for a fee. At present, Cuba is also offering Wi-Fi connections in certain areas of the city, for a price of 1 CUC per hour.' }}</p>
+
+
                         <div class="separador"></div>
 
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '5-	¿Cuál es la mejor época para visitar Cuba? ':'5- What is the best time to visit Cuba?' }}</h3>
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '4-	¿Cuándo es el mejor momento para viajar a Cuba? ':'4- When is the best time to travel to Cuba?' }}</h3>
 
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Cuba es un eterno verano, se puede visitar en cualquier época del año. Sin embargo es bueno que sepas que los meses de septiembre, octubre y noviembre la isla se expone a ciclones y tormentas tropicales., siendo los meses de septiembre-octubre los más lluviosos y julio-agosto los meses más calientes durante todo el año (son los meses vacacionales de los cubanos, llenando las playas y hoteles de su presencia) las temperaturas máximas son aproximadamente 35 grados. Es recomendable llevar dorador, gafas de sol y gorras. ':'Cuba is an eternal summer, you can visit at any time of the year. However it is good that you know that the months of September, October and November the island is exposed to cyclones and tropical storms, with the months of September-October being the rainiest and July-August the hottest months throughout the year (they are the holiday months of the Cubans, filling the beaches and hotels with their presence) the maximum temperatures are approximately 35 degrees. It is advisable to wear gilding, sunglasses and caps.' }}</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Cuba es un eterno vernao. Con un clima cálido durante todo el año con temperaturas de 24 grados centígrados. De mayo a octubre es la temporada de lluvias y la humedad alcanza sus picos. La temporada de huracanes es más probable entre septiembre y octubre. En general, hace buen tiempo todo el año. El verano es bastante caluroso, lo que hace de los meses de invierno la temporada alta de viajes. Aún así, Cuba en cualquier época del año es gratificante y única.':'Cuba it’s an eternal summer.  Cuba enjoys a warm weather all year round with temperatures seldom below 24 degrees Celsius. From May to October is the rainy season and humidity reaches its peaks. The hurricane season is most likely between September and October. In general, nice weather all year long. Summer is quite hot making the winter months the peak travel season. Still, Cuba at any time of year is rewarding and unique.' }}</p>
                         <div class="separador"></div>
 
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '5-	¿Necesito un seguro médico para Viajar a Cuba? ':'5-   Do I need medical insurance to travel to Cuba?' }}</h3>
 
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '6-	¿Necesito un seguro médico para Viajar a Cuba? ':'6- Do I need medical insurance to travel to Cuba?' }}</h3>
-
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Según las políticas de Cuba el seguro tiene que ser reconocido por una compañía que el gobierno cubano conozca, pero los pasajes muchas veces incluyen este seguro.':'According to Cuba policies, insurance has to be recognized by a company that the Cuban government knows, but the tickets often include this insurance.' }}</p>
-                        <div class="separador"></div>
-
-
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '7-	¿Se puede sacar dinero del cajero automático y del banco con las tarjetas de crédito Visa y MasterCard?  ':'7- Can you withdraw money from the ATM and the bank with Visa and MasterCard credit cards?' }}</h3>
-
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Si, los cajeros automáticos aceptan ambas tarjetas.':'Yes, ATMs accept both cards.' }}</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Según las políticas de Cuba el seguro tiene que ser reconocido por una compañía que el gobierno cubano conozca, pero los pasajes muchas veces incluyen este seguro.':'The insurance must be issued with a company that is recognized by the Cuban government. Many times, the insurance was pre-packaged into the cost of airline tickets for flights. ' }}</p>
                         <div class="separador"></div>
 
 
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '6-	¿Se puede sacar dinero del cajero automático y del banco con las tarjetas de crédito Visa y MasterCard?':'6- Can I get money from an ATM or a Bank using a VISA or MASTERCARD credit card?' }}</h3>
 
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '8-	¿Es recomendable beber agua en Cuba? ':'8- Is it advisable to drink water in Cuba?' }}</h3>
-
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Siempre que sea agua embotellada no hay problema. No es recomendable beber agua corriente de ningún grifo.':'As long as it is bottled water, there is no problem. It is not advisable to drink tap water from any tap.' }}</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Si, los cajeros automáticos aceptan ambas tarjetas.':'Yes, the ATMs accept both cards.' }}</p>
                         <div class="separador"></div>
 
 
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '9-	¿Qué es una Casa de Renta? ':'9- What is a Rental House?' }}</h3>
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '7-	¿Es recomendable beber agua en Cuba?  ':'7-  Is the water safe to drink in Cuba?' }}</h3>
 
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Desde hace un tiempo el gobierno ha permitido que los cubanos alquilen habitaciones de sus casas al turismo. Las casas de renta son un tipo de alojamiento conocidos como Bed&Breakfast, pero en este caso te hospedaras en las casas de renta de propietarios cubanos. Las habitaciones tienen buen confort y están provistas con todo lo que necesitas para pasar una buena noche. Todas las casas particulares no son iguales, tienes grandes ofertas para escoger. Algunas se ubican en la playa, campo y ciudad, teniendo una excelente convivencia con la familia cubana y un servicio de calidad.':'For some time now, the government has allowed Cubans to rent rooms in their homes for tourism. The houses of rent are a type of accommodation known as Bed & Breakfast, but in this case you will stay in the houses of rent of Cuban owners. The rooms have good comfort and are provided with everything you need to spend a good night. All private houses are not the same, you have great offers to choose from. Some are located on the beach, country and city, having an excellent coexistence with the Cuban family and quality service.' }}</p>
-                        <div class="separador"></div>
-
-
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '10- ¿Qué moneda circula en Cuba? ':'10- What currency circulates in Cuba?' }}</h3>
-
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Todo el sistema de precios establecido en los lugares turísticos del país es a través del Peso Convertible (CUC) que sustituye la circulación de las monedas extranjeras en el país, con esta moneda puede obtener todos los servicios y productos disponibles en Cuba, aunque algunos servicios y productos también se pueden obtener en pesos cubanos (no convertibles), principalmente productos en venta en los mercados agrícolas y los alimentos ofrecidos por vendedores en la calle (ejemplos; pizzas, pan con perro (hot dogs), helados), taxis y autobuses. ':'The whole system of prices established in the tourist places of the country is through the Convertible Peso (CUC) that replaces the circulation of foreign currencies in the country, with this currency you can obtain all the services and products available in Cuba, although some services and products can also be obtained in Cuban pesos (non-convertible), mainly products for sale in agricultural markets and food offered by street vendors (examples: pizzas, bread with dog (hot dogs), ice cream), taxis and buses.' }}</p>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Siempre que sea agua embotellada no hay problema. No es recomendable beber agua corriente de ningún grifo.':'It is best to drink bottled water while in Cuba. It is not recommended to drink tap water. ' }}</p>
                         <div class="separador"></div>
 
 
 
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '8-	¿Qué es una Casa de Renta? ':'8- What is casa particular?  ' }}</h3>
 
-                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '11- ¿Cómo reservo mis vacaciones en Cuba?':'11- ¿Cómo reservo mis vacaciones en Cuba?' }}</h3>
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Desde hace un tiempo el gobierno ha permitido que los cubanos alquilen habitaciones de sus casas al turismo. Las casas de renta son un tipo de alojamiento conocidos como Bed&Breakfast, pero en este caso te hospedaras en las casas de renta de propietarios cubanos. Las habitaciones tienen buen confort y están provistas con todo lo que necesitas para pasar una buena noche. Todas las casas particulares no son iguales, tienes grandes ofertas para escoger. Algunas se ubican en la playa, campo y ciudad, teniendo una excelente convivencia con la familia cubana y un servicio de calidad.':'Some time ago the government has made it possible for the Cubans to rent rooms for tourists in their homes. The private houses (Casas particulares) are a type of accommodation like the known Bed &Breakfast system, but in this case, you’ll be in a room of the private homes of the Cuban people. The rooms have good comfort and are equipped with everything you need to have a good rest. All Casas particulares are not equal. On our website, you have a great offer to choose from. Some are in the beach, on the countryside and other ones in the city, in some of them you will be able to have more contact with the Cubans than the other ones but be sure you will get from everyone very high-quality service.' }}</p>
+                        <div class="separador"></div>
 
-                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Independientemente de que busques un viaje romántico, en familia o con todo incluido, los paquetes vacacionales de Cuba GPS harán que planearlos sea sencillo y económico. Busque el paquete de su preferencia y reserve sus vacaciones en Cuba.':'Regardless of whether you are looking for a romantic, family or all-inclusive trip, the Cuba GPS vacation packages will make planning simple and inexpensive. Find the package of your choice and book your vacation in Cuba.' }}</p>
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '9-	¿Cuál es la moneda en Cuba? ':'9- What is the Currency in Cuba?' }}</h3>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'La moneda legal principal para Cuba es el peso convertible cubano, CUC. Es por lo que usted cambia su moneda extranjera y realiza todas sus compras dentro de Cuba. El tipo de cambio fijo es: 1 CUC = 24 CUP. Normalmente el turista utiliza el CUC.':'The major legal currency for Cuba is the Cuban Convertible Peso, CUC. It’s what you exchange your foreign currency for and make all your purchases within Cuba. Most tourists will only ever deal with CUC.  The fixed exchange rate is 1 CUC = 24 CUP. Normally the tourist uses the CUC.' }}</p>
+                        <div class="separador"></div>
+
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '10- ¿Qué debo empacar? ':'10- What should I pack?' }}</h3>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Empaque todo lo esencial que necesite o crea que necesitará, que incluye, entre otros, dinero en efectivo, artículos de tocador, papel higiénico, repelente de insectos, protector solar, medicamentos y suministros para bebés.  ':'Pack anything essential you’ll need or think you’ll need, including, but not limited to: cash, toiletries, toilet paper, bug spray, sunscreen, medications, and infant supplies.' }}</p>
+                        <div class="separador"></div>
+
+
+
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '11- ¿Mi teléfono celular o teléfono inteligente funcionará en Cuba? ':'11- Will my cell phone or smartphone work in Cuba?' }}</h3>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Algunos operadores estadounidenses tienen o están empezando a hacer acuerdos con ETECSA (la compañía nacional de telecomunicaciones de Cuba) para proporcionar servicios de roaming en Cuba. Si su operador ofrece un plan de roaming y su teléfono móvil puede viajar en Cuba, debe preguntar a su proveedor sobre cualquier cargo adicional por llamadas de voz, datos y mensajes de texto salientes en los que pueda incurrir durante su viaje. El mercado de las telecomunicaciones en Cuba está cambiando rápidamente, por lo tanto, antes de viajar, asegúrese de consultar con su proveedor de servicios inalámbricos para conocer los últimos desarrollos y cambios.':'Some U.S. carriers have or are beginning to make agreements with ETECSA (the Cuban national telecommunications company) to provide roaming services in Cuba. If your carrier offers a roaming plan and your mobile phone is capable of roaming in Cuba, you should ask your carrier about any additional charges for voice calls, data, and outgoing text messages that you may incur during your trip. The telecommunications market in Cuba is changing rapidly, so before you travel, be sure to check with your wireless provider for the latest developments.' }}</p>
+                        <div class="separador"></div>
+
+
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '12- ¿Cómo cambio dinero en Cuba? ':'12- How do I exchange money in Cuba?' }}</h3>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Puede cambiar USD por CUC en el aeropuerto, la mayoría de los hoteles, casas de cambio en centros urbanos y algunos bancos. Necesitará su pasaporte para cambiar dinero.':'You can exchange USD for CUC at the airport, most hotels, exchange bureau in town centers and some banks. You will need your passport to exchange money.' }}</p>
+                        <div class="separador"></div>
+
+
+
+                        <h3 class="nombreO">{{ app.session.get('language') == 'es'? '13- ¿Nuestra casa particular tendrá acceso a internet? ':'13- Will our casa particular have internet access?' }}</h3>
+
+                        <p class="text-muted">{{ app.session.get('language') == 'es'? 'Probablemente no. El WiFi es aún muy poco común en casas privadas, así que debes asumir que no podrás conectarte en línea si te alojas en una casa particular. En algunos casos, una propiedad está lo suficientemente cerca de un punto de acceso público para tener conectividad a Internet, pero es bastante raro. En esos casos, aún tendrá que comprar tarjetas de Internet para poder acceder a Internet a través de estos puntos de acceso. Su guía podrá ayudarlo a comprarlos durante su programa, y nos complace hacer todas las paradas necesarias durante el programa para que los clientes puedan consultar el correo electrónico, enviar mensajes de texto, etc.':'Probably not. WiFi is still very uncommon in private homes, so you should assume that you will not have the ability to get online if you’re staying at a casa particular. In some cases a property is close enough to a public hotspot so as to have internet connectivity, but it is quite rare. In those cases, you will still need to purchase internet cards in order to access the internet via these hotspots. Your guide will be able to assist you in buying them during your program, and we are happy to make as many stops as necessary during the program to allow clients time to check email, send texts, etc.' }}</p>
+                        <div class="separador"></div>
+
 
 
                     </div>
