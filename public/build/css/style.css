@@ -564,10 +564,22 @@ h2 {
     height: 100% !important;
 }
 .botonGoogle{
-    background-color: #db4633;
+    background-color: white;
 }
 .botonFace{
     background-color: #3b579d;
+}
+botonInicioSesionGoogle{
+    padding: 8px 15px !important;
+    color: gray;
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 98px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 700;
+    text-align: center;
 }
 .botonInicioSesion{
     padding: 8px 15px !important;
