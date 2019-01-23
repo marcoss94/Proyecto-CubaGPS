@@ -117,8 +117,8 @@
                                 <td>{{ r.endAt|date("d/m/Y") }}</td>
                                 <td>{{ r.cantPersonas }}</td>
                                 <td>{{ '€'~r.costo }}</td>
-                                <td><a type="button" class="btn btn-danger"
-                                       href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
+                                <td><a type="button" class="btn btn-danger" data-toggle="modal"
+                                       data-target="#confirmModal" data-reserveid="{{ r.id }}">X</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -203,8 +203,8 @@
                                 {% endif %}
                                 <td>{{ r.cantPersonas }}</td>
                                 <td>{{ '€'~r.costo }}</td>
-                                <td><a type="button" class="btn btn-danger"
-                                       href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
+                                <td><a type="button" class="btn btn-danger" data-toggle="modal"
+                                       data-target="#confirmModal" data-reserveid="{{ r.id }}">X</a></td>
                             </tr>
                             </tbody>
                         </table>

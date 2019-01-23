@@ -537,6 +537,17 @@ class ReserveController extends Controller
         return $this->redirectToRoute('show_active_reserves');
     }
 
+    /**
+     * @Route("/admin/delete_active_reserve", name="delete_active_reserve")
+     */
+    public function delete_active_reserve(Request $request, ReservaRepository $reservaRepository)
+    {
+        $reserve = $reservaRepository->find($request->get('id'));
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($reserve);
+        $em->flush();
+        return $this->redirectToRoute('reservascanceladas');
+    }
 
 
     public function sendAdminEmail(Reserva $reserva, $mailer)

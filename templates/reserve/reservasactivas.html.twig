@@ -59,7 +59,6 @@
                                 <th>Fecha</th>
                                 <th>Cantidad de Personas</th>
                                 <th>Costo</th>
-                                <th>Disponible</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -68,7 +67,6 @@
                                 <th>Fecha</th>
                                 <th>Cantidad de Personas</th>
                                 <th>Costo</th>
-                                <th>Disponible</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -107,16 +105,10 @@
                                         {% endif %}
                                     </td>
                                     <td>{{ '€'~r.costo }}</td>
-                                    <td><input type="checkbox" name="{{ r.id }}" {% if r.status == 'confirmed' %} checked {% endif %}></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
-                    </div>
-                    <div class="col-auto">
-                        <div class="row">
-                            <button type="submit" class="btn btn-success">Siguiente</button>
-                        </div>
                     </div>
                 </div>
 
