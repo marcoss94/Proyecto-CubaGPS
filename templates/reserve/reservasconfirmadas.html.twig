@@ -24,7 +24,7 @@
         <li class="breadcrumb-item">
             <a href="{{ path('admin') }}">Administración</a>
         </li>
-        <li class="breadcrumb-item active">Reservas no Confirmadas</li>
+        <li class="breadcrumb-item active">Reservas Confirmadas</li>
     </ol>
 
     {% for user in users %}
@@ -71,7 +71,7 @@
                         {% for r in user['reserve'] %}
 
                             <tr>
-                                <td><a data-toggle="modal"
+                                <td><a href="#q" data-toggle="modal"
                                        data-target="#{{ 'contactInfoModal'~r.id }}">{{ r.commponent }}</a>
                                     {% if r.commponent.getType()== 'Casa' %}
                                         <button id="btnGroupDrop1" type="button"
