@@ -130,7 +130,7 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/view_comments", name="view_comments")
      */
-    public function view_comments(Request $request, ComentarioRepository $comentarioRepository)
+    public function view_comments(ComentarioRepository $comentarioRepository)
     {
         $comentarios = $comentarioRepository->findBy(array(), ['publishedAt' => 'DESC']);
         $em = $this->getDoctrine()->getManager();
