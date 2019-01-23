@@ -480,8 +480,8 @@
                                             </div>
                                         </div>
 
-                                        <a href="#" data-toggle="modal"
-                                           data-target="#piliticaModal" style="color: #2a4f6b" >{{ app.session.get('language') == 'es'? ' Políticas de reserva y cancelación':' Reservation and cancellation policies' }}</a>
+                                        <a href="{{ path('reservaCancelacion') }}"
+                                           target="_blank" style="color: #2a4f6b" >{{ app.session.get('language') == 'es'? 'Políticas de reserva y cancelación':'Reservation and cancellation policies' }}</a>
 
                                     </div>
 
