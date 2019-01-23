@@ -682,9 +682,7 @@ border-color: #f9b501;"
         </span>
                                 </a>
                                 <h4 class="service-heading info">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</h4>
-                                <h7 style="color: white">¿Necesito visado para viajar a Cuba?
-                                    ¿Necesito documento Médico-Sanitario para entrar a Cuba?
-                                    ¿Es fácil llamar desde Cuba al exterior?
+                                <h7 style="color: white">{{ app.session.get('language') == 'es'? '¿Necesito una visa?, ¿Es fácil llamar desde Cuba al exterior?, ¿Tengo acceso a internet en Cuba?. ':'Do I need a visa?, It is easy to call from Cuba to other countries?, Do I have access to the internet in Cuba?' }}
                                 </h7>
                             </div>
                             <div class="col-md-4">
@@ -695,10 +693,7 @@ border-color: #f9b501;"
         </span>
                                 </a>
                                 <h4 class="service-heading info">Web Security</h4>
-                                <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Minima
-                                    maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.
+                                <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Cuba GPS fue diseñada pensando en usted. Brindamos experiencias inolvidables, todo incluido, Cuba GPS te permite descubrir la magia de Cuba. ':'Cuba GPS was designed with you in mind. We provide unforgettable, all-inclusive experiences. Cuba GPS allows you to discover the magic of Cuba.' }}
                                 </h7>
                             </div>
                         </div>
