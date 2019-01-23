@@ -108,7 +108,6 @@ class UserController extends AbstractController
      */
     public function view_contacts(ContactoRepository $contactoRepository)
     {
-        $em = $this->getDoctrine()->getManager();
         $contactos = $contactoRepository->findBy(array(), ['createdAt' => 'DESC']);
         return $this->render('admin/contactos.html.twig', [
             'contactos' => $contactos,
@@ -130,7 +129,7 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/view_comments", name="view_comments")
      */
-    public function view_comments(Request $request, ComentarioRepository $comentarioRepository)
+    public function view_comments(ComentarioRepository $comentarioRepository)
     {
         $comentarios = $comentarioRepository->findBy(array(), ['publishedAt' => 'DESC']);
         $em = $this->getDoctrine()->getManager();
