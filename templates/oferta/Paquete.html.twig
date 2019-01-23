@@ -234,7 +234,7 @@ padding-top: 0px;">
 
 
                                                                     <p class="text-muted infoExtra">{{ app.session.get('language') == 'es'? a.descripcion[100:]:a.description[100:] }}</p>
-                                                                    <div class="leerMas">Leer más</div>
+                                                                    <div class="leerMas">{{ app.session.get('language') == 'es'? 'Leer más':'Read more' }}</div>
 
                                                                 </div>
                                                             </div>
@@ -589,7 +589,7 @@ padding-top: 0px;">
 
         jQuery(function () {
             jQuery(".leerMas").bind("click", function () {
-                jQuery(this).text(jQuery(this).text() == "Leer más" ? "Ocultar" : "Leer más");
+                jQuery(this).text(jQuery(this).text() == "Leer más" ? "{{ app.session.get('language') == 'es'? 'Ocultar':'Read less' }}" : "{{ app.session.get('language') == 'es'? 'Leer más':'Read more' }}");
                 jQuery(this).prev().slideToggle();
             });
         });
