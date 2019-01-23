@@ -108,7 +108,6 @@ class UserController extends AbstractController
      */
     public function view_contacts(ContactoRepository $contactoRepository)
     {
-        $em = $this->getDoctrine()->getManager();
         $contactos = $contactoRepository->findBy(array(), ['createdAt' => 'DESC']);
         return $this->render('admin/contactos.html.twig', [
             'contactos' => $contactos,
