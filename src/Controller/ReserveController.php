@@ -477,6 +477,23 @@ class ReserveController extends Controller
         return $this->redirectToRoute('show_confirmed_reserves');
     }
 
+    /**
+     * @Route("/reserve/cancel_active_reserves", name="cancel_active_reserves")
+     */
+    public function cancel_active_reserves(Request $request, ReservaRepository $reservaRepository)
+    {
+        dump($request);die;
+        $reserve = $reservaRepository->find($request->get('id'));
+        $em = $this->getDoctrine()->getManager();
+        $reserve->setStatus('canceled');
+        $reserve->setCanceledAt();
+        $em->persist($reserve);
+        $em->flush();
+        return $this->redirectToRoute('show_active_reserves');
+    }
+
+
+
     public function sendAdminEmail(Reserva $reserva, $mailer)
     {
 

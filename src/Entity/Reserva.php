@@ -66,6 +66,11 @@ class Reserva
     private $createdAt;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $canceledAt;
+
+    /**
      * @return mixed
      */
     public function getCreatedAt()
@@ -103,6 +108,22 @@ class Reserva
     public function getHoraFinal()
     {
         return $this->horaFinal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCanceledAt()
+    {
+        return $this->canceledAt;
+    }
+
+    /**
+     * @param mixed $canceledAt
+     */
+    public function setCanceledAt()
+    {
+        $this->createdAt = new \DateTime();
     }
 
     /**

@@ -31,15 +31,13 @@ class TransactionController extends Controller
     public function payment(Request $request)
     {
         $amount = ((int)($request->get('amount')));  // get an amount, e.g. from your cart
-        $gatewayName = 'paypal';
+        $gatewayName = 'stripe';
         $storage = $this->get('payum')->getStorage('App\Entity\Payment');
         $payment = $storage->create();
         $payment->setNumber(uniqid());
         $payment->setCurrencyCode('USD');
         $payment->setTotalAmount($amount . '00'); //  1.23 EUR
         $payment->setDescription('Rent service');
-        $payment->setClientId('2S5RRT66L9CBN');
-        $payment->setClientEmail('diazlemuel94@gmail.com');
         $storage->update($payment);
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
             $gatewayName,
