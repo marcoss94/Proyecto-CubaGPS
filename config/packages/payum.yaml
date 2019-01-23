@@ -9,5 +9,5 @@ payum:
     gateways:
         stripe:
              factory:   stripe_checkout
-             publishable_key:  'pk_test_8486tSb8zy9b8KvQoGZau3zj'
-             secret_key:  'sk_test_4y0or8pcissfTdR32kd6wRXR'
+             publishable_key:  'pk_live_D2N5043aop3aZ9sqerI2kKj4'
+             secret_key:  'sk_live_qjjX5Y6d4lGBSPIMadxL5AOF'
