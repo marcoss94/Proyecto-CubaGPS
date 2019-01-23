@@ -533,20 +533,20 @@ border-color: #f9b501">
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
                         <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-twitter"></i>
+                            <a href="https://www.instagram.com/cubagps/">
+                                <i class="fab fa-instagram"></i>
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#">
+                            <a href="https://www.facebook.com/cubagps/">
                                 <i class="fab fa-facebook-f"></i>
                             </a>
                         </li>
-                        <li class="list-inline-item">
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </li>
+                        {#<li class="list-inline-item">#}
+                            {#<a href="#">#}
+                                {#<i class="fab fa-"></i>#}
+                            {#</a>#}
+                        {#</li>#}
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -558,7 +558,7 @@ border-color: #f9b501">
                         </li>
                         <li class="list-inline-item">
                             <a href="{{ path('reservaCancelacion') }}"
-                               target="_blank">{{ app.session.get('language') == 'es'? 'Reserva y Cancelación':'Reservation and Cancellation' }}</a>
+                               target="_blank">{{ app.session.get('language') == 'es'? 'Políticas de Reserva y Cancelación':'Reservation and Cancellation' }}</a>
                         </li>
                         <li class="list-inline-item">
                             <a href="{{ path('preguntasFrecuentes') }}"
