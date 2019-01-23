@@ -482,6 +482,7 @@ class ReserveController extends Controller
      */
     public function cancel_active_reserves(Request $request, ReservaRepository $reservaRepository)
     {
+        dump($request);die;
         $reserve = $reservaRepository->find($request->get('id'));
         $em = $this->getDoctrine()->getManager();
         $reserve->setStatus('canceled');
