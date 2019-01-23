@@ -2,6 +2,9 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
+    "clue/stream-filter": {
+        "version": "v1.4.0"
+    },
     "composer/ca-bundle": {
         "version": "1.0.8"
     },
@@ -164,6 +167,27 @@
     "league/oauth2-google": {
         "version": "2.2.0"
     },
+    "league/uri": {
+        "version": "5.3.0"
+    },
+    "league/uri-components": {
+        "version": "1.8.2"
+    },
+    "league/uri-hostname-parser": {
+        "version": "1.1.1"
+    },
+    "league/uri-interfaces": {
+        "version": "1.1.1"
+    },
+    "league/uri-manipulations": {
+        "version": "1.5.0"
+    },
+    "league/uri-parser": {
+        "version": "1.4.1"
+    },
+    "league/uri-schemes": {
+        "version": "1.2.1"
+    },
     "liip/imagine-bundle": {
         "version": "1.8",
         "recipe": {
@@ -191,13 +215,52 @@
     "paragonie/random_compat": {
         "version": "v2.0.11"
     },
+    "paypal/rest-api-sdk-php": {
+        "version": "1.14.0"
+    },
+    "payum/core": {
+        "version": "1.5.1"
+    },
+    "payum/iso4217": {
+        "version": "1.0.1"
+    },
+    "payum/offline": {
+        "version": "1.5.1"
+    },
+    "payum/paypal-express-checkout-nvp": {
+        "version": "1.5.1"
+    },
+    "payum/payum-bundle": {
+        "version": "2.3.1"
+    },
+    "payum/stripe": {
+        "version": "1.5.1"
+    },
     "php-cs-fixer/diff": {
         "version": "v1.2.0"
+    },
+    "php-http/guzzle6-adapter": {
+        "version": "v2.0.1"
+    },
+    "php-http/httplug": {
+        "version": "v2.0.0"
+    },
+    "php-http/message": {
+        "version": "1.7.2"
+    },
+    "php-http/message-factory": {
+        "version": "v1.0.2"
+    },
+    "php-http/promise": {
+        "version": "v1.0.0"
     },
     "psr/cache": {
         "version": "1.0.1"
     },
     "psr/container": {
+        "version": "1.0.0"
+    },
+    "psr/http-client": {
         "version": "1.0.0"
     },
     "psr/http-message": {
@@ -229,6 +292,9 @@
             "version": "4.0",
             "ref": "576d653444dade07f272c889d52fe4594caa4fc3"
         }
+    },
+    "stripe/stripe-php": {
+        "version": "v4.13.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
