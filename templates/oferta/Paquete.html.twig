@@ -589,7 +589,7 @@ padding-top: 0px;">
 
         jQuery(function () {
             jQuery(".leerMas").bind("click", function () {
-                jQuery(this).text(jQuery(this).text() == "Leer más" ? "{{ app.session.get('language') == 'es'? 'Ocultar':'Read less' }}" : "{{ app.session.get('language') == 'es'? 'Leer más':'Read more' }}");
+                jQuery(this).text(jQuery(this).text() == "{{ app.session.get('language') == 'es'? 'Leer más':'Read more' }}" ? "{{ app.session.get('language') == 'es'? 'Ocultar':'Read less' }}" : "{{ app.session.get('language') == 'es'? 'Leer más':'Read more' }}");
                 jQuery(this).prev().slideToggle();
             });
         });
