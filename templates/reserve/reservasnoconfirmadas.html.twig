@@ -39,7 +39,7 @@
                                  style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
                                     border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
                             {{ user['user'] }}
-                            <label style="margin-left: 50px">{{ 'Costo total: €'~user['price']~' ' }}</label>
+                            <label style="margin-left: 50px">{{ 'Costo total: $'~user['price']~' ' }}</label>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                                               {{ '- '~r.children~' niños' }}
                                         {% endif %}
                                     </td>
-                                    <td>{{ '€'~r.costo }}</td>
+                                    <td>{{ '$'~r.costo }}</td>
                                     <td><input type="checkbox" name="{{ r.id }}" {% if r.status == 'confirmed' %} checked {% endif %}></td>
                                 </tr>
                             {% endfor %}

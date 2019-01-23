@@ -39,7 +39,7 @@
                                  style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
                                     border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
                             {{ user['user'] }}
-                            <label style="margin-left: 50px">{{ 'Costo total: €'~user['price']~' ' }}</label>
+                            <label style="margin-left: 50px">{{ 'Costo total: $'~user['price']~' ' }}</label>
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                                             {{ '- '~r.children~' niños' }}
                                         {% endif %}
                                     </td>
-                                    <td>{{ '€'~r.costo }}</td>
+                                    <td>{{ '$'~r.costo }}</td>
                                     <td><a type="button" class="btn btn-danger" href="{{ path('delete_active_reserve',{'id':r.id}) }}">X</a></td>
                                 </tr>
                             {% endfor %}
@@ -122,7 +122,7 @@
                     <div class="row">
                         <div class="col-auto mr-auto">
                             <i class="fas fa-home"></i>
-                            Reservas no Confirmadas
+                            Reservas Canceladas
                         </div>
                         <div class="col-auto">
                             {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}

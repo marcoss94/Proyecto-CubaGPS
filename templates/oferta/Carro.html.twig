@@ -644,7 +644,7 @@
                     success: function (response) {
                         var price = response.result;
                         $('#costoTransInput').val(price);
-                        document.getElementById('precioTransfer').innerHTML = price + '€' ;
+                        document.getElementById('precioTransfer').innerHTML = price + '$' ;
                     }
                 })
                 ;
@@ -669,7 +669,7 @@
                 var totalPrice = (hasta - desde) * price;
                 totalPrice = (totalPrice < 0) ? 0 : totalPrice;
                 $('#costoExcInput').val(totalPrice);
-                document.getElementById('precioTransfer').innerHTML = '€' + totalPrice;
+                document.getElementById('precioTransfer').innerHTML = '$' + totalPrice;
             }
         </script>
     {% endif %}

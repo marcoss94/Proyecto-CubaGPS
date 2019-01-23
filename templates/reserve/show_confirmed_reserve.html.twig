@@ -49,7 +49,7 @@
                             <td>{{ r.endAt|date("d/m/Y") }}</td>
                             <td>{{ r.cantPersonas }}</td>
                             <td>{{ r.descripcion }}</td>
-                            <td>{{ '€'~r.costo }}</td>
+                            <td>{{ '$'~r.costo }}</td>
                             <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
                         </tr>
                         </tbody>
@@ -79,7 +79,7 @@
                                             alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
                             <td>{{ r.startAt|date("d/m/Y") }}</td>
                             <td>{{ r.cantPersonas }}</td>
-                            <td>{{ '€'~r.costo }}</td>
+                            <td>{{ '$'~r.costo }}</td>
                             <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
                         </tr>
                         </tbody>
@@ -111,7 +111,7 @@
                             <td>{{ r.startAt|date("d/m/Y") }}</td>
                             <td>{{ r.endAt|date("d/m/Y") }}</td>
                             <td>{{ r.cantPersonas }}</td>
-                            <td>{{ '€'~r.costo }}</td>
+                            <td>{{ '$'~r.costo }}</td>
                             <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
                         </tr>
                         </tbody>
@@ -142,7 +142,7 @@
                             <td>{{ r.startAt|date("d/m/Y") }}</td>
                             <td>{{ r.endAt|date("d/m/Y") }}</td>
                             <td>{{ r.cantPersonas }}</td>
-                            <td>{{ '€'~r.costo }}</td>
+                            <td>{{ '$'~r.costo }}</td>
                             <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
                         </tr>
                         </tbody>
@@ -154,7 +154,7 @@
                         {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
                             <tr>
                                 <td colspan="4">{{ h }}</td>
-                                <td colspan="2">{{ '€'~h.precio * r.getDias }}</td>
+                                <td colspan="2">{{ '$'~h.precio * r.getDias }}</td>
                             </tr>
                         {% endfor %}
 
@@ -194,7 +194,7 @@
                                 <td>{{ hora[r.horaFinal] }}</td>
                             {% endif %}
                             <td>{{ r.cantPersonas }}</td>
-                            <td>{{ '€'~r.costo }}</td>
+                            <td>{{ '$'~r.costo }}</td>
                             <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
                         </tr>
                         </tbody>
