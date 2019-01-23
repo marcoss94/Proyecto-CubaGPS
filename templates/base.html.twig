@@ -151,7 +151,7 @@
 
 
                     {% if app.user %}
-                        {% if cart and reserves %}
+                        {% if app.session.get('cart') and app.session.get('reserves') %}
                             <div class="dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -170,14 +170,14 @@
                                         {{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
                                 </div>
                             </div>
-                        {% elseif cart %}
+                        {% elseif app.session.get('cart') %}
                             <li class="nav-item">
                                 <a class="nav-link"  href="{{ path('show_confirmed_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
                                     <span id="notification_count" style="background-color: rgb(207, 61, 44)">!</span>
                                 </a>
                             </li>
-                        {% elseif reserves %}
+                        {% elseif app.session.get('reserves') %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('show_active_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
@@ -338,7 +338,7 @@
 
                     {% if app.user %}
 
-                        {% if cart and reserves %}
+                        {% if app.session.get('cart') and app.session.get('reserves') %}
                             <div class="dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -357,14 +357,14 @@
                                         {{ app.session.get('language') == 'es'? 'Reservas Activas':'Active Reserves' }}</a>
                                 </div>
                             </div>
-                        {% elseif cart %}
+                        {% elseif app.session.get('cart') %}
                             <li class="nav-item">
                                 <a class="nav-link"  href="{{ path('show_confirmed_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
                                     <span id="notification_count" style="background-color: rgb(207, 61, 44)">!</span>
                                 </a>
                             </li>
-                        {% elseif reserves %}
+                        {% elseif app.session.get('reserves') %}
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ path('show_active_reserves') }}">
                                     <i class="fas fa-shopping-cart"></i>
