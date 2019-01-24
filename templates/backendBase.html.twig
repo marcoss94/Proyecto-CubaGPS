@@ -157,9 +157,16 @@
         <ul class="sidebar navbar-nav">
             <li class="nav-item ">
                 <a class="nav-link" href="{{ path('view_comments') }}">
-                    <i class="fas fa-fw fa-comment"></i>
-                    <span>Comentarios</span>
-                    <span style="background-color: #1aacb7">10{{ app.session.get('comments') }}</span>
+                    <div class="row">
+                        <div class="col-6">
+                            <i class="fas fa-fw fa-comment"></i>
+
+                            <span>Comentarios</span>
+                        </div>
+                        <div class="col-6 md-autp">
+                            <span style="background-color: #1aacb7">10{{ app.session.get('comments') }}</span>
+                        </div>
+                    </div>
                 </a>
                 {# Marcos aqui va la cantidad de comentarios nuevos este es el codigo #}
 
