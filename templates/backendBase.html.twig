@@ -159,9 +159,10 @@
                 <a class="nav-link" href="{{ path('view_comments') }}">
                     <i class="fas fa-fw fa-comment"></i>
                     <span>Comentarios</span>
+                    <span style="background-color: #1aacb7">{{ app.session.get('comments') }}</span>
                 </a>
                 {# Marcos aqui va la cantidad de comentarios nuevos este es el codigo #}
-                {{ app.session.get('comments') }}
+
                 {# ----------------------------------------------------------#}
             </li>
             <li class="nav-item ">
