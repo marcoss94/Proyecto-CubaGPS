@@ -157,7 +157,7 @@
                                     <div class="iconoServ">
                                         <h6>
 
-                                            <div class="precio">1<i class="fas fa-user"></i>   <span>€{{ object.precio1 }}</span></div>
+                                            <div class="precio">1<i class="fas fa-user"></i>   <span>${{ object.precio1 }}</span></div>
 
                                         </h6>
                                     </div>
@@ -169,7 +169,7 @@
                                         <h6>
 
 
-                                            <div class="precio"> 2<i class="fas fa-users"></i>   <span>€{{ object.precio2 }}</span></div>
+                                            <div class="precio"> 2<i class="fas fa-users"></i>   <span>${{ object.precio2 }}</span></div>
 
                                         </h6>
                                     </div>
@@ -181,7 +181,7 @@
                                         <h6>
 
 
-                                            <div class="precio"> 3<i class="fas fa-users"></i>   <span>€{{ object.precio3 }}</span></div>
+                                            <div class="precio"> 3<i class="fas fa-users"></i>   <span>${{ object.precio3 }}</span></div>
 
                                         </h6>
                                     </div>
@@ -192,7 +192,7 @@
                                     <div class="iconoServ">
                                         <h6>
 
-                                           <div class="precio"> +4<i class="fas fa-users"></i> <span> €{{ object.precio4 }}  </span></div>
+                                           <div class="precio"> +4<i class="fas fa-users"></i> <span> ${{ object.precio4 }}  </span></div>
                                         </h6>
                                     </div>
                                 </div>
@@ -548,8 +548,8 @@
                                         </div>
                                     {% endif %}
 
-                                    <a href="#" data-toggle="modal"
-                                       data-target="#piliticaModal" style="color: #2a4f6b">{{ app.session.get('language') == 'es'? ' Políticas de reserva y cancelación':' Reservation and cancellation policies' }}</a>
+                                    <a href="{{ path('reservaCancelacion') }}"
+                                       target="_blank" style="color: #2a4f6b" >{{ app.session.get('language') == 'es'? 'Políticas de reserva y cancelación':'Reservation and cancellation policies' }}</a>
 
 
                                 </div>
@@ -695,7 +695,7 @@
             } else {
                 precio = parseInt({{ object.precio4 }}) * parseInt(cant);
             }
-            return precio+ '€' ;
+            return precio+ '$' ;
         }
         $('#cantA').on('change', function () {
             document.getElementById('precio').innerHTML = setPrice(this.value);

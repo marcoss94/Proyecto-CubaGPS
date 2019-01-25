@@ -47,9 +47,11 @@ class AdminController extends Controller
     {
         $count = [];
         $count[0] = $contactoRepository->count(array());
-        $count[1] = $comentarioRepository->count(['revisado' => false]);
+        $this->get('session')->set('comments',$comentarioRepository->count(['revisado' => false]));
         $count[2] = $reservaRepository->count(['status' => 'pre']);
         $count[3] = $reservaRepository->count(['status' => 'payed']);
+        $count[4] = $reservaRepository->count(['status' => 'canceled']);
+
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
             'count' => $count,

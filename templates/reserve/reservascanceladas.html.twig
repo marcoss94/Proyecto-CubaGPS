@@ -24,7 +24,7 @@
         <li class="breadcrumb-item">
             <a href="{{ path('admin') }}">Administración</a>
         </li>
-        <li class="breadcrumb-item active">Reservas no Confirmadas</li>
+        <li class="breadcrumb-item active">Reservas Canceladas</li>
     </ol>
 
     {% for user in users %}
@@ -57,18 +57,20 @@
                             <tr>
                                 <th>Servicio</th>
                                 <th>Fecha</th>
+                                <th>Fecha de Cancelación</th>
                                 <th>Cantidad de Personas</th>
                                 <th>Costo</th>
-                                <th>Disponible</th>
+                                <th>Eliminar</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
                                 <th>Servicio</th>
                                 <th>Fecha</th>
+                                <th>Fecha de Cancelación</th>
                                 <th>Cantidad de Personas</th>
                                 <th>Costo</th>
-                                <th>Disponible</th>
+                                <th>Eliminar</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -101,22 +103,18 @@
                                             {{ r.startAt|date("d/m/Y") }}
                                         {% endif %}
                                     </td>
+                                    <td>{{ r.canceledAt|date("d/m/Y") }}</td>
                                     <td>{{ r.cantPersonas }}
                                         {% if r.commponent.getType() == 'Casa' %}
-                                              {{ '- '~r.children~' niños' }}
+                                            {{ '- '~r.children~' niños' }}
                                         {% endif %}
                                     </td>
                                     <td>{{ '$'~r.costo }}</td>
-                                    <td><input type="checkbox" name="{{ r.id }}" {% if r.status == 'confirmed' %} checked {% endif %}></td>
+                                    <td><a type="button" class="btn btn-danger" href="{{ path('delete_active_reserve',{'id':r.id}) }}">X</a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
                         </table>
-                    </div>
-                    <div class="col-auto">
-                        <div class="row">
-                            <button type="submit" class="btn btn-success">Siguiente</button>
-                        </div>
                     </div>
                 </div>
 
@@ -124,7 +122,7 @@
                     <div class="row">
                         <div class="col-auto mr-auto">
                             <i class="fas fa-home"></i>
-                            Reservas no Confirmadas
+                            Reservas Canceladas
                         </div>
                         <div class="col-auto">
                             {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}

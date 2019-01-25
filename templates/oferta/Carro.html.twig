@@ -480,8 +480,8 @@
                                             </div>
                                         </div>
 
-                                        <a href="#" data-toggle="modal"
-                                           data-target="#piliticaModal" style="color: #2a4f6b" >{{ app.session.get('language') == 'es'? ' Políticas de reserva y cancelación':' Reservation and cancellation policies' }}</a>
+                                        <a href="{{ path('reservaCancelacion') }}"
+                                           target="_blank" style="color: #2a4f6b" >{{ app.session.get('language') == 'es'? 'Políticas de reserva y cancelación':'Reservation and cancellation policies' }}</a>
 
                                     </div>
 
@@ -644,7 +644,7 @@
                     success: function (response) {
                         var price = response.result;
                         $('#costoTransInput').val(price);
-                        document.getElementById('precioTransfer').innerHTML = price + '€' ;
+                        document.getElementById('precioTransfer').innerHTML = price + '$' ;
                     }
                 })
                 ;
@@ -669,7 +669,7 @@
                 var totalPrice = (hasta - desde) * price;
                 totalPrice = (totalPrice < 0) ? 0 : totalPrice;
                 $('#costoExcInput').val(totalPrice);
-                document.getElementById('precioTransfer').innerHTML = '€' + totalPrice;
+                document.getElementById('precioTransfer').innerHTML = '$' + totalPrice;
             }
         </script>
     {% endif %}

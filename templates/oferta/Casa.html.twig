@@ -236,7 +236,7 @@
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-                                                <div class="texto-encima"><h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
+                                                <div class="texto-encima"><h6>{{ i.precio ~' $ ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
 
                                         </div>
                                         </div>
@@ -266,7 +266,7 @@
                                                 {#<div class="col-6 col-md-6">#}
                                                     {#<div class="iconoServ">#}
                                                         {##}
-                                                        {#<span class="text-success">{{ i.precio~'€' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</span>#}
+                                                        {#<span class="text-success">{{ i.precio~'$' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</span>#}
                                                     {#</div>#}
                                                 {#</div>#}
                                             </div>
@@ -552,10 +552,10 @@
 
                                     {#<div class="form-row">#}
                                         {#<div class="form-group">#}
-                                            <a href="#" data-toggle="modal"
-                                               data-target="#piliticaModal" style="color: #2a4f6b">{{ app.session.get('language') == 'es'? ' Políticas de reserva y cancelación':' Reservation and cancellation policies' }}</a>
+                                    <a href="{{ path('reservaCancelacion') }}"
+                                       target="_blank" style="color: #2a4f6b" >{{ app.session.get('language') == 'es'? 'Políticas de reserva y cancelación':'Reservation and cancellation policies' }}</a>
 
-                                        {#</div>#}
+                                    {#</div>#}
                                     {#</div>#}
                                 </div>
                                 <div id="errorBox"></div>
@@ -649,7 +649,7 @@
             dias = parseInt(dias) / 86400000;
             if (dias == 0) dias = 1;
             if (dias < 0) dias = 0;
-            document.getElementById('precio').innerHTML = '€' + dias * precio;
+            document.getElementById('precio').innerHTML = '$' + dias * precio;
         }
         var carousel = $(".carouselCarucel"),
             currdeg = 0;

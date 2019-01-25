@@ -10,137 +10,142 @@
     <title>{% block title %}Cuba GPS | Oficial{% endblock %}</title>
 
     {% block stylesheets %}
-    <!-- Bootstrap core CSS -->
-    {#<link href="{{ asset('build/backend/css/bootstrap.min.css') }}" rel="stylesheet">#}
-    <link href="{{ asset('build/backend/css/style.css') }}" rel="stylesheet">
-    {#<link href="{{ asset('build/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">#}
-    {#<script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>#}
-    {#<script src="{{ asset('build/vendor/jquery/jquery.min.js') }}"></script>#}
-    {#<script src="{{ asset('build/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>#}
-{##}
-{#Template de backend.m............................................................................................#}
+        <!-- Bootstrap core CSS -->
+        {#<link href="{{ asset('build/backend/css/bootstrap.min.css') }}" rel="stylesheet">#}
+        <link href="{{ asset('build/backend/css/style.css') }}" rel="stylesheet">
+        {#<link href="{{ asset('build/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">#}
+        {#<script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>#}
+        {#<script src="{{ asset('build/vendor/jquery/jquery.min.js') }}"></script>#}
+        {#<script src="{{ asset('build/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>#}
+        {##}
+        {#Template de backend.m............................................................................................#}
 
-        <link href="{{ asset('build/backend/sb-admin/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('build/backend/sb-admin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Custom fonts for this template-->
-        <link href="{{ asset('build/backend/sb-admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('build/backend/sb-admin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet"
+              type="text/css">
 
         <!-- Page level plugin CSS-->
-        <link href="{{ asset('build/backend/sb-admin/vendor/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
+        <link href="{{ asset('build/backend/sb-admin/vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="{{ asset('build/backend/sb-admin/css/sb-admin.css')}}" rel="stylesheet">
+        <link href="{{ asset('build/backend/sb-admin/css/sb-admin.css') }}" rel="stylesheet">
 
         <link rel="icon" type="image/png" href="{{ asset('build/img/favicon.png') }}">
 
-{#Template de backend.m............................................................................................#}
+        {#Template de backend.m............................................................................................#}
 
     {% endblock %}
 
-{#</head>#}
-{#<body id="page-top">#}
+    {#</head>#}
+    {#<body id="page-top">#}
 
-{#<div class="container">#}
+    {#<div class="container">#}
     {#{% block menu %}#}
     {#<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">#}
-        {#<a class="navbar-brand js-scroll-trigger" href="{{ path('blog_index') }}"><img src="{{ asset('build/img/logo.png') }}"#}
-                                                                        {#width="170" height="50"#}
-                                                                        {#class="d-inline-block align-top" alt="">#}
-        {#</a>#}
+    {#<a class="navbar-brand js-scroll-trigger" href="{{ path('blog_index') }}"><img src="{{ asset('build/img/logo.png') }}"#}
+    {#width="170" height="50"#}
+    {#class="d-inline-block align-top" alt="">#}
+    {#</a>#}
 
-        {#<div class="collapse navbar-collapse" id="navbarSupportedContent">#}
-            {#<ul class="navbar-nav mr-auto">#}
-                {#<li class="nav-item">#}
-                    {#<a class="nav-link" href="{{ path('admin_cars') }}">Carros<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                    {#<a class="nav-link" href="{{ path('admin_houses') }}">Casas<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                    {#<a class="nav-link" href="#">Excursiones<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
-                {#<li class="nav-item">#}
-                    {#<a class="nav-link" href="{{ path('paquetes') }}">Paquetes<span class="sr-only">(current)</span></a>#}
-                {#</li>#}
+    {#<div class="collapse navbar-collapse" id="navbarSupportedContent">#}
+    {#<ul class="navbar-nav mr-auto">#}
+    {#<li class="nav-item">#}
+    {#<a class="nav-link" href="{{ path('admin_cars') }}">Carros<span class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#<li class="nav-item">#}
+    {#<a class="nav-link" href="{{ path('admin_houses') }}">Casas<span class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#<li class="nav-item">#}
+    {#<a class="nav-link" href="#">Excursiones<span class="sr-only">(current)</span></a>#}
+    {#</li>#}
+    {#<li class="nav-item">#}
+    {#<a class="nav-link" href="{{ path('paquetes') }}">Paquetes<span class="sr-only">(current)</span></a>#}
+    {#</li>#}
 
-            {#</ul>#}
-        {#</div>#}
+    {#</ul>#}
+    {#</div>#}
     {#</nav>#}
     {#{% endblock %}#}
-{#</div>#}
-{#{% block content %}#}
-{#{% endblock %}#}
+    {#</div>#}
+    {#{% block content %}#}
+    {#{% endblock %}#}
 
 
-{#</body>#}
+    {#</body>#}
 
 
-{#body template admin ....................................................................................................#}
+    {#body template admin ....................................................................................................#}
 
 <body id="page-top">
 
 {% block menu %}
 
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="{{ path('admin') }}">Administración</a>
+        <a class="navbar-brand mr-1" href="{{ path('admin') }}">Administración</a>
 
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-        <i class="fas fa-bars"></i>
-    </button>
+        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+            <i class="fas fa-bars"></i>
+        </button>
 
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                    <i class="fas fa-search"></i>
-                </button>
+        <!-- Navbar Search -->
+        <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Buscar..." aria-label="Search"
+                       aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-    <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <span class="badge badge-danger">9+</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <span class="badge badge-danger">7</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle fa-fw"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">Settings</a>
-                <a class="dropdown-item" href="#">Activity Log</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
-            </div>
-        </li>
-    </ul>
+        <!-- Navbar -->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <span class="badge badge-danger">9+</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-envelope fa-fw"></i>
+                    <span class="badge badge-danger">7</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-user-circle fa-fw"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Activity Log</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                </div>
+            </li>
+        </ul>
 
-</nav>
+    </nav>
 
 {% endblock %}
 
@@ -148,82 +153,97 @@
 
 
     {% block sidebar %}
-    <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
+        <!-- Sidebar -->
+        <ul class="sidebar navbar-nav">
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ path('view_comments') }}">
+                    <div class="row">
+                        <div class="col-8">
+                            <i class="fas fa-fw fa-comment"></i>
 
-        <li class="nav-item ">
-            <a class="nav-link" href="{{ path('admin_cars') }}">
-                <i class="fas fa-fw fa-car"></i>
-                <span>Coches</span>
-            </a>
-        </li>
-        <li class="nav-item ">
+                            <span>Comentarios</span>
+                        </div>
+                        <div class="col-4 md-auto">
+                            <span style="border: 1px solid #909294;border-radius: 4px;padding: 3px">10{{ app.session.get('comments') }}</span>
+                        </div>
+                    </div>
+                </a>
+                {# Marcos aqui va la cantidad de comentarios nuevos este es el codigo #}
+
+                {# ----------------------------------------------------------#}
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ path('admin_cars') }}">
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Coches</span>
+                </a>
+            </li>
+            <li class="nav-item ">
                 <a class="nav-link" href="{{ path('admin_houses') }}">
-                <i class="fas fa-fw fa-home"></i>
-                <span>Casas</span>
-            </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-hotel"></i>
-                <span>Hoteles</span>
-            </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="{{ path('excursiones',{'status':'create'}) }}">
-                <i class="fas fa-fw fa-map-marked-alt"></i>
-                <span>Excursiones</span>
-            </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="{{ path('paquetes') }}">
-                <i class="fab fa-fw fa-grav"></i>
-                <span>Paquetes</span>
-            </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="{{ path('users') }}">
-                <i class="fas fa-user-circle"></i>
-                <span>Usuarios</span>
-            </a>
-        </li>
-        <li class="nav-item ">
-            <a class="nav-link" href="{{ path('lugar_index') }}">
-                <i class="fas fa-map-signs "></i>
-                <span>Lugares</span>
-            </a>
-        </li>
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Casas</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="#">
+                    <i class="fas fa-fw fa-hotel"></i>
+                    <span>Hoteles</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ path('excursiones',{'status':'create'}) }}">
+                    <i class="fas fa-fw fa-map-marked-alt"></i>
+                    <span>Excursiones</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ path('paquetes') }}">
+                    <i class="fab fa-fw fa-grav"></i>
+                    <span>Paquetes</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ path('users') }}">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Usuarios</span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ path('lugar_index') }}">
+                    <i class="fas fa-map-signs "></i>
+                    <span>Lugares</span>
+                </a>
+            </li>
 
 
-
-
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-fw fa-folder"></i>
-                <span>Reservas</span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                {#<h6 class="dropdown-header">Login Screens:</h6>#}
-                <a class="dropdown-item" href="{{ path('reservasconfirmadas') }}">Confirmadas</a>
-                <a class="dropdown-item" href="{{ path('reservasnoconfirmadas') }}">No Confirmadas</a>
-                <a class="dropdown-item" href="{{ path('pagos') }}">Pagos</a>
-                <div class="dropdown-divider"></div>
-                <h6 class="dropdown-header">Other Pages:</h6>
-                <a class="dropdown-item" href="404.html">404 Page</a>
-                <a class="dropdown-item" href="blank.html">Blank Page</a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="charts.html">
-                <i class="fas fa-fw fa-chart-line"></i>
-                <span>Charts</span></a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
-        </li>
-    </ul>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>Reservas</span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                    {#<h6 class="dropdown-header">Login Screens:</h6>#}
+                    <a class="dropdown-item" href="{{ path('reservasconfirmadas') }}">Confirmadas</a>
+                    <a class="dropdown-item" href="{{ path('reservasnoconfirmadas') }}">No Confirmadas</a>
+                    <a class="dropdown-item" href="{{ path('pagos') }}">Pagos</a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Other Pages:</h6>
+                    <a class="dropdown-item" href="404.html">404 Page</a>
+                    <a class="dropdown-item" href="blank.html">Blank Page</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-line"></i>
+                    <span>Charts</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li>
+        </ul>
 
     {% endblock %}
 
@@ -256,57 +276,60 @@
 
 <!-- Scroll to Top Button-->
 {% block botonsubir %}
-<a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
 
-</a>
+    </a>
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Listo para salir</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión actual.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="{{ path('security_logout') }}">Cerrar Sesión</a>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Listo para salir</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Seleccione "Cerrar sesión" a continuación si está listo para finalizar su sesión
+                    actual.
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="{{ path('security_logout') }}">Cerrar Sesión</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
 
 {% block script %}
-<!-- Bootstrap core JavaScript-->
-<script src="{{ asset('build/vendor/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{ asset('build/vendor/jquery/jquery.min.js') }}"></script>
 
-{#<script src="{{ asset('build/backend/sb-admin/vendor/jquery/jquery.min.js')}}"></script>#}
-<script src="{{ asset('build/backend/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    {#<script src="{{ asset('build/backend/sb-admin/vendor/jquery/jquery.min.js')}}"></script>#}
+    <script src="{{ asset('build/backend/sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="{{ asset('build/backend/sb-admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{ asset('build/backend/sb-admin/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
-<!-- Page level plugin JavaScript-->
-<script src="{{ asset('build/backend/sb-admin/vendor/chart.js/Chart.min.js')}}"></script>
-<script src="{{ asset('build/backend/sb-admin/vendor/datatables/jquery.dataTables.js')}}"></script>
-<script src="{{ asset('build/backend/sb-admin/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
+    <!-- Page level plugin JavaScript-->
+    <script src="{{ asset('build/backend/sb-admin/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('build/backend/sb-admin/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('build/backend/sb-admin/vendor/datatables/dataTables.bootstrap4.js') }}"></script>
 
-<!-- Custom scripts for all pages-->
-<script src="{{ asset('build/backend/sb-admin/js/sb-admin.min.js')}}"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{ asset('build/backend/sb-admin/js/sb-admin.min.js') }}"></script>
 
-<!-- Demo scripts for this page-->
-<script src="{{ asset('build/backend/sb-admin/js/demo/datatables-demo.js')}}"></script>
-<script src="{{ asset('build/backend/sb-admin/js/demo/chart-area-demo.js')}}"></script>
-<script src="{{ asset('build/backend/js/jquery.expander.js')}}"></script>
+    <!-- Demo scripts for this page-->
+    <script src="{{ asset('build/backend/sb-admin/js/demo/datatables-demo.js') }}"></script>
+    <script src="{{ asset('build/backend/sb-admin/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('build/backend/js/jquery.expander.js') }}"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             // use esta configuracion simple para valores por defecto
             //$('div.expandable p').expander();
             // *** O ***
@@ -325,7 +348,6 @@
 
 
 {#body template admin ....................................................................................................#}
-
 
 
 </html>

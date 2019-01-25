@@ -24,7 +24,7 @@
         <li class="breadcrumb-item">
             <a href="{{ path('admin') }}">Administración</a>
         </li>
-        <li class="breadcrumb-item active">Reservas no Confirmadas</li>
+        <li class="breadcrumb-item active">Reservas Confirmadas</li>
     </ol>
 
     {% for user in users %}
@@ -37,7 +37,7 @@
                              style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
                                     border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
                         {{ user['user'] }}
-                        <label style="margin-left: 50px">{{ 'Costo total: €'~user['price']~' ' }}</label>
+                        <label style="margin-left: 50px">{{ 'Costo total: $'~user['price']~' ' }}</label>
                     </div>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                         <h5>Redireccionado por: {{ ' '~ user['user'].getRedirectedBy }}</h5>
                     {% endif %}
                 </div>
-                <div>
+                <div class="table-responsive">
                     <table class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                         <tr>
@@ -71,7 +71,7 @@
                         {% for r in user['reserve'] %}
 
                             <tr>
-                                <td><a data-toggle="modal"
+                                <td><a href="#q" data-toggle="modal"
                                        data-target="#{{ 'contactInfoModal'~r.id }}">{{ r.commponent }}</a>
                                     {% if r.commponent.getType()== 'Casa' %}
                                         <button id="btnGroupDrop1" type="button"
@@ -99,7 +99,7 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ r.cantPersonas }}</td>
-                                <td>{{ '€'~r.costo }}</td>
+                                <td>{{ '$'~r.costo }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

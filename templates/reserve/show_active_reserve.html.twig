@@ -24,182 +24,191 @@
 
             {% for r in reserves %}
                 {% if r.type == 'esp' %}
-            <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'Since' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Descripcion':'Description' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
-                                    <img
-                                            src="{{ asset(r.commponent.getMainImage.min) }}"
-                                            class="img-fluid avat"
-                                            style=" height: 35px; margin-right: 20px; width: 35px;"
-                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
-                            <td>{{ r.startAt|date("d/m/Y") }}</td>
-                            <td>{{ r.endAt|date("d/m/Y") }}</td>
-                            <td>{{ r.cantPersonas }}</td>
-                            <td>{{ r.descripcion }}</td>
-                            <td>{{ '€'~r.costo }}</td>
-                            <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-            </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'Since' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Descripcion':'Description' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                                        <img
+                                                src="{{ asset(r.commponent.getMainImage.min) }}"
+                                                class="img-fluid avat"
+                                                style=" height: 35px; margin-right: 20px; width: 35px;"
+                                                alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
+                                </th>
+                                <td>{{ r.startAt|date("d/m/Y") }}</td>
+                                <td>{{ r.endAt|date("d/m/Y") }}</td>
+                                <td>{{ r.cantPersonas }}</td>
+                                <td>{{ r.descripcion }}</td>
+                                <td>{{ '$'~r.costo }}</td>
+                                <td><a type="button" class="btn btn-danger"
+                                       href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="separador"></div>
                 {% elseif r.commponent.getType == 'Excursion' %}
-            <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
 
-                                    <img
-                                            src="{{ asset(r.commponent.getMainImage.min) }}"
-                                            class="img-fluid avat"
-                                            style=" height: 35px; margin-right: 20px; width: 35px;"
-                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
-                            <td>{{ r.startAt|date("d/m/Y") }}</td>
-                            <td>{{ r.cantPersonas }}</td>
-                            <td>{{ '€'~r.costo }}</td>
-                            <td><a type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">X</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-            </div>
+                                        <img
+                                                src="{{ asset(r.commponent.getMainImage.min) }}"
+                                                class="img-fluid avat"
+                                                style=" height: 35px; margin-right: 20px; width: 35px;"
+                                                alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
+                                </th>
+                                <td>{{ r.startAt|date("d/m/Y") }}</td>
+                                <td>{{ r.cantPersonas }}</td>
+                                <td>{{ '$'~r.costo }}</td>
+                                <td><a type="button" class="btn btn-danger" data-toggle="modal"
+                                       data-target="#confirmModal" data-reserveid="{{ r.id }}">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="separador"></div>
                 {% elseif r.commponent.getType == 'Paquete' %}
-            <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Inicia':'Start At' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Termina':'End At' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Inicia':'Start At' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Termina':'End At' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
 
-                                    <img
-                                            src="{{ asset(r.commponent.getMainImage.min) }}"
-                                            class="img-fluid avat"
-                                            style=" height: 35px; margin-right: 20px; width: 35px;"
-                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
-                            <td>{{ r.startAt|date("d/m/Y") }}</td>
-                            <td>{{ r.endAt|date("d/m/Y") }}</td>
-                            <td>{{ r.cantPersonas }}</td>
-                            <td>{{ '€'~r.costo }}</td>
-                            <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-            </div>
+                                        <img
+                                                src="{{ asset(r.commponent.getMainImage.min) }}"
+                                                class="img-fluid avat"
+                                                style=" height: 35px; margin-right: 20px; width: 35px;"
+                                                alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
+                                </th>
+                                <td>{{ r.startAt|date("d/m/Y") }}</td>
+                                <td>{{ r.endAt|date("d/m/Y") }}</td>
+                                <td>{{ r.cantPersonas }}</td>
+                                <td>{{ '$'~r.costo }}</td>
+                                <td><a type="button" class="btn btn-danger" data-toggle="modal"
+                                       data-target="#confirmModal" data-reserveid="{{ r.id }}">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="separador"></div>
                 {% elseif r.commponent.getType == 'Casa' %}
-            <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Salida':'Departure' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
-                                    <img
-                                            src="{{ asset(r.commponent.getMainImage.min) }}"
-                                            class="img-fluid avat"
-                                            style=" height: 35px; margin-right: 20px; width: 35px;"
-                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a></th>
-                            <td>{{ r.startAt|date("d/m/Y") }}</td>
-                            <td>{{ r.endAt|date("d/m/Y") }}</td>
-                            <td>{{ r.cantPersonas }}</td>
-                            <td>{{ '€'~r.costo }}</td>
-                            <td><a type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmModal">X</a></td>
-                        </tr>
-                        </tbody>
-                        <thead class="thead-light">
-                        <tr>
-                            <th colspan="6">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</th>
-                        </tr>
-                        </thead>
-                        {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
                             <tr>
-                                <td colspan="4">{{ h }}</td>
-                                <td colspan="2">{{ '€'~h.precio * r.getDias }}</td>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Entrada':'Entrance' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Salida':'Departure' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
                             </tr>
-                        {% endfor %}
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                                        <img
+                                                src="{{ asset(r.commponent.getMainImage.min) }}"
+                                                class="img-fluid avat"
+                                                style=" height: 35px; margin-right: 20px; width: 35px;"
+                                                alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
+                                </th>
+                                <td>{{ r.startAt|date("d/m/Y") }}</td>
+                                <td>{{ r.endAt|date("d/m/Y") }}</td>
+                                <td>{{ r.cantPersonas }}</td>
+                                <td>{{ '$'~r.costo }}</td>
+                                <td><a type="button" class="btn btn-danger" data-toggle="modal"
+                                       data-target="#confirmModal" data-reserveid="{{ r.id }}">X</a></td>
+                            </tr>
+                            </tbody>
+                            <thead class="thead-light">
+                            <tr>
+                                <th colspan="6">{{ app.session.get('language') == 'es'? 'Habitaciones':'Rooms' }}</th>
+                            </tr>
+                            </thead>
+                            {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
+                                <tr>
+                                    <td colspan="4">{{ h }}</td>
+                                    <td colspan="2">{{ '$'~h.precio * r.getDias }}</td>
+                                </tr>
+                            {% endfor %}
 
-                    </table>
-            </div>
+                        </table>
+                    </div>
                     <div class="separador"></div>
                 {% else %}
-            <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
-                            <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Servicios':'Services' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Fecha':'Date' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Desde':'From' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Hasta':'To' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cantidad de Personas':'Amount of People' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Precio':'Price' }}</th>
+                                <th scope="col">{{ app.session.get('language') == 'es'? 'Cancelar':'Cancel' }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th><a href="{{ path('oferta',{'id':r.commponent.id,'type':r.commponent.getType}) }}">
 
-                                    <img
-                                            src="{{ asset(r.commponent.getMainImage.min) }}"
-                                            class="img-fluid avat"
-                                            style=" height: 35px; margin-right: 20px; width: 35px;"
-                                            alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
-                            </th>
-                            <td>{{ r.startAt|date("d/m/Y") }}</td>
-                            {% if r.type == 'trans' %}
-                                <td>{{ r.desde }}</td>
-                                <td>{{ r.hasta }}</td>
-                            {% else %}
-                                <td>{{ hora[r.horaInicial] }}</td>
-                                <td>{{ hora[r.horaFinal] }}</td>
-                            {% endif %}
-                            <td>{{ r.cantPersonas }}</td>
-                            <td>{{ '€'~r.costo }}</td>
-                            <td><a type="button" class="btn btn-danger" href="{{ path('cancel_pre_reserve',{'id':r.id}) }}">X</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-            </div>
+                                        <img
+                                                src="{{ asset(r.commponent.getMainImage.min) }}"
+                                                class="img-fluid avat"
+                                                style=" height: 35px; margin-right: 20px; width: 35px;"
+                                                alt="{{ r.commponent.getMainImage.altName }}">{{ r.commponent }}</a>
+                                </th>
+                                <td>{{ r.startAt|date("d/m/Y") }}</td>
+                                {% if r.type == 'trans' %}
+                                    <td>{{ r.desde }}</td>
+                                    <td>{{ r.hasta }}</td>
+                                {% else %}
+                                    <td>{{ hora[r.horaInicial] }}</td>
+                                    <td>{{ hora[r.horaFinal] }}</td>
+                                {% endif %}
+                                <td>{{ r.cantPersonas }}</td>
+                                <td>{{ '$'~r.costo }}</td>
+                                <td><a type="button" class="btn btn-danger" data-toggle="modal"
+                                       data-target="#confirmModal" data-reserveid="{{ r.id }}">X</a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="separador"></div>
                 {% endif %}
 
@@ -208,24 +217,39 @@
 
     </section>
 
-    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ app.session.get('language') == 'es'? '¿Está seguro?':'Are you sure?' }}</h5>
+                    <h5 class="modal-title"
+                        id="exampleModalLabel">{{ app.session.get('language') == 'es'? '¿Está seguro?':'Are you sure?' }}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     {% if app.session.get('language') == 'es' %}
-                    Antes de hacer una cancelación debería leer nuestras <a href="{{ path('reservaCancelacion') }}">políticas de cancelación</a>, si tiene
-                    alguna duda tambíen puede revisar en <a href="{{ path('preguntasFrecuentes') }}">preguntas frecuentes</a> o <a class="nav-link js-scroll-trigger " href="#contact">contactarnos</a>
+                        Antes de hacer una cancelación debería leer nuestras <a href="{{ path('reservaCancelacion') }}">políticas
+                        de cancelación</a>, si tiene
+                                          alguna duda tambíen puede revisar en <a
+                            href="{{ path('preguntasFrecuentes') }}">preguntas frecuentes</a> o <a
+                            class="nav-link js-scroll-trigger " href="#contact">contáctenos</a>
+                    {% else %}
+                        Before making a cancellation you should read our <a href="{{ path('reservaCancelacion') }}">
+                        cancellation policies </a>, if you have
+                                                  some questions you can also check in <a
+                            href="{{ path('Fecuentes') }}"> frequently asked questions </a> or <a
+                            class="nav-link js-scroll-trigger" href="# contact"> contact us </a>
                     {% endif %}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Estoy seguro</button>
+                    <form method="post" action="{{ path('cancel_active_reserves') }}">
+                        <input id="reserve_id" type="hidden" name="id" value="">
+                        <button type="submit"
+                                class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Estoy seguro':'I´m sure' }}</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -242,7 +266,16 @@
 
 {% block javascripts %}
     {{ parent() }}
-
+    <script type="text/javascript">
+        $('#confirmModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('reserveid') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('#reserve_id').val(recipient)
+        })
+    </script>
 
 
 {% endblock %}

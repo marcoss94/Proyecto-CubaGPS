@@ -257,6 +257,52 @@ class ReserveController extends Controller
     }
 
     /**
+     * @Route("/admin/reservasactivas", name="reservasactivas")
+     */
+    public function reservasactivas(UserRepository $userRepository, ReservaRepository $reservaRepository)
+    {
+        $users = $userRepository->findAll();
+        $usersList = [];
+        foreach ($users as $user) {
+            if (count($reservaRepository->findBy(['status' => 'payed', 'usuario' => $user]))) {
+                $usersList[$user->getId()]['reserve'] = $reservaRepository->findBy(['status' => 'payed', 'usuario' => $user]);
+                $usersList[$user->getId()]['user'] = $user;
+                $totalCost = 0;
+                foreach ($usersList[$user->getId()]['reserve'] as $item) {
+                    $totalCost += $item->getCosto();
+                }
+                $usersList[$user->getId()]['price'] = $totalCost;
+            }
+        }
+        return $this->render('reserve/reservasactivas.html.twig', [
+            'users' => $usersList
+        ]);
+    }
+
+    /**
+     * @Route("/admin/reservascanceladas", name="reservascanceladas")
+     */
+    public function reservascanceladas(UserRepository $userRepository, ReservaRepository $reservaRepository)
+    {
+        $users = $userRepository->findAll();
+        $usersList = [];
+        foreach ($users as $user) {
+            if (count($reservaRepository->findBy(['status' => 'canceled', 'usuario' => $user]))) {
+                $usersList[$user->getId()]['reserve'] = $reservaRepository->findBy(['status' => 'canceled', 'usuario' => $user]);
+                $usersList[$user->getId()]['user'] = $user;
+                $totalCost = 0;
+                foreach ($usersList[$user->getId()]['reserve'] as $item) {
+                    $totalCost += $item->getCosto();
+                }
+                $usersList[$user->getId()]['price'] = $totalCost;
+            }
+        }
+        return $this->render('reserve/reservascanceladas.html.twig', [
+            'users' => $usersList
+        ]);
+    }
+
+    /**
      * @Route("/reserve/show_confirmed_reserves", name="show_confirmed_reserves")
      */
     public function showReserve(ReservaRepository $reservaRepository)
@@ -476,6 +522,33 @@ class ReserveController extends Controller
         $em->flush();
         return $this->redirectToRoute('show_confirmed_reserves');
     }
+
+    /**
+     * @Route("/reserve/cancel_active_reserves", name="cancel_active_reserves")
+     */
+    public function cancel_active_reserves(Request $request, ReservaRepository $reservaRepository)
+    {
+        $reserve = $reservaRepository->find($request->get('id'));
+        $em = $this->getDoctrine()->getManager();
+        $reserve->setStatus('canceled');
+        $reserve->setCanceledAt();
+        $em->persist($reserve);
+        $em->flush();
+        return $this->redirectToRoute('show_active_reserves');
+    }
+
+    /**
+     * @Route("/admin/delete_active_reserve", name="delete_active_reserve")
+     */
+    public function delete_active_reserve(Request $request, ReservaRepository $reservaRepository)
+    {
+        $reserve = $reservaRepository->find($request->get('id'));
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($reserve);
+        $em->flush();
+        return $this->redirectToRoute('reservascanceladas');
+    }
+
 
     public function sendAdminEmail(Reserva $reserva, $mailer)
     {

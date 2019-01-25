@@ -7,9 +7,7 @@ payum:
         App\Entity\Payment: { doctrine: orm }
 
     gateways:
-        paypal:
-             factory:   paypal_express_checkout
-             username:  'cubagps_api2.yahoo.com'
-             password:  'VDWZD4G83K7JVDM4'
-             signature: 'A5YPN42nAqrFrjs0hlHJtuQfp0SuAIVTU-4u3.iJTwfhY7T9B3U5Dg8A'
-             sandbox: false
+        stripe:
+             factory:   stripe_checkout
+             publishable_key:  'pk_live_D2N5043aop3aZ9sqerI2kKj4'
+             secret_key:  'sk_live_qjjX5Y6d4lGBSPIMadxL5AOF'

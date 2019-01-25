@@ -1,0 +1,30 @@
+[26-Dec-2018 21:03:35 Europe/London] PHP Fatal error:  Class 'Symfony\Component\Cache\DependencyInjection\CachePoolPass' not found in /home/travelcuba/travelcubagps/vendor/symfony/framework-bundle/DependencyInjection/Compiler/CachePoolPass.php on line 23
+[26-Dec-2018 21:03:57 Europe/London] PHP Fatal error:  Class 'Symfony\Component\Cache\DependencyInjection\CachePoolPass' not found in /home/travelcuba/travelcubagps/vendor/symfony/framework-bundle/DependencyInjection/Compiler/CachePoolPass.php on line 23
+[28-Dec-2018 00:05:48 Europe/London] PHP Fatal error:  Uncaught Symfony\Component\Dotenv\Exception\PathException: Unable to read the "/home/travelcuba/travelcubagps/public/../.env" environment file. in /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php:466
+Stack trace:
+#0 /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php(51): Symfony\Component\Dotenv\Dotenv->doLoad(false, Array)
+#1 /home/travelcuba/travelcubagps/public/index.php(15): Symfony\Component\Dotenv\Dotenv->load('/home/travelcub...')
+#2 {main}
+  thrown in /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php on line 466
+[28-Dec-2018 00:09:09 Europe/London] PHP Fatal error:  Uncaught Symfony\Component\Dotenv\Exception\PathException: Unable to read the "/home/travelcuba/travelcubagps/public/../.env" environment file. in /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php:466
+Stack trace:
+#0 /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php(51): Symfony\Component\Dotenv\Dotenv->doLoad(false, Array)
+#1 /home/travelcuba/travelcubagps/public/index.php(15): Symfony\Component\Dotenv\Dotenv->load('/home/travelcub...')
+#2 {main}
+  thrown in /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php on line 466
+[28-Dec-2018 00:09:38 Europe/London] PHP Fatal error:  Uncaught Symfony\Component\Dotenv\Exception\PathException: Unable to read the "/home/travelcuba/travelcubagps/public/../.env" environment file. in /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php:466
+Stack trace:
+#0 /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php(51): Symfony\Component\Dotenv\Dotenv->doLoad(false, Array)
+#1 /home/travelcuba/travelcubagps/public/index.php(15): Symfony\Component\Dotenv\Dotenv->load('/home/travelcub...')
+#2 {main}
+  thrown in /home/travelcuba/travelcubagps/vendor/symfony/dotenv/Dotenv.php on line 466
+[03-Jan-2019 16:39:49 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 16:50:25 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 16:50:45 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 16:55:12 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 16:55:46 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 17:00:45 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 17:04:31 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 17:07:16 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 17:08:22 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0
+[03-Jan-2019 17:11:34 Europe/London] PHP Fatal error:  Method App\Entity\Habitacion::__toString() must not throw an exception, caught TypeError: Return value of App\Entity\Habitacion::__toString() must be of the type string, none returned in /home/travelcuba/travelcubagps/vendor/twig/twig/lib/Twig/Extension/Core.php on line 0

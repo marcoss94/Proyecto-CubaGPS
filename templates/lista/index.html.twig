@@ -85,15 +85,15 @@
                                 </a>
                                 {% if i.getType == 'Casa' %}
                                     <div class="texto-encima">
-                                        <h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6>
+                                        <h6>{{ i.precio ~' $ ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6>
                                     </div>
                                 {% elseif i.getType == 'Excursion' %}
                                     <div class="texto-encima">
-                                        <h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6>
+                                        <h6>{{ i.precio1 ~' $ ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6>
                                     </div>
                                 {% elseif i.getType == 'Paquete' %}
                                     <div class="texto-encima">
-                                        <h6>{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6>
+                                        <h6>{{ i.precio1 ~' $ ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6>
                                     </div>
                                 {% endif %}
 

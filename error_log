@@ -1,0 +1,2 @@
+[05-Jan-2019 14:52:46 Europe/London] PHP Fatal error:  Access level to App\Entity\Transaction::$id must be protected (as in class Beelab\PaypalBundle\Entity\Transaction) or weaker in /home/travelcuba/travelcubagps/src/Entity/Transaction.php on line 11
+[22-Jan-2019 19:04:19 Europe/London] PHP Fatal error:  Out of memory (allocated 981475328) (tried to allocate 33554432 bytes) in phar:///usr/local/bin/composer/src/Composer/DependencyResolver/Solver.php on line 220

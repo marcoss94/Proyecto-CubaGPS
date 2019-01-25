@@ -111,7 +111,7 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-                                                <div class="texto-encima"><h6>{{ i.precio ~' € ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
+                                                <div class="texto-encima"><h6>{{ i.precio ~' $ ' }}{{ app.session.get('language') == 'es'? ' por noche':' per night' }}</h6></div>
                                                 </div>
                                         </a>
                                         <div class=" infoOferta text-left">
@@ -310,7 +310,7 @@ border-color: #f9b501;"
                                                                 {{ i.nochesDuracion }}{{ app.session.get('language') == 'es'? ' Noches ':' Nights' }}
                                                             </h6>
                                                         </div>
-                                                        {#{{ i.precio1 ~' € ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}#}
+                                                        {#{{ i.precio1 ~' $ ' }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}#}
                                                     </h6>
                                                 </div>
                                             </div>
@@ -357,7 +357,7 @@ border-color: #f9b501;"
                                                                     <h6>
 
                                                                         <div class="precioBlog">1<i class="fas fa-user"></i>
-                                                                            <span>€{{ i.precio1 }}</span></div>
+                                                                            <span>${{ i.precio1 }}</span></div>
 
                                                                     </h6>
                                                                 </div>
@@ -370,7 +370,7 @@ border-color: #f9b501;"
 
 
                                                                         <div class="precioBlog"> 2<i class="fas fa-users"></i>
-                                                                            <span>€{{ i.precio2 }}</span></div>
+                                                                            <span>${{ i.precio2 }}</span></div>
 
                                                                     </h6>
                                                                 </div>
@@ -383,7 +383,7 @@ border-color: #f9b501;"
 
 
                                                                         <div class="precioBlog"> 3<i class="fas fa-users"></i>
-                                                                            <span>€{{ i.precio3 }}</span></div>
+                                                                            <span>${{ i.precio3 }}</span></div>
 
                                                                     </h6>
                                                                 </div>
@@ -395,7 +395,7 @@ border-color: #f9b501;"
                                                                     <h6>
 
                                                                         <div class="precioBlog"> +4<i class="fas fa-users"></i>
-                                                                            <span> €{{ i.precio4 }}  </span></div>
+                                                                            <span> ${{ i.precio4 }}  </span></div>
                                                                     </h6>
                                                                 </div>
                                                             </div>
@@ -578,7 +578,7 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-                                                <div class="texto-encima"><h6>{{ '€ '~i.precio1 }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
+                                                <div class="texto-encima"><h6>{{ '$ '~i.precio1 }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
                                             </div>
 
                                         </a>
@@ -668,10 +668,7 @@ border-color: #f9b501;"
         </span>
                                 </a>
                                 <h4 class="service-heading info">{{ app.session.get('language') == 'es'? 'Quienes Somos':'About us' }}</h4>
-                                <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Minima
-                                    maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.
+                                <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Cuba GPS fue diseñada pensando en usted. Brindamos experiencias inolvidables, todo incluido, Cuba GPS te permite descubrir la magia de Cuba al conectarte con su gente y miles de destinos exóticos. ':'Cuba GPS was designed with you in mind. We provide unforgettable, all-inclusive experiences. Cuba GPS allows you to discover the magic of Cuba by connecting you to its people, and thousands of exotic destinations.' }}
                                 </h7>
                             </div>
                             <div class="col-md-4">
@@ -682,9 +679,7 @@ border-color: #f9b501;"
         </span>
                                 </a>
                                 <h4 class="service-heading info">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</h4>
-                                <h7 style="color: white">¿Necesito visado para viajar a Cuba?
-                                    ¿Necesito documento Médico-Sanitario para entrar a Cuba?
-                                    ¿Es fácil llamar desde Cuba al exterior?
+                                <h7 style="color: white">{{ app.session.get('language') == 'es'? '¿Necesito una visa?, ¿Es fácil llamar desde Cuba al exterior?, ¿Tengo acceso a internet en Cuba?, ¿Cuándo es el mejor momento para viajar a Cuba?, ¿Necesito un seguro médico para Viajar a Cuba?. ':'Do I need a visa?, It is easy to call from Cuba to other countries?, Do I have access to the internet in Cuba?, When is the best time to travel to Cuba?, Do I need medical insurance to travel to Cuba?.' }}
                                 </h7>
                             </div>
                             <div class="col-md-4">
@@ -695,10 +690,7 @@ border-color: #f9b501;"
         </span>
                                 </a>
                                 <h4 class="service-heading info">Web Security</h4>
-                                <h7 style="color: white">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Minima
-                                    maxime quam
-                                    architecto quo inventore harum ex magni, dicta impedit.
+                                <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Cuba GPS fue diseñada pensando en usted. Brindamos experiencias inolvidables, todo incluido, Cuba GPS te permite descubrir la magia de Cuba al conectarte con su gente y miles de destinos exóticos. ':'Cuba GPS was designed with you in mind. We provide unforgettable, all-inclusive experiences. Cuba GPS allows you to discover the magic of Cuba by connecting you to its people, and thousands of exotic destinations.' }}
                                 </h7>
                             </div>
                         </div>
@@ -743,17 +735,17 @@ border-color: #f9b501;"
                                     <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Directora Ejecutiva (CEO)':'Manager (CEO)' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.facebook.com/profile.php?id=100011329474821">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/maribelriveracamejo">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="mailto:maribelrivera@travelcubagps.com">
                                                 <i class="far fa-envelope"></i>
                                             </a>
                                         </li>
@@ -768,17 +760,17 @@ border-color: #f9b501;"
                                     <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Director de Operaciones (COO)':'Manager (COO)' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.facebook.com/profile.php?id=100010090572567">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/lemuel_diaz_rivera">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="mailto:lemueldiaz@travelcubagps.com">
                                                 <i class="far fa-envelope"></i>
                                             </a>
                                         </li>
@@ -794,17 +786,17 @@ border-color: #f9b501;"
                                     <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Diseñador Web':'Web Designer' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.facebook.com/marcossalvarez94">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/marcos9404">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="mailto:marcoss94@travelcubagps.com">
                                                 <i class="far fa-envelope"></i>
                                             </a>
                                         </li>
@@ -819,17 +811,17 @@ border-color: #f9b501;"
                                     <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Desarrollador Web':'Web Developer' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.facebook.com/armando.rodriguezacosta.18">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/armando25723">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="mailto:armando25723@travelcubagps.com">
                                                 <i class="far fa-envelope"></i>
                                             </a>
                                         </li>
@@ -844,17 +836,17 @@ border-color: #f9b501;"
                                     <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Fotógrafo':'Photographer' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.facebook.com/evorafotos">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/marcos_evora/">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="mailto:marcos_evora@travelcubagps.com">
                                                 <i class="far fa-envelope"></i>
                                             </a>
                                         </li>
@@ -869,17 +861,17 @@ border-color: #f9b501;"
                                     <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Programador':'Programmer' }}</h7>
                                     <ul class="list-inline social-buttons">
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.facebook.com/freddy.pozo.96">
                                                 <i class="fab fa-facebook-f"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="https://www.instagram.com/cubagps/">
                                                 <i class="fab fa-instagram"></i>
                                             </a>
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="#">
+                                            <a href="mailto:freddy9408@travelcubagps.com">
                                                 <i class="far fa-envelope"></i>
                                             </a>
                                         </li>
@@ -887,12 +879,12 @@ border-color: #f9b501;"
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-8 mx-auto text-center">
-                                <h7 class="large" style="color: white">{{ app.session.get('language') == 'es'? 'Usted puede diseñar el lugar más maravilloso del mundo. Pero se necesita gente para hacerlo realidad':'ou can design the most wonderful place in the world. But you need people to make it happen' }}
-                                </h7>
-                            </div>
-                        </div>
+                        {#<div class="row">#}
+                            {#<div class="col-lg-8 mx-auto text-center">#}
+                                {#<h7 class="large" style="color: white">{{ app.session.get('language') == 'es'? 'Usted puede diseñar el lugar más maravilloso del mundo. Pero se necesita gente para hacerlo realidad':'You can design the most wonderful place in the world. But people are needed to make it happen' }}#}
+                                {#</h7>#}
+                            {#</div>#}
+                        {#</div>#}
                     </div>
                 </section>
             </div>

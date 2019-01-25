@@ -233,6 +233,12 @@
     "payum/payum-bundle": {
         "version": "2.3.1"
     },
+<<<<<<< HEAD
+=======
+    "payum/stripe": {
+        "version": "1.5.1"
+    },
+>>>>>>> 0268446b9aa0f842468bb6ad46de50c4aa17b05a
     "php-cs-fixer/diff": {
         "version": "v1.2.0"
     },
@@ -289,6 +295,9 @@
             "version": "4.0",
             "ref": "576d653444dade07f272c889d52fe4594caa4fc3"
         }
+    },
+    "stripe/stripe-php": {
+        "version": "v4.13.0"
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
