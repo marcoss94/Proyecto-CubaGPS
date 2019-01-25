@@ -71,11 +71,32 @@ class Reserva
     private $canceledAt;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    private $payedAt;
+
+    /**
      * @return mixed
      */
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPayedAt()
+    {
+        return $this->payedAt;
+    }
+
+    /**
+     * @param mixed $payedAt
+     */
+    public function setPayedAt()
+    {
+        $this->createdAt = new \DateTime();
     }
 
     /**

@@ -10,22 +10,101 @@
     <meta name=”generator” content="Symfony 4.0">
 
 
-    <title>Travel {% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}</title>
+    <title>
+        Travel {% block title %} Cuba GPS | {{ app.session.get('language') == 'es'? 'Oficial':'Official' }}{% endblock %}</title>
 
     <style type="text/css">
-        .tg  {border-collapse:collapse;border-spacing:0;}
-        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-        .tg .tg-oz38{font-weight:bold;font-size:20px;font-family:Tahoma, Geneva, sans-serif !important;;border-color:inherit;text-align:center}
-        .tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-        .tg .tg-lqy6{text-align:right;vertical-align:top}
-        .tg .tg-3mbc{font-weight:bold;font-size:16px;border-color:inherit;text-align:right;vertical-align:top}
-        .tg .tg-i12u{font-weight:bold;font-size:16px;border-color:inherit;text-align:left}
-        .tg .tg-dbtv{font-weight:bold;font-size:16px;border-color:inherit;text-align:left;vertical-align:top}
-        .tg .tg-xldj{border-color:inherit;text-align:left}
-        .tg .tg-dvpl{border-color:inherit;text-align:right;vertical-align:top}
-        .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-        .tg .tg-0lax{text-align:left;vertical-align:top}
+        .tg {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg .tg-oz38 {
+            font-weight: bold;
+            font-size: 20px;
+            font-family: Tahoma, Geneva, sans-serif !important;;
+            border-color: inherit;
+            text-align: center
+        }
+
+        .tg .tg-c3ow {
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+
+        .tg .tg-lqy6 {
+            text-align: right;
+            vertical-align: top
+        }
+
+        .tg .tg-3mbc {
+            font-weight: bold;
+            font-size: 16px;
+            border-color: inherit;
+            text-align: right;
+            vertical-align: top
+        }
+
+        .tg .tg-i12u {
+            font-weight: bold;
+            font-size: 16px;
+            border-color: inherit;
+            text-align: left
+        }
+
+        .tg .tg-dbtv {
+            font-weight: bold;
+            font-size: 16px;
+            border-color: inherit;
+            text-align: left;
+            vertical-align: top
+        }
+
+        .tg .tg-xldj {
+            border-color: inherit;
+            text-align: left
+        }
+
+        .tg .tg-dvpl {
+            border-color: inherit;
+            text-align: right;
+            vertical-align: top
+        }
+
+        .tg .tg-0pky {
+            border-color: inherit;
+            text-align: left;
+            vertical-align: top
+        }
+
+        .tg .tg-0lax {
+            text-align: left;
+            vertical-align: top
+        }
     </style>
 
 </head>
@@ -35,134 +114,92 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-        <center>
+            <center>
 
-
-
-        <div>
-
-                <img src="{{ asset('build/img/logooficial.png') }}"
-                     width="200" height="100"
-                     class="d-inline-block align-top" alt="logo cubagps">
-
-        </div>
-
-            <br>
-            <br>
-
-
-
-            <table class="tg">
-                <tr>
-                    <th class="tg-oz38" colspan="5">Factura de servicios Cuba GPS<br></th>
-                </tr>
-                <tr>
-                    <td class="tg-i12u">Nombre<br></td>
-                    <td class="tg-i12u">Apellidos</td>
-                    <td class="tg-dbtv">Fecha<br></td>
-                    <td class="tg-3mbc" colspan="2">Folio</td>
-                </tr>
-                <tr>
-                    <td class="tg-xldj">#Marcos</td>
-                    <td class="tg-xldj">#Alvarez Gallardo</td>
-                    <td class="tg-c3ow">#24-01-2019</td>
-                    <td class="tg-dvpl" colspan="2">#001</td>
-                </tr>
-                <tr>
-                    <td class="tg-i12u">Servicios</td>
-                    <td class="tg-i12u">Fecha</td>
-                    <td class="tg-dbtv">Cantidad de Personas</td>
-                    <td class="tg-3mbc" colspan="2">Precio</td>
-                </tr>
-                <tr>
-                    <td class="tg-dbtv" colspan="5">Casa<br></td>
-                </tr>
-                <tr>
-                    <td class="tg-0pky">#Casa Betty Mar</td>
-                    <td class="tg-0pky">#26-01-2019</td>
-                    <td class="tg-c3ow">#10</td>
-                    <td class="tg-dvpl" colspan="2">#500.00</td>
-                </tr>
-                <tr>
-                    <td class="tg-0lax" colspan="3">Precio/Persona</td>
-                    <td class="tg-lqy6" colspan="2">#24.00</td>
-                </tr>
-
-                <tr>
-                    <td class="tg-dbtv" colspan="5">Excurciones<br></td>
-                </tr>
-                <tr>
-
-                    <td class="tg-0pky">#Conociendo Viñales</td>
-                    <td class="tg-0pky">#29-01-2019</td>
-                    <td class="tg-c3ow">#40</td>
-                    <td class="tg-dvpl" colspan="2">#1000.00</td>
-                </tr>
-                <tr>
-                    <td class="tg-0lax" colspan="3">Precio/Persona</td>
-                    <td class="tg-lqy6" colspan="2">#23.00</td>
-                </tr>
-                <tr>
-                    <td class="tg-dbtv" colspan="5">Paquetes<br></td>
-                </tr>
-                <tr>
-                    <td class="tg-0pky">#Paquete020</td>
-                    <td class="tg-0pky">#30-01-2019</td>
-                    <td class="tg-c3ow">#9</td>
-                    <td class="tg-dvpl" colspan="2">#450.00</td>
-                </tr>
-                <tr>
-                    <td class="tg-0lax" colspan="3">Precio/Persona</td>
-                    <td class="tg-lqy6" colspan="2">#23.00</td>
-                </tr>
-                <tr>
-                    <td class="tg-dbtv" colspan="5">Coche<br></td>
-                </tr>
-                <tr>
-                    <td class="tg-0lax">#Chevolet 45</td>
-                    <td class="tg-0lax">#25-01-2019</td>
-                    <td class="tg-c3ow">#4</td>
-                    <td class="tg-dvpl" colspan="2">#100.00</td>
-                </tr>
-                <tr>
-                    <td class="tg-0lax" colspan="3">Precio/Persona</td>
-                    <td class="tg-lqy6" colspan="2">#23.00</td>
-                </tr>
-                <tr>
-                    <td class="tg-dbtv">Total <br></td>
-                    <td class="tg-dvpl" colspan="4">#2541.00</td>
-                </tr>
-            </table>
-
-
-
-
-
-
-            <br>
-            <br>
-
-
-
-        <div>
 
                 <div>
-                <img src="{{ asset('build/img/logooficial.png') }}"
-                     width="200" height="100"
-                     class="d-inline-block align-top" alt="logo cubagps">
+
+                    <img src="{{ asset('build/img/logooficial.png') }}"
+                         width="200" height="100"
+                         class="d-inline-block align-top" alt="logo cubagps">
+
                 </div>
+
+                <br>
+                <br>
+
+
+                <table class="tg">
+                    <tr>
+                        <th class="tg-oz38"
+                            colspan="5">{{ user.idioma=='es'? 'Factura de servicios Cuba GPS': 'Cuba GPS Utility bill' }}
+                            <br></th>
+                    </tr>
+                    <tr>
+                        <td class="tg-i12u">{{ user.idioma=='es'? 'Nombre': 'Firstname' }}<br></td>
+                        <td class="tg-i12u">{{ user.idioma=='es'? 'Apellidos': 'Lastname' }}</td>
+                        <td class="tg-dbtv">{{ user.idioma=='es'? 'Fecha': 'Date' }}<br></td>
+                        <td class="tg-3mbc" colspan="2">Folio</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-xldj">{{ user.firstname }}</td>
+                        <td class="tg-xldj">{{ user.lastname }}</td>
+                        <td class="tg-c3ow">{{ reservas[0].payedAt |date("d/m/Y") }}</td>
+                        <td class="tg-dvpl" colspan="2">{{ folio }}</td>
+                    </tr>
+                    <tr>
+                        <td class="tg-i12u">{{ user.idioma=='es'? 'Servicios': 'Services' }}</td>
+                        <td class="tg-i12u">{{ user.idioma=='es'? 'Fecha': 'Date' }}</td>
+                        <td class="tg-dbtv">{{ user.idioma=='es'? 'Cantidad de Personas': 'Amount of People' }}</td>
+                        <td class="tg-3mbc" colspan="2">{{ user.idioma=='es'? 'Precio': 'Price' }}</td>
+                    </tr>
+                    {% for r in reservas %}
+                        <tr>
+                            <td class="tg-0pky">{{ user.idioma == 'es' ? r.commponent.nombre:r.commponent.name }}</td>
+                            {% if r.type == 'esp' or r.commponent.getType == 'Casa' or r.commponent.getType == 'Paquete' %}
+                                <td class="tg-0pky">{{ r.startAt|date("d/m/Y") ~ '~' ~ r.endAt|date("d/m/Y") }}</td>
+                            {% else %}
+                                <td class="tg-0pky">{{ r.startAt|date("d/m/Y") }}</td>
+                            {% endif %}
+                            <td class="tg-c3ow">{{ r.cantPersonas }}</td>
+                            <td class="tg-dvpl" colspan="2">{{ '$'~r.costo }}</td>
+                        </tr>
+                        <tr>
+                            <td class="tg-0lax"
+                                colspan="3">{{ user.idioma == 'es' ? 'Precio/Persona':'Price/Person' }}</td>
+                            <td class="tg-lqy6" colspan="2">{{ r.costo/r.cantPersonas }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td class="tg-dbtv">Total <br></td>
+                        <td class="tg-dvpl" colspan="4">{{ '$'~price }}</td>
+                    </tr>
+                </table>
+
+
+                <br>
+                <br>
+
+
                 <div>
-                    <a href="https://www.travelcubagps.com">www.travelcubagps.com</a>
-                    <a href="https://www.facebook.com/cubagps/">Facebook/cubagps</a>
-                    <a href="https://www.instagram.com/cubagps/">instagram/@cubagps</a>
+
                     <div>
-                    <p >Mail/contact@travelcubagps.com</p>
-                    <p >Phone/+53 53969643</p>
+                        <img src="{{ asset('build/img/logooficial.png') }}"
+                             width="200" height="100"
+                             class="d-inline-block align-top" alt="logo cubagps">
                     </div>
-                </div>
+                    <div>
+                        <a href="https://www.travelcubagps.com">www.travelcubagps.com</a>
+                        <a href="https://www.facebook.com/cubagps/">Facebook/cubagps</a>
+                        <a href="https://www.instagram.com/cubagps/">instagram/@cubagps</a>
+                        <div>
+                            <p>Mail/contact@travelcubagps.com</p>
+                            <p>Phone/+53 53969643</p>
+                        </div>
+                    </div>
 
-        </div>
-        </center>
+                </div>
+            </center>
         </div>
     </div>
 
