@@ -175,8 +175,8 @@ class UserController extends AbstractController
         for($i=0; $i<12; $i++){
             $month = $i+1;
             $query = $em->createQuery(
-                "SELECT SUM(id) AS total FROM User WHERE MONTH(registeredAt) = \'$month\' AND YEAR(registeredAt) = \'$year\' LIMIT 1"
-            );
+                'SELECT SUM(id) AS total FROM User WHERE MONTH(registeredAt) = :month AND YEAR(registeredAt) = :year LIMIT 1'
+            )->setParameters(['month'=>'%'.$month.'%','year'=>'%'.$year.'%']);
             $total[$i] = 0;
             foreach ($query as $key){ $total[$i] = ($key['total'] == null)? 0 : $key['total']; }
         }
