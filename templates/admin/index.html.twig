@@ -20,18 +20,20 @@
 
 {% block body %}
     <style>
-        .caja{
+        .caja {
             margin: auto;
             max-width: 250px;
             padding: 20px;
             border: 1px solid #BDBDBD;
         }
-        .caja select{
+
+        .caja select {
             width: 100%;
             font-size: 16px;
             padding: 5px;
         }
-        .resultados{
+
+        .resultados {
             margin: auto;
             margin-top: 40px;
             width: 1000px;
@@ -141,17 +143,13 @@
             {#-------------------Tabla------------------------------------------------------#}
             <div class="caja">
                 <select onChange="mostrarResultados(this.value);">
-                    <?php
-                    for($i=2000;$i<2025;$i++){
-                        if($i == 2015){
-                            echo '<option value="'.$i.'" selected>'.$i.'</option>';
-                    }else{
-                    echo '
-                    <option value="'.$i.'">'.$i.'</option>
-                    ';
-                    }
-                    }
-                    ?>
+                    {% for i in 2018..2030 %}
+                        {% if i==2018 %}
+                            <option value="{{ i }}" selected>{{ i }}</option>
+                        {% else %}
+                            <option value="{{ i }}">{{ i }}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
 
@@ -182,31 +180,31 @@
     <script type="text/javascript" src="build/backend/sb-admin/js/Chart.min.js"></script>
     <script>
         $(document).ready(mostrarResultados(2014));
-        function mostrarResultados(year){
+        function mostrarResultados(year) {
             $('.resultados').html('<canvas id="grafico"></canvas>');
-            var data={year:year};
+            var data = {year: year};
             $.ajax({
                 type: 'POST',
                 url: '{{ path('cargar_tabla_ajax') }}',
                 data: data,
                 dataType: 'JSON',
-                success:function(response){
+                success: function (response) {
                     var Datos = {
-                        labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
-                        datasets : [
+                        labels: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                        datasets: [
                             {
-                                fillColor : 'rgba(91,228,146,0.6)', //COLOR DE LAS BARRAS
-                                strokeColor : 'rgba(57,194,112,0.7)', //COLOR DEL BORDE DE LAS BARRAS
-                                highlightFill : 'rgba(73,206,180,0.6)', //COLOR "HOVER" DE LAS BARRAS
-                                highlightStroke : 'rgba(66,196,157,0.7)', //COLOR "HOVER" DEL BORDE DE LAS BARRAS
-                                data : response
+                                fillColor: 'rgba(91,228,146,0.6)', //COLOR DE LAS BARRAS
+                                strokeColor: 'rgba(57,194,112,0.7)', //COLOR DEL BORDE DE LAS BARRAS
+                                highlightFill: 'rgba(73,206,180,0.6)', //COLOR "HOVER" DE LAS BARRAS
+                                highlightStroke: 'rgba(66,196,157,0.7)', //COLOR "HOVER" DEL BORDE DE LAS BARRAS
+                                data: response
                             }
                         ]
 
                     }
 
                     var contexto = document.getElementById('grafico').getContext('2d');
-                    window.Barra = new Chart(contexto).Bar(Datos, { responsive : true });
+                    window.Barra = new Chart(contexto).Bar(Datos, {responsive: true});
                     Barra.clear();
                 }
 
