@@ -1,4 +1,6 @@
 <?php
+namespace App\Controller;
+
 	include_once('config.php');
 	class Model{
 		protected $db;
