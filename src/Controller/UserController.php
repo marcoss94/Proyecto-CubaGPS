@@ -169,6 +169,7 @@ class UserController extends AbstractController
      */
     public function load_table_ajax()
     {
+        include_once('conexion.php');
         $year=$_POST['year'];
         $total = array();
         for($i=0; $i<12; $i++){
