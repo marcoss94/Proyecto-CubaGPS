@@ -103,8 +103,9 @@ class TransactionController extends Controller
         //------------------------------------------------------
         //cambiar tambien a el correo del usuario
         //------------------------------------------------------
+        $subject=$user->getIdioma()=='es'?'Factura de servicios Cuba GPS':'Cuba GPS Utility bill';
         $message = (new \Swift_Message())
-            ->setSubject('Solocitud de Reserva')
+            ->setSubject($subject)
             ->setTo('armando25723@travelcubagps.com')
             ->setFrom('contact@travelcubagps.com')
             ->setBody($this->renderView(
