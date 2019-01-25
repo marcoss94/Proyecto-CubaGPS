@@ -164,5 +164,26 @@ class UserController extends AbstractController
         return $this->redirectToRoute('view_comments');
     }
 
+    /**
+     * @Route("/admin/cargar_tabla_ajax", name="cargar_tabla_ajax")
+     */
+    public function cargar_tabla_ajax(Request $request)
+    {
+        $year=$request->get('year');
+        $em=$this->getDoctrine()->getManager();
+        $total = array();
+        for($i=0; $i<12; $i++){
+            $month = $i+1;
+            $query = $em->createQuery(
+                "SELECT SUM(id) AS total FROM User WHERE MONTH(registeredAt) = \'$month\' AND YEAR(registeredAt) = \'$year\' LIMIT 1"
+            );
+            $total[$i] = 0;
+            foreach ($query as $key){ $total[$i] = ($key['total'] == null)? 0 : $key['total']; }
+        }
+        return $total;
+    }
+
+
+
 
 }
