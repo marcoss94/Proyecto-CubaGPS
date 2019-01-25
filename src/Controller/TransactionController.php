@@ -38,11 +38,6 @@ class TransactionController extends Controller
         $payment->setCurrencyCode('USD');
         $payment->setTotalAmount($amount . '00'); //  1.23 EUR
         $payment->setDescription('Rent service');
-<<<<<<< HEAD
-        $payment->setClientId('464A9VYSJ999N');
-        $payment->setClientEmail('cubagps@yahoo.com');
-=======
->>>>>>> 0268446b9aa0f842468bb6ad46de50c4aa17b05a
         $storage->update($payment);
         $captureToken = $this->get('payum')->getTokenFactory()->createCaptureToken(
             $gatewayName,
