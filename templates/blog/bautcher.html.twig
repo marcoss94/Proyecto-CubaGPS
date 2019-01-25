@@ -167,7 +167,7 @@
                         <tr>
                             <td class="tg-0lax"
                                 colspan="3">{{ user.idioma == 'es' ? 'Precio/Persona':'Price/Person' }}</td>
-                            <td class="tg-lqy6" colspan="2">{{ r.costo/r.cantPersonas }}</td>
+                            <td class="tg-lqy6" colspan="2">{{ '$'~r.costo/r.cantPersonas }}</td>
                         </tr>
                     {% endfor %}
                     <tr>
