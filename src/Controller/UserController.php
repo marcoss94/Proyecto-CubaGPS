@@ -164,5 +164,23 @@ class UserController extends AbstractController
         return $this->redirectToRoute('view_comments');
     }
 
+    /**
+     * @Route("/admin/load_table_ajax", name="load_table_ajax")
+     */
+    public function load_table_ajax()
+    {
+        $year=$_POST['year'];
+        $total = array();
+        for($i=0; $i<12; $i++){
+            $month = $i+1;
+            $sql = $this->db->query("SELECT SUM(monto_venta) AS total FROM ventas WHERE MONTH(fecha_venta) = '$month' AND YEAR(fecha_venta) = '$year' LIMIT 1");
+            $total[$i] = 0;
+            foreach ($sql as $key){ $total[$i] = ($key['total'] == null)? 0 : $key['total']; }
+        }
+        return $total;
+    }
+
+
+
 
 }

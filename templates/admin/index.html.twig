@@ -184,7 +184,7 @@
             $('.resultados').html('<canvas id="grafico"></canvas>');
             $.ajax({
                 type: 'POST',
-                url: 'procesar.php',
+                url: {{ 'load_table_ajax' }},
                 data: 'year='+year,
                 dataType: 'JSON',
                 success:function(response){
