@@ -94,7 +94,7 @@ class TransactionController extends Controller
     /**
      * @Route("/bautcher_test", name="bautcher_test")
      */
-    public function sendBautcher(UserRepository $userRepository, $reserves, \Swift_Mailer $mailer,ReservaRepository $reservaRepository)
+    public function sendBautcher(UserRepository $userRepository, \Swift_Mailer $mailer,ReservaRepository $reservaRepository)
     {
         //usuario fijo pa probar cambiar estos por parametros
         $user = $userRepository->find(20);
