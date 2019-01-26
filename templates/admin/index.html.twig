@@ -140,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            {#-------------------Tabla------------------------------------------------------#}
+            {#--------------------------------Selector de años--------------------------------------------------#}
             <div class="caja">
                 <select onChange="mostrarResultados(this.value);">
                     {% for i in 2019..2030 %}
@@ -152,11 +152,11 @@
                     {% endfor %}
                 </select>
             </div>
-
+            {#-------------------Tabla Registro de Usuario------------------------------------------------------#}
             <div class="resultados">
-                <canvas id="grafico"></canvas>
+                <canvas id="graficoRegistros"></canvas>
             </div>
-            {#-------------------------------------------------------------------------------#}
+            {#--------------------------------------------------------------------------------------------------#}
         </div>
     </div>
     <!-- /.container-fluid -->
@@ -204,7 +204,7 @@
 
                     }
 
-                    var contexto = document.getElementById('grafico').getContext('2d');
+                    var contexto = document.getElementById('graficoRegistros').getContext('2d');
                     window.Barra = new Chart(contexto).Bar(Datos, { responsive : true });
                     Barra.clear();
                 }
