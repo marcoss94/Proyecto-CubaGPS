@@ -171,11 +171,9 @@ class UserController extends AbstractController
     {
         $year=$request->get('year');
         $total=[1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0,9=>0,10=>0,11=>0,12=>0];
-
         $users=$userRepository->findAll();
         foreach ($users as $u){
             if((int)($u->getRegisteredAt()->format('Y'))==(int)$year){
-                dump((int)($u->getRegisteredAt()->format('m')));
                 $total[(int)($u->getRegisteredAt()->format('m'))]+=1;
             }
         }
