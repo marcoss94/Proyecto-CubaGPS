@@ -170,15 +170,13 @@ class UserController extends AbstractController
     public function load_table_ajax(Request $request,UserRepository $userRepository)
     {
         $year=$request->get('year');
-        $total=[];
-        for($i=0; $i<12; $i++){
-            $total[]='';
-        }
+        $total=[1=>'',2=>'',3=>'',4=>'',5=>'',6=>'',7=>'',8=>'',9=>'',10=>'',11=>'',12=>''];
+
         $users=$userRepository->findAll();
         foreach ($users as $u){
             if((int)($u->getRegisteredAt()->format('Y'))==(int)$year){
                 dump((int)($u->getRegisteredAt()->format('m')));
-                $total[(int)($u->getRegisteredAt()->format('m'))+1]+=1;
+                $total[(int)($u->getRegisteredAt()->format('m'))]+=1;
             }
         }
 
