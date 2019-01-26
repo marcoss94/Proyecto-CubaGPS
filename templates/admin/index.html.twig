@@ -154,7 +154,7 @@
             </div>
             {#-------------------Tabla Registro de Usuario------------------------------------------------------#}
             <div class="resultados">
-                <canvas id="graficoRegistros"></canvas>
+                <canvas id="grafico"></canvas>
             </div>
             {#--------------------------------------------------------------------------------------------------#}
         </div>
@@ -204,7 +204,7 @@
 
                     }
 
-                    var contexto = document.getElementById('graficoRegistros').getContext('2d');
+                    var contexto = document.getElementById('grafico').getContext('2d');
                     window.Barra = new Chart(contexto).Bar(Datos, { responsive : true });
                     Barra.clear();
                 }
