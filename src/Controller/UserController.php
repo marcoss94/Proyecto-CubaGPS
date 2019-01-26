@@ -19,6 +19,7 @@ use App\Repository\ComentarioRepository;
 use App\Repository\ContactoRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\PaqueteRepository;
+use App\Repository\ReservaRepository;
 use App\Repository\UserRepository;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -167,19 +168,25 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/load_table_ajax", name="load_table_ajax")
      */
-    public function load_table_ajax(Request $request,UserRepository $userRepository)
+    public function load_table_ajax(Request $request,UserRepository $userRepository,ReservaRepository $reservaRepository)
     {
         $year=$request->get('year');
-        $total=[1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0,9=>0,10=>0,11=>0,12=>0];
+        $registros=[1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0,9=>0,10=>0,11=>0,12=>0];
         $users=$userRepository->findAll();
         foreach ($users as $u){
             if((int)($u->getRegisteredAt()->format('Y'))==(int)$year){
-                $total[(int)($u->getRegisteredAt()->format('m'))]+=1;
+                $registros[(int)($u->getRegisteredAt()->format('m'))]+=1;
             }
         }
-
+        $ventas=$registros;
+        $reservas=$reservaRepository->findBy(['status'=>'payed']);
+        foreach ($reservas as $u){
+            if((int)($u->getPayedAt()->format('Y'))==(int)$year){
+                $ventas[(int)($u->getPayedAt()->format('m'))]+=1;
+            }
+        }
         $response=new JsonResponse();
-        $response->setData(['result' => $total]);
+        $response->setData(['registros' => $registros,'ventas'=>$ventas]);
         return $response;
     }
 

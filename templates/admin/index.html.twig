@@ -189,7 +189,8 @@
                 data: data,
                 dataType: 'JSON',
                 success:function(response){
-                    var result = response.result;
+                    var registros = response.registros;
+                    var ventas = response.ventas;
                     var Datos = {
                         labels : ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
                         datasets : [
@@ -198,14 +199,14 @@
                                 strokeColor : 'rgba(57,194,112,0.7)', //COLOR DEL BORDE DE LAS BARRAS
                                 highlightFill : 'rgba(73,206,180,0.6)', //COLOR "HOVER" DE LAS BARRAS
                                 highlightStroke : 'rgba(66,196,157,0.7)', //COLOR "HOVER" DEL BORDE DE LAS BARRAS
-                                data : result
+                                data : registros
                             },
                             {
                                 fillColor : 'rgba(250,250,17,0.6)', //COLOR DE LAS BARRAS
                                 strokeColor : 'rgba(57,194,112,0.7)', //COLOR DEL BORDE DE LAS BARRAS
                                 highlightFill : 'rgba(73,206,180,0.6)', //COLOR "HOVER" DE LAS BARRAS
                                 highlightStroke : 'rgba(66,196,157,0.7)', //COLOR "HOVER" DEL BORDE DE LAS BARRAS
-                                data : result
+                                data : ventas
                             }
                         ]
 
