@@ -144,7 +144,7 @@
             <div class="caja">
                 <select onChange="mostrarResultados(this.value);">
                     {% for i in 2018..2030 %}
-                        {% if i==2018 %}
+                        {% if i==2019 %}
                             <option value="{{ i }}" selected>{{ i }}</option>
                         {% else %}
                             <option value="{{ i }}">{{ i }}</option>
@@ -179,7 +179,7 @@
     {{ parent() }}
     <script type="text/javascript" src="build/backend/sb-admin/js/Chart.min.js"></script>
     <script>
-        $(document).ready(mostrarResultados(2018));
+        $(document).ready(mostrarResultados(2019));
         function mostrarResultados(year){
             var data={year:year};
             $('.resultados').html('<canvas id="grafico"></canvas>');
