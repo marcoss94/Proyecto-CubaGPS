@@ -5,8 +5,7 @@
 homepage:
     path: /
     controller: App\Controller\BlogController::index
-    requirements:
-        _locale: '%app_locales%'
+    
 
 
 controller:
