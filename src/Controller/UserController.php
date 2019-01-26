@@ -171,12 +171,16 @@ class UserController extends AbstractController
     {
         $year=$request->get('year');
         $total=[];
+        for($i=0; $i<12; $i++){
+            $total[]='';
+        }
         $users=$userRepository->findAll();
         foreach ($users as $u){
             if((int)($u->getRegisteredAt()->format('Y'))==(int)$year){
                 $total[(int)($u->getRegisteredAt()->format('m'))]+=1;
             }
         }
+
         $response=new JsonResponse();
         $response->setData(['result' => $total]);
         return $response;
