@@ -175,10 +175,11 @@ class UserController extends AbstractController
         for($i=0; $i<12; $i++){
             $month = $i+1;
             $query = $em->createQuery(
-                'SELECT COUNT(*) u FROM App\Entity\User WHERE (MONTH(u.registeredAt)=:month) AND (YEAR(u.registeredAt)=:year)'
+                'SELECT u FROM App\Entity\User WHERE (MONTH(u.registeredAt)=:month) AND (YEAR(u.registeredAt)=:year)'
             )->setParameters(['text' => '%' . $year . '%','month' => '%' . $month . '%'
             ]);
-            $total[$i]=$query->getResult();
+
+            $total[$i]=count($query->getResult());
         }
         $response=new JsonResponse();
         $response->setData(['result' => $total]);
