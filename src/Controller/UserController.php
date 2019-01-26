@@ -167,18 +167,22 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/load_table_ajax", name="load_table_ajax")
      */
-    public function load_table_ajax()
+    public function load_table_ajax(Request $request)
     {
-        include_once('conexion.php');
-        $year=$_POST['year'];
-        $total = array();
+        $em=$this->getDoctrine()->getManager();
+        $year=$request->get('year');
+        $total=[];
         for($i=0; $i<12; $i++){
             $month = $i+1;
-            $sql = $this->db->query("SELECT SUM(monto_venta) AS total FROM ventas WHERE MONTH(fecha_venta) = '$month' AND YEAR(fecha_venta) = '$year' LIMIT 1");
-            $total[$i] = 0;
-            foreach ($sql as $key){ $total[$i] = ($key['total'] == null)? 0 : $key['total']; }
+            $query = $em->createQuery(
+                'SELECT COUNT(*) u FROM App\Entity\User WHERE (MONTH(u.registeredAt)=:month) AND (YEAR(u.registeredAt)=:year)'
+            )->setParameters(['text' => '%' . $year . '%','month' => '%' . $month . '%'
+            ]);
+            $total[$i]=$query->getResult();
         }
-        return $total;
+        $response=new JsonResponse();
+        $response->setData(['result' => $total]);
+        return $response;
     }
 
 
