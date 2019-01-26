@@ -109,25 +109,6 @@ class BlogController extends AbstractController
     }
 
 
-
-
-    /**
-     * @Route("/", defaults={"page": "1", "_format"="html"}, name="start")
-     * @Route("/rss.xml", defaults={"page": "1", "_format"="xml"}, name="blog_rss")
-     * @Route("/page/{page}", defaults={"_format"="html"}, requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
-     * @Method("GET")
-     * @Cache(smaxage="10")
-     *
-     * NOTE: For standard formats, Symfony will also automatically choose the best
-     * Content-Type header for the response.
-     * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
-     */
-    public function start()
-    {
-        return $this->redirectToRoute('blog_index');
-        //return $this->render('blog/default.html');
-    }
-
     /**
      * @Route("/blog_languaje", name="change_language")
      * @Method("GET")
