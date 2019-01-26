@@ -185,7 +185,7 @@
             $('.resultados').html('<canvas id="grafico"></canvas>');
             $.ajax({
                 type: 'POST',
-                url: {{ 'load_table_ajax' }},
+                url: '{{ path('load_table_ajax') }}',
                 data: data,
                 dataType: 'JSON',
                 success:function(response){
