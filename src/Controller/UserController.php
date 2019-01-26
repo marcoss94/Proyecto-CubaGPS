@@ -167,19 +167,15 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/load_table_ajax", name="load_table_ajax")
      */
-    public function load_table_ajax(Request $request)
+    public function load_table_ajax(Request $request,UserRepository $userRepository)
     {
-        $em=$this->getDoctrine()->getManager();
         $year=$request->get('year');
         $total=[];
-        for($i=0; $i<12; $i++){
-            $month = $i+1;
-            $query = $em->createQuery(
-                'SELECT u FROM App\Entity\User WHERE (MONTH(u.registeredAt)=:month) AND (YEAR(u.registeredAt)=:year)'
-            )->setParameters(['text' => '%' . $year . '%','month' => '%' . $month . '%'
-            ]);
-
-            $total[$i]=count($query->getResult());
+        $users=$userRepository->findAll();
+        foreach ($users as $u){
+            if((int)($u->getRegisteredAt()->format('Y'))==(int)$year){
+                $total[(int)($u->getRegisteredAt()->format('m'))]+=1;
+            }
         }
         $response=new JsonResponse();
         $response->setData(['result' => $total]);
