@@ -109,11 +109,13 @@ class BlogController extends AbstractController
     }
 
 
+
+
     /**
-     * @Route("/underConstruction", name="underConstruction")
+     * @Route("/start", name="start")
      * @Method("GET")
      */
-    public function underConstruction()
+    public function start()
     {
         return $this->redirectToRoute('blog_index');
         //return $this->render('blog/default.html');
