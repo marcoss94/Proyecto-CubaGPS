@@ -1102,7 +1102,16 @@ border-color: #f9b501;"
         {% endblock %}
 
         {% block javascripts %}
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+            <script>
+                baguetteBox.run('.cards-gallery', { animation: 'slideIn'});
+            </script>
+
             {{ parent() }}
+
+
+
+
             <script type="text/javascript">
                 $('#createCommentButton').click(function () {
                     var objectId = $('#objectId').val();
@@ -1145,10 +1154,7 @@ border-color: #f9b501;"
             <script src="{{ asset('build/js/resCarousel.js') }}"></script>
 
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-            <script>
-                baguetteBox.run('.cards-gallery', { animation: 'slideIn'});
-            </script>
+
 
 
         {% endblock %}
