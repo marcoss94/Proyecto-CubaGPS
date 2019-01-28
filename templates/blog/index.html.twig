@@ -10,6 +10,7 @@
 
     <link href="{{ asset('build/css/resCarousel.css') }}" rel="stylesheet">
     <link href="{{ asset('build/css/cards-gallery.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
 
 
 {% endblock %}
@@ -1102,10 +1103,7 @@ border-color: #f9b501;"
         {% endblock %}
 
         {% block javascripts %}
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-            <script>
-                baguetteBox.run('.cards-gallery', { animation: 'slideIn'});
-            </script>
+
 
             {{ parent() }}
 
@@ -1155,6 +1153,9 @@ border-color: #f9b501;"
 
 
 
-
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+            <script>
+                baguetteBox.run('.cards-gallery', { animation: 'slideIn'});
+            </script>
 
         {% endblock %}
