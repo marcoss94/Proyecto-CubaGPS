@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Repository\ReservaRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Payum\Core\Request\GetHumanStatus;
@@ -59,12 +60,15 @@ class TransactionController extends Controller
         $gateway->execute($status = new GetHumanStatus($token));
         $payment = $status->getFirstModel();
         $message = [];
+        $totalPrice = 0;
         if ($status->getValue() == 'captured' || $status->getValue() == 'pending') {
             $reserves = $reservaRepository->findBy(['usuario' => $this->getUser(), 'status' => 'pending']);
             foreach ($reserves as $reserva) {
                 $reserva->setStatus('payed');
+                $reserva->setPayedAt();
                 $em->persist($reserva);
                 $em->flush();
+                $totalPrice += $reserva->getCosto();
             }
             $message['type'] = 'success';
             $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
@@ -85,6 +89,36 @@ class TransactionController extends Controller
                 : 'An error occurred during the transfer';
             return $this->redirectToRoute('blog_index', ['message' => $message]);
         }
+    }
+
+    /**
+     * @Route("/bautcher_test", name="bautcher_test")
+     */
+    public function sendBautcher(UserRepository $userRepository, \Swift_Mailer $mailer,ReservaRepository $reservaRepository)
+    {
+        //usuario fijo pa probar cambiar estos por parametros
+        $user = $userRepository->find(20);
+        $reserves = $reservaRepository->findBy(['usuario'=>$user,'status'=>'payed']);
+        $totalPrice=200;
+        //------------------------------------------------------
+        //cambiar tambien a el correo del usuario
+        //------------------------------------------------------
+        $subject=$user->getIdioma()=='es'?'Factura de servicios Cuba GPS':'Cuba GPS Utility bill';
+        $message = (new \Swift_Message())
+            ->setSubject($subject)
+            ->setTo('armando25723@travelcubagps.com')
+            ->setFrom('contact@travelcubagps.com')
+            ->setBody($this->renderView(
+                'blog/bautcher.html.twig',
+                ['user' => $user,
+                    'reservas' => $reserves,
+                    'folio' => uniqid(),
+                    'price'=> $totalPrice,
+                ]
+            ),
+                'text/html');
+        $mailer->send($message);
+        return $this->redirectToRoute('blog_index');
     }
 
 

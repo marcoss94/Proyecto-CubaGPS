@@ -38,7 +38,7 @@ use Facebook;
 /**
  * Controller used to manage blog contents in the public part of the site.
  *
- * @Route("/blog")
+ * @Route("/")
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -108,16 +108,6 @@ class BlogController extends AbstractController
         ]);
     }
 
-
-    /**
-     * @Route("/underConstruction", name="underConstruction")
-     * @Method("GET")
-     */
-    public function underConstruction()
-    {
-        return $this->redirectToRoute('blog_index');
-        //return $this->render('blog/default.html');
-    }
 
     /**
      * @Route("/blog_languaje", name="change_language")

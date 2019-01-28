@@ -19,6 +19,7 @@ use App\Repository\ComentarioRepository;
 use App\Repository\ContactoRepository;
 use App\Repository\DisplayableComponentRepository;
 use App\Repository\PaqueteRepository;
+use App\Repository\ReservaRepository;
 use App\Repository\UserRepository;
 use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -163,6 +164,33 @@ class UserController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('view_comments');
     }
+
+    /**
+     * @Route("/admin/load_table_ajax", name="load_table_ajax")
+     */
+    public function load_table_ajax(Request $request,UserRepository $userRepository,ReservaRepository $reservaRepository)
+    {
+        $year=$request->get('year');
+        $registros=[1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0,9=>0,10=>0,11=>0,12=>0];
+        $users=$userRepository->findAll();
+        foreach ($users as $u){
+            if((int)($u->getRegisteredAt()->format('Y'))==(int)$year){
+                $registros[(int)($u->getRegisteredAt()->format('m'))]+=1;
+            }
+        }
+        $ventas=[1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0,9=>0,10=>0,11=>0,12=>0];
+        $reservas=$reservaRepository->findBy(['status'=>'payed']);
+        foreach ($reservas as $u){
+            if((int)($u->getPayedAt()->format('Y'))==(int)$year){
+                $ventas[(int)($u->getPayedAt()->format('m'))]+=1;
+            }
+        }
+        $response=new JsonResponse();
+        $response->setData(['registros' => $registros,'ventas'=>$ventas]);
+        return $response;
+    }
+
+
 
 
 }

@@ -212,7 +212,6 @@ class ReserveController extends Controller
         $reserve->setCommponent($paquete);
         $reserve->setCosto($costo);
         $reserve->setStartAt($entrada);
-        $em->persist($reserve);
         $agregarDias = $paquete->getDuracion();
         $salida = new \DateTime($request->get('entrada'));
         $salida->add(new \DateInterval("P{$agregarDias}D"));
