@@ -38,7 +38,7 @@ use Facebook;
 /**
  * Controller used to manage blog contents in the public part of the site.
  *
- * @Route("/")
+ * 
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
