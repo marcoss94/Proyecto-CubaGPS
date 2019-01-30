@@ -38,7 +38,7 @@ use Facebook;
 /**
  * Controller used to manage blog contents in the public part of the site.
  *
- * 
+ *
  *
  * @author Ryan Weaver <weaverryan@gmail.com>
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
@@ -46,15 +46,8 @@ use Facebook;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/", defaults={"page": "1", "_format"="html"}, name="blog_index")
-     * @Route("/rss.xml", defaults={"page": "1", "_format"="xml"}, name="blog_rss")
-     * @Route("/page/{page}", defaults={"_format"="html"}, requirements={"page": "[1-9]\d*"}, name="blog_index_paginated")
-     * @Method("GET")
-     * @Cache(smaxage="10")
+     * @Route("/",  name="blog_index")
      *
-     * NOTE: For standard formats, Symfony will also automatically choose the best
-     * Content-Type header for the response.
-     * See https://symfony.com/doc/current/quick_tour/the_controller.html#using-formats
      */
     public function index(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository, PaqueteRepository $paqueteRepository, ComentarioRepository $comentarioRepository, ReservaRepository $reservaRepository)
     {

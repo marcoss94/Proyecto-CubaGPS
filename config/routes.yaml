@@ -4,7 +4,6 @@
 # See https://symfony.com/doc/current/cookbook/templating/render_without_controller.html
 
 
-
 controller:
     resource: "../src/Controller"
     type: annotation
