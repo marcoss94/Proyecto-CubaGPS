@@ -51,6 +51,7 @@ class BlogController extends AbstractController
      */
     public function index(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository, PaqueteRepository $paqueteRepository, ComentarioRepository $comentarioRepository, ReservaRepository $reservaRepository)
     {
+        $reservaRepositoryo=0;
         if (!$this->get('session')->get('language')) {
             $langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
             $b = true;
