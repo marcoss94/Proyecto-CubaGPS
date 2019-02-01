@@ -21,7 +21,6 @@
         "liip/imagine-bundle": "dev-master",
         "paypal/rest-api-sdk-php": "*",
         "payum/offline": "^1.5",
-        "payum/paypal-express-checkout-nvp": "^1.5",
         "payum/payum-bundle": "^2.3",
         "payum/stripe": "^1.5",
         "php-http/guzzle6-adapter": "^2.0",
