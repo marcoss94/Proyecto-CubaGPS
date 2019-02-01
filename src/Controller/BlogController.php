@@ -22,8 +22,6 @@ use App\Repository\ExcursionRepository;
 use App\Repository\PaqueteRepository;
 use App\Repository\PostRepository;
 use App\Repository\ReservaRepository;
-use App\Repository\SistemRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -33,7 +31,7 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Facebook;
+
 
 /**
  * Controller used to manage blog contents in the public part of the site.
@@ -45,13 +43,14 @@ use Facebook;
  */
 class BlogController extends AbstractController
 {
+
+
     /**
-     * @Route("/",  name="blog_index")
+     * @Route("/homepapage",  name="blog_index")
      *
      */
     public function index(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository, PaqueteRepository $paqueteRepository, ComentarioRepository $comentarioRepository, ReservaRepository $reservaRepository)
     {
-        $reservaRepositoryo=0;
         if (!$this->get('session')->get('language')) {
             $langs = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
             $b = true;
@@ -79,15 +78,15 @@ class BlogController extends AbstractController
         $comments = $comentarioRepository->findBy(['type' => 'sitio', 'revisado' => true], ['publishedAt' => 'ASC'], 6);
         $message = $request->get('message');
         //--------------Reservas-----------------------------------//
-        $cart=false;
-        $reservasActivas=false;
+        $cart = false;
+        $reservasActivas = false;
         if (!is_null($this->getUser())) {
             $user = $this->getUser();
             $cart = $reservaRepository->findOneBy(['usuario' => $user, 'status' => 'pending']) ? true : false;
             $reservasActivas = $reservaRepository->findOneBy(['usuario' => $user, 'status' => 'payed']) ? true : false;
         }
-        $this->get('session')->set('cart',$cart);
-        $this->get('session')->set('reserves',$reservasActivas);
+        $this->get('session')->set('cart', $cart);
+        $this->get('session')->set('reserves', $reservasActivas);
         //------------------------------------------------------------------------------
         return $this->render('blog/index.html.twig', [
             'base' => 'true',
