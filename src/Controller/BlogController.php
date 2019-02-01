@@ -46,7 +46,7 @@ class BlogController extends AbstractController
 
 
     /**
-     * @Route("/homepapage",  name="blog_index")
+     * @Route("/homepage",  name="blog_index")
      *
      */
     public function index(Request $request, CarroRepository $carroRepository, CasaRepository $casaRepository, ExcursionRepository $excursionRepository, PaqueteRepository $paqueteRepository, ComentarioRepository $comentarioRepository, ReservaRepository $reservaRepository)
