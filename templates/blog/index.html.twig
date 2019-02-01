@@ -675,17 +675,6 @@ border-color: #f9b501;"
                                 </h7>
                             </div>
                             <div class="col-md-4">
-                                <a href="{{ path('preguntasFrecuentes') }}" target="_blank">
-        <span class="fa-stack fa-4x">
-        <i class="fas fa-circle fa-stack-2x text-primary"></i>
-        <i class="fas fa-question-circle fa-stack-1x fa-inverse"></i>
-        </span>
-                                </a>
-                                <h4 class="service-heading info">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</h4>
-                                <h7 style="color: white">{{ app.session.get('language') == 'es'? '¿Necesito una visa?, ¿Es fácil llamar desde Cuba al exterior?, ¿Tengo acceso a internet en Cuba?, ¿Cuándo es el mejor momento para viajar a Cuba?, ¿Necesito un seguro médico para Viajar a Cuba?. ':'Do I need a visa?, It is easy to call from Cuba to other countries?, Do I have access to the internet in Cuba?, When is the best time to travel to Cuba?, Do I need medical insurance to travel to Cuba?.' }}
-                                </h7>
-                            </div>
-                            <div class="col-md-4">
                                 <a href="{{ path('galeria') }}" target="_blank">
         <span class="fa-stack fa-4x">
         <i class="fas fa-circle fa-stack-2x text-primary"></i>
@@ -696,6 +685,18 @@ border-color: #f9b501;"
                                 <h7 style="color: white">{{ app.session.get('language') == 'es'? 'Tus recuerdos son importantes para nosotros':'Your memories are important to us' }}
                                 </h7>
                             </div>
+                            <div class="col-md-4">
+                                <a href="{{ path('preguntasFrecuentes') }}" target="_blank">
+        <span class="fa-stack fa-4x">
+        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+        <i class="fas fa-question-circle fa-stack-1x fa-inverse"></i>
+        </span>
+                                </a>
+                                <h4 class="service-heading info">{{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':'Frequent Questions' }}</h4>
+                                <h7 style="color: white">{{ app.session.get('language') == 'es'? '¿Necesito una visa?, ¿Es fácil llamar desde Cuba al exterior?, ¿Tengo acceso a internet en Cuba?, ¿Cuándo es el mejor momento para viajar a Cuba?, ¿Necesito un seguro médico para Viajar a Cuba?. ':'Do I need a visa?, It is easy to call from Cuba to other countries?, Do I have access to the internet in Cuba?, When is the best time to travel to Cuba?, Do I need medical insurance to travel to Cuba?.' }}
+                                </h7>
+                            </div>
+
                         </div>
                         {#///////////////////////////comentarios./////////////////////////////////////////////#}
                     </div>
