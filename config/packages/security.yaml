@@ -23,6 +23,9 @@ security:
                       admin:
                             password: $2y$13$T5engsBjIwk3JQExX0YPROIGSFEFtQGfZMvjPCCBCKEsUGbEptbgS
                             roles: 'ROLE_ADMIN'
+                      gestor:
+                            password: $2y$13$jED48sBXnMi0cNE/lwSA9uXBaFAIRRuEiPbsNQZuDdkFoW7DCjppe
+                            roles: 'ROLE_GESTOR','ROLE_ADMIN'
 
 
 
