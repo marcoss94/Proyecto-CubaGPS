@@ -90,7 +90,7 @@
                                 <td><a type="button" class="btn btn-outline-dark"
                                        href="{{ path('role_publisher',{'id':c.id,'role':'user'}) }}">Usuario</a></td>
                             {% endif %}
-                            <td><a type="button" class="btn btn-outline-dark" href="{{ path('client_email',{'clientId':c.id}) }}"><i class="fab fa-telegram-plane"></i></a> "%20"~{{ c.email }}</td>
+                            <td><a type="button" class="btn btn-outline-dark" href="{{ path('client_email',{'clientId':c.id}) }}"><i class="fab fa-telegram-plane"></i></a> {{ "%20"~ c.email }}</td>
                             <td>{{ c.redirectedBy }}</td>
                             <td>{{ c.userOf }}</td>
                             <td>{{ c.registeredAt|date }}</td>
