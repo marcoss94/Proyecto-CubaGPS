@@ -574,7 +574,6 @@ class ReserveController extends Controller
         $em = $this->getDoctrine()->getManager();
         $user = $userRepository->find($request->get('userId'));
         $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => 'pending']);
-        $message = [];
         $totalPrice = 0;
         foreach ($reserves as $reserva) {
             $reserva->setStatus('payed');
@@ -583,15 +582,13 @@ class ReserveController extends Controller
             $em->flush();
             $totalPrice += $reserva->getCosto();
         }
-
-        $this->sendBautcher($user, $mailer, $reservaRepository, $totalPrice);
+        $this->sendBautcher($user, $mailer, $reserves, $totalPrice);
         return $this->redirectToRoute('reservasconfirmadas');
     }
 
-    public function sendBautcher(User $client, $mailer, $reservaRepository, $price)
+    public function sendBautcher(User $client, $mailer, $reserves, $price)
     {
         $user = $client;
-        $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => 'payed']);
         $totalPrice = $price;
         $subject = $user->getIdioma() == 'es' ? 'Factura de servicios Cuba GPS' : 'Cuba GPS Utility bill';
         $message = (new \Swift_Message())
