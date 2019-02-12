@@ -90,7 +90,7 @@
                                 <td><a type="button" class="btn btn-outline-dark"
                                        href="{{ path('role_publisher',{'id':c.id,'role':'user'}) }}">Usuario</a></td>
                             {% endif %}
-                            <td>{{ c.email }}</td>
+                            <td>{{ c.email }}<a type="button" class="btn btn-outline-dark" href="{{ path('client_email',{'clientId':c.id}) }}"><i class="fas fa-mail-forward"></i></a></td>
                             <td>{{ c.redirectedBy }}</td>
                             <td>{{ c.userOf }}</td>
                             <td>{{ c.registeredAt|date }}</td>

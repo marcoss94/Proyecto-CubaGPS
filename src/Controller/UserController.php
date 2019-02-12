@@ -190,6 +190,40 @@ class UserController extends AbstractController
         return $response;
     }
 
+    /**
+     * @Route("/admin/send_client_email", name="send_client_email")
+     */
+    public function send_client_email(Request $request,UserRepository $userRepository,  \Swift_Mailer $mailer)
+    {
+        $user=$userRepository->find($request->get('clientId'));
+        $asunto=$request->get('asunto');
+        $mensaje=$request->get('mensaje');
+
+        $message = (new \Swift_Message())
+            ->setSubject($asunto)
+            ->setTo($user->getEmail())
+            ->setFrom('contact@travelcubagps.com')
+            ->setBody($this->renderView(
+                'email_confirmacion/send_client_email.html.twig',
+                ['text' => $mensaje]
+            ),
+                'text/html');
+        $mailer->send($message);
+        return $this->redirectToRoute('users');
+    }
+
+    /**
+     * @Route("/admin/client_email", name="client_email")
+     */
+    public function client_email(Request $request,UserRepository $userRepository,  \Swift_Mailer $mailer)
+    {
+        $user=$userRepository->find($request->get('clientId'));
+        return $this->render('users/construct_user_email.html.twig',['user'=>$user]);
+    }
+
+
+
+
 
 
 

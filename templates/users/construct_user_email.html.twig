@@ -1,0 +1,49 @@
+{% extends 'backendBase.html.twig' %}
+
+
+{% block title %}Administración | Usuarios{% endblock %}
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('admin') }}">Administración</a>
+        </li>
+        <li class="breadcrumb-item">
+            <a href="{{ path('users') }}">Usuarios</a>
+        </li>
+        <li class="breadcrumb-item active">Enviar Email</li>
+    </ol>
+    <div class="card mb-3">
+        <form action="{{ path('send_client_email') }}">
+            <input type="hidden" name="clientId" value="{{ user.id }}">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Asunto</label>
+                <input type="text" class="form-control" name="asunto" id="exampleInputEmail1" placeholder="Asunto">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Mensaje</label>
+                <textarea class="form-control" name="mensaje" id="exampleFormControlTextarea1" rows="6"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+    </div>
+{% endblock %}
+{% block script %}
+    {{ parent() }}
+{% endblock %}

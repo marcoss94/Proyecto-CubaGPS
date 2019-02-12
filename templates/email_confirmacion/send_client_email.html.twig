@@ -1,0 +1,23 @@
+{% extends 'emailBase.html.twig' %}
+
+{% block title %}Email de Confirmación{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+
+ {% endblock %}
+
+
+{% block body %}
+    {{ parent() }}
+    <p>{{ text }}</p>
+{% endblock %}
+
+   {% block footer %}
+       {{ parent() }}
+   {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
