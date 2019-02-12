@@ -29,7 +29,8 @@
         </li>
         <li class="breadcrumb-item active">Enviar Email</li>
     </ol>
-    <div class="card mb-3">
+    <div class="container-fluid card mb-3">
+
         <form action="{{ path('send_client_email') }}">
             <input type="hidden" name="clientId" value="{{ user.id }}">
             <div class="form-group">
@@ -42,6 +43,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
+
     </div>
 {% endblock %}
 {% block script %}
