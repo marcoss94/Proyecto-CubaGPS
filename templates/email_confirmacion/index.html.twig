@@ -56,17 +56,6 @@
                         </div><!-- /content -->
                     {% endfor %}
                     {#Boton de pago cuando esta disponible#}
-                    <div class="content">
-                        <table bgcolor="">
-                            <tr>
-                                <td align="center">
-                                    <!-- Callout Panel -->
-                                    <h3><a href="https://www.travelcubagps.com/reserve/show_confirmed_reserves" class="btn">Efectuar Pago </a></h3>
-
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
                 {% elseif  reservas|length == 0 %}
                     {#Cuando no esta cpnfirmado#}
                     <div class="content">
@@ -150,17 +139,6 @@
                         </div>
                     {% endfor %}
                     {#Boton de pago cuando esta disponible#}
-                    <div class="content">
-                        <table bgcolor="">
-                            <tr>
-                                <td align="center">
-                                    <!-- Callout Panel -->
-                                    <h3><a href="https://www.travelcubagps.com/reserve/show_confirmed_reserves" class="btn">Efectuar Pago </a></h3>
-
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
                 {% endif %}
                 {#--------------------recomendacines------------------#}
                 {% if adjuntos|length > 0 %}
