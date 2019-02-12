@@ -583,14 +583,9 @@ class ReserveController extends Controller
             $em->flush();
             $totalPrice += $reserva->getCosto();
         }
-        $message['type'] = 'success';
-        $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
-            'Enohorabuena' : 'Congratulations';
-        $message['body'] = ($this->getUser()->getIdioma() == 'es') ?
-            'Su transferencia ha sido efectuada exitosamente'
-            : 'Your transfer has been successfully completed';
+
         $this->sendBautcher($user, $mailer, $reservaRepository, $totalPrice);
-        return $this->redirectToRoute('blog_index', ['message' => $message]);
+        return $this->redirectToRoute('reservasconfirmadas');
     }
 
     public function sendBautcher(User $client, $mailer, $reservaRepository, $price)
