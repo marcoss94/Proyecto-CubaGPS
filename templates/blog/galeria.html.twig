@@ -1,0 +1,147 @@
+{% extends 'base.html.twig' %}
+
+{% block descripcion %} Galeria de im{% endblock %}
+
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':' Frequently Asked Questions' }}{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     <link rel="stylesheet" href="{{ asset('build/css/baguetteBox.min.css') }}"/>
+     <link rel="stylesheet" href="{{ asset('build/css/grid-gallery.css') }}">
+
+
+     <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1533195059"/>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-core.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-service.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>
+     <script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>
+
+     <link href="{{ asset('build/css/cards-gallery.css') }}" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
+
+
+     {#<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>#}
+
+     <link rel="stylesheet" href="{{ asset('build/css/carousel.css') }}">
+ {% endblock %}
+
+{% block menubase %}
+
+{% endblock %}
+
+{% block menu %}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block body %}
+
+    {#<header class="bannerOferta">#}
+
+    {#Banner de Kevin#}
+    {#</header>#}
+
+<section class="bg-light" id="portfolio" style="padding: 110px 0;">
+
+        <section class="gallery-block cards-gallery">
+            <div class="container">
+                <div class="heading">
+                    <h2>{{ app.session.get('language') == 'es'? 'Recuerdos de Marcos ':'Memories of Marcos' }}</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 transform-on-hover">
+                            <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                                <img src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}" alt="Card Image" class="card-img-top">
+
+                            </a>
+                            <div class="card-body">
+                                <h6><a href="#">Lorem Ipsum</a></h6>
+                                <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 transform-on-hover">
+                            <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                                <img src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}" alt="Card Image" class="card-img-top">
+                            </a>
+                            <div class="card-body">
+                                <h6><a href="#">Lorem Ipsum</a></h6>
+                                <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 transform-on-hover">
+                            <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                                <img src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}" alt="Card Image" class="card-img-top">
+                            </a>
+                            <div class="card-body">
+                                <h6><a href="#">Lorem Ipsum</a></h6>
+                                <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 transform-on-hover">
+                            <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                                <img src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}" alt="Card Image" class="card-img-top">
+                            </a>
+                            <div class="card-body">
+                                <h6><a href="#">Lorem Ipsum</a></h6>
+                                <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 transform-on-hover">
+                            <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                                <img src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}" alt="Card Image" class="card-img-top">
+                            </a>
+                            <div class="card-body">
+                                <h6><a href="#">Lorem Ipsum</a></h6>
+                                <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card border-0 transform-on-hover">
+                            <a class="lightbox" href="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}">
+                                <img src="{{ asset('build/img/portfolio/01-thumbnail.jpg') }}" alt="Card Image" class="card-img-top">
+                            </a>
+                            <div class="card-body">
+                                <h6><a href="#">Lorem Ipsum</a></h6>
+                                <p class="text-muted card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+</section>
+
+
+
+
+{% endblock %}
+{% block footer %}
+
+    {{ parent() }}
+
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script>
+        baguetteBox.run('.cards-gallery', { animation: 'slideIn'});
+    </script>
+{% endblock %}
+

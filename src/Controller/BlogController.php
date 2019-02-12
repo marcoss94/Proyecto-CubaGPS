@@ -283,6 +283,16 @@ class BlogController extends AbstractController
         return $this->render('blog/quienesSomos.html.twig');
     }
 
+    /**
+     * @Route("/galeria", name="galeria")
+     */
+    public function galeria()
+    {
+        return $this->render('blog/galeria.html.twig');
+    }
+
+
+
 
 //    -------------------------------------------------------------------------------------
 
