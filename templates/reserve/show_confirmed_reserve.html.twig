@@ -202,20 +202,8 @@
             </div>
                     <div class="separador"></div>
                 {% endif %}
-
             {% endfor %}
-
             <h4>{{ app.session.get('language') == 'es'? 'Precio Total: ':'Total Price: ' }}{{ precio }}</h4>
-
-            <form action="{{ path('make_payment') }}" method="post">
-                <input type="hidden" name="amount" value="{{ precio/5 }}">
-                <!-- Display the payment button. -->
-                <input type="image" name="submit" border="0"
-                       src="https://www.paypalobjects.com/es_ES/i/btn/btn_buynow_LG.gif"
-                       alt="Buy Now">
-                <img alt="" border="0" width="1" height="1"
-                     src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" >
-            </form>
         </div>
 
     </section>
