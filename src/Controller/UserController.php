@@ -27,6 +27,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Controller\TransactionController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -217,9 +218,13 @@ class UserController extends AbstractController
      */
     public function client_email(Request $request,UserRepository $userRepository,  \Swift_Mailer $mailer)
     {
+
+
         $user=$userRepository->find($request->get('clientId'));
         return $this->render('users/construct_user_email.html.twig',['user'=>$user]);
     }
+
+
 
 
 

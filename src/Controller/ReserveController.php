@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Contacto;
 use App\Entity\Reserva;
+use App\Entity\User;
 use App\Repository\CarroRepository;
 use App\Repository\CasaRepository;
 use App\Repository\DisplayableComponentRepository;
@@ -559,6 +560,56 @@ class ReserveController extends Controller
             ->setBody($this->renderView(
                 'email_confirmacion/notificar_admin.html.twig',
                 ['reserva' => $reserva]
+            ),
+                'text/html');
+        $mailer->send($message);
+        return;
+    }
+
+    /**
+     * @Route("/admin/activar_reserva", name="activar_reserva")
+     */
+    public function activar_reserva(Request $request, ReservaRepository $reservaRepository, UserRepository $userRepository, \Swift_Mailer $mailer)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $userRepository->find($request->get('userId'));
+        $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => 'pending']);
+        $message = [];
+        $totalPrice = 0;
+        foreach ($reserves as $reserva) {
+            $reserva->setStatus('payed');
+            $reserva->setPayedAt();
+            $em->persist($reserva);
+            $em->flush();
+            $totalPrice += $reserva->getCosto();
+        }
+        $message['type'] = 'success';
+        $message['head'] = ($this->getUser()->getIdioma() == 'es') ?
+            'Enohorabuena' : 'Congratulations';
+        $message['body'] = ($this->getUser()->getIdioma() == 'es') ?
+            'Su transferencia ha sido efectuada exitosamente'
+            : 'Your transfer has been successfully completed';
+        $this->sendBautcher($user, $mailer, $reservaRepository, $totalPrice);
+        return $this->redirectToRoute('blog_index', ['message' => $message]);
+    }
+
+    public function sendBautcher(User $client, $mailer, $reservaRepository, $price)
+    {
+        $user = $client;
+        $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => 'payed']);
+        $totalPrice = $price;
+        $subject = $user->getIdioma() == 'es' ? 'Factura de servicios Cuba GPS' : 'Cuba GPS Utility bill';
+        $message = (new \Swift_Message())
+            ->setSubject($subject)
+            ->setTo($user->getEmail())
+            ->setFrom('contact@travelcubagps.com')
+            ->setBody($this->renderView(
+                'blog/bautcher.html.twig',
+                ['user' => $user,
+                    'reservas' => $reserves,
+                    'folio' => uniqid(),
+                    'price' => $totalPrice,
+                ]
             ),
                 'text/html');
         $mailer->send($message);

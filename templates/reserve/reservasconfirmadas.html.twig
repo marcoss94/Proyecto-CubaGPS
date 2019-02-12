@@ -38,7 +38,7 @@
                                     border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
                         {{ user['user'] }}
                         <label style="margin-left: 50px">{{ 'Costo total: $'~user['price']~' ' }}</label>
-                        <a href="" type="button" class="btn btn-success"><i class="fa fa-dollar"></i>Activar</a>
+                        <a style="margin-left: 50px" href="{{ path('activar_reserva',{'userId':user['user'].id}) }}" type="button" class="btn btn-success"><i class="fa fa-dollar"></i>Activar</a>
                     </div>
                 </div>
             </div>
