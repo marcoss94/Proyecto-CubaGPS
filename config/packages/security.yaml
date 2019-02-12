@@ -25,7 +25,7 @@ security:
                             roles: 'ROLE_ADMIN'
                       gestor:
                             password: $2y$13$jED48sBXnMi0cNE/lwSA9uXBaFAIRRuEiPbsNQZuDdkFoW7DCjppe
-                            roles: 'ROLE_GESTOR','ROLE_ADMIN'
+                            roles: ['ROLE_GESTOR','ROLE_ADMIN']
 
 
 
