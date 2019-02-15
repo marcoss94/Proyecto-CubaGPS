@@ -21,7 +21,7 @@ security:
               memory:
                   users:
                       admin:
-                            password: $2y$13$T5engsBjIwk3JQExX0YPROIGSFEFtQGfZMvjPCCBCKEsUGbEptbgS
+                            password: $2y$13$n90qS0EpxbeiO.wL4orqRuhuf8sudRBWfNsF6PyBQcGPzNW8MjvWK
                             roles: 'ROLE_ADMIN'
                       gestor:
                             password: $2y$13$jED48sBXnMi0cNE/lwSA9uXBaFAIRRuEiPbsNQZuDdkFoW7DCjppe
