@@ -169,36 +169,36 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/load_table_ajax", name="load_table_ajax")
      */
-    public function load_table_ajax(Request $request,UserRepository $userRepository,ReservaRepository $reservaRepository)
+    public function load_table_ajax(Request $request, UserRepository $userRepository, ReservaRepository $reservaRepository)
     {
-        $year=$request->get('year');
-        $registros=[1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0,9=>0,10=>0,11=>0,12=>0];
-        $users=$userRepository->findAll();
-        foreach ($users as $u){
-            if((int)($u->getRegisteredAt()->format('Y'))==(int)$year){
-                $registros[(int)($u->getRegisteredAt()->format('m'))]+=1;
+        $year = $request->get('year');
+        $registros = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0];
+        $users = $userRepository->findAll();
+        foreach ($users as $u) {
+            if ((int)($u->getRegisteredAt()->format('Y')) == (int)$year) {
+                $registros[(int)($u->getRegisteredAt()->format('m'))] += 1;
             }
         }
-        $ventas=[1=>0,2=>0,3=>0,4=>0,5=>0,6=>0,7=>0,8=>0,9=>0,10=>0,11=>0,12=>0];
-        $reservas=$reservaRepository->findBy(['status'=>'payed']);
-        foreach ($reservas as $u){
-            if((int)($u->getPayedAt()->format('Y'))==(int)$year){
-                $ventas[(int)($u->getPayedAt()->format('m'))]+=1;
+        $ventas = [1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0, 6 => 0, 7 => 0, 8 => 0, 9 => 0, 10 => 0, 11 => 0, 12 => 0];
+        $reservas = $reservaRepository->findBy(['status' => 'payed']);
+        foreach ($reservas as $u) {
+            if ((int)($u->getPayedAt()->format('Y')) == (int)$year) {
+                $ventas[(int)($u->getPayedAt()->format('m'))] += 1;
             }
         }
-        $response=new JsonResponse();
-        $response->setData(['registros' => $registros,'ventas'=>$ventas]);
+        $response = new JsonResponse();
+        $response->setData(['registros' => $registros, 'ventas' => $ventas]);
         return $response;
     }
 
     /**
      * @Route("/admin/send_client_email", name="send_client_email")
      */
-    public function send_client_email(Request $request,UserRepository $userRepository,  \Swift_Mailer $mailer)
+    public function send_client_email(Request $request, UserRepository $userRepository, \Swift_Mailer $mailer)
     {
-        $user=$userRepository->find($request->get('clientId'));
-        $asunto=$request->get('asunto');
-        $mensaje=$request->get('mensaje');
+        $user = $userRepository->find($request->get('clientId'));
+        $asunto = $request->get('asunto');
+        $mensaje = $request->get('mensaje');
 
         $message = (new \Swift_Message())
             ->setSubject($asunto)
@@ -216,20 +216,11 @@ class UserController extends AbstractController
     /**
      * @Route("/admin/client_email", name="client_email")
      */
-    public function client_email(Request $request,UserRepository $userRepository,  \Swift_Mailer $mailer)
+    public function client_email(Request $request, UserRepository $userRepository, \Swift_Mailer $mailer)
     {
-
-
-        $user=$userRepository->find($request->get('clientId'));
-        return $this->render('users/construct_user_email.html.twig',['user'=>$user]);
+        $user = $userRepository->find($request->get('clientId'));
+        return $this->render('users/construct_user_email.html.twig', ['user' => $user]);
     }
-
-
-
-
-
-
-
 
 
 }
