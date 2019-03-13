@@ -458,7 +458,7 @@
                 </div>
 
 
-                <div class="col-12 col-md-4 portfolio-item" id="PruebaScroll">
+                <div class="col-12 col-md-4 portfolio-item" id="AuxScroll">
                     <div class="container">
                         <div class="modal-content">
                             <form {% if app.user %}action="{{ path('reserva_casa') }}"{% else %}action="{{ path('auth_forced')}}" {% endif %} method="post" id="reserveForm">
@@ -578,12 +578,12 @@
             </div>
         </div>
     </section>
-    <div class="separador" id="pruebaBoton"> </div>
+    <div class="separador" id="AuxScrollAbajo"> </div>
 
 
 
     <a class="botonReserva js-scroll-trigger "
-       href="#PruebaScroll" id="prueba">
+       href="#PruebaScroll" id="botonScroll">
 
         <button class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
 
@@ -829,22 +829,20 @@
 
         $(document).ready(function(){
             //var altoVentana = $('#Ventana').css('height').replace("px","");//usa este para que desaparezca despues de pasar el alto del div
-            var altoVentana = 0;
-            var posicionVentana = document.getElementById("PruebaScroll").offsetTop;
-            var posicionReserveButton = document.getElementById("pruebaBoton").offsetTop;
+            var altoDiv = 0;
+            var posicionDiv = document.getElementById("AuxScroll").offsetTop;
+            var posicionDivAbajo = document.getElementById("AuxScrollAbajo").offsetTop;
             $(window).scroll(function(event){
                 var posicionScroll = $(this).scrollTop();
-                alert(posicionScroll);
-                alert(posicionVentana);
-                alert("Boton "+posicionReserveButton);
-                if ((posicionScroll > (parseInt(posicionVentana)+parseInt(altoVentana)))&&(posicionScroll < (parseInt(posicionReserveButton)+parseInt(altoVentana)))){
-                    $("#prueba").css("display","none");
+
+                if ((posicionScroll > (parseInt(posicionDiv)+parseInt(altoDiv)))&&(posicionScroll < (parseInt(posicionDivAbajo)+parseInt(altoDiv)))){
+                    $("#botonScroll").css("display","none");
 
                 } else {
-                    $("#prueba").css("display","");
+                    $("#botonScroll").css("display","");
                 }
 
-                
+
 
 
 
