@@ -829,13 +829,16 @@
             //var altoVentana = $('#Ventana').css('height').replace("px","");//usa este para que desaparezca despues de pasar el alto del div
             var altoVentana = 0;
             var posicionVentana = document.getElementById("PruebaScroll").offsetTop;
+            var posicionReserveButton = document.getElementById("reserveButton").offsetTop;
             $(window).scroll(function(event){
                 var posicionScroll = $(this).scrollTop();
-                if (posicionScroll > (parseInt(posicionVentana)+parseInt(altoVentana))){
+                if ((posicionScroll < (parseInt(posicionVentana)+parseInt(altoVentana)))&&(posicionScroll > (parseInt(posicionReserveButton)+parseInt(altoVentana)))){
                     $("#prueba").css("display","none");
+
                 } else {
                     $("#prueba").css("display","");
                 }
+
 
             });
         });
