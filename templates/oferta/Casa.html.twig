@@ -581,7 +581,7 @@
 
 
     <a class="botonReserva js-scroll-trigger "
-       href="#reserva" id="prueba">
+       href="#PruebaScroll" id="prueba">
 
         <button class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
 
@@ -832,12 +832,19 @@
             var posicionReserveButton = document.getElementById("reserveButton").offsetTop;
             $(window).scroll(function(event){
                 var posicionScroll = $(this).scrollTop();
-                if ((posicionScroll < (parseInt(posicionVentana)+parseInt(altoVentana)))&&(posicionScroll > (parseInt(posicionReserveButton)+parseInt(altoVentana)))){
+                if (posicionScroll < (parseInt(posicionVentana)+parseInt(altoVentana))){
 
                     $("#prueba").css("display","");
                 } else {
                     $("#prueba").css("display","none");
                 }
+
+                if (posicionScroll > (parseInt(posicionReserveButton)+parseInt(altoVentana))){
+                    $("#prueba").css("display","");
+                } else {
+                    $("#prueba").css("display","none");
+                }
+
 
 
             });
