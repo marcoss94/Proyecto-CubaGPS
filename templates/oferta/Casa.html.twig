@@ -559,7 +559,7 @@
                                     {#</div>#}
                                 </div>
                                 <div id="errorBox"></div>
-                                <div class="modal-footer">
+                                <div class="modal-footer" id="pruebaBoton">
                                     {#<a href="{{ path('reservacion') }}">Reservacion </a>#}
                                     <div class="col-6">
                                         <label id="precio" class="precioReserva"></label>
@@ -829,12 +829,12 @@
             //var altoVentana = $('#Ventana').css('height').replace("px","");//usa este para que desaparezca despues de pasar el alto del div
             var altoVentana = 0;
             var posicionVentana = document.getElementById("PruebaScroll").offsetTop;
-            var posicionReserveButton = document.getElementById("reserveButton").offsetTop;
+            var posicionReserveButton = document.getElementById("pruebaBoton").offsetTop;
             $(window).scroll(function(event){
                 var posicionScroll = $(this).scrollTop();
                 alert(posicionScroll);
                 alert(posicionVentana);
-                alert(posicionReserveButton);
+                alert("Boton "+posicionReserveButton);
                 if (posicionScroll < (parseInt(posicionVentana)+parseInt(altoVentana))){
 
                     $("#prueba").css("display","");
