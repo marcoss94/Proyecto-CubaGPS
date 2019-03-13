@@ -50,6 +50,7 @@
                 </li>
                 <li class="breadcrumb-item active">Inicio</li>
             </ol>
+            {% if not is_granted('ROLE_GESTOR') %}
             <!-- Icon Cards-->
             <div class="row">
                 <div class="col-xl-3 col-sm-6 mb-3">
@@ -156,6 +157,7 @@
             <div class="resultados">
                 <canvas id="grafico"></canvas>
             </div>
+            {% endif %}
         </div>
     </div>
     <!-- /.container-fluid -->
