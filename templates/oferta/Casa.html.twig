@@ -811,34 +811,34 @@
 
 
     <script type="text/javascript">
-        // EVENTO CUANDO SE MUEVE EL SCROLL, EL MISMO APLICA TAMBIEN CUANDO SE RESIZA
-        var change= false;
-        $(window).scroll(function(){
-            window_y = $(window).scrollTop(); // VALOR QUE SE HA MOVIDO DEL SCROLL
-            scroll_critical = parseInt($("#PruebaScroll").height()); // VALOR DE TU DIV
-            if (window_y < scroll_critical) { // SI EL SCROLL HA SUPERADO EL ALTO DE TU DIV
-// ACA MUESTRAS EL OTRO DIV Y EL OCULTAS EL DIV QUE QUIERES
-                $('#prueba').show(); // VER
-            } else {
-// ACA HACES TODO LO CONTRARIO
-                $('#prueba').hide(); // OCULTAR
-            }
-        });
-
-//        $(document).ready(function(){
-//            //var altoVentana = $('#Ventana').css('height').replace("px","");//usa este para que desaparezca despues de pasar el alto del div
-//            var altoVentana = 0;
-//            var posicionVentana = document.getElementById("PruebaScroll").offsetTop;
-//            $(window).scroll(function(event){
-//                var posicionScroll = $(this).scrollTop();
-//                if (posicionScroll > (parseInt(posicionVentana)+parseInt(altoVentana))){
-//                    $("#prueba").css("display","none");
-//                } else {
-//                    $("#prueba").css("display","");
-//                }
-//
-//            });
+//        // EVENTO CUANDO SE MUEVE EL SCROLL, EL MISMO APLICA TAMBIEN CUANDO SE RESIZA
+//        var change= false;
+//        $(window).scroll(function(){
+//            window_y = $(window).scrollTop(); // VALOR QUE SE HA MOVIDO DEL SCROLL
+//            scroll_critical = parseInt($("#PruebaScroll").height()); // VALOR DE TU DIV
+//            if (window_y < scroll_critical) { // SI EL SCROLL HA SUPERADO EL ALTO DE TU DIV
+//// ACA MUESTRAS EL OTRO DIV Y EL OCULTAS EL DIV QUE QUIERES
+//                $('#prueba').show(); // VER
+//            } else {
+//// ACA HACES TODO LO CONTRARIO
+//                $('#prueba').hide(); // OCULTAR
+//            }
 //        });
+
+        $(document).ready(function(){
+            //var altoVentana = $('#Ventana').css('height').replace("px","");//usa este para que desaparezca despues de pasar el alto del div
+            var altoVentana = 0;
+            var posicionVentana = document.getElementById("PruebaScroll").offsetTop;
+            $(window).scroll(function(event){
+                var posicionScroll = $(this).scrollTop();
+                if (posicionScroll > (parseInt(posicionVentana)+parseInt(altoVentana))){
+                    $("#prueba").css("display","none");
+                } else {
+                    $("#prueba").css("display","");
+                }
+
+            });
+        });
     </script>
 {% endblock %}
 
