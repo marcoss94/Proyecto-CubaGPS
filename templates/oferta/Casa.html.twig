@@ -578,7 +578,8 @@
             </div>
         </div>
     </section>
-    <div id="pruebaBoton"> </div>
+    <div class="separador" id="pruebaBoton"> </div>
+
 
 
     <a class="botonReserva js-scroll-trigger "
@@ -836,18 +837,14 @@
                 alert(posicionScroll);
                 alert(posicionVentana);
                 alert("Boton "+posicionReserveButton);
-                if (posicionScroll < (parseInt(posicionVentana)+parseInt(altoVentana))){
-
-                    $("#prueba").css("display","");
-                } else {
+                if ((posicionScroll > (parseInt(posicionVentana)+parseInt(altoVentana)))&&(posicionScroll < (parseInt(posicionReserveButton)+parseInt(altoVentana)))){
                     $("#prueba").css("display","none");
+
+                } else {
+                    $("#prueba").css("display","");
                 }
 
-                if (posicionScroll > (parseInt(posicionReserveButton)+parseInt(altoVentana))){
-                    $("#prueba").css("display","");
-                } else {
-                    $("#prueba").css("display","none");
-                }
+                
 
 
 
