@@ -833,6 +833,8 @@
             $(window).scroll(function(event){
                 var posicionScroll = $(this).scrollTop();
                 alert(posicionScroll);
+                alert(posicionVentana);
+                alert(posicionReserveButton);
                 if (posicionScroll < (parseInt(posicionVentana)+parseInt(altoVentana))){
 
                     $("#prueba").css("display","");
