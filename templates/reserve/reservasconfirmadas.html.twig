@@ -29,98 +29,104 @@
 
     {% for user in users %}
         <div class="card mb-3">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-auto mr-auto">
-                        <img src="{{ asset(user['user'].picture) }}"
-                             class="img-fluid rounded-circle avat"
-                             style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
+            <form action="{{ path('activar_reserva') }}" method="post">
+                <input type="hidden" name="userId" value="{{ user['user'].id }}">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <img src="{{ asset(user['user'].picture) }}"
+                                 class="img-fluid rounded-circle avat"
+                                 style=" height: 35px; margin-right: 20px; border-bottom-left-radius: 50%;
                                     border-bottom-right-radius: 50%;width: 35px;" alt="avatar image">
-                        {{ user['user'] }}
-                        <label style="margin-left: 50px">{{ 'Costo total: $'~user['price']~' ' }}</label>
-                        <a style="margin-left: 50px" href="{{ path('activar_reserva',{'userId':user['user'].id}) }}" type="button" class="btn btn-success"><i class="fa fa-dollar"></i>Activar</a>
+                            {{ user['user'] }}
+                            <label style="margin-left: 50px">{{ 'Costo total: $'~user['price']~' ' }}</label>
+                            <button style="margin-left: 20px" type="submit" class="btn btn-success">Activar</button>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="card-body">
-                <div class="row" style="margin-left: 15px">
-                    <h5>Email: {{ ' '~user['user'].email }}</h5>
-                    {% if user['user'].getRedirectedBy %}
-                        <h5>Redireccionado por: {{ ' '~ user['user'].getRedirectedBy }}</h5>
-                    {% endif %}
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-bordered" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th>Servicio</th>
-                            <th>Fecha</th>
-                            <th>Cantidad de Personas</th>
-                            <th>Costo</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th>Servicio</th>
-                            <th>Fecha</th>
-                            <th>Cantidad de Personas</th>
-                            <th>Costo</th>
-                        </tr>
-                        </tfoot>
-                        <tbody>
-                        {% for r in user['reserve'] %}
-
+                <div class="card-body">
+                    <div class="row" style="margin-left: 15px">
+                        <h5>Email: {{ ' '~user['user'].email }}</h5>
+                        {% if user['user'].getRedirectedBy %}
+                            <h5>Redireccionado por: {{ ' '~ user['user'].getRedirectedBy }}</h5>
+                        {% endif %}
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
                             <tr>
-                                <td><a href="#q" data-toggle="modal"
-                                       data-target="#{{ 'contactInfoModal'~r.id }}">{{ r.commponent }}</a>
-                                    {% if r.commponent.getType()== 'Casa' %}
-                                        <button id="btnGroupDrop1" type="button"
-                                                class="btn btn-outline-secondary dropdown-toggle"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-door-open"></i>
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                            {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
-                                                <a class="dropdown-item">{{ h }}</a>
-                                            {% endfor %}
-                                        </div>
-                                    {% endif %}
-                                </td>
-                                <td>{% if r.commponent.getType() == 'Casa' %}
-                                        {{ 'Desde '~r.startAt|date("d/m/Y")~' hasta '~r.endAt|date("d/m/Y") }}
-                                    {% elseif r.commponent.getType() == 'Carro' %}
-                                        {% if r.type=='exc' %}
-                                            {{ r.startAt|date("d/m/Y")~' desde '~hora[r.horaInicial]~' hasta '~ hora[r.horaFinal] }}
-                                        {% else %}
-                                            {{ r.startAt|date("d/m/Y")~' desde '~r.desde~' hasta '~ r.hasta }}
-                                        {% endif %}
-                                    {% else %}
-                                        {{ r.startAt|date("d/m/Y") }}
-                                    {% endif %}
-                                </td>
-                                <td>{{ r.cantPersonas }}</td>
-                                <td>{{ '$'~r.costo }}</td>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Cantidad de Personas</th>
+                                <th>Costo</th>
+                                <th>Activar</th>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                <th>Servicio</th>
+                                <th>Fecha</th>
+                                <th>Cantidad de Personas</th>
+                                <th>Costo</th>
+                                <th>Activar</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            {% for r in user['reserve'] %}
 
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-auto mr-auto">
-                        <i class="fas fa-home"></i>
-                        Reservas no Confirmadas
-                    </div>
-                    <div class="col-auto">
-                        {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
-                        {#Agregar#}
-                        {#</button>#}
+                                <tr>
+                                    <td><a href="#q" data-toggle="modal"
+                                           data-target="#{{ 'contactInfoModal'~r.id }}">{{ r.commponent }}</a>
+                                        {% if r.commponent.getType()== 'Casa' %}
+                                            <button id="btnGroupDrop1" type="button"
+                                                    class="btn btn-outline-secondary dropdown-toggle"
+                                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-door-open"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                {% for h in r.commponent.habitaciones if h.id in r.habitaciones %}
+                                                    <a class="dropdown-item">{{ h }}</a>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </td>
+                                    <td>{% if r.commponent.getType() == 'Casa' %}
+                                            {{ 'Desde '~r.startAt|date("d/m/Y")~' hasta '~r.endAt|date("d/m/Y") }}
+                                        {% elseif r.commponent.getType() == 'Carro' %}
+                                            {% if r.type=='exc' %}
+                                                {{ r.startAt|date("d/m/Y")~' desde '~hora[r.horaInicial]~' hasta '~ hora[r.horaFinal] }}
+                                            {% else %}
+                                                {{ r.startAt|date("d/m/Y")~' desde '~r.desde~' hasta '~ r.hasta }}
+                                            {% endif %}
+                                        {% else %}
+                                            {{ r.startAt|date("d/m/Y") }}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ r.cantPersonas }}</td>
+                                    <td>{{ '$'~r.costo }}</td>
+                                    <td><input name="{{ r.id }}" type="checkbox"></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
+
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-auto mr-auto">
+                            <i class="fas fa-home"></i>
+                            Reservas no Confirmadas
+                        </div>
+                        <div class="col-auto">
+                            {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}
+                            {#Agregar#}
+                            {#</button>#}
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     {% endfor %}
 

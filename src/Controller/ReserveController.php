@@ -575,14 +575,18 @@ class ReserveController extends Controller
         $user = $userRepository->find($request->get('userId'));
         $reserves = $reservaRepository->findBy(['usuario' => $user, 'status' => 'pending']);
         $totalPrice = 0;
+        $reservasMarcadas=[];
         foreach ($reserves as $reserva) {
+            if($request->get($reserva->getId())){
             $reserva->setStatus('payed');
             $reserva->setPayedAt();
             $em->persist($reserva);
             $em->flush();
             $totalPrice += $reserva->getCosto();
+            $reservasMarcadas[]=$reserva;
+            }
         }
-        $this->sendBautcher($user, $mailer, $reserves, $totalPrice);
+        $this->sendBautcher($user, $mailer, $reservasMarcadas, $totalPrice);
         return $this->redirectToRoute('reservasconfirmadas');
     }
 
