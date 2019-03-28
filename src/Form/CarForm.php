@@ -31,8 +31,8 @@ class CarForm extends AbstractType
             ->add('chapa', TextType::class, ['label' => 'Chapa'])
             ->add('nombre', TextType::class, ['label' => 'Modelo y Año'])
             ->add('color', TextType::class, ['label' => 'Color'])
-            ->add('descripcion',TextareaType::class,['label' => 'Descripción'])
-            ->add('description',TextareaType::class,['label' => 'Description'])
+            ->add('descripcion',TextareaType::class,['label' => 'Descripción','required'=> false])
+            ->add('description',TextareaType::class,['label' => 'Description','required'=> false])
             ->add('licencia', ChoiceType::class, ['label' => 'Tipo de Licencia','choices'  => array(
                 'Asociado' => 'Asociado',
                 'Licencia operativa' => 'Licencia operativa',
