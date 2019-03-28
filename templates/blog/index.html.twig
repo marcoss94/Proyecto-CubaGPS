@@ -141,7 +141,7 @@ border-color: #f9b501;"
                                                 <h7 class="descr text-muted">
                                                     {{ app.session.get('language') == 'es'?
                                                     i.descripcion[:200]:
-                                                    i.description }}
+                                                    i.description[:200] }}
                                                     <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
                                                 </h7>
 
@@ -426,7 +426,7 @@ border-color: #f9b501;"
                                                 <h7 class="descr text-muted">
                                                     {{ app.session.get('language') == 'es'?
                                                     i.descripcion[:200]:
-                                                    i.description }}
+                                                    i.description[:200] }}
                                                     <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>
                                                 </h7>
 
@@ -518,7 +518,7 @@ border-color: #f9b501;"
                                                 <h7 class="descr text-muted">
                                                     {{ app.session.get('language') == 'es'?
                                                     i.descripcion[:200]:
-                                                    i.description }}
+                                                    i.description[:200] }}
                                                     <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a>  </h7>
                                             </div>
                                         </div>
@@ -610,7 +610,7 @@ border-color: #f9b501;"
 
                                                 <h7 class="descr text-muted">{{ app.session.get('language') == 'es'?
                                                     i.descripcion[:200]:
-                                                    i.description }}
+                                                    i.description[:200] }}
                                                     <a style="color: #2b506b;" href="{{ path('oferta',{'id':i.id,'type':i.getType}) }}"><strong>(...)</strong></a></h7>
                                             </div>
                                         </div>
