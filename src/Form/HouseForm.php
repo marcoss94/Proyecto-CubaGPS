@@ -53,7 +53,7 @@ class HouseForm extends AbstractType
             ->add('tel', TelType::class, ['label' => 'Teléfono fijo','required'=> false])
             ->add('email', EmailType::class, ['label' => 'Email','required'=> false])
             ->add('cel', TelType::class, ['label' => 'Teléfono móvil','required'=> false])
-            ->add('licencia', TextType::class, ['label' => '#Licencia'])
+            ->add('licencia', TextType::class, ['label' => '#Licencia','required'=> false])
             ->add('tipoEstablecimiento', ChoiceType::class, ['label' => 'Tipo de Establecimiento', 'choices' => array(
                 'casa' => 'casa',
                 'habitación' => 'habitación',

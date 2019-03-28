@@ -28,7 +28,7 @@ class CarForm extends AbstractType
             ->add('tel', TelType::class, ['label' => 'Teléfono fijo','required'=> false])
             ->add('cel', TelType::class, ['label' => 'Teléfono móvil','required'=> false])
             ->add('email', EmailType::class, ['label' => 'Email','required'=> false])
-            ->add('chapa', TextType::class, ['label' => 'Chapa'])
+            ->add('chapa', TextType::class, ['label' => 'Chapa','required'=> false])
             ->add('nombre', TextType::class, ['label' => 'Modelo y Año'])
             ->add('color', TextType::class, ['label' => 'Color'])
             ->add('descripcion',TextareaType::class,['label' => 'Descripción','required'=> false])
