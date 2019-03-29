@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block descripcion %} Galeria de im{% endblock %}
+{% block descripcion %} Galeria de imagenes {% endblock %}
 
-{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Preguntas Frecuentes':' Frequently Asked Questions' }}{% endblock %}
+{% block title %}Cuba GPS | {{ app.session.get('language') == 'es'? 'Galeria de imagenes':' Galery' }}{% endblock %}
 
  {% block stylesheets %}
      {{ parent() }}
@@ -126,6 +126,8 @@
 
 
 
+{% endblock %}
+{% block contact %}
 {% endblock %}
 {% block footer %}
 
