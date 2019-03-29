@@ -612,5 +612,19 @@ class ReserveController extends Controller
         return;
     }
 
+    /**
+     * @Route("/admin/delete_confirmed_reserve", name="delete_confirmed_reserve")
+     */
+    public function delete_confirmed_reserve(Request $request, ReservaRepository $reservaRepository)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reserva=$reservaRepository->find($request->get('reserveId'));
+        $em->remove($reserva);
+        $em->persist();
+        return $this->redirectToRoute('reservasconfirmadas');
+    }
+
+
+
 
 }
