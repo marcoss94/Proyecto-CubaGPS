@@ -620,7 +620,7 @@ class ReserveController extends Controller
         $em = $this->getDoctrine()->getManager();
         $reserva=$reservaRepository->find($request->get('reserveId'));
         $em->remove($reserva);
-        $em->persist();
+        $em->flush();
         return $this->redirectToRoute('reservasconfirmadas');
     }
 
