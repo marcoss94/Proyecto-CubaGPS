@@ -426,7 +426,7 @@
 {% endblock %}
 
 <!-- Footer -->
-{% block footer %}
+
     <!-- Contact -->
 
     {#<div class="popupunder alert alert-success fade in">#}
@@ -435,6 +435,7 @@
     {#<strong>Success : </strong> The update process has been completed successfull!#}
     {#</div>#}
 
+    {% block contact %}
     <section id="contact">
         <div class="container">
             <div class="row">
@@ -443,27 +444,7 @@
                     <h3 class="section-subheading text-muted">{{ app.session.get('language') == 'es'? 'Comuniquese con nosotros, trabajamos para usted ':'Contact us, we work for you' }}</h3>
 
 
-                    <div class="Alertinfo message" style="display: none">
-                        <h3 id="textoInfoGrande">FYI, something just happened!</h3>
-                        <p id="textoInfo">This is just an info notification message.</p>
-                    </div>
 
-                    <div class="Alerterror message" style="display: none">
-                        <h3 id="textoErrorGrande">Ups, an error ocurred</h3>
-                        <p id="textoError">This is just an error notification message.</p>
-
-                    </div>
-
-                    <div class="Alertwarning message" style="display: none">
-                        <h3 id="textoWarningGrande">Wait, I must warn you!</h3>
-                        <p id="textoWarning">This is just a warning notification message.</p>
-                    </div>
-
-                    <div class="Alertsuccess message" style="display: none">
-                        <h3 id="textoSuccessGrande">Congrats, you did it!</h3>
-                        <p id="textoSuccess">This is just a success notification message.</p>
-
-                    </div>
 
                     {#<ul id="trigger-list">#}
                     {#<li><a href="#b" class="trigger Alertinfo-trigger">Info</a></li>#}
@@ -525,16 +506,44 @@ border-color: #f9b501">
         </div>
     </section>
 
+    {% endblock %}
+
+{% block footer %}
+
+    <div class="Alertinfo message" style="display: none">
+        <h3 id="textoInfoGrande">FYI, something just happened!</h3>
+        <p id="textoInfo">This is just an info notification message.</p>
+    </div>
+
+    <div class="Alerterror message" style="display: none">
+        <h3 id="textoErrorGrande">Ups, an error ocurred</h3>
+        <p id="textoError">This is just an error notification message.</p>
+
+    </div>
+
+    <div class="Alertwarning message" style="display: none">
+        <h3 id="textoWarningGrande">Wait, I must warn you!</h3>
+        <p id="textoWarning">This is just a warning notification message.</p>
+    </div>
+
+    <div class="Alertsuccess message" style="display: none">
+        <h3 id="textoSuccessGrande">Congrats, you did it!</h3>
+        <p id="textoSuccess">This is just a success notification message.</p>
+
+    </div>
+
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <span>{{ app.session.get('language') == 'es'? 'Iconos diseñados por':'Icons designed by' }} <a
+                    <span>{{ app.session.get('language') == 'es'? 'Frase':'Icons designed by' }}
+                         </span>
+                    <span style="color: white">{{ app.session.get('language') == 'es'? 'Iconos diseñados por':'Icons designed by' }} <a style="color: white"
                                 href="http://www.freepik.com"
-                                title="Freepik">Freepik</a> {{ app.session.get('language') == 'es'? 'desde':'from' }} <a
+                                title="Freepik">Freepik</a> {{ app.session.get('language') == 'es'? 'desde':'from' }} <a style="color: white"
                                 href="https://www.flaticon.es/"
                                 title="Flaticon">www.flaticon.com</a> {{ app.session.get('language') == 'es'? 'con licencia':'with license' }}
-                        <a
+                        <a style="color: white"
                                 href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0"
                                 target="_blank">CC 3.0 BY</a></span>
 
