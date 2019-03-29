@@ -28,8 +28,8 @@ class HouseForm extends AbstractType
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('name', TextType::class, ['label' => 'Name'])
             ->add('manager', TextType::class, ['label' => 'Manager'])
-            ->add('descripcion', TextareaType::class, ['label' => 'Descripcion'])
-            ->add('description', TextareaType::class, ['label' => 'Description'])
+            ->add('descripcion', TextareaType::class, ['label' => 'Descripcion','required'=> false])
+            ->add('description', TextareaType::class, ['label' => 'Description','required'=> false])
             ->add('direccion', TextType::class, ['label' => 'Dirección'])
             ->add('municipio', TextType::class, ['label' => 'Municipio'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
@@ -53,7 +53,7 @@ class HouseForm extends AbstractType
             ->add('tel', TelType::class, ['label' => 'Teléfono fijo','required'=> false])
             ->add('email', EmailType::class, ['label' => 'Email','required'=> false])
             ->add('cel', TelType::class, ['label' => 'Teléfono móvil','required'=> false])
-            ->add('licencia', TextType::class, ['label' => '#Licencia'])
+            ->add('licencia', TextType::class, ['label' => '#Licencia','required'=> false])
             ->add('tipoEstablecimiento', ChoiceType::class, ['label' => 'Tipo de Establecimiento', 'choices' => array(
                 'casa' => 'casa',
                 'habitación' => 'habitación',

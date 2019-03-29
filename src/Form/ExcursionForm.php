@@ -25,8 +25,8 @@ class ExcursionForm extends AbstractType
             ->add('codigo', TextType::class, ['label' => 'Código'])
             ->add('nombre', TextType::class, ['label' => 'Nombre'])
             ->add('name', TextType::class, ['label' => 'Name'])
-            ->add('descripcion', TextareaType::class, ['label' => 'Descripción'])
-            ->add('description', TextareaType::class, ['label' => 'Description'])
+            ->add('descripcion', TextareaType::class, ['label' => 'Descripción','required'=> false])
+            ->add('description', TextareaType::class, ['label' => 'Description','required'=> false])
             ->add('infoContacto', TextareaType::class, ['label' => 'Información de Contacto'])
             ->add('provincia', ChoiceType::class, ['label' => 'Provincia', 'choices' => array(
                 'Pinar del Rio' => 'Pinar del Rio',
@@ -59,11 +59,12 @@ class ExcursionForm extends AbstractType
             ->add('tiempoDuracion', ChoiceType::class, ['label' => 'Duración', 'choices' => array(
                 '1 h' => '1',
                 '2 h' => '2',
-                '4 h' => '3',
-                '5 h' => '4',
-                '6 h' => '5',
-                '7 h' => '6',
-                '8 h' => '7',
+                '3 h' => '3',
+                '4 h' => '4',
+                '5 h' => '5',
+                '6 h' => '6',
+                '7 h' => '7',
+                '8 h' => '8',
             ),])
             ->add('dificultad', ChoiceType::class, ['label' => 'Dificultad', 'choices' => array(
                 'Baja' => '0',
