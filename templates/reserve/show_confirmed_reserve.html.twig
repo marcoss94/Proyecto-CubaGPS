@@ -203,7 +203,7 @@
                     <div class="separador"></div>
                 {% endif %}
             {% endfor %}
-            <h4>{{ app.session.get('language') == 'es'? 'Precio Total: ':'Total Price: ' }}{{ precio }}</h4>
+            <h4>{{ app.session.get('language') == 'es'? 'Precio Total: ':'Total Price: ' }}{{ $~precio }}</h4>
         </div>
 
     </section>
