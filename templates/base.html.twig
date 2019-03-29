@@ -77,12 +77,19 @@
 
                     <li class="nav-item">
                         <form class="form-inline nav-link" action="{{ path('generic_search') }}">
-                            <div class="col-auto">
+                            <div class="col-auto custom-search-input">
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" name="searchText" required
+                                    <input type="text" class=" search-query form-control" name="searchText" required
                                            id="inlineFormInputGroup"
                                            aria-label="Search"
                                            placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
+
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+
                                     <div class="input-group-prepend" style="display: inline">
                                         <div class="input-group-text" style="border: 0;background-color: inherit">
                                             <a class=" js-scroll-trigger" href="" data-toggle="modal"
@@ -91,13 +98,19 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <button class="btn btn-primary " type="submit"
-                                            style="background-color: #f9b501; border-color: #f9b501;">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
+                                    {#<button class="btn btn-primary " type="submit"#}
+                                            {#style="background-color: #f9b501; border-color: #f9b501;">#}
+                                        {#<i class="fa fa-search" aria-hidden="true"></i>#}
+                                    {#</button>#}
+
+
                                 </div>
                             </div>
                         </form>
+
+
+
+
                     </li>
 
                     <li class="nav-item">
