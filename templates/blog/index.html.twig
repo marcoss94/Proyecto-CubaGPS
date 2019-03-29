@@ -581,7 +581,7 @@ border-color: #f9b501;"
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
-                                                <div class="texto-encima"><h6>{{ '$ '~i.precio1 }}{{ app.session.get('language') == 'es'? ' por persona':' per person' }}</h6></div>
+                                                <div class="texto-encima"><h6>{{ i.horaInicio }}</h6></div>
                                             </div>
 
                                         </a>
@@ -591,6 +591,63 @@ border-color: #f9b501;"
                                                 <h4>{{ i.nombre }}</h4></a>
                                             <h6 class="provinciaO">{{ i.provincia }}</h6>
                                                 <div class="provinciaO">
+
+
+
+                                                        <div>
+                                                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                                                <div class="iconogeneral">
+                                                                    <div class="iconoServ">
+                                                                        <h6>
+
+                                                                            <div class="precioBlog">1<i class="fas fa-user"></i>
+                                                                                <span>${{ i.precio1 }}</span></div>
+
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                                                <div class="iconogeneral">
+                                                                    <div class="iconoServ">
+                                                                        <h6>
+
+
+                                                                            <div class="precioBlog"> 2<i class="fas fa-users"></i>
+                                                                                <span>${{ i.precio2 }}</span></div>
+
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                                                <div class="iconogeneral">
+                                                                    <div class="iconoServ">
+                                                                        <h6>
+
+
+                                                                            <div class="precioBlog"> 3<i class="fas fa-users"></i>
+                                                                                <span>${{ i.precio3 }}</span></div>
+
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="serviciosOfertas" style="margin-right: 10px">
+                                                                <div class="iconogeneral">
+                                                                    <div class="iconoServ">
+                                                                        <h6>
+
+                                                                            <div class="precioBlog"> +4<i class="fas fa-users"></i>
+                                                                                <span> ${{ i.precio4 }}  </span></div>
+                                                                        </h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
                                             {% if i.valoracionArray[0]!=0 %}
                                                 {% for j in 1..i.valoracionArray[0] %}
                                                     <i class="fas fa-star star"></i>

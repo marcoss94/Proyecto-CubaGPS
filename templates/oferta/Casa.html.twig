@@ -590,6 +590,12 @@
     </a>
 
 {% endblock %}
+
+
+{% block contact %}
+
+{% endblock %}
+
 {% block footer %}
 
     {{ parent() }}
@@ -835,7 +841,7 @@
             $(window).scroll(function(event){
                 var posicionScroll = $(this).scrollTop();
 
-                if ((posicionScroll >= (parseInt(posicionDiv)+parseInt(altoDiv)))&&(posicionScroll <= (parseInt(posicionDivAbajo)+parseInt(altoDiv)))){
+                if ((posicionScroll >= (parseInt(posicionDiv)+parseInt(altoDiv))-100)&&(posicionScroll <= (parseInt(posicionDivAbajo)+parseInt(altoDiv)))){
                     $("#botonScroll").css("display","none");
 
                 } else {
