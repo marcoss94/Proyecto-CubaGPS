@@ -55,7 +55,7 @@
                             </table>
                         </div><!-- /content -->
                     {% endfor %}
-                    {#Boton de pago cuando esta disponible#}
+                    <p><strong>Importante: Usted recibirá de paypal.com un correo electrónico con una solicitud de pago a nombre de Lisbeth Fernandez con el 20% del importe total de su reserva.</strong></p>
                 {% elseif  reservas|length == 0 %}
                     {#Cuando no esta cpnfirmado#}
                     <div class="content">
@@ -138,9 +138,9 @@
                             </table>
                         </div>
                     {% endfor %}
-
+                    <p><strong>Importante: Usted recibirá de paypal.com un correo electrónico con una solicitud de pago a nombre de Lisbeth Fernandez con el 20% del importe total de su reserva.</strong></p>
                 {% endif %}
-                <p><strong>Importante: Usted recibirá de paypal.com un correo electrónico con una solicitud de pago a nombre de Lisbeth Miranda con el 20% del importe total de su reserva.</strong></p>
+
                 {#--------------------recomendacines------------------#}
                 {% if adjuntos|length > 0 %}
                     <div class="content">
