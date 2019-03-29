@@ -597,7 +597,7 @@ class ReserveController extends Controller
         $subject = $user->getIdioma() == 'es' ? 'Factura de servicios Cuba GPS' : 'Cuba GPS Utility bill';
         $message = (new \Swift_Message())
             ->setSubject($subject)
-            ->setTo($user->getEmail())
+            ->setTo([$user->getEmail(),'lemueldiaz@travelcubagps.com'])
             ->setFrom('contact@travelcubagps.com')
             ->setBody($this->renderView(
                 'blog/bautcher.html.twig',
