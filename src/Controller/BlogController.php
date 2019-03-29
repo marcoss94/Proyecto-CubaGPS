@@ -68,10 +68,10 @@ class BlogController extends AbstractController
             }
             if ($b) $this->get('session')->set('language', 'en');
         }
-        $carros = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
-        $casas = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
-        $excursiones = $excursionRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
-        $paquetes = $paqueteRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 9);
+        $carros = $carroRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 12);
+        $casas = $casaRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 12);
+        $excursiones = $excursionRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 12);
+        $paquetes = $paqueteRepository->findBy(['active' => true], ['valoracion' => 'DESC'], 12);
         if ($request->get('redirectId')) {
             $this->get('session')->set('redirectedBy', $request->get('redirectId'));
         }

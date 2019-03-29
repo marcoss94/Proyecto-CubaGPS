@@ -141,6 +141,7 @@ class TransferController extends Controller
             $hasta = $lugarRepository->findOneBy(['nombre' => $request->get('hasta')]);
             $distancia = $this->harvestine($desde->getLatitud(), $desde->getLongitud(), $hasta->getLatitud(), $hasta->getLongitud());
             $precio = $distancia * (int)$request->get('precio');
+            $precio = max(40,$precio);
         }else{
             $precio = 'precioExc';
         }
@@ -168,6 +169,7 @@ class TransferController extends Controller
         $reserve->setHasta($hasta);
         $distancia = $this->harvestine($desde->getLatitud(), $desde->getLongitud(), $hasta->getLatitud(), $hasta->getLongitud());
         $precio = $distancia * (int)$car->getPrecio();
+        $precio = max(40,$precio);
         $reserve->setCosto($precio);
         $reserve->setStartAt(new \DateTime($request->get('fecha')));
         $reserve->setType('trans');

@@ -1,7 +1,7 @@
 {% extends 'backendBase.html.twig' %}
 
 
-{% block title %}Administración | Reservas no Confirmadas{% endblock %}
+{% block title %}Administración | Reservas Confirmadas{% endblock %}
 
 
 {% block stylesheets %}
@@ -57,19 +57,23 @@
                             <thead>
                             <tr>
                                 <th>Servicio</th>
-                                <th>Fecha</th>
+                                <th>Fecha de Creación</th>
+                                <th>Fecha de Solicitud</th>
                                 <th>Cantidad de Personas</th>
                                 <th>Costo</th>
                                 <th>Activar</th>
+                                <th>Eliminar</th>
                             </tr>
                             </thead>
                             <tfoot>
                             <tr>
                                 <th>Servicio</th>
-                                <th>Fecha</th>
+                                <th>Fecha de Creación</th>
+                                <th>Fecha de Solicitud</th>
                                 <th>Cantidad de Personas</th>
                                 <th>Costo</th>
                                 <th>Activar</th>
+                                <th>Eliminar</th>
                             </tr>
                             </tfoot>
                             <tbody>
@@ -91,6 +95,7 @@
                                             </div>
                                         {% endif %}
                                     </td>
+                                    <td>{{ r.createdAt|date("d/m/Y") }}</td>
                                     <td>{% if r.commponent.getType() == 'Casa' %}
                                             {{ 'Desde '~r.startAt|date("d/m/Y")~' hasta '~r.endAt|date("d/m/Y") }}
                                         {% elseif r.commponent.getType() == 'Carro' %}
@@ -106,6 +111,7 @@
                                     <td>{{ r.cantPersonas }}</td>
                                     <td>{{ '$'~r.costo }}</td>
                                     <td><input name="{{ r.id }}" type="checkbox"></td>
+                                    <td><a type="button" class="btn btn-danger" href="{{ path('delete_confirmed_reserve',{'reserveId':r.id}) }}"><i class="fa fa-trash"></i></a></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -117,7 +123,7 @@
                     <div class="row">
                         <div class="col-auto mr-auto">
                             <i class="fas fa-home"></i>
-                            Reservas no Confirmadas
+                            Reservas Confirmadas
                         </div>
                         <div class="col-auto">
                             {#<button type="button" class="btn btn-primary " data-toggle="modal" data-target="#createModal">#}

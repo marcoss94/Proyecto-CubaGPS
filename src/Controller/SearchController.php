@@ -76,7 +76,7 @@ class SearchController extends Controller
             $results = $this->get('session')->get('search_results');
         }
         $paginator = $this->get('knp_paginator');
-        $advancedData = $paginator->paginate($results, $request->query->getInt('page', 1), 9);
+        $advancedData = $paginator->paginate($results, $request->query->getInt('page', 1), 18);
         return $this->render('lista/index.html.twig', ['base' => 'false', 'type' => 'search', 'data' => $advancedData]);
     }
 

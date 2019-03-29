@@ -36,7 +36,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 6)
+            $request->query->getInt('limit', 18)
         );
         return ($results);
     }
@@ -52,7 +52,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 9)
+            $request->query->getInt('limit', 18)
         );
         return ($results);
     }
@@ -68,7 +68,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 9)
+            $request->query->getInt('limit', 18)
         );
         return ($results);
     }
@@ -84,7 +84,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 9)
+            $request->query->getInt('limit', 18)
         );
         return ($results);
     }
@@ -111,7 +111,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 9)
+            $request->query->getInt('limit', 18)
         );
         return ($results);
     }
@@ -160,7 +160,7 @@ class DataService
         $results = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 9)
+            $request->query->getInt('limit', 18)
         );
         return ($results);
     }
