@@ -267,9 +267,10 @@
                                             {% endif %}
                                         </div>
                                         <div class="modal-footer">
-                                            <div class="row">
+                                            <div class="col-6">
                                                 <label id="precioTransfer"></label>
-                                                <input type="hidden" id="costoTransInput" name="costo">
+                                                <input type="hidden" id="costoTransInput" name="costo"></div>
+                                            <div class="col-6">
                                                 <button type="submit" id="transSubmitButton"
                                                         class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
                                             </div>
