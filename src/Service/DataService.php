@@ -30,7 +30,7 @@ class DataService
         $em = $this->em;
         $container = $this->container;
         $query = $em->createQuery(
-            'SELECT u,p FROM App\Entity\Casa u JOIN u.images  p'
+            'SELECT u,p FROM App\Entity\Casa u JOIN u.images  p ORDER BY u.valoracion DESC'
         );
         $paginator = $container->get('knp_paginator');
         $results = $paginator->paginate(
@@ -46,7 +46,7 @@ class DataService
         $em = $this->em;
         $container = $this->container;
         $query = $em->createQuery(
-            'SELECT u,p FROM App\Entity\Excursion u JOIN u.images  p'
+            'SELECT u,p FROM App\Entity\Excursion u JOIN u.images  p ORDER BY u.valoracion DESC'
         );
         $paginator = $container->get('knp_paginator');
         $results = $paginator->paginate(
@@ -62,7 +62,7 @@ class DataService
         $em = $this->em;
         $container = $this->container;
         $query = $em->createQuery(
-            'SELECT u,p FROM App\Entity\Carro u JOIN u.images  p'
+            'SELECT u,p FROM App\Entity\Carro u JOIN u.images  p ORDER BY u.valoracion DESC'
         );
         $paginator = $container->get('knp_paginator');
         $results = $paginator->paginate(
@@ -78,7 +78,7 @@ class DataService
         $em = $this->em;
         $container = $this->container;
         $query = $em->createQuery(
-            'SELECT u ,p FROM App\Entity\Paquete u JOIN u.images  p'
+            'SELECT u ,p FROM App\Entity\Paquete u JOIN u.images  p ORDER BY u.valoracion DESC'
         );
         $paginator = $container->get('knp_paginator');
         $results = $paginator->paginate(
