@@ -590,9 +590,9 @@
     </a>
 
 {% endblock %}
-{% block footer %}
+{#{% block footer %}#}
 
-    {{ parent() }}
+    {#{{ parent() }}#}
 
     {#Modal ver servicios------------------------------------------------------------------------------------------#}
 
@@ -606,7 +606,7 @@
 
     {#Galeria ---------------------------------------------------------------------------------------------------------#}
 
-{% endblock %}
+{#{% endblock %}#}
 
 
 {% block javascripts %}
@@ -835,7 +835,7 @@
             $(window).scroll(function(event){
                 var posicionScroll = $(this).scrollTop();
 
-                if ((posicionScroll >= (parseInt(posicionDiv)+parseInt(altoDiv))-50)&&(posicionScroll <= (parseInt(posicionDivAbajo)+parseInt(altoDiv)))){
+                if ((posicionScroll >= (parseInt(posicionDiv)+parseInt(altoDiv))-100)&&(posicionScroll <= (parseInt(posicionDivAbajo)+parseInt(altoDiv)))){
                     $("#botonScroll").css("display","none");
 
                 } else {
