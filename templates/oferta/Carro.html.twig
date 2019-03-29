@@ -204,7 +204,8 @@
                         {% if object.transfer %}
                             <div class="modal-content">
                                 <div class="modal-body">
-                                    <form {% if app.user %}action="{{ path('reserve_car_trans') }}"{% else %}action="{{ path('auth_forced')}}" {% endif %} method="post">
+                                    <form {% if app.user %}action="{{ path('reserve_car_trans') }}"
+                                          {% else %}action="{{ path('auth_forced') }}" {% endif %} method="post">
                                         <input type="hidden" name="id" value="{{ object.id }}">
                                         <div class="form-row">
                                             <div class="form-group col-md-8">
@@ -338,7 +339,9 @@
                         {% else %}
                             {#-------------Formulario de reserva para excursion--------------------#}
                             <div class="modal-content">
-                                <form {% if app.user %}action="{{ path('reserve_car_exc') }}"{% else %}action="{{ path('auth_forced')}}" {% endif %} method="post" id="excForm">
+                                <form {% if app.user %}action="{{ path('reserve_car_exc') }}"
+                                      {% else %}action="{{ path('auth_forced') }}" {% endif %} method="post"
+                                      id="excForm">
                                     <div class="modal-body">
                                         <input type="hidden" name="id" value="{{ object.id }}">
                                         <div class="form-row">
@@ -443,7 +446,8 @@
                                                             {% if app.user %}
                                                                 <div class="form-group">
                                                                     <label for="exampleInputEmail1">Email</label>
-                                                                    <input type="email" class="form-control" id="inputEail1"
+                                                                    <input type="email" class="form-control"
+                                                                           id="inputEail1"
                                                                            aria-describedby="emailHelp" name="email"
                                                                            required="required"
                                                                            placeholder="Enter email"
@@ -458,13 +462,15 @@
                                                                       required></textarea>
                                                             <label for="cantPersRE">{{ app.session.get('language') == 'es'?
                                                                 'Cant de Personas': 'Amount of People' }}</label>
-                                                            <select class="custom-select" name="cantPersRE" id="cantPersRE">
+                                                            <select class="custom-select" name="cantPersRE"
+                                                                    id="cantPersRE">
                                                                 {% for number in 1..30 %}
                                                                     <option value="{{ number }}">{{ number }}</option>
                                                                 {% endfor %}
                                                             </select>
                                                             <h3></h3>
-                                                            <input type="hidden" name="objectId" value="{{ object.id }}">
+                                                            <input type="hidden" name="objectId"
+                                                                   value="{{ object.id }}">
                                                             <button type="submit"
                                                                     class="btn btn-success">{{ app.session.get('language') == 'es'? 'Enviar':'Send' }}</button>
 
@@ -481,29 +487,24 @@
                                         </div>
 
                                         <a href="{{ path('reservaCancelacion') }}"
-                                           target="_blank" style="color: #2a4f6b" >{{ app.session.get('language') == 'es'? 'Políticas de reserva y cancelación':'Reservation and cancellation policies' }}</a>
+                                           target="_blank"
+                                           style="color: #2a4f6b">{{ app.session.get('language') == 'es'? 'Políticas de reserva y cancelación':'Reservation and cancellation policies' }}</a>
 
                                     </div>
 
                                     <div id="errorBox"></div>
                                     <div class="modal-footer">
 
-                                            <div class="col-6">
-                                                <input type="hidden" id="costoExcInput" name="costo">
-                                                <label id="precioTransfer" class="precioReserva"></label>
-                                            </div>
-                                            <div class="col-6">
-                                                <button type="button" id="reserveButton"
-                                                        class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
-                                            </div>
-
-
-
+                                        <div class="col-6">
+                                            <input type="hidden" id="costoExcInput" name="costo">
+                                            <label id="precioTransfer" class="precioReserva"></label>
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="button" id="excSubmitButton"
+                                                    class="btn btn-primary">{{ app.session.get('language') == 'es'? 'Reservar':'Reserve' }}</button>
+                                        </div>
                                     </div>
                                 </form>
-                                {#--------------------------Reserva Especial-----------------------------------------------#}
-
-                                {#---------------------------------------------------------------------------------------#}
                             </div>
                         {% endif %}
                     </div>
@@ -513,7 +514,7 @@
         </div>
         <h2></h2>
     </section>
-    <div class="separador" id="AuxScrollAbajo"> </div>
+    <div class="separador" id="AuxScrollAbajo"></div>
 
 
 
@@ -648,7 +649,7 @@
                     success: function (response) {
                         var price = response.result;
                         $('#costoTransInput').val(price);
-                        document.getElementById('precioTransfer').innerHTML = price + '$' ;
+                        document.getElementById('precioTransfer').innerHTML = price + '$';
                     }
                 })
                 ;
@@ -795,23 +796,20 @@
         //            }
         //        });
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             //var altoVentana = $('#Ventana').css('height').replace("px","");//usa este para que desaparezca despues de pasar el alto del div
             var altoDiv = 0;
             var posicionDiv = document.getElementById("AuxScroll").offsetTop;
             var posicionDivAbajo = document.getElementById("AuxScrollAbajo").offsetTop;
-            $(window).scroll(function(event){
+            $(window).scroll(function (event) {
                 var posicionScroll = $(this).scrollTop();
 
-                if ((posicionScroll > (parseInt(posicionDiv)+parseInt(altoDiv)))&&(posicionScroll < (parseInt(posicionDivAbajo)+parseInt(altoDiv)))){
-                    $("#botonScroll").css("display","none");
+                if ((posicionScroll > (parseInt(posicionDiv) + parseInt(altoDiv))) && (posicionScroll < (parseInt(posicionDivAbajo) + parseInt(altoDiv)))) {
+                    $("#botonScroll").css("display", "none");
 
                 } else {
-                    $("#botonScroll").css("display","");
+                    $("#botonScroll").css("display", "");
                 }
-
-
-
 
 
             });
