@@ -79,7 +79,7 @@
                         <form class="form-inline nav-link" action="{{ path('generic_search') }}">
                             <div class="col-auto">
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" name="searchText" required
+                                    <input type="text" class="form-control buscar-txt" name="searchText" required
                                            id="inlineFormInputGroup"
                                            aria-label="Search"
                                            placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
@@ -110,12 +110,12 @@
                             </div>
 
 
-                            <div class="buscar-caja">
-                                <input type="text" name="" class="buscar-txt" placeholder="Buscar..."/>
-                                <a class="buscar-btn">
-                                    <i class="far fa-search"></i>
-                                </a>
-                            </div>
+                            {#<div class="buscar-caja">#}
+                                {#<input type="text" name="" class="buscar-txt" placeholder="Buscar..."/>#}
+                                {#<a class="buscar-btn">#}
+                                    {#<i class="far fa-search"></i>#}
+                                {#</a>#}
+                            {#</div>#}
 
                         </form>
 
