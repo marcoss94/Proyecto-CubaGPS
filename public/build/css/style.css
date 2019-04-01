@@ -1302,6 +1302,18 @@ p.infoExtra {
     box-shadow: none;
 }
 
+.buscador{
+    background-color: white;
+}
+
 .buscador:hover{
     background-color: gray;
+
+}
+
+.buscador i{
+    color: gray;
+}
+.buscador i:hover{
+    color: #f9b503;
 }
