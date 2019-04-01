@@ -1306,7 +1306,10 @@ p.infoExtra {
     background-color: white;
 }
 
+.buscador:hover{
+    background-color: white;
 
+}
 
 .buscador i{
     color: gray;
