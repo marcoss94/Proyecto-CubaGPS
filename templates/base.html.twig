@@ -85,10 +85,11 @@
                                            {#placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">#}
 
 
-                                    <input class="form-control py-2 border-right-0 border" type="search" value="search"
-                                           id="example-search-input">
+                                    <input class="form-control py-2 border-right-0 border" name="searchText" required
+                                           type="text" value="search"
+                                           id="example-search-input" aria-label="Search" placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
                                     <span class="input-group-append">
-                <button class="btn btn-outline-secondary border-left-0 border buscador" type="button">
+                <button class="btn btn-outline-secondary border-left-0 border buscador" type="submit">
                     <i class="fas fa-arrow-right"></i>
                 </button>
               </span>
@@ -120,20 +121,20 @@
 
 
 
-                                    {#<button class="btn btn-primary " type="submit"#}
-                                            {#style="background-color: #f9b501; border-color: #f9b501;">#}
-                                        {#<i class="fa fa-search" aria-hidden="true"></i>#}
-                                    {#</button>#}
+                                    <button class="btn btn-primary " type="submit"
+                                            style="background-color: #f9b501; border-color: #f9b501;">
+                                        <i class="fa fa-search" aria-hidden="true"></i>
+                                    </button>
 
 
-                                    <div class="input-group-prepend" style="display: inline">
-                                        <div class="input-group-text" style="border: 0;background-color: inherit">
-                                            <a class=" js-scroll-trigger" href="" data-toggle="modal"
-                                               data-target="#searchModal" style="color: white;">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                    {#<div class="input-group-prepend" style="display: inline">#}
+                                        {#<div class="input-group-text" style="border: 0;background-color: inherit">#}
+                                            {#<a class=" js-scroll-trigger" href="" data-toggle="modal"#}
+                                               {#data-target="#searchModal" style="color: white;">#}
+                                                {#<i class="fa fa-plus" aria-hidden="true"></i>#}
+                                            {#</a>#}
+                                        {#</div>#}
+                                    {#</div>#}
 
 
 
