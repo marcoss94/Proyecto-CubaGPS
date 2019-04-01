@@ -78,27 +78,36 @@
                     <li class="nav-item">
                         <form class="form-inline nav-link" action="{{ path('generic_search') }}">
                             <div class="col-auto">
-                                <div class="input-group ">
-                                    <input type="text" class="form-control" name="searchText" required
-                                           id="inlineFormInputGroup"
-                                           aria-label="Search"
-                                           placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
-                                    <div class="input-group-prepend" style="display: inline">
-                                        <div class="input-group-text" style="border: 0;background-color: inherit">
-                                            <a class=" js-scroll-trigger" href="" data-toggle="modal"
-                                               data-target="#searchModal" style="color: white;">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary " type="submit"
-                                            style="background-color: #f9b501; border-color: #f9b501;">
-                                        <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
+                                {#<div class="input-group ">#}
+                                    {#<input type="text" class="form-control" name="searchText" required#}
+                                           {#id="inlineFormInputGroup"#}
+                                           {#aria-label="Search"#}
+                                           {#placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">#}
+                                    {#<div class="input-group-prepend" style="display: inline">#}
+                                        {#<div class="input-group-text" style="border: 0;background-color: inherit">#}
+                                            {#<a class=" js-scroll-trigger" href="" data-toggle="modal"#}
+                                               {#data-target="#searchModal" style="color: white;">#}
+                                                {#<i class="fa fa-plus" aria-hidden="true"></i>#}
+                                            {#</a>#}
+                                        {#</div>#}
+                                    {#</div>#}
+                                    {#<button class="btn btn-primary " type="submit"#}
+                                            {#style="background-color: #f9b501; border-color: #f9b501;">#}
+                                        {#<i class="fa fa-search" aria-hidden="true"></i>#}
+                                    {#</button>#}
 
 
-                                </div>
+                                {#</div>#}
                             </div>
+
+
+                            <div class="buscar-caja">
+                                <input type="text" name="" class="buscar-txt" placeholder="Buscar..."/>
+                                <a class="buscar-btn">
+                                    <i class="far fa-search"></i>
+                                </a>
+                            </div>
+
                         </form>
 
 
