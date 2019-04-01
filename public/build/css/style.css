@@ -1301,3 +1301,7 @@ p.infoExtra {
     border-color: initial;
     box-shadow: none;
 }
+
+.buscador:hover{
+    background-color: gray;
+}
