@@ -1282,58 +1282,32 @@ p.infoExtra {
 }
 /*-----------------------------------------------------------------------------*/
 
-.buscar-caja {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #2f3640;
-    height: 40px;
-    border-radius: 40px;
-    padding: 10px;
+
+#custom-search-input .search-query {
+    padding-right: 3px;
+    padding-right: 4px \9;
+    padding-left: 3px;
+    padding-left: 4px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
-/*.buscar-caja:hover > .buscar-txt {*/
-    /*width: 240px;*/
-    /*padding: 0 6px;*/
-/*}*/
-
-/*.buscar-caja:hover > .buscar-btn {*/
-    /*background: white;*/
-    /*color: black;*/
-/*}*/
-
-.buscar-btn {
-    color: #e84118;
-    float: right;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #2f3640;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*transition: 0.4s;*/
-    color: white;
-    cursor: pointer;
-}
-
-.buscar-btn > i {
-    font-size: 30px;
-}
-
-.buscar-txt {
-    border: none;
+#custom-search-input button {
+    border: 0;
     background: none;
-    outline: none;
-    float: left;
-    padding: 0;
-    color: white;
-    font-size: 16px;
-    /*transition: 0.4s;*/
-    line-height: 40px;
-    width: 200px;
-    font-weight: bold;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color:#D9230F;
 }
-
-﻿
