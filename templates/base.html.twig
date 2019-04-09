@@ -191,7 +191,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="caret"></span>
+                                <span class="caret">{{ app.session.get('language') == 'es'? 'Idioma':'Language' }}</span>
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
