@@ -739,7 +739,7 @@ border-color: #f9b501">
                             </button>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default"
+                            <button type="button" class="btn" id="copyButton"
                                     data-dismiss="modal">{{ app.session.get('language') == 'es'? 'Cerrar':'Close' }}</button>
                         </div>
 
@@ -933,7 +933,7 @@ border-color: #f9b501">
         })
     </script>
     <script type="text/javascript">
-        var clipboard = new Clipboard('.btn btn-clipboard btn-default');
+        var clipboard = new Clipboard('#copyButton');
         {#---------------------------------------------------------#}
 
         var myMessages = ['Alertinfo', 'Alertwarning', 'Alerterror', 'Alertsuccess']; // define the messages types
