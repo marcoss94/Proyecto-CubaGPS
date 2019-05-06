@@ -714,7 +714,7 @@ border-color: #f9b501">
             </div><!-- /.modal-dialog -->
         </div>
         {% if is_granted('ROLE_PUBLISHER') %}
-            <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.3/dist/clipboard.min.js"></script>
+
             <div class="portfolio-modal-sm modal fade" id="linkModal" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -731,7 +731,7 @@ border-color: #f9b501">
                                 'Share this unic link for other users login through you' }}</p>
                             <h4>https://www.travelcubagps.com/homepage?redirectId={{ app.user.id }}</h4>
                             <input type="hidden" id="unicLink" value="https://www.travelcubagps.com/homepage?redirectId={{ app.user.id }}">
-                            <button class="btn btn-default" data-clipboard-target="#unicLink">
+                            <button class="btn btn-clipboard btn-default" data-clipboard-target="#unicLink">
                                 {{ app.session.get('language') == 'es'?
                                 'Copiar el enlace'
                                 :
@@ -922,6 +922,7 @@ border-color: #f9b501">
     <script type='text/javascript'
             src="{{ asset('build/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
     <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.3/dist/clipboard.min.js"></script>
+
     <script type="text/javascript">
         var lang ={{ app.session.get('languaje') }};
         $('#spanish').click(function () {
@@ -932,7 +933,7 @@ border-color: #f9b501">
         })
     </script>
     <script type="text/javascript">
-
+        var clipboard = new Clipboard('.btn-clipboard');
         {#---------------------------------------------------------#}
 
         var myMessages = ['Alertinfo', 'Alertwarning', 'Alerterror', 'Alertsuccess']; // define the messages types
