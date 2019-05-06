@@ -656,6 +656,10 @@ border-color: #f9b501">
                                 :
                                 'Share this unic link for other users login through you' }}</p>
                             <h4>https://www.travelcubagps.com/homepage?redirectId={{ app.user.id }}</h4>
+                            <input id="unicLink" value="https://www.travelcubagps.com/homepage?redirectId={{ app.user.id }}">
+                            <button class="btn btn-default" data-clipboard-target="#foo">
+                                Copiar el enlace
+                            </button>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default"
@@ -840,7 +844,7 @@ border-color: #f9b501">
 
     <script type='text/javascript'
             src="{{ asset('build/unitegallery/themes/tilesgrid/ug-theme-tilesgrid.js') }}"></script>
-
+    <script src="https://cdn.rawgit.com/zenorocha/clipboard.js/v1.5.3/dist/clipboard.min.js"></script>
     <script type="text/javascript">
         var lang ={{ app.session.get('languaje') }};
         $('#spanish').click(function () {
