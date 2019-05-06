@@ -79,22 +79,64 @@
                         <form class="form-inline nav-link" action="{{ path('generic_search') }}">
                             <div class="col-auto">
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" name="searchText" required
-                                           id="inlineFormInputGroup"
-                                           aria-label="Search"
-                                           placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
-                                    <div class="input-group-prepend" style="display: inline">
-                                        <div class="input-group-text" style="border: 0;background-color: inherit">
-                                            <a class=" js-scroll-trigger" href="" data-toggle="modal"
-                                               data-target="#searchModal" style="color: white;">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary " type="submit"
+                                    {#<input type="text" class="form-control" name="searchText" required#}
+                                           {#id="inlineFormInputGroup"#}
+                                           {#aria-label="Search"#}
+                                           {#placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">#}
+
+
+                                    <input class="form-control py-2 border-right-0 border" name="searchText" required
+                                           type="text"
+                                           id="example-search-input" aria-label="Search" placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
+                                    <span class="input-group-append">
+                <button class="btn btn-outline-secondary border-left-0 border buscador" type="submit">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+              </span>
+
+
+                                    {#<div class="row no-gutters">#}
+                                        {#<div class="col">#}
+                                            {#<input class="form-control border-secondary border-right-0 rounded-0" type="text" value="search" id="example-search-input4">#}
+                                        {#</div>#}
+                                        {#<div class="col-auto">#}
+                                            {#<button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">#}
+                                                {#<i class="fa fa-close"></i>#}
+                                            {#</button>#}
+                                        {#</div>#}
+                                        {#<div class="col-auto">#}
+                                            {#<button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">#}
+                                                {#<i class="fa fa-search"></i>#}
+                                            {#</button>#}
+                                        {#</div>#}
+                                    {#</div>#}
+
+                                        {#<input type="text" class="form-control" placeholder="Search this blog">#}
+                                        {#<div class="input-group-append">#}
+                                            {#<button class="btn btn-secondary" type="button">#}
+                                                {#<i class="fa fa-search"></i>#}
+                                            {#</button>#}
+                                        {#</div>#}
+
+
+
+
+                                    <a class="btn btn-primary borde" href="" data-toggle="modal" data-target="#searchModal"
                                             style="background-color: #f9b501; border-color: #f9b501;">
                                         <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
+                                    </a>
+
+
+                                    {#<div class="input-group-prepend" style="display: inline">#}
+                                        {#<div class="input-group-text" style="border: 0;background-color: inherit">#}
+                                            {#<a class=" js-scroll-trigger" href="" data-toggle="modal"#}
+                                               {#data-target="#searchModal" style="color: white;">#}
+                                                {#<i class="fa fa-plus" aria-hidden="true"></i>#}
+                                            {#</a>#}
+                                        {#</div>#}
+                                    {#</div>#}
+
+
 
 
                                 </div>
@@ -149,7 +191,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="caret"></span>
+                                <span class="caret">{{ app.session.get('language') == 'es'? 'Idioma':'Language' }}</span>
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
@@ -263,22 +305,53 @@
                         <form class="form-inline nav-link" action="{{ path('generic_search') }}">
                             <div class="col-auto">
                                 <div class="input-group ">
-                                    <input type="text" class="form-control" name="searchText" required
-                                           id="inlineFormInputGroup"
-                                           aria-label="Search"
-                                           placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
-                                    <div class="input-group-prepend" style="display: inline">
-                                        <div class="input-group-text" style="border: 0;background-color: inherit">
-                                            <a class=" js-scroll-trigger" href="" data-toggle="modal"
-                                               data-target="#searchModal" style="color: white;">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <button class="btn btn-primary " type="submit"
-                                            style="background-color: #f9b501; border-color: #f9b501;">
+                                    {#<input type="text" class="form-control" name="searchText" required#}
+                                    {#id="inlineFormInputGroup"#}
+                                    {#aria-label="Search"#}
+                                    {#placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">#}
+
+
+                                    <input class="form-control py-2 border-right-0 border" name="searchText" required
+                                           type="text"
+                                           id="example-search-input" aria-label="Search" placeholder="{{ app.session.get('language') == 'es'? 'Buscar':'Search' }}">
+                                    <span class="input-group-append">
+                <button class="btn btn-outline-secondary border-left-0 border buscador" type="submit">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+              </span>
+
+
+                                    {#<div class="row no-gutters">#}
+                                    {#<div class="col">#}
+                                    {#<input class="form-control border-secondary border-right-0 rounded-0" type="text" value="search" id="example-search-input4">#}
+                                    {#</div>#}
+                                    {#<div class="col-auto">#}
+                                    {#<button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">#}
+                                    {#<i class="fa fa-close"></i>#}
+                                    {#</button>#}
+                                    {#</div>#}
+                                    {#<div class="col-auto">#}
+                                    {#<button class="btn btn-outline-secondary border-left-0 rounded-0 rounded-right" type="button">#}
+                                    {#<i class="fa fa-search"></i>#}
+                                    {#</button>#}
+                                    {#</div>#}
+                                    {#</div>#}
+
+                                    {#<input type="text" class="form-control" placeholder="Search this blog">#}
+                                    {#<div class="input-group-append">#}
+                                    {#<button class="btn btn-secondary" type="button">#}
+                                    {#<i class="fa fa-search"></i>#}
+                                    {#</button>#}
+                                    {#</div>#}
+
+
+
+
+                                    <a class="btn btn-primary borde" href="" data-toggle="modal" data-target="#searchModal"
+                                       style="background-color: #f9b501; border-color: #f9b501;">
                                         <i class="fa fa-search" aria-hidden="true"></i>
-                                    </button>
+                                    </a>
+
                                 </div>
                             </div>
                         </form>
@@ -335,7 +408,7 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-globe" aria-hidden="true"></i>
-                                <span class="caret"></span>
+                                <span class="caret">{{ app.session.get('language') == 'es'? 'Idioma':'Language' }}</span>
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"
